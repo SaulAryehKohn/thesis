@@ -1,0 +1,379 @@
+\documentclass[12pt,twoside,openany]{book}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{color}
+\usepackage{amsmath,amssymb}
+\usepackage{float}
+\usepackage[hyphens]{url}
+%\usepackage{bigints,relsize}
+\usepackage{mathrsfs,mathtools,xfrac}
+%\usepackage{mathtools,xfrac}
+%\usepackage{subfig} % needed for proper size caption in Table A.1
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx} % needed to make text and equations in Times New Roman 
+%\usepackage{times}
+\usepackage{aastex_hack,natbib}
+%\usepackage{deluxetable}
+%\usepackage{tabularx}
+\usepackage{rotating,rotate}
+\usepackage{pdflscape,longtable}
+\usepackage[toc,page]{appendix}
+%\usepackage{fixmainmatter} % I created this pkg to fix the blank page issue in \mainmatter
+\usepackage{rotating} % Provides {sideways}{sidewaysfigure}{sidewaystable} environments
+%\documentclass{aastex}
+\usepackage{grffile}
+%\usepackage{epstopdf}
+\usepackage{lscape}
+\usepackage{natbib}
+\usepackage{xr}
+\usepackage{url}
+\usepackage{caption}
+\usepackage[caption=false]{subfig}
+%\usepackage{float,lscape}
+%\usepackage{pdflscape}
+%\usepackage{equation}
+%\usepackage{fancyhdr}
+%\captionsetup[deluxetable]{labelformat=empty}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{bm}
+\usepackage{cancel}
+\usepackage{epstopdf}
+\usepackage{accents}
+\usepackage{multicol}
+\bibstyle{aa}
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+%\setlength{\topmargin}{0.9in}
+\setlength{\hoffset}{0.05in}
+\setlength{\textheight}{8.5in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{-.22in}
+\setlength{\oddsidemargin}{0.55in}
+\setlength{\evensidemargin}{0.55in}
+\setlength{\textwidth}{5.9in}
+\newcommand{\doublespaced}{\renewcommand{\baselinestretch}{2}\normalfont}
+\newcommand{\singlespaced}{\renewcommand{\baselinestretch}{1}\normalfont}
+\newcommand{\halfspaced}{\renewcommand{\baselinestretch}{1.5}\normalfont}
+\renewcommand{\arraystretch}{0.7}
+\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+\newcommand{\avg}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\Ang}{\; \mathring{\text{A}}}
+\newcommand{\Lya}{Ly$\alpha$ }
+%\newcommand{\Ang}{\mbox{ \AA}} 
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+\makeatletter
+\newcommand{\unchapter}[1]{%
+  \begingroup
+  \let\@makechapterhead\@gobble % make \@makechapterhead do nothing
+  \chapter{#1}
+  \endgroup
+}
+\makeatother
+%force sub subsections to be numbererd and show show up in the table of contents
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+% define some shortcuts
+\newcommand{\Fig}[1]{Fig.~\ref{#1}}
+\newcommand{\Sec}[1]{Section~\ref{#1}}
+\newcommand{\Eqn}[1]{Eq.~\ref{#1}} \newcommand{\lya}{Ly$\,\alpha$ }
+\newcommand{\trec}{\ensuremath{t_{\rm rec}}}
+\newcommand{\tq}{\ensuremath{t_{\rm q}}}
+\newcommand{\nbar}[1]{\ensuremath{\bar{n}_{\rm #1}}}
+\newcommand{\pow}[2]{\ensuremath{#1 \times 10^{#2}}}
+\newcommand{\hmpc}{\ensuremath{\,h^{-1}\,{\rm Mpc}\,}}
+\newcommand{\ihmpc}{\ensuremath{\,h\,{\rm Mpc^{-1}}}}
+\newcommand{\K}{\mbox{ K}}
+\newcommand{\bma}{\begin{math}}
+\newcommand{\ema}{\end{math}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\beqa}{\begin{eqnarray}}
+\newcommand{\eeqa}{\end{eqnarray}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}} 
+\newcommand{\bit}{\begin{itemize}}
+\newcommand{\eit}{\end{itemize}}
+\font\BFd=cmmib10
+\font\BFt=cmmib10
+\font\BFs=cmmib10 scaled 700
+\font\BFss=cmmib10 scaled 500
+\def\bbox#1{%
+\relax\ifmmode
+\mathchoice
+{{\hbox{\BFd #1}}}
+{{\hbox{\BFt #1}}}
+{{\hbox{\BFs #1}}}
+{{\hbox{\BFss #1}}}
+\else \mbox{#1} \fi }
+\def\k{{\bbox{k}}}
+\def\q{{\bbox{q}}}
+\def\r{{\bbox{r}}}
+\def\x{{\bbox{x}}}
+\def\thetab{\pmb{\theta}}
+\def\dk{\frac{d^3k}{2 \pi^3}}
+\def\dq{\frac{d^3q}{2 \pi^3}}
+\def\dkc{\frac{d^3k_3}{(2 \pi)^3}}
+\newcommand{\MHz}{\mbox{MHz}}
+%\newcommand{\vdag}{(v)^\dagger}
+%\newcommand{\myemail}{tfj@sas.upenn.edu}
+%\newcommand{\musicheader}[2]{\colorbox{black}{\textcolor{white}{\emph{\# #1 #2}}}}
+%\newcommand{\tcode}[1]{{\tt #1}}
+%\newcommand{\E}{\times 10^}
+%\newcommand{\magthresh}{20.0 }
+%\newcommand{\startdate}{September 1 }
+%\newcommand{\findate}{February 22 }
+%\newcommand{\bands}{\emph{griz}}
+%\newcommand{\seeingtrigger}{1.1" }
+%\newcommand{\deadtrigger}{7 days }
+%\newcommand{\searchradius}{1.08 arcseconds }
+%\newcommand{\assocradius}{1.80 arcseconds }
+%\newcommand{\numofbfakes}{8 } 
+%\newcommand{\bfakemag}{20 }
+%\newcommand{\deepSNRbfakes}{80 }
+%\newcommand{\shallowSNRbfakes}{20 } 
+%\newcommand{\SVstart}{November 18, 2012 }
+%\newcommand{\SVend}{February 22, 2013 }  
+%\newcommand{\SNnum}{1200 }
+%\newcommand{\hostspectra}{281 }
+%\newcommand{\SNtenfivefive}{451 }
+%\newcommand{\psnid}{\tcode{psnid} }
+%\newcommand{\rv}{$R_{Vol}$ } 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\tita}{ASTROPHYSICAL POLARIZATION AS A FOREGROUND FOR HI EPOCH OF REIONIZATION MEASUREMENTS}
+\newcommand{\titlow}{Astrophysical polarization as a foreground for HI Epoch of Reionization measurements}
+
+\begin{document}
+\addcontentsline{toc}{chapter}{Title}
+\frontmatter
+\doublespaced
+\thispagestyle{empty}
+\parskip=0.3in
+\begin{center}
+{\tita }\\
+
+Saul Aryeh Kohn\\
+
+A DISSERTATION\\
+
+in\\ 
+
+Physics and Astronomy\\
+
+Presented to the Faculties of the University of Pennsylvania \\
+in Partial Fulfillment of the Requirements for the Degree of Doctor of Philosophy\\
+
+2018
+\end{center}
+\parskip=0in
+
+\begin{multicols}{2}
+\noindent Supervisor of Dissertation \\
+
+\begin{flushright}
+\noindent Graduate Group Chairperson\\
+\end{flushright}
+
+\end{multicols}
+
+\noindent\makebox[0in][l]{\rule[2ex]{2.8in}{.3mm}} \hspace{3.05in} \makebox[0in][l]{\rule[2ex]{2.8in}{.3mm}} 
+\vspace{-.5in}
+\begin{multicols}{2}
+\singlespaced
+\noindent James E. Aguirre\\ \small Associate Professor of Physics and Astronomy\\
+
+\normalsize
+
+%this is the grad chair, not the chair of the committee, right?
+\begin{flushright}
+Ravi Sheth\\ \small Professor of Physics and Astronomy
+\end{flushright}
+\end{multicols}
+
+\halfspaced
+\noindent Dissertation Committee:
+
+\noindent Adam Lidz, Associate Professor of Physics and Astronomy
+
+\noindent Masao Sako, Associate Professor of Physics and Astronomy
+
+\noindent another professor, Assistant Professor of Physics and Astronomy
+
+\noindent another professor, Professor of Physics and Astronomy
+
+\newpage
+
+\pagestyle{plain}
+\unchapter{Dedication}
+\doublespaced
+\vspace*{2in}
+\begin{center}
+{\large\emph{for my grandparents, endless sources of inspiration}}
+\end{center}
+
+
+\chapter{Acknowledgments}
+\halfspaced
+%blah di blah
+% PAPER & HERA teams
+% Danny, Carina, Matt, Josh K.
+% Friends: Ashley, Christian, Elodie, Julie, Steve K., Irteza
+% James (who counts as a friend too)
+% Kohns
+% Goodmans
+% Gabby
+Acknowledgements require a certain mindset to be written well.
+
+\newpage
+%\vspace*{.75 in}
+\vspace*{.15 in}
+\begin{center}
+\addcontentsline{toc}{chapter}{Abstract}
+{\bf ABSTRACT}\\
+\tita \\
+\parskip=0.2in
+
+
+Saul A. Kohn\\
+James E. Aguirre
+\end{center}
+\noindent
+%350 Word Limit
+%Write One
+Abstracts are written last.
+
+\vspace*{\fill}
+
+\newpage
+
+\singlespaced
+\tableofcontents
+
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+\newpage
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+
+\halfspaced
+\setlength{\parindent}{0.25in}
+
+\mainmatter
+\part{Introduction \& Mathematical Formalisms}
+\include{chapters/eor_intro} % The Epoch of Reionization
+%
+% what is the EoR
+% why is it interesting
+% current (CMB, high-z galaxies, HI limits) and future (HI, CO, C+ intensity mapping, extreme deep fields from JWST) probes
+%
+\include{chapters/astropol} % Astrophysical Polarization
+%
+% what is polarization (emag)
+% sources of astrophysical polarization
+% [magnetic fields in SPAAAACE]
+%
+\include{chapters/interferometry} % Interferometry
+%
+% building the [classical] visibility equation in the unpolarized case
+% pointing vs drift-scanning
+% wide field effects
+% rebuilding the visibility equation for widefield, polarized instruments
+% basics of calibration for drift-scanning interferometers
+%
+\include{chapters/instrumentpol} % Instrumental Polarization
+%
+% explore the matrix-formalized visibility equation
+% DI leakage
+% DD leakage
+%
+\include{chapters/instruments}
+%
+% brief overview of instruments used in this work:
+%   PAPER: 32, 32-pol-img, 64 (xtlak), 128
+%   HERA: 19, H1C?
+% instruments of note, not used in this work, but exploring similar things and facing similar challenges:
+%   LOFAR, MWA
+%   SKA-Low
+%
+\part{Outer space in Fourier space}
+\include{chapters/eor_window_theory}
+%
+% -- sort of a lit review chapter --
+% The issue of low frequency foregrounds for EoR measurements
+% Define power spectra...
+% foreground wedge and EoR window
+% Foreground avoidence: delay spectrum
+% Foreground subtraction: theory and LOFAR results
+% Hybrid approach: MWA
+%
+%
+\include{chapters/data_processing}
+%
+% compression -- DDR algorithm & software overview
+% PAPER-128 RFI memo
+% HERA RFI memo
+% Crosstalk subtraction -- theory (PAPER-64 memo)
+%
+\include{chapters/polcal}
+%
+% Omnical (2pol, 4pol, 4polminV) [omnipolcal.pdf, Dillon paper]
+% Imaging calibration [briefly]
+%
+\include{chapters/ionosphere}
+% 
+% initial pass: Moore et al. 2017
+% Martinot (?) et al. 2018 (?)
+% radionopy
+%
+\include{chapters/eor_window_PAPER}
+%
+% Kohn et al. 2016
+%
+\include{chapters/eor_window_HERA}
+%
+% Kohn et al. 2018 (HERA wedges)
+%
+\include{chapters/psa128_pol}
+%
+% PAPER-128 (wherever we get to)
+%
+\part{Expanding the potential of EoR measurements}
+% extra stuff
+\include{chapters/global_signal}
+% theory and observation of PAPER and HERA time-averaged visibilities
+\include{chapters/ksz_21cm}
+% bispectrum & trispectrum squeezed formalisms
+% noise in image space
+\include{chapters/hera_ml}
+% CNNs on 21cmFAST - regression
+% CNNs on 21cmFAST - Sultan's classification
+\include{chapters/conclusion}
+%
+% WTF how do I write this! answer: not yet.
+%
+
+
+%\appendix
+%\begin{appendices}
+%\addcontentsline{toc}{chapter}{Appendices}
+%\include{AppendixA}
+%\end{appendices}
+
+\newpage
+%\include{bibliography}
+%\chapter{Bibliography}
+
+\bibliographystyle{astron}
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{thesisbib}
+
+\end{document}
