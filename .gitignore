@@ -1,0 +1,9 @@
+*aux
+*gz
+*log
+*bbl
+*toc
+*lof
+*lot
+*blg
+chapters/*aux
