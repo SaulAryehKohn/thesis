@@ -145,8 +145,8 @@
 %\newcommand{\rv}{$R_{Vol}$ } 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\tita}{ASTROPHYSICAL POLARIZATION AS A FOREGROUND FOR HI EPOCH OF REIONIZATION MEASUREMENTS}
-\newcommand{\titlow}{Astrophysical polarization as a foreground for HI Epoch of Reionization measurements}
+\newcommand{\tita}{UNDERSTANDING POLARIZATION AS A FOREGROUND FOR HI EPOCH OF REIONIZATION MEASUREMENTS}
+\newcommand{\titlow}{Understanding polarization as a foreground for HI Epoch of Reionization measurements}
 
 \begin{document}
 \addcontentsline{toc}{chapter}{Title}
@@ -191,7 +191,7 @@ in Partial Fulfillment of the Requirements for the Degree of Doctor of Philosoph
 
 %this is the grad chair, not the chair of the committee, right?
 \begin{flushright}
-Ravi Sheth\\ \small Professor of Physics and Astronomy
+Whoever the graduate chair is\\ \small Professor of Physics and Astronomy
 \end{flushright}
 \end{multicols}
 
@@ -216,18 +216,51 @@ Ravi Sheth\\ \small Professor of Physics and Astronomy
 {\large\emph{for my grandparents, endless sources of inspiration}}
 \end{center}
 
+\newpage
+
+%\doublespacing
+
+\thispagestyle{empty} % No page number as per Manual, p. 11
+
+\vspace*{\fill}
+
+\begin{flushleft}
+{\tita }
+
+\copyright \space COPYRIGHT
+ 
+2018
+
+Saul Aryeh Kohn\\[24 pt] % If traditional copyright then delete everything below here, but keep \end{flushleft}
+
+This work is licensed under the \\
+Creative Commons Attribution \\
+NonCommercial-ShareAlike 3.0 \\
+License
+
+To view a copy of this license, visit
+
+\url{http://creativecommons.org/licenses/by-nc-sa/3.0/}
+\end{flushleft}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Acknowledgments}
 \halfspaced
 %blah di blah
 % PAPER & HERA teams
-% Danny, Carina, Matt, Josh K.
+% Danny, Carina, Matt, Josh K., Paul LP
 % Friends: Ashley, Christian, Elodie, Julie, Steve K., Irteza
 % James (who counts as a friend too)
 % Kohns
 % Goodmans
 % Gabby
 Acknowledgements require a certain mindset to be written well.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \newpage
 %\vspace*{.75 in}
@@ -266,6 +299,9 @@ Abstracts are written last.
 
 \halfspaced
 \setlength{\parindent}{0.25in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \mainmatter
 \part{Introduction \& Mathematical Formalisms}
@@ -322,6 +358,7 @@ Abstracts are written last.
 % PAPER-128 RFI memo
 % HERA RFI memo
 % Crosstalk subtraction -- theory (PAPER-64 memo)
+% PAPER QA
 %
 \include{chapters/polcal}
 %
@@ -358,15 +395,16 @@ Abstracts are written last.
 % CNNs on 21cmFAST - Sultan's classification
 \include{chapters/conclusion}
 %
-% WTF how do I write this! answer: not yet.
+% WTF how do I write this?! answer: not yet.
 %
 
 
 %\appendix
-%\begin{appendices}
-%\addcontentsline{toc}{chapter}{Appendices}
-%\include{AppendixA}
-%\end{appendices}
+\begin{appendices}
+\addcontentsline{toc}{chapter}{Appendices}
+\include{appendices/software}
+
+\end{appendices}
 
 \newpage
 %\include{bibliography}

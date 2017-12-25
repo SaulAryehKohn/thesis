@@ -1,1 +1,18 @@
 \chapter{Data Preparation and Processing}
+\label{chapter:data_prep_and_proc}
+The data volume of interferometric measurements inherently scale as the square of the number of antennas in the array ($N_{\rm ant}$). Not only does the sheer volume of data from large-$N_{\rm ant}$ arrays pose a problem for data storage, but also it requires precise and efficient efforts to quality assure (QA) the data. 
+
+In this chapter, I will outline some of the efforts involved in data preparation, preprocessing and QA that are required for an EoR power spectrum estimate.
+
+\section{Data Compression}
+\label{sec:data_compression}
+
+The PAPER-128 correlator produced 288 files per night. Each of these contained 8126 baselines, and each baseline contained visibilities over 1024 frequency channels and 19 time integrations. The four instrumental polarizations were in separate files. In sum, each file was 4.2 GB which meant that each night 1.2 TB of data were recorded.
+
+In order to efficiently transport the data over Gigabit Ethernet from the Karoo Radio Quiet Zone (KRQZ) to Cape Town, and from Cape Town under transatlantic cables to Philadelphia, some compression was required. It was also required that such a compression, while lossy, did not effect the targeted cosmological signal.
+
+The compression algorithm implemented for PAPER observations, Delay--Delay-Rate filtering, was described in \cite{Parsons.14}, and we briefly review it below.
+
+\section{Radio Frequency Interference}
+\label{sec:RFI}
+

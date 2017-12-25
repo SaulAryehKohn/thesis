@@ -1,0 +1,41 @@
+\chapter{Software}
+
+Software engineering and maintenance of existing codebases has been, generally speaking, historically undervalued and unappreciated \citep{AstropyProblem}. In this Appendix I would like to provide a brief description of the major software packages used in this work -- without which, the work would not exist.
+
+\section{Astronomical Interferometry in Python ({\tt aipy})}
+\label{sec:aipy}
+
+The {\tt aipy} software package \citep{aipy} was developed by a team based largely at the University of California, Berkeley and led by Aaron Parsons. Developed under NSF funding for the PAPER experiment, it provides a Python API to interact with interferometric visibilities stored in the {\sc miriad} file format \citep{miriad}. It is able to efficiently query large {\sc miriad} files due the APIs closeness to the underlying C code. It also contains calibration, deconvolution, imaging and phasing code in Python, and interfaces with {\tt HEALPix} (see Section~\ref{sec:healpix}, below) as well as other astronomical Python packages.
+
+{\tt aipy} is maintained by the HERA software team, and can be found at: \url{https://github.com/HERA-Team/aipy}.
+
+\section{Astronomy in Python ({\tt astropy})}
+
+{\tt astropy} is an open-source and community-developed core Python package for Astronomy, containing a host of extremely useful utility functions and objects \citep{astropy}.
+
+\section{Common Astronomy Software Applications ({\tt CASA})}
+\label{sec:casa}
+
+{\tt CASA} is under active development, with the primary goal of supporting the data post-processing needs of the next generation of radio telescopes. It is developed by an international consortium of scientists based at the National Radio Astronomical Observatory (NRAO), the European Southern Observatory (ESO), the National Astronomical Observatory of Japan (NAOJ), the CSIRO Australia Telescope National Facility (CSIRO/ATNF), and the Netherlands Institute for Radio Astronomy (ASTRON), under the guidance of NRAO \citep{casa}.
+
+\section{Deep Learning packages}
+\label{sec:keras_pytorch_tf}
+
+Experimentation with deep learning analyses of 21\,cm simulated observations took place in Keras \citep{keras}, PyTorch \citep{pytorch} and Tensorflow \citep{tensorflow}.
+
+\section{Hierarchical Equal Area isoLatitude Pixelization of the sphere ({\tt HEALPix})}
+\label{sec:healpix}
+
+The {\tt HEALPix} software, and its Python wrapper {\tt healpy}, provide a pixelization which subdivides a spherical surface into pixels which each cover the same surface area as every other pixel. Pixel centers occur on a discrete number of rings of constant latitude. This scheme makes natively spherical measurements, such as angular power spectra and wide-field images, simple and efficient to interact with \citep{healpix}.
+
+\section{{\tt pyuvdata}}
+\label{sec:pyuvdata}
+
+{\tt pyuvdata} provides a Python interface to interferometric data. It can read and write {\sc miriad} and {\sc uvfits} file formats, as well as read {\tt CASA} measurement sets and {\tt FHD} \citep{FHD} visibility save files \citep{pyuvdata}.
+
+{\tt pyuvdata} is maintained by the HERA software team, and can be found at: \url{https://github.com/HERA-Team/pyuvdata}.
+
+\section{The Scientific Python Ecosystem ({\tt scipy})}
+\label{sec:scipy}
+
+Many of the above tools require at least one of the many packages under the {\tt scipy} ecosystem. It is truly foundational to almost any scientific analysis that takes place in Python \citep{ScipyEcosystem}.
