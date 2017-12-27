@@ -1,1 +1,171 @@
 \chapter{A view of the EoR window from the PAPER-32 imaging array}
+\label{chapter:eor_window_paper32img}
+
+In this Section, we present 2D power spectra created from data taken by the PAPER-32 imaging array in Stokes I, Q, U and V. 
+
+The PAPER 32-antenna array relied on its highly redundant configuration in order to take the measurements resulting in the strong upper limits on the 21 cm power spectrum \citep{Parsons.14, Jacobs.15, Moore.17}. However, for three nights in 2011 September, the 32 elements were reconfigured into an polarized imaging configuration. 
+
+Power spectra allowed us to observe and diagnose systematic effects in our calibration at high signal-to-noise within the Fourier space most relevant to EoR experiments. We observed well-defined windows in the Stokes visibilities, with Stokes Q, U and V power spectra sharing a similar wedge shape to that seen in Stokes I.  With modest polarization calibration, we saw no evidence that polarization calibration errors moved power outside the wedge in any Stokes visibility, to the noise levels attained.  Deeper integrations will be required to confirm that this behavior persists to the depth required for EoR detection.
+
+The layout of this Chapter is as follows.  In Section~\ref{sec:psa32_obs} we provide a brief description of the PAPER array in its imaging configuration, the data from which this paper is based, and describe its calibration and reduction. We also describe the method used to create 2D power spectra in this section. We analyze the power spectra in Section~\ref{sec:psa32_res}, and discuss the implications of our findings and conclude in Section~\ref{sec:psa32_disc}.
+
+\section{Observations \& Reduction}
+\label{sec:psa32_obs}
+We present measurements taken overnight on 2011 September 14--15 over local sidereal times (LSTs) 0--5 hr.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\columnwidth]{chapters/eor_window_PAPER/figures/new_antenna_config.pdf}
+\includegraphics[width=0.9\columnwidth]{chapters/eor_window_PAPER/figures/uv_coverage_exclbad_overlaid-compressed.png}
+\caption[The PAPER-32, dual-pol antenna imaging configuration and \textit{uv} distribution.]{The PAPER-32, dual-pol antenna imaging configuration (top). They were arranged in a pseudo-random scatter within in a $\sim$300\,m diameter circle to maximize instantaneous $uv$ coverage (bottom). $uv$ coverage is shown for 100--200\,MHz over 203 channels in blue, and 146--166\,MHz over 20 channels in red (the latter being the frequencies used in our power spectrum analysis). Malfunctioning antennae identified during calibration are overlaid with red crosses (and are excluded from the $uv$ coverage map).\\}
+\label{fig:psa32img_config}
+\end{figure}
+
+Antennae were arranged in a pseudo-random scatter within a 300\,m-diameter circle, the layout of which is shown in Figure~\ref{fig:psa32img_config}. This allowed us to obtain resolutions between 15' and 25' across the bandwidth (100--200 MHz nominally, although in reality this extends 110--185 MHz due to band edge effects and VHF TV). Drift-scan visibilities were measured every 10.7 s, and divided into datasets about 10 minutes in length. We express an interferometric visibility $V^{pq}_{ij}$ between antennae $i$ (with dipole arm $p$, which can be $x$ (East-West) or $y$ (North-South) for PAPER dipoles), and $j$ (with dipole arm $q$), in directional cosines $l$ and $m$ for frequency $\nu$ at time $t$, as:
+
+\begin{equation}
+\begin{aligned}
+V_{ij}^{pq}(\nu,t) = g^p_i g^{q*}_j \exp(-2\pi i \nu \tau_{pq}) \times \\ \int d\Omega \, A^{pq}(\Omega, \nu)
+S(\Omega, \nu) \exp\left(\frac{ -i\nu}{c} \vec{b}(t) \cdot \hat{s}(\Omega)\right)
+\end{aligned}
+\label{eq:psa32_visibility}
+\end{equation}
+
+where the $g$ terms represent the complex gains for each antenna and dipole arm, $A^{pq}$ is the polarized beam and $S$ is the sky. The product $\vec{b}(t) \cdot \hat{s}(\Omega)$ represents the projection of the baseline between $i$ and $j$ with respect to an arbitrary location on the sky. 
+The motivation for including the term for the delay between dipole arms $p$ and $q$, $\tau_{pq}$, is given in Section \ref{subsubsec:psa32_polcal}. This delay is clearly zero if $p=q$.
+
+Visibilities were obtained from correlating both $x$ and $y$ dipoles, forming V$^{xx}$, V$^{xy}$, V$^{yx}$ and V$^{yy}$. Frequencies from 100 to 200\,MHz were sampled into 2048 channels.
+Data were delay-filtered to 203 frequency channels \citep[see the Appendix of][]{Parsons.14} and Chapter~\ref{chapter:data_prep_and_proc}.  Cross-talk was modelled and removed by subtracting the average power over the 5 hours of observation, which extended across LST=0h--5h. An initial RFI-flagging removed any outliers more than $6\sigma$ from a spectrally smooth profile.
+
+\subsection{Calibration}
+
+Calibration took place in three stages, detailed below: a first-order delay-space calibration for the initial gains and phases with respect to Pictor A, an absolute calibration using imaging with respect to Pictor A and Fornax A, and a polarimetric correction for the $\tau_{xy}$ phase term in the V$^{xy}$ and V$^{yx}$ visibilities. 
+Traditional polarimetric calibration proceeds by observing a source with a known polarization angle, and solving for up to seven direction-independent terms in the Jones matrix \citep[e.g.][]{TMS, HBS.1.96}, as well correcting for the effects of the primary beam. 
+Given the dearth of suitable calibrators at our observing frequencies, especially at the relatively low resolution and sensitivity of the array, we proceeded with polarized calibration using different techniques, as described in Section~\ref{subsubsec:psa32_polcal} below.
+
+\subsubsection{Initial calibration}
+A first-order gain and phase calibration was performed by a similar approach to \citet{Jacobs.13}. Each 10~minute drift-scan dataset was phased to the known position of Pictor A using {\tt aipy} routines.
+
+The gain term in Equation \ref{eq:visibility} was approximated as 
+\begin{equation}
+ g^p_i = G^p_i \exp(-2\pi i \nu \tau_{ip})
+\end{equation}
+and the required delay $\tau_{ip}$ offset of the uncalibrated delay tracks to the real position on the sky solved for to obtain a phase calibration; the absolute flux calibration $G^p_i$ was found by isolating the tracks of Pictor A in delay space, and applying the required flux scale across the band \citep[for a discussion of delay-space calibration, see][and Figure~\ref{fig:delay_spectra}]{Parsons.12a}.
+
+\subsubsection{Absolute Calibration}
+\label{subsubsec:psa32_abscal}
+
+Visibilities were converted to {\tt CASA} Measurement Sets to be further calibrated using a custom pipeline developed around {\tt CASA} libraries. Snapshot images were generated for each 10~minute observation by Fourier transforming the visibilities. 
+We used uniform weights and the multi-frequency synthesis algorithm to further improve the $uv$~coverage. 
+Dirty images were deconvolved down to a 5~Jy threshold using the Cotton-Schwab algorithm. 
+The sky model generated by the CLEAN components was used to self-calibrate each snapshot over the full bandwidth, using a frequency-independent sky-model and averaging over the 10~minute observation.
+We corrected for residual cable length errors by computing antenna-based phase solutions for each frequency channel for each snapshot observation. 
+After self-calibration, snapshot visibilities were again Fourier transformed into images and deconvolved down to a 2~Jy threshold to form the final sky models. 
+These final sky models were used to solve for a frequency independent, diagonal, complex Jones matrix \citep{HBS.1.96,Smirnov.11} for each antenna in order to calibrate gain variations from snapshot to snapshot. 
+We make no attempt to correct sky models for polarized primary beams and, therefore, our gain solutions incorporate both the direction independent and the direction dependent responses of the two gain polarizations. 
+This is a reasonable approximation for the scope of the paper, as, eventually, wide-field polarization corrections cannot be implemented directly in the per-baseline 
+power spectrum estimation (see Section~\ref{sec:psa32_res}).
+
+The average correction in magnitude through this second-order calibration was a $\pm$6\% change for $x$ gains and $\pm$7\% for $y$ gains from those derived in the initial delay-space calibration.
+If the gain on an antenna deviated by more than 30\% from image-to-image during this analysis, it was discarded from future processing stages, since it was likely malfunctioning. This was true for 3 antennae (see the top panel of Figure~\ref{fig:psa32img_config}). 
+
+\begin{figure*}[h!]
+\centering
+\includegraphics[width=0.4\textwidth]{chapters/eor_window_PAPER/figures/zen_2455819_50285_orig-I-image.pdf}
+\includegraphics[width=0.4\textwidth]{chapters/eor_window_PAPER/figures/zen_2455819_50285_orig-Q-image.pdf}
+\includegraphics[width=0.4\textwidth]{chapters/eor_window_PAPER/figures/zen_2455819_50285_orig-U-image.pdf}
+\includegraphics[width=0.4\textwidth]{chapters/eor_window_PAPER/figures/zen_2455819_50285_orig-V-image.pdf}
+\noindent\rule{14cm}{0.6pt}
+\includegraphics[width=0.4\textwidth]{chapters/eor_window_PAPER/figures/zen_2455819_50285-I-image.pdf}
+\includegraphics[width=0.4\textwidth]{chapters/eor_window_PAPER/figures/zen_2455819_50285-Q-image.pdf}
+\includegraphics[width=0.4\textwidth]{chapters/eor_window_PAPER/figures/zen_2455819_50285-U-image.pdf}
+\includegraphics[width=0.4\textwidth]{chapters/eor_window_PAPER/figures/zen_2455819_50285-V-image.pdf}
+\caption[Snapshot images of Stokes parameters before and absolute calibration.]{\textit{Above:} Example of a Stokes I snapshot image (top left) with corresponding Stokes Q (top right), Stokes U (bottom left) and Stokes V (bottom right) images before absolute calibration. \textit{Below:} The same organization as above, after absolute calibration. No primary beam correction was applied. The Stokes I image was deconvolved down to 5~Jy~beam$^{-1}$ whereas the other images were not deconvolved. We note that the Stokes Q image is relatively featureless apart from a few faint sources that appear instrumentally polarized. Stokes U and Stokes V images are, instead, dominated by Fornax A that shows instrumental polarization leaked from total intensity. Units are Jy~beam$^{-1}$; note the change in scale between polarizations and calibration stages.}
+\label{fig:psa32_sky_image}
+\end{figure*}
+
+The final gain amplitude calibration was carried out similarly to \citet{Ali.15}. We generated single channel images between 120 and 174 MHz for each snapshot and deconvolved each of them down to 10 Jy. For each snapshot, a source spectrum is derived for Pictor A by fitting a two dimensional Gaussian the source using the {\tt PyBDSM}\footnote{\url{http://www.lofar.org/wiki/doku.php?id=public:user software:pybdsm}} source extractor \citep{pybdsm}. Spectra were optimally averaged together by weighting them with the primary beam model evaluated in the direction of Pictor A. To fit the absolute calibration, we divided the model spectrum \citep{Jacobs.13} by the measured one and fit a 6th order polynomial over the 120-174 MHz frequency range. This procedure was repeated using Fornax A with the only difference that a taper was applied to the visibilities (120\,m) in order to reduce Fornax A to a point-like source and use the model spectrum from \citet{Bernardi.13}. The best fit coefficients for Pictor A and Fornax A were averaged together to obtain the final absolute flux density calibration. Snapshots of fully CASA-calibrated data are shown in Figure~\ref{fig:psa32_sky_image}.
+
+\subsubsection{Polarimetric factors}
+\label{subsubsec:psa32_polcal}
+Standard full polarization calibration involves correcting for leakage of Stokes~$I$ into the $V_{ij}^{xy}$ and $V_{ij}^{yx}$ visibilities and leakage of polarized signal into total intensity (the so called Jones $D$ matrices or $D$-terms; e.g. \citet[][]{TMS, HBS.1.96}), and an unknown phase difference between the $x$ and $y$ feeds \citep[e.g.][]{Sault.96}. 
+
+We attempt no $D$ matrix calibration in this paper, as there is not a dominant source to be used for such calibration: the limited sensitivity of our observations does not offer good signal-to-noise ratio on PMN~J0351-2744, the only  polarized source at low frequencies known so far in our survey area.  In addition, $D$-term calibration would require determination of the primary beam Mueller matrices beyond our current accuracy. The consequences of this limitation are discussed in the analysis of our power spectra in Section~\ref{sec:psa32_res}.  
+
+As a intermediate measure compatible with these limitations, we therefore adopted a minimization of the phase difference between the $V_{ij}^{xy}$ and $V_{ij}^{yx}$ visibilities, minimizing a sum of squared weighted residuals $w$:
+
+\begin{equation}
+w(\nu,\,t,\,\tau_{xy}) = \sum_{ij} | V_{ij}^{xy} - V_{ij}^{yx}\exp(-2\pi i \nu \tau_{xy}) |^2
+\end{equation}
+to find an estimated value of $\tau_{xy}$ for the array at each $(\nu,\,t)$ sample. This is equivalent to assuming that the sky is intrinsically not circularly polarized at the frequencies observed by PAPER.
+
+We choose not to correct for ionospheric Faraday rotation in our calibration. Not only is this difficult to do for widefield instruments, but also the ionosphere was relatively stable during the observations, so we expect little incoherent averaging during the power spectrum stage below. We calculated the stability of ionospheric RM ($\phi_{\rm iono}$) using the {\sc ionFR} software \citep{Sotomayor-Beltran.13}, which calculates the $\phi_{\rm iono}$ for a given longitude, latitude and time by interpolating values of GPS-derived total electron content maps and the International Geomagnetic Reference Field \citep{Finlay.10}. The values of $\phi_{\rm iono}$ for different lines of sight are shown in Figure~\ref{fig:psa32img_ionosphere}. 
+Fluctuations of $\phi_{\rm iono}$ will cause incoherent time-averaging and subsequent loss of polarized signal. Using the formalism of \citet{Moore.15} to calculate the attenuation factor, we found that none of the lines of sight (except for the 21h,0$^{\circ}$ one which goes beneath the horizon) shown are responsible for attenuating signal by $>\,20\%$ in power-spectrum space (see Section~\ref{subsec:psa32_create_pspec}).
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.45]{chapters/eor_window_PAPER/figures/ionosphere4casacal_morelines.pdf}
+\caption[The values of ionospheric RM for different lines of sight a range of LSTs.]{The values of ionospheric RM for different lines of sight the range of LSTs in this analysis, as calculated by {\sc ionFR} \protect\citep{Sotomayor-Beltran.13}. The 21h,0$^{\circ}$ line of sight goes beneath the horizon after LST=3h, and therefore has fewer data points.\\ }%As an LoS gets closer to the horizon, the value of $\phi_{\rm iono}$ becomes more uncertain as projection effects become larger.}
+\label{fig:psa32img_ionosphere}
+\end{figure}
+
+
+We form linear combinations of the instrument visibilities, the so-called pseudo-Stokes visibilities \citep[see e.g.][]{Moore.13} $V^I,\,V^Q,\,V^U$ and $V^V$ as:
+
+\begin{equation}
+\left(\begin{array}{c}
+V^{I}\\
+V^{Q}\\
+V^{U}\\
+V^{V}\end{array} \right)
+=
+\left( \begin{array}{cccc}
+1 & 0 & 0 & 1 \\
+1 & 0 & 0 & -1 \\
+0 & 1 & 1 & 0 \\
+0 & -i & i & 0 \end{array} \right) 
+\left(\begin{array}{c}
+V^{xx}\\
+V^{xy}\\
+V^{yx}\\
+V^{yy}\end{array} \right) 
+\label{eq:psa32_stokes}
+\end{equation}
+
+Data that were reduced, calibrated, and formed into Stokes visibilities were separated into delay spectra inside and outside of the horizon for each baseline. We used a 50\,ns margin for what was considered `inside' the horizon, in order to confine all supra-horizon emission \citep[e.g.][]{Parsons.12a, Pober.13} to the foreground component of the data. We implemented a one-dimensional CLEAN \citep{ParsonsBacker.09, Parsons.12b} with a Blackman-Harris window to a tolerance of $10^{-9}$. RFI is more easily identified in foreground-removed data, so we RFI-flagged again on the background data deviations greater than $3\sigma$. We then added the inside- and outside-horizon visibilities back together; RFI flags were preserved in the process. 
+
+The effect of our calibration is shown in the delay-transformed visibilities in Figure~\ref{fig:psa32_delay_spectra}. As is apparent in Figure~\ref{fig:psa32_sky_image}, after improved calibration there are fewer delay tracks (i.e. sources) in the Stokes Q visibilities, while there is little overall change in Stokes U. The minimization of Stokes V, performed after the imaging calibration stage, moves power from Stokes V into Stokes U, effectively accounting for part of a $D$-term correction. But without an accurate $D$-term calibrator, Stokes U exhibits additional (and dominant) $D$-term leakage from Stokes I, 
+in this case due to Pictor A. Pictor A is the brightest source in Stokes I in our observed field, and thus dominates the visibility shown.  There is no reason to suppose that Pictor A is pure Stokes U (compare also Figure \ref{fig:psa32_sky_image}), and thus the bulk of this emission must be leakage.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\columnwidth]{chapters/eor_window_PAPER/figures/delayfalls_wedgeres.pdf}
+\caption[The absolute value of delay-transformed visibilities over the bandwidth (146--166\,MHz) used to create the power spectra shown in this Chapter.]{The absolute value of delay-transformed visibilities over the bandwidth (146--166\,MHz) used to create the power spectra shown in this Chapter. The left and right columns show the visibilities before and after absolute calibration (and for Stokes U and V, the application of the $\tau_{xy}$ parameter), respectively, for baseline formed by antennae 6 and 14 ($\sim 250$\,m in length, approximately East-West). The flux scale in the left column as been boosted for a more fair comparison to the absolute-calibrated data. From top to bottom, the rows correspond to Stokes I, Q, U and V. 
+The horizon limit is marked by white dashed lines. 
+}
+\label{fig:psa32_delay_spectra}
+\end{figure}
+
+\subsection{Creating power spectra}
+\label{subsec:psa32_create_pspec}
+ 
+
+Expressing the visibility $V_{ij}^{pq}(\nu,t)$ observed at time $t$ (see Equation~\ref{eq:psa32_visibility}) in terms of the geometrical delay $\tau_g=\vec{b}(t) \cdot \hat{s}(l,m)/c$ for the baseline $ij$, \citet{Parsons.12a} define the delay transform as the Fourier transform of the visibility along the frequency axis:
+\begin{equation}
+\tilde{V}_{ij}^{pq}(\tau,t) = \int d\nu \, V_{ij}^{pq}(\nu,t) e^{2\pi i \nu \tau}
+%\int dl\, dm\, d\nu\, A^{pq}_{ij}(l, m, \nu) S^{pq}_{ij}(l, m, \nu) e^{-2\pi i \nu (\tau_g - \tau)}
+\end{equation}
+
+We can represent the power at each frequency and baseline in an array as a power spectrum in terms of their respective Fourier components $k_{\parallel}$ and $k_{\perp}$ as:
+\begin{equation}
+P(k_{\parallel},k_{\perp}) \approx |\tilde{V}_{ij}^{pq}(\tau,t)|^2 \frac{X^2Y}{\Omega B}\left(\frac{c^2}{2k_B\nu^2}\right)^2
+\label{eq:psa32_pspec}
+\end{equation}
+where $B$ is the bandwidth, $\Omega$ is the angular area (i.e. proportional to the beam area), and X and Y are redshift-dependent scalars calculated in \citet{Parsons.12b}. 
+
+To form $|\tilde{V}_{ij}^{pq}(\tau,t)|^2$, consecutive integrations were cross-multiplied, phasing the zenith of latter to the former i.e.:
+\begin{equation}
+|\tilde{V}_{ij}^{pq}(\tau,t)|^2 \approx |{V}_{ij}^{pq}(\tau,t)\times {V}_{ij}^{pq}(\tau,t+\Delta t)e^{i\theta_{ij,{\rm zen}}(\Delta t)}|^2
+\end{equation}
+where $\Delta t$=10.7 seconds and $\theta_{ij,{\rm zen}}(\Delta t)$ is the appropriate zenith rephasing factor. This method should avoid noise-biased power spectra except on very long baselines, which the PAPER configuration does not contain, while sampling essentially identical $k$-modes.  Note that this is the same method used by \citet{Pober.13} in their investigation of the unpolarized wedge.
+
