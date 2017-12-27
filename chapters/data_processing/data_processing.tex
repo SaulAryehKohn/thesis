@@ -61,7 +61,7 @@ The processing stages for compression of a night of PAPER data, described below,
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{/Users/saulkohn/Documents/thesis/figures/RTP_diagram.pdf}
+\includegraphics[scale=0.7]{chapters/data_processing/figures/RTP_diagram.pdf}
 \caption[The schema of the database used to organize and implement PAPER data compression.]{The schema of the database used to organize and implement PAPER data compression.}
 \label{fig:database_schema}
 \end{figure}
@@ -116,9 +116,9 @@ For this reason, I calculated a weighted average of the flags across the season,
 
 A summary of the persistent (flagged $\geq1\%$ of the time per channel) RFI frequencies can be found in Table~\ref{tab:rfi_psa128}. I have investigated each frequency and tried to find the most likely source for each. In most cases, this required looking at the properties in time as well as frequency. Others were more obvious from frequency alone, e.g. the 149.8\, MHz transmission frequency from the International Space Station (ISS). Still others I could not track down a convincing explanation for, and these are listed with a `?'. A `?' next to a possible cause indicates that the listed cause is the most prevalent at that frequency, but that the temporal properties of that cause do not necessarily make sense. Many of the characterizations arise from the South African Table of Frequency Allocations (SATFA; \cite{SAFreqTable}).
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
-\includegraphics[width=\textwidth]{/Users/saulkohn/Documents/thesis/figures/RFI_all_128.pdf}
+\includegraphics[width=\textwidth]{chapters/data_processing/figures/RFI_all_128.pdf}
 \caption[A waterfall plot of RFI flags averaged over 150 days of PAPER-128 data.]{A waterfall plot of RFI flags averaged over 150 days of data. The gridding process is described in the text. Above the waterfall I show the percentage of the season each frequency is flagged, and to the right I show the percentage of frequencies that are flagged per integration.}
 \label{fig:rfi_psa128_waterfall}
 \end{figure}
@@ -127,11 +127,11 @@ A summary of the persistent (flagged $\geq1\%$ of the time per channel) RFI freq
 \centering
 \label{tab:rfi_psa128}
 \tablewidth{0pt}
-\tablecaption{RFI frequencies and brief characterization for the averaged flags.}
+\tablecaption{PAPER-128 RFI frequencies and brief characterization for the averaged flags.}
 \tabletypesize{\footnotesize}
 \tablehead{
 \colhead{$\nu$} & \colhead{Flagged} & \colhead{Cause} & \colhead{Notes or} \\
-\colhead{MHz} & \colhead{\%} & \colhead{(Possible)} & \colhead{SAST Characterization} \\
+\colhead{MHz} & \colhead{\%} & \colhead{(Possible)} & \colhead{Time (SAST) Characterization} \\
 }
 \startdata
 103	$\pm$	3	&	100	&	BAND EDGE	&	Built-in to flagger.	\\
@@ -165,9 +165,9 @@ A summary of the persistent (flagged $\geq1\%$ of the time per channel) RFI freq
 
 Figure~\ref{fig:rfi_psa128_freqflags} shows the detail of the top panel of Figure~\ref{fig:rfi_psa128_waterfall}. This figure highlights the broad swath of the band from roughly 150 to 180\,MHz that was, on average, clear of RFI. This roughly corresponds to 21\,cm redshifts $z=6.9$ to 8.5. This is one of the reasons that the \cite{Parsons.14} and \cite{Ali.15} limits on the 21\,cm power spectrum concentrated on this redshift range -- there were simply more unflagged data to average-down with. \cite{Furlanetto.06} show that the $z\sim8$ universe can be considered roughly coeval over an $\sim$8\,MHz bandwidth. As such, the 30\,MHz chunk could be used to create $\sim$3 power spectra, as demonstrated in \cite{Jacobs.15}. As we show below, the deactivation of VHF TV broadcasts could enable measurements up to the band edge.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
-\includegraphics[width=\textwidth]{/Users/saulkohn/Documents/thesis/figures/RFI_149days_freq.png}
+\includegraphics[width=\textwidth]{chapters/data_processing/figures/RFI_149days_freq.png}
 \caption{The percentage of time that each frequency was flagged over the season.}
 \label{fig:rfi_psa128_freqflags}
 \end{figure}
@@ -176,12 +176,12 @@ Figure~\ref{fig:rfi_psa128_freqflags} shows the detail of the top panel of Figur
 
 SATFA lists the frequency band 87.5--108\,MHz as available for FM radio broadcasts, leading me to postulate that the low-level RFI we observed in the 107.25	$\pm$	0.25 and 107.55	$\pm$	0.05\,MHz bands had FM radio as the leading cause. The 108.1	$\pm$	0.4 and 109	$\pm$	0.4\,MHz bands were outside of the official range, and exhibit odd temporal properties for human activity -- two peaks at midnight and 4am -- with a increasing number of flags throughout the average night (see Figure~\ref{fig:rfi_psa128_FMradio}). \\
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
-\includegraphics[width=0.4\textwidth]{/Users/saulkohn/Documents/thesis/figures/FB_71_77.png}
-\includegraphics[width=0.4\textwidth]{/Users/saulkohn/Documents/thesis/figures/FB_77_79.png}
-\includegraphics[width=0.4\textwidth]{/Users/saulkohn/Documents/thesis/figures/FB_80_87.png}
-\includegraphics[width=0.4\textwidth]{/Users/saulkohn/Documents/thesis/figures/FB_89_97.png}
+\includegraphics[width=0.4\textwidth]{chapters/data_processing/figures/FB_71_77.png}
+\includegraphics[width=0.4\textwidth]{chapters/data_processing/figures/FB_77_79.png}
+\includegraphics[width=0.4\textwidth]{chapters/data_processing/figures/FB_80_87.png}
+\includegraphics[width=0.4\textwidth]{chapters/data_processing/figures/FB_89_97.png}
 \caption[Possible FM radio contamination.]{Possible FM radio contamination in the \textit{Top, left to right}: 107.25$\pm$0.25 and 107.55$\pm$0.05\,MHz bands, and \textit{Bottom, left to right}: 108.1$\pm$0.4 and 109$\pm$0.4\,MHz bands.}
 \label{fig:rfi_psa128_FMradio}
 \end{figure}
@@ -192,9 +192,9 @@ It was difficult to argue that the 112.1$\pm$0.1\,MHz signal is caused by aircra
 The other aircraft frequencies were obvious, because they closely traced the 2-hour flight from Cape Town to Johannesburg\footnote{Credit to Danny Jacobs for first spotting this and noting it in an internal PAPER circular in December 2009.}. 
 An example (120.15$\pm$0.35\,MHz) is shown in Figure~\ref{fig:rfi_psa128_aircraft}. SATFA reserved frequencies 108--117.975\,MHz for aeronautical radionavigation and 117.975--137\,MHz for aeronautical mobile. In Table~\ref{tab:rfi_psa128} I listed 131.75$\pm$0.35\,MHz as caused by aircraft since it falls in the aeronautical mobile band, but it does not follow the flight patterns as closely as the other bands.\\
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
-\includegraphics[width=\textwidth]{/Users/saulkohn/Documents/thesis/figures/airlines.png}
+\includegraphics[width=\textwidth]{/Users/saulkohn/Documents/thesis/chapters/data_processing/figures/airlines.png}
 \caption[Flights from Cape Town to Johannesburg correspond to RFI in the 120.15$\pm$0.35\,MHz channels.]{
 Flights from Cape Town to Johannesburg correspond to RFI in the 120.15$\pm$0.35\,MHz channels. Vertical dashed lines indicate a flight leaving Cape Town (flights from Johannesburg are roughly concurrent) and the flight code is listed. The transparency of a line is inversely proportional to how many days a week that flight is scheduled for. The flight is 2 to 2.5 hours long -- and about 2 hours after the last flight of the day, the flags fall to background level (but notably, not always to zero).}
 \label{fig:rfi_psa128_aircraft}
@@ -216,13 +216,13 @@ VHF TV is broadcast over specifically-spaced video and audio frequencies. The st
 
 There were 5 RFI frequencies in the averaged data that I could not identify the sources of:  weak emissions (flagged $<5\%$ of the season) at 114.05$\pm$0.85, 116.55$\pm$0.35, 130.25$\pm$0.55 and 186.25$\pm$0.35\,MHz, and one strong emission at 182.15$\pm$0.35\,MHz. The variation of each source with time is shown in Figure~\ref{fig:rfi_psa128_unidentified}. The 186.25$\pm$0.35\,MHz had a sharp turn-off around 9:45pm each night, suggesting that it originated from some kind of automated device.\\
 
-\begin{figure}
+\begin{figure}[h!]
 \centering
-\includegraphics[width=0.4\textwidth]{/Users/saulkohn/Documents/thesis/figures/FB_135_142.png}
-\includegraphics[width=0.4\textwidth]{/Users/saulkohn/Documents/thesis/figures/FB_166_173.png}
-\includegraphics[width=0.4\textwidth]{/Users/saulkohn/Documents/thesis/figures/FB_304_315.png}
-\includegraphics[width=0.4\textwidth]{/Users/saulkohn/Documents/thesis/figures/FB_837_844.png}
-\includegraphics[width=0.4\textwidth]{/Users/saulkohn/Documents/thesis/figures/FB_882_884.png}
+\includegraphics[width=0.4\textwidth]{chapters/data_processing/figures/FB_135_142.png}
+\includegraphics[width=0.4\textwidth]{chapters/data_processing/figures/FB_166_173.png}
+\includegraphics[width=0.4\textwidth]{chapters/data_processing/figures/FB_304_315.png}
+\includegraphics[width=0.4\textwidth]{chapters/data_processing/figures/FB_837_844.png}
+\includegraphics[width=0.4\textwidth]{chapters/data_processing/figures/FB_882_884.png}
 \caption[The temporal profile of the 5 RFI frequencies with unidentified causes.]{The temporal profile of the 5 RFI frequencies with unidentified causes. \textit{Top, left to right:} 114.05$\pm$0.85 and 116.55$\pm$0.35\,MHz. \textit{Middle, left to right:} 130.25$\pm$0.55 and 182.15$\pm$0.35\,MHz. \textit{Bottom:} 186.25$\pm$0.35\,MHz. The 182.15$\pm$0.35\,MHz frequency is flagged a large amount of the time, making it our most-offending unidentified source.}
 \label{fig:rfi_psa128_unidentified}
 \end{figure}
@@ -232,11 +232,11 @@ There were 5 RFI frequencies in the averaged data that I could not identify the 
 
 Using the flags per night, I was able to assess the total number of flags as a percentage of the waterfall (i.e. $N_{\rm flags}/(3920\times1024)$). The average flagging per night was 19.2$\pm$0.5\%, which was dominated by the permanent flagging of ORBCOMM and band edges. Four nights deviated from the average by a $\geq 2\sigma$ excess: JDs 2456965, 2456732, 2456958 and 2457038. Their flag waterfalls are shown in Figure~\ref{fig:rfi_psa128_worst} (2456732, 2456958 and 2457038) and Figure~\ref{fig:rfi_psa128_wandering} (2456965). While the strange nature of night 2456965 is discussed below, the three others followed the pattern of having strong contamination from FM and aircraft communication bands, but also had broadband `pulses' up to about 20 minutes in length. The source of these broadband pulses is not well understood, although it was clear that ORBCOMM tends to spill outside of its allocated band on occasion.
 
-\begin{figure}
+\begin{figure}[h!]
 \centering
-\includegraphics[width=0.3\textwidth]{/Users/saulkohn/Documents/thesis/figures/2456732RFI.png}
-\includegraphics[width=0.3\textwidth]{/Users/saulkohn/Documents/thesis/figures/2456958RFI.png}
-\includegraphics[width=0.3\textwidth]{/Users/saulkohn/Documents/thesis/figures/2457038RFI.png}
+\includegraphics[width=0.3\textwidth]{chapters/data_processing/figures/2456732RFI.png}
+\includegraphics[width=0.3\textwidth]{chapters/data_processing/figures/2456958RFI.png}
+\includegraphics[width=0.3\textwidth]{chapters/data_processing/figures/2457038RFI.png}
 \caption[Waterfalls of RFI flags for nights 2456732, 2456958 and 2457038.]{\textit{Left to right:} waterfalls of flags for nights 2456732, 2456958 and 2457038. These three nights, along with 2456965, are $>$20.2\% flagged; $>2\sigma$ above the average flagging amount per night.}
 \label{fig:rfi_psa128_worst}
 \end{figure}
@@ -245,11 +245,11 @@ Using the flags per night, I was able to assess the total number of flags as a p
 JD 2456965 was easily the worst offender, and it exhibited a strange signal that wanders in frequency and time close to the ISS band. An event of note on this date (23rd November 2014) was a Soyuz FG launch that docked with the ISS -- this may have been a signature of their transmissions\footnote{The internet also suggests... less plausible explanations: \url{https://www.youtube.com/watch?t=11&v=VtZx8iPO4zs}. }.
 Similar signals were seen on 2456898 (28th August 2014; although only at the beginning of the night) and 2456924 (23rd September 2014). There was no listed orbital or suborbital activity for 2456898. There was an US ICBM test off of the coast of Virginia on 2456924, but this was probably not the cause of the RFI. The flag waterfalls for these nights are shown in Figure~\ref{fig:wandering}.\\
 
-\begin{figure}
+\begin{figure}[h!]
 \centering
-\includegraphics[width=0.3\textwidth]{/Users/saulkohn/Documents/thesis/figures/2456898RFI.png}
-\includegraphics[width=0.3\textwidth]{/Users/saulkohn/Documents/thesis/figures/2456924RFI.png}
-\includegraphics[width=0.3\textwidth]{/Users/saulkohn/Documents/thesis/figures/2456965RFI.png}
+\includegraphics[width=0.3\textwidth]{chapters/data_processing/figures/2456898RFI.png}
+\includegraphics[width=0.3\textwidth]{chapters/data_processing/figures/2456924RFI.png}
+\includegraphics[width=0.3\textwidth]{chapters/data_processing/figures/2456965RFI.png}
 \caption[Waterfalls of RFI flags for nights 2456898, 2456924 and 2456965]{\textit{Left to right:} waterfalls of flags for nights 2456898, 2456924 and 2456965. These three nights exhibit a strange behaviour of RFI that changes in frequency and time. JD 2456965 is by far the worst, and during this night as well as 2456898, we see a broadband `comb' of flagged frequencies near the band edges}
 \label{fig:rfi_psa128_wandering}
 \end{figure}
@@ -272,8 +272,184 @@ A new, lower-frequency feed is currently under development by the HERA analog gr
 \subsection{HERA-19 and PAPER-19}
 \label{subsec:rfi_hera19paper19}
 
-\section{Crosstalk in PAPER-64}
+The HERA-19 IDR1 consisted of four subarrays: the HERA-19 hexagon of dishes (the `HERA Hex'), a hexagon of 19 PAPER dipoles in the exact positions of not-yet-constructed HERA dishes (the `PAPER Hex'), an imaging array and an experimental array for polarization measurements. I will concentrate on the two Hexes in this Section. I analyzed RFI as flagged in the linear \textit{xx}-polarization only. Asymmetric beams can in principle receive different RFI events for different linear polarizations, but analysis of that was outside the scope of this diagnostic study.
+
+IDR1 consisted of one `golden day', JD 2457458. This ran from 6pm on March 10th 2016 to 6am the following day. This gave, per baseline, roughly 4000 integrations of 10 seconds each over 1024, 100~kHz frequency channels from 100 to 200~MHz.
+
+In order to flag RFI I used the {\tt aipy} script \textit{xrfi\_simple.py}. I took the union of all baseline flags as data to analyze. Unlike in Section~\ref{subsec:rfi_paper128}, these data did not have a-priori flagging of band edges, which allowed me to make a more complete study of RFI in the HERA band. I did have to implement custom flags in order to get more than a zeroth-order view of the RFI (since these would dominate the flagging routine unless they are flagged already), but my results from Section~\ref{subsec:rfi_paper128}  gave a better idea of what was flagged to get there. 
+
+Below I present measurements of high-power, mostly narrow-band RFI channels as flagged in HERA Hex data and PAPER Hex data separately. In both cases, I was able to list any channels that are flagged for $\geqslant 1\%$ of the night. I could then compare the flagging Hex-to-Hex, and to PAPER-128.
+
+\subsubsection{HERA Hex RFI}
+\label{subsubsec:rfi_herahex}
+
+Table~\ref{tab:rfi_herahex} shows all narrowband frequency ranges flagged in HERA-19 visibilities, with columns of the frequency range in MHz, \% flagging over time, plausible identification, whether or not it was identified in PAPER-128 data, and other notes (often details of the possible identification). Frequencies with 100\% flagging indicate manual flags required for {\tt xrfi\_simple} to work on the rest of the channels. 
+
+Clearly, the low-end of the band was swamped by FM radio broadcasts. One notable frequency was the 109.2$\pm$0.3~MHz band, which was heavily flagged in HERA visibilities, but was only flagged a few percent in PAPER-128 data.
+
+As seen before, ORBCOMM satellite emissions spilled out of their allocated 137-138~MHz band down to 136.3~MHz.
+
+There were many narrowband RFI channels, across the band, that PAPER-128 did not pick-up. Most of these were flagged only at low levels, with two exceptions: 111.3$\pm$0.2~MHz and 113.5$\pm$0.1~MHz. Both of these were in the aircraft navigation band. There is some evidence \citep{airforce} that 111.3~MHz band is fir air force communications. The 113.5~MHz band is a known band for radionavigation beacons (`VOR navaids') \citep{navaid}.
+
+A particularly annoying `new' emitter was in the 153.8$\pm$0.2~MHz region, which is close to the center of our nominal EoR band. It could correspond to mobile phones being used close to site.
+
+\begin{deluxetable}{lllll}				
+\centering														
+\label{tab:rfi_herahex}
+\tablewidth{0pt}
+\tablecaption{RFI as flagged by HERA}
+\tabletypesize{\footnotesize}
+\tablehead{
+\colhead{$\nu$} & \colhead{Flagged} & \colhead{Cause} & \colhead{Seen by} & \colhead{Notes} \\
+\colhead{MHz} & \colhead{\%} & \colhead{(Possible)} & \colhead{PAPER-128} &\colhead{} \\
+}
+\startdata													
+100.7	$\pm$	0.2	&	50	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Prieska		\\
+101.5	$\pm$	0.3	&	36	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Calvinia	\\
+102.4	$\pm$	0.1	&	100	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Carnarvon	\\
+102.8	$\pm$	0.3	&	57	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Pofadder	\\
+104.2	$\pm$	0.1	&	100	&	FM Radio	&	n/a	&	SAfm Prieska	\\
+105.1	$\pm$	0.2	&	100	&	FM Radio	&	n/a	&	SAfm Calvinia	\\
+106.2	$\pm$	0.3	&	100	&	FM Radio	&	n/a	&	SAfm Carnarvon	\\
+106.9	$\pm$	0.1	&	15	&	FM Radio	&	n/a	&	Sentech	\\
+107.2	$\pm$	0.1	&	18	&	FM Radio	&	Yes	&		\\
+107.8	$\pm$	0.2	&	15	&	FM Radio	&	Yes	&		\\													
+108.3	$\pm$	0.1	&	31	&	FM Radio?	&	Yes	&			\\
+109.2	$\pm$	0.3	&	93	&	FM Radio?	&	Yes...&	...but not to this degree	\\
+111.3	$\pm$	0.2	&	25	&	Air force?	&	No	&		\\
+112.5	$\pm$	0.1	&	5	    &	Aircraft?	&	No	&	\\
+113.5	$\pm$	0.1	&	21	&	Aircraft    &	No	&	VOR navaids		\\
+115.5	$\pm$	0.1	&	3	    &	Navaids?	    &	No	&	\\
+115.9	$\pm$	0.1	&	3	    &	Navaids?	    &	No	&	\\
+116.6	$\pm$	0.2	&	9	   &	Aircraft?	    &	Yes	&	VOR-DME navaids		\\
+120.1	$\pm$	0.2	&	5	&	Aircraft	&	Yes	&	CPT$<->$JNB		\\
+125.0$\pm$	0.2	&	6	&	Aircraft	&	Yes	&	CPT$<->$JNB		\\
+130.0	$\pm$	0.2	&	4	&	Aircraft	&	No	&	Communication		\\
+131.6	$\pm$	0.2	&	15	&	Aircraft	&	Yes	&	KLM OPS		\\
+136.4	$\pm$	0.1	&	9	&	ORBCOMM	&	Yes	&					\\
+136.7	$\pm$	0.1	&	10	&	ORBCOMM	&	Yes	&					\\
+137.4	$\pm$	0.4	&	100	&	ORBCOMM	&	Yes	&				\\
+145.7	$\pm$	0.4	&	18	&	ISS/Amateur Radio band	&	Yes	&			\\
+149.9	$\pm$	0.1	&	100	&	ISS	&	Yes	&			\\
+153.8	$\pm$	0.2	&	7	&	Mobile phones?	&	No	&			\\
+175.0	$\pm$	0.1	&	100	&	VHF TV	&	Yes	&	Channel 4 Video		\\
+178.3	$\pm$	0.2	&	8	&	VHF TV	&	No	&	Channel 7?		\\
+181.2	$\pm$	0.1	&	100	&	VHF TV	&	Yes	&	Channel 4 Audio		\\
+182.2  $\pm$	0.2	&	9	&		&	Yes	&			\\
+183.5	$\pm$	0.6	&	100	&	VHF TV	&	Yes	&	Channel 5 Video		\\
+184.1	$\pm$	0.1	&	2	&	VHF TV?	&	Yes	&	Channel 5?	\\
+184.7	$\pm$	0.1	&	6	&	Broadcasting	&	No	&		\\
+187.8	$\pm$	0.1	&	4	&		&	No	&		\\
+189.1	$\pm$	0.1	&	52	&	VHF TV	&	Yes	&	Channel 5 Audio	\\
+190.1	$\pm$	0.3	&	13	&		&	n/a	&		\\
+191.1	$\pm$	0.1	&	100	&	VHF TV	&	n/a	&	Channel 7		\\
+197.2	$\pm$	0.2	&	18	&		&	n/a	&		\\
+199.4	$\pm$	0.5	&	100	&	BAND EDGE	&	n/a	&		\\
+\enddata
+\end{deluxetable}
+
+\subsubsection{PAPER Hex RFI}
+\label{subsubsec:rfi_paperhex}
+
+Table~\ref{tab:rfi_paperhex} has the same description as Table~\ref{tab:rfi_herahex}, but for the PAPER Hex. There were far fewer RFI frequencies flagged in PAPER visibilities, almost all of which were seen by HERA. The only RFI seen by the PAPER Hex and not the HERA Hex was the 123.5$\pm$0.1~MHz emission, which I could find a plausible identification for.
+
+\begin{deluxetable}{lllll}													
+\centering														
+\label{tab:rfi_paperhex}
+\tablewidth{0pt}
+\tablecaption{RFI as flagged by the PAPER Hex}	
+\tabletypesize{\footnotesize}
+\tablehead{
+\colhead{$\nu$} & \colhead{Flagged} & \colhead{Cause} & \colhead{Seen by} & \colhead{Notes} \\
+\colhead{MHz} & \colhead{\%} & \colhead{(Possible)} & \colhead{PAPER-128} &\colhead{} \\
+}
+\startdata	
+100.0	$\pm$	0.1	&	100	&	BAND EDGE	&	n/a	&		\\		
+100.7	$\pm$	0.1	&	11	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Calvinia			\\		
+101.6	$\pm$	0.2	&	6	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Calvinia			\\		
+102.4	$\pm$	0.1	&	100	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Carnarvon		\\		
+102.7	$\pm$	0.1&	100	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Pofadder		\\		
+104.2	$\pm$	0.2	&	100	&	FM Radio	&	n/a	&	SAfm Prieska		\\		
+105.1	$\pm$	0.2	&	100	&	FM Radio	&	n/a	&	SAfm Calvinia	\\		
+106.2	$\pm$	0.3	&	100	&	FM Radio	&	n/a	&	SAfm Carnarvon	\\		
+																
+108.2	$\pm$	0.1	&	3	&	FM Radio?	&	Yes	&		\\		
+109.1	$\pm$	0.1  &	26	&	FM Radio?	&	Yes	&		\\		
+113.6	$\pm$	0.1	&	2	&	Airplane Communications	&	No	&	VOR navaid			\\		
+																
+120.2	$\pm$	0.3	&	3	&	Aircraft	&	Yes	&	CPT$<->$JNB		\\		
+123.5	$\pm$	0.1	&	1	&		&	No	&	Not seen by HERA			\\		
+125.0	$\pm$	0.2	&	6	&	Aircraft	&	Yes	&	CPT$<->$JNB		\\		
+130.0	$\pm$	0.3	&	3	&		&	No	&			\\		
+131.7	$\pm$	0.2	&	14	&	Aircraft	&	Yes	&				\\		
+136.4	$\pm$	0.2	&	6	&	ORBCOMM	&	Yes	&					\\		
+136.7	$\pm$	0.2	&	6	&	ORBCOMM	&	Yes	&				\\		
+															
+137.4	$\pm$	0.4	&	100	&	ORBCOMM	&	Yes	&				\\		
+145.8	$\pm$	0.3	&	14	&	ISS/Amateur Radio band	&	Yes	&			\\		
+149.9	$\pm$	0.1	&	100	&	ISS	&	Yes	&			\\		
+153.8	$\pm$	0.2	&	3	&	Single frequency mobile phones?	&	No	&				\\		
+																
+175.1	$\pm$	0.2	&	100	&	VHF TV	&	Yes	&	Channel 4 Video				\\		
+178.3	$\pm$	0.2	&	100	&	VHF TV	&	No	&	Channel 7?		\\		
+181.2	$\pm$	0.1	&	100	&	VHF TV	&	Yes	&	Channel 4 Audio	\\		
+183.2	$\pm$	0.2	&	100	&	VHF TV	&	Yes	&	Channel 5 Video			\\		
+189.2	$\pm$	0.1	&	100	&	VHF TV	&	Yes	&	Channel 5 Audio			\\		
+191.2	$\pm$	0.1	&	100	&	VHF TV	&	n/a	&	Channel 7			\\		
+199.8	$\pm$	0.2	&	100	&	BAND EDGE	&	n/a	&			\\
+\enddata
+\end{deluxetable}
+
+\subsubsection{Hex-to-Hex Comparisons}
+\label{subsubsec:hex2hex_comparison}
+
+As mentioned above, the PAPER Hex saw far fewer narrowband RFI channels than HERA does. This highlighted an interesting trade-off between dipoles and dishes: at first glance, one might have expected PAPER dipoles to be more susceptible to RFI given their broader effective beams. However, HERA dipoles are lifted several meters above the ground, and this change in height may have been the source of the greater susceptibility to RFI. RFI comes from the horizon, which would be more easily received in the far sidelobes of the beam.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.45\textwidth]{chapters/data_processing/figures/RFI_HH_spec.pdf}
+\includegraphics[width=0.45\textwidth]{chapters/data_processing/figures/RFI_PH_spec.pdf}
+\caption[Frequency vs. percentage flagging for the HERA Hex and PAPER Hex.]{Frequency vs. percentage flagging for the HERA Hex (\textit{left}) and PAPER Hex (\textit{right}). Any band with greater than 1\% flagging is reported in Tables~\ref{tab:rfi_herahex} and \ref{tab:rfi_paperhex}.}
+\label{fig:rfi_spec_hex_comparison}
+\end{figure}
+
+Even for the RFI channels they did share, HERA flagged them more often. Taking the difference in percentage-flagging for the common RFI channels (think of the left panel subtracted from the right panel for common channels in Figure~\ref{fig:rfi_spec_hex_comparison}), those channels had an average of 8\% more flagging in HERA visibilities. The difference was particularly high in the aeronautical radionavigation bands, where HERA had on average 38\% more flagging than the PAPER Hex.
+
+Figure~\ref{fig:rfi_hex_waterfalls} shows the flags on a per-sample basis (these were averaged over time to create Figure~\ref{fig:rfi_spec_hex_comparison}). Most apparent was the occupancy of the HERA plot compared to the PAPER Hex one. An important component of this plot is the averages over frequency in the right-hand panels. We saw that the average flagging for a given time sample was about 5\% higher for HERA than for the PAPER Hex, mostly due to the higher occupancy of the FM band. But we also saw something new; HERA appeared to be much more sensitive to broadband bursts of RFI. The PAPER Hex caught one of these events (around 1.30am SAST) at high significance, but most of them hardly rose above average flagging. HERA saw five to seven bursts across the night. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{chapters/data_processing/figures/RFI_HH_wf_tzoom.pdf}
+\includegraphics[width=0.45\textwidth]{chapters/data_processing/figures/RFI_PH_wf_tzoom.pdf}
+\caption[RFI flag waterfalls of frequency vs. South Africa Standard Time for the HERA Hex and PAPER Hex.]{RFI flag waterfalls of frequency vs. South Africa Standard Time for the HERA Hex (\textit{left}) and PAPER Hex (\textit{right}). The top panels show the average over time (identical to Figure~\ref{fig:spec}), while the right panels show the average over frequency.}
+\label{fig:rfi_hex_waterfalls}
+\end{figure}
+
+\subsubsection{Comparison PAPER-128 stacked flags}
+Section~\ref{subsec:rfi_paper128} presented RFI flags stacked over 150 days of observations. This method washed-out single events that effect analysis on a single-night basis, but was sensitive to repeatedly offending frequencies. Due to the PAPER-128 analysis pipeline, many channels were automatically flagged (particularly large portions of the band edges), which artificially boosted the average flagging per time and did not allow for closer inspection of the ends of the band. There was some evidence of broadband emission (see Figure~\ref{fig:rfi_psa128_waterfall}) but the band was largely free of RFI in the middle of the night. Obviously, the data presented in this section shows a less-clean band, but it also only concentrated on a single night's data, so it may be that IDR1 was conspicuous compared to an `average' night of observations.
+
+Traits shared between the two analyses were:
+\begin{itemize}
+\item Aircraft communications disrupting data until around local midnight.
+\item ORBCOMM spilling out of it's band.
+\item VHF TV frequencies emitting throughout the night in the high end of the band.
+\end{itemize} 
+
+Table~\ref{tab:rfi_herahex} highlighted many frequencies seen by HERA and not by PAPER-128. Again, given the fact that flags were stacked and averaged in Section~\ref{subsec:rfi_paper128}, these may not have been `new', but they could have been. Particularly conspicuous were the emissions in the aeronautical radionavigation band.
+
+\subsubsection{Discussion}
+\label{subsubsec:rfi_herapaper_conc}
+
+I have presented a first look at RFI in HERA-19 Commissioning data. Probably due to the height of the receiving element on HERA versus PAPER dipoles, much more RFI was apparent, especially on the low and high ends of the band. Luckily, the EoR band was largely clean of RFI, except for an emitter at about 154~MHz, which could have corresponded to single-frequency mobile phone communications. Such communications are officially banned in the SKA Radio Quiet Zone \citep{SAKRQZ}, which HERA is in the center of.
+
+Only looking at a single night of RFI flags limited the predictive power of this study. More data will be required to establish whether or not this is level of RFI was `normal'. Broadband RFI bursts require closer investigation.
+
+Efforts to extend the HERA band to lower and possibly higher frequencies are currently under way. The FM radio band extends to around 65~MHz, while the VHF TV band extends to around 230~MHz, so the RFI environment should be a consideration for these efforts.
+
+Meanwhile, I note that the RFI flagging routine used here, {\tt xrfi\_simple}, is indeed `simple'. More advanced RFI flagging algorithms such as {\tt AOFlagger} \citep{AOflag} should be tested in later studies.
 
 \section{Pre-Redundant Calibration QA}
+% should I wait for figures from the Ali RTP paper??
 
 \section{Post-Redundant Calibration QA}
+% should I wait for figures from the Ali RTP paper??

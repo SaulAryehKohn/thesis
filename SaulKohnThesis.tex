@@ -287,35 +287,35 @@ Abstracts are written last.
 
 \mainmatter
 \part{Introduction \& Mathematical Formalisms}
-\include{chapters/eor_intro} % The Epoch of Reionization
+\include{chapters/eor_intro/eor_intro} % The Epoch of Reionization
 %
 % what is the EoR
 % why is it interesting
 % current (CMB, high-z galaxies, HI limits) and future (HI, CO, C+ intensity mapping, extreme deep fields from JWST) probes
 %
-\include{chapters/astropol} % Astrophysical Polarization
+\include{chapters/astropol/astropol} % Astrophysical Polarization
 %
 % what is polarization (emag)
 % sources of astrophysical polarization
 % [magnetic fields in SPAAAACE]
 %
-\include{chapters/interferometry} % Interferometry
+\include{chapters/interferometry/interferometry} % Interferometry
 %
 % building the [classical] visibility equation in the unpolarized case
 % pointing vs drift-scanning
 % wide field effects
 % rebuilding the visibility equation for widefield, polarized instruments
 % basics of calibration for drift-scanning interferometers
-% briefly, redundant calibration
+% briefly, redundant calibration (more in polcal chapter)
 % CLEAN
 %
-\include{chapters/instrumentpol} % Instrumental Polarization
+\include{chapters/instrumentpol/instrumentpol} % Instrumental Polarization
 %
 % explore the matrix-formalized visibility equation
 % DI leakage
 % DD leakage
 %
-\include{chapters/instruments}
+\include{chapters/instruments/instruments}
 %
 % brief overview of instruments used in this work:
 %   PAPER: 32, 32-pol-img, 64 (xtlak), 128
@@ -326,7 +326,7 @@ Abstracts are written last.
 %   SKA-Low
 %
 \part{Outer space in Fourier space}
-\include{chapters/eor_window_theory}
+\include{chapters/eor_window_theory/eor_window_theory}
 %
 % -- sort of a lit review chapter --
 % The issue of low frequency foregrounds for EoR measurements
@@ -337,7 +337,7 @@ Abstracts are written last.
 % Hybrid approach: MWA
 %
 %
-\include{chapters/data_processing}
+\include{chapters/data_processing/data_processing}
 %
 % compression -- DDR algorithm & software overview
 % PAPER-128 RFI memo
@@ -345,40 +345,41 @@ Abstracts are written last.
 % Crosstalk subtraction -- theory (PAPER-64 memo)
 % PAPER QA
 %
-\include{chapters/polcal}
+\include{chapters/polcal/polcal}
 %
-% Omnical (2pol, 4pol, 4polminV) [omnipolcal.pdf, Dillon paper]
+% Omnical (2pol vs 4pol vs 4polminV) [omnipolcal.pdf, Dillon paper]
 % Imaging calibration [briefly]
 %
-\include{chapters/ionosphere}
+\include{chapters/ionosphere/ionosphere}
 % 
 % initial pass: Moore et al. 2017
 % Martinot (?) et al. 2018 (?)
 % radionopy
 %
-\include{chapters/eor_window_PAPER}
+\include{chapters/eor_window_PAPER/eor_window_PAPER}
 %
 % Kohn et al. 2016
 %
-\include{chapters/eor_window_HERA}
+\include{chapters/eor_window_HERA/eor_window_HERA}
 %
 % Kohn et al. 2018 (HERA wedges)
 %
-\include{chapters/psa128_pol}
+\include{chapters/psa128_pol/psa128_pol}
 %
 % PAPER-128 (wherever we get to)
 %
 \part{Expanding the potential of EoR measurements}
 % extra stuff
-\include{chapters/global_signal}
+\include{chapters/global_signal/global_signal}
 % theory and observation of PAPER and HERA time-averaged visibilities
-\include{chapters/ksz_21cm}
+% crosstalk memo goes here better?
+\include{chapters/ksz_21cm/ksz_21cm}
 % bispectrum & trispectrum squeezed formalisms
 % noise in image space
-\include{chapters/hera_ml}
+\include{chapters/hera_ml/hera_ml}
 % CNNs on 21cmFAST - regression
 % CNNs on 21cmFAST - Sultan's classification
-\include{chapters/conclusion}
+\include{chapters/conclusion/conclusion}
 %
 % WTF how do I write this?! answer: not yet.
 %
@@ -386,7 +387,7 @@ Abstracts are written last.
 
 %\appendix
 \begin{appendices}
-\addcontentsline{toc}{chapter}{Appendices}
+%\addcontentsline{toc}{chapter}{Appendices}
 \include{appendices/software}
 
 \end{appendices}
