@@ -13,7 +13,7 @@
 \usepackage{mathptmx} % needed to make text and equations in Times New Roman 
 %\usepackage{times}
 \usepackage{aastex_hack,natbib}
-%\usepackage{deluxetable}
+\usepackage{deluxetable}
 %\usepackage{tabularx}
 \usepackage{rotating,rotate}
 \usepackage{pdflscape,longtable}
@@ -74,7 +74,9 @@
   \endgroup
 }
 \makeatother
-%force sub subsections to be numbererd and show show up in the table of contents
+
+%force sub subsections to be numbered and show show up in the table of contents
+
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 % define some shortcuts
@@ -119,30 +121,6 @@
 \def\dq{\frac{d^3q}{2 \pi^3}}
 \def\dkc{\frac{d^3k_3}{(2 \pi)^3}}
 \newcommand{\MHz}{\mbox{MHz}}
-%\newcommand{\vdag}{(v)^\dagger}
-%\newcommand{\myemail}{tfj@sas.upenn.edu}
-%\newcommand{\musicheader}[2]{\colorbox{black}{\textcolor{white}{\emph{\# #1 #2}}}}
-%\newcommand{\tcode}[1]{{\tt #1}}
-%\newcommand{\E}{\times 10^}
-%\newcommand{\magthresh}{20.0 }
-%\newcommand{\startdate}{September 1 }
-%\newcommand{\findate}{February 22 }
-%\newcommand{\bands}{\emph{griz}}
-%\newcommand{\seeingtrigger}{1.1" }
-%\newcommand{\deadtrigger}{7 days }
-%\newcommand{\searchradius}{1.08 arcseconds }
-%\newcommand{\assocradius}{1.80 arcseconds }
-%\newcommand{\numofbfakes}{8 } 
-%\newcommand{\bfakemag}{20 }
-%\newcommand{\deepSNRbfakes}{80 }
-%\newcommand{\shallowSNRbfakes}{20 } 
-%\newcommand{\SVstart}{November 18, 2012 }
-%\newcommand{\SVend}{February 22, 2013 }  
-%\newcommand{\SNnum}{1200 }
-%\newcommand{\hostspectra}{281 }
-%\newcommand{\SNtenfivefive}{451 }
-%\newcommand{\psnid}{\tcode{psnid} }
-%\newcommand{\rv}{$R_{Vol}$ } 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\tita}{UNDERSTANDING POLARIZATION AS A FOREGROUND FOR HI EPOCH OF REIONIZATION MEASUREMENTS}
@@ -287,6 +265,10 @@ Abstracts are written last.
 \singlespaced
 \tableofcontents
 
+%% WARNING - TABLES ARE BEING NUMBERED WEIRDLY!!!
+%% LISTED NUMBER DOES NOT MATCH THE \ref NUMBER GIVEN
+%% BY BIBTEX OR WHATEVER!!!
+
 \newpage
 \phantomsection
 \addcontentsline{toc}{chapter}{List of Tables}
@@ -338,6 +320,7 @@ Abstracts are written last.
 % brief overview of instruments used in this work:
 %   PAPER: 32, 32-pol-img, 64 (xtlak), 128
 %   HERA: 19, H1C?
+%% make sure to mention signal chain -- X; F engines
 % instruments of note, not used in this work, but exploring similar things and facing similar challenges:
 %   LOFAR, MWA
 %   SKA-Low
