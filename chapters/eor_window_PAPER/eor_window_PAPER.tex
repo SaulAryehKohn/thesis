@@ -169,3 +169,73 @@ To form $|\tilde{V}_{ij}^{pq}(\tau,t)|^2$, consecutive integrations were cross-m
 \end{equation}
 where $\Delta t$=10.7 seconds and $\theta_{ij,{\rm zen}}(\Delta t)$ is the appropriate zenith rephasing factor. This method should avoid noise-biased power spectra except on very long baselines, which the PAPER configuration does not contain, while sampling essentially identical $k$-modes.  Note that this is the same method used by \citet{Pober.13} in their investigation of the unpolarized wedge.
 
+\section{Results}
+\label{sec:psa32_res}
+Combining visibilities using Equation~\ref{eq:Stokes}, we formed power spectra over frequencies 146--166\,MHz according to Equation~\ref{eq:psa32_pspec} using consecutive integrations for each Stokes visibility over time, and gridded our results into $k$-space, averaging in time. 
+The $k_{\perp}$-axis is binned with a resolution of $4.65\times10^{-4}\,h$\,Mpc$^{-1}$ to slightly reduce gaps in $k$-space due to missing baselines. This gave an average bin occupancy of 1.7$\pm$0.9.
+The resolution in $k_{\parallel}$ ($5.06\times10^{-4}\,h$\,Mpc$^{-1}$) is set by the 20\,MHz bandwidth with 500\,kHz resolution that we use in this analysis.
+Note that the Blackman-Harris window used in the delay-filtering stage after forming Stokes visibilities correlates adjacent frequency bins, and hence $k_{\parallel}$ bins.
+Each $(k_{\perp},k_{\parallel})$ bin was normalized by its occupancy.
+
+Two-dimensional power spectra have been proven as powerful tools for large dipole array experiments, not only for assessing cosmology but also in order to constrain instrumental and analytical systematics \citep[e.g.][]{Morales.12}. Polarization axes are a useful addition for such analyses, since we expect Stokes I to be approximately 3 orders of magnitude stronger than the other polarization products at the low radio frequencies and tens-of-arcminute scales native to PAPER observations \citep[e.g.][]{Pen.09, Moore.13} and when observing far from the Galactic Plane. This alone allows us to assume that much of the structure in the power spectra with power comparable to Stokes I is leakage. As we explore below, these leakage terms can come from direction-dependent effects \citep[e.g. wide-field beam leakage;][]{Carozzi.09} or direction independent ones \citep[e.g. Mueller matrix mixing via gain errors and $D$-terms;][]{TMS} and appear with high signal-to-noise in power spectra.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\textwidth]{chapters/eor_window_PAPER/figures/oldcal_forks_lines.pdf}
+\noindent\rule{14cm}{0.6pt}
+\includegraphics[width=0.9\textwidth]{chapters/eor_window_PAPER/figures/newcal_forks_lines.pdf}
+\caption[Log-scaled 2D power spectra from PAPER-32.]{\textit{Above:} Log-scaled 2D power spectra formed from (\textit{top to bottom}): I, Q, U and V visibilities after before absolute calibration. Blank regions indicate the incomplete $uv$ coverage for a given $k_{\perp}(u)$. 
+The colorbar spans $10^{9}$ to $10^{15}$ mK$^2$($h^{-1}$Mpc)$^3$. The flux scale has been boosted for a more fair comparison to the absolute-calibrated data.
+\textit{Below:} The same organization as above, but after absolute calibration.
+Briefly, the structure in Stokes I is consistent with a point-source-dominated field with a weak diffuse component. The other Stokes parameters are consistent with calibration errors and systematics: Stokes Q shows gain errors on specific antennae, Stokes U gives an estimate of possible D-term leakage, and any structure in V shows unaccounted-for systematics, due to D-terms or mis-oriented antennae.}
+\label{fig:forks}
+\end{figure}
+
+Figure~\ref{fig:forks} shows power spectra in `pitchfork' form \citep{Nithya.15a,Nithya.15b}, with $k_{\parallel}$ in negative and positive directions (according to the East and West horizons, marked in white (horizon) and orange (horizon+50\,ns delay, respectively). Each Stokes parameter pitchfork has its own interesting characteristics, which allow us to analyze different sky and instrument behaviors. The `wedges' described in the literature that define the EoR window are simply the average of negative and positive values of $k_{\parallel}$. While we focus on the pitchfork expression of the power spectra in our results, we also show them in wedge form in Figure~\ref{fig:wedges}\footnote{Note the difference in the power distribution within the horizon differs from that shown in the \citet{Pober.13} $V^{yy}$ wedge. That study used the PAPER 64-element, single-polarization imaging array to create power spectra in a `loud' field containing point sources and Galactic signal, causing their wedge to be `fuller' than the ones presented in this study.}.
+
+Simplifying the results of \citet[][see their papers for a full discussion]{Nithya.15a,Nithya.15b}, we expect power from diffuse emission to appear at low values of $k_{\perp}$ and high values of $k_{\parallel}$, while point sources lie at all $k_{\parallel}$ (all over the sky) but are down-weighted by the primary beam, which is broad, leaving a concentration of the power close to the $k_{\parallel}=0$ line.
+
+In Stokes I, we see the strongest power on most baselines arising at values $k_{\parallel}\approx 0$. This is expected in a situation of point sources that are relatively bright compared to any diffuse emission. Indeed, at the LSTs we observed at, several unresolved bright point sources transit the field (e.g. Figure~{\ref{fig:psa32_sky_image}}), while the dominant source of diffuse emission at these frequencies, the Galactic plane, was below the horizon. However, we do see strong super-horizon emission at $0.02 \leqslant k_{\perp} \leqslant 0.03$, biased towards negative $k_{\parallel}$ values. There is also a decrease in power with increasing $k_{\perp}$ -- both of these effects are consistent with the \citet{Nithya.15b} simulations of faint diffuse structure transiting zenith. 
+
+The Stokes Q wedge shows a concentration of power close to $k_{\parallel}\approx 0$, similar to Stokes I.
+The inherent low polarization fraction at our frequencies works in our favor in detecting gain errors, since Stokes Q is largely expected to be faint, and thus the gain errors causing leakage from I appear at high signal-to-noise there.
+Indeed, this power decreases noticeably with more accurate gain amplitude calibration, but bright streaks at specific values of $k_{\perp}$ remain, suggesting lower-level residual gain calibration errors on select baselines.  Another possible source of power in Stokes Q stems from wide-field direction-dependent gain errors causing a non-smooth evolution of the sources on the edges of the beam. However, we would expect this effect to be biased towards horizon values of $k_{\parallel}$.
+
+Power appears distributed in `pockets' in the Stokes U power spectrum, not strongly correlated with the distribution of power in I. Stokes I is able to leak into Stokes U via $D$-term leakage \citep{TMS, Geil.11}, which could occur at any post-amplification stage of observations, such as in cables or receivers. These leakages would be direction independent, and therefore uncorrelated in $k$-space. Such a mechanism could explain the behavior within Stokes U wedge. Before absolute calibration, similar structure is seen in the Stokes V power spectrum.
+
+At these frequencies, Stokes V is thought to be intrinsically zero, with few exceptions. However, \citet{HBS.1.96} show that antennae rotated with respect to one another can produce erroneous Stokes V power via I$\rightarrow$V leakage.\footnote{
+It should be noted that while such an error could plausibly have been made in the antenna placement for this imaging array, it is extremely unlikely that it would be made in the redundant PAPER configuration for EoR seasons. In these cases, the antennae were positioned to sub-cm accuracy.} This effect may explain some of the small pockets of power that remain in the Stokes V power spectrum after absolute calibration, although such an effect is also consistent with $D$-term leakage. The fact that power within the horizon was greater than the noise level may also have been due to I $\rightarrow$ V leakage through the primary beam.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\textwidth]{chapters/eor_window_PAPER/figures/wedges_final_vmin9_greybg.pdf}
+\caption[Wedge power spectra from PAPER-32.]{Log-scaled 2D power spectra formed from (\textit{left to right}): I, Q, U and V absolute-calibrated visibilities. Blank regions indicate the incomplete $uv$ coverage for a given $k_{\perp}(u)$. White and orange lines indicate the horizon and horizon plus a 50\,ns boundary for super-horizon emission. }
+\label{fig:psa32_wedges}
+\end{figure}
+
+The relationship between polarizations is highlighted in Figure~\ref{fig:psa32_high_kperp_slice}.
+We show a slice of the wedges over $0.097<\,k_{\perp}\,<0.098\,h{\rm Mpc^{-1}}$ ($\sim$175\,m) for Stokes I, Q, U and V (right panels) and the average power over these slices as a function of $k_{\parallel}$ (left panel). The standard deviations for each Stokes parameter are shown as dotted lines. 
+Dashed vertical lines show the horizon at $k_{\perp}$=0.097 (left) and super-horizon at $k_{\perp}$=0.098 (right).
+
+A heartening aspect of Figure~\ref{fig:psa32_high_kperp_slice}, and indeed all of the power spectra in this work, is that the power in Stokes Q, U and V proves to be just as confined within the horizon as Stokes I. Whether the polarized Stokes parameters are due to real polarization or miscalibration, not enough spectral structure is being introduced to move emission into the EoR window. Outside of the horizon, Stokes I, Q and U are consistent with the noise level expected for this range of $k$-modes ($P_{\rm noise}\sim10^{9}$ mK$^2$($h^{-1}$Mpc)$^3$), according to the formalism \citet{Parsons.12b} and assuming a system temperature $T_{\rm sys}=450\,$K \citep[e.g.][]{Moore.17}.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\textwidth]{chapters/eor_window_PAPER/figures/high_kperp_with_imshow_errorbars_title.pdf}
+\caption[Average power in $0.093\,<\,k_{\perp}\,<\,0.098\,h{\rm Mpc^{-1}}$ as a function of $k_{\parallel}$ for each polarization of PAPER-32 data.]{\textit{Left}: The average power in $0.093\,<\,k_{\perp}\,<\,0.098\,h{\rm Mpc^{-1}}$ as a function of $k_{\parallel}$ for each polarization.  In the horizon--super-horizon range that we see the sharp fall-off in power indicative of the edge of the EoR window. 
+%The `divet' seen between horizon values is likely due to crosstalk subtraction. 
+Outside of the wedge, Stokes I, Q and U are at noise level, while Stokes V is below noise level, most likely due to the $\tau_{xy}$ calibration scheme removing a degree of freedom from this Stokes parameter. \textit{Right}: the region of k-space that was averaged over to create the lines in the left panel. From top to bottom, the panels correspond to Stokes I, Q U and V.}
+\label{fig:psa32_high_kperp_slice}
+\end{figure}
+
+\section{Discussion and Conclusions}
+\label{sec:disc}
+
+We have presented measurements of instrumental polarization leakage in PAPER-32 using 2D power spectra. These have allowed us to quantify some of the possible instrumental effects that could limit a statistical detection of the EoR within the wedge, diagnosed in the Fourier space most relevant EoR statistical detection experiments. To our knowledge, this is the first study of Q, U and V 2D power spectra at these $k$-modes. We have shown that power from Stokes Q, U and V is as confined to the wedge as Stokes I. Any calibration errors do not appear to spread power outside the horizon. 
+
+In their study of 2D power spectra, \citet{Asad.15} reported evidence of polarized leakage into the EoR window at the sub-percent level, considering a $4^\circ$ degree field of view. Their study differs from this work not only over the field of view ($4^\circ$ versus almost whole-sky), but also in the observing mode (tracked versus drift scan) and in the different k-space probes by LOFAR's longer baselines. In this work the power spectrum is calculated on a per-baseline basis, whereas their study calculates power spectra for gridded data which are more prone to mode mixing effects \citep{Hazelton.13}.
+
+Our results are expected, in principle, to be more prone to leakage contamination due to the intrinsic extremely wide field of view of the PAPER primary beams, however, we see no evidence of leakage in the EoR window down to our sensitivity limits even without correction for polarized beams that is instead included in \cite{Asad.15}. Our analysis indicates therefore that neither intrinsic polarized emission nor the PAPER primary beam are leaking power in the EoR window, although longer integrations are required to demonstrate that this is true down to the sensitivities required for EoR detection. 
+
+We showed that systematics can be probed with high signal-to-noise using 2D polarized power spectra, using the inherently low polarization fraction at the frequencies PAPER observes at to our advantage. We found that gain errors on specific baselines were easily probed using Stokes Q power spectra. Gain errors appear as continuous streaks within the horizon at specific values of $k_{\perp}$, allowing us to diagnose the precision of the gain calibration on a per-baseline basis. This is much more difficult to do with only Stokes I power spectra in a non-redundant array, and can be accomplished quickly without imaging. While the features in the Stokes U power spectra are more difficult to attribute to specific baselines, they appear to be consistent with direction-independent leakage. 
+Stokes V power is slightly higher than noise-level within the horizon, suggesting a small but unaccounted-for leakage term from Stokes I, an effect which was explored \cite{Nunhokee.17} -- and found to be consistent with beam-leaked signal from Stokes I.
