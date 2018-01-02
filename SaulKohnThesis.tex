@@ -41,7 +41,10 @@
 \usepackage{epstopdf}
 \usepackage{accents}
 \usepackage{multicol}
-\bibstyle{aa}
+
+% XXX CHECK THIS IS OK!
+\bibstyle{apj_w_etal}
+
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 %\setlength{\topmargin}{0.9in}
 \setlength{\hoffset}{0.05in}
@@ -292,6 +295,7 @@ Abstracts are written last.
 % what is the EoR
 % why is it interesting
 % current (CMB, high-z galaxies, HI limits) and future (HI, CO, C+ intensity mapping, extreme deep fields from JWST) probes
+% in the following chapters I will speak about...
 %
 \include{chapters/astropol/astropol} % Astrophysical Polarization
 %
@@ -307,6 +311,7 @@ Abstracts are written last.
 % rebuilding the visibility equation for widefield, polarized instruments
 % basics of calibration for drift-scanning interferometers
 % briefly, redundant calibration (more in polcal chapter)
+% redundant vs imaging configurations
 % CLEAN
 %
 \include{chapters/instrumentpol/instrumentpol} % Instrumental Polarization
@@ -342,7 +347,6 @@ Abstracts are written last.
 % compression -- DDR algorithm & software overview
 % PAPER-128 RFI memo
 % HERA RFI memo
-% Crosstalk subtraction -- theory (PAPER-64 memo)
 % PAPER QA
 %
 \include{chapters/polcal/polcal}
@@ -395,8 +399,8 @@ Abstracts are written last.
 \newpage
 %\include{bibliography}
 %\chapter{Bibliography}
-
-\bibliographystyle{astron}
+%!!!!! XXX
+\bibliographystyle{apj_w_etal}
 \addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{thesisbib}
 
