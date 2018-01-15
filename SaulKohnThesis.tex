@@ -27,6 +27,7 @@
 \usepackage{natbib}
 \usepackage{xr}
 \usepackage{url}
+%\usepackage{hyperref}
 \usepackage{caption}
 \usepackage[caption=false]{subfig}
 %\usepackage{float,lscape}
@@ -313,7 +314,7 @@ Abstracts are written last.
 % wide field effects
 % rebuilding the visibility equation for widefield, polarized instruments
 % basics of calibration for drift-scanning interferometers
-% briefly, redundant calibration (more in polcal chapter)
+% redundant calibration theory (more in polcal chapter)
 % redundant vs imaging configurations
 % CLEAN
 %%% Instrumental polarization:
@@ -323,13 +324,7 @@ Abstracts are written last.
 %
 \include{chapters/instruments/instruments}
 %
-% brief overview of instruments used in this work:
-%   PAPER: 32, 32-pol-img, 64 (xtlak), 128
-%   HERA: 19, H1C?
-%% make sure to mention signal chain -- X; F engines
-% instruments of note, not used in this work, but exploring similar things and facing similar challenges:
-%   LOFAR, MWA
-%   SKA-Low
+% 
 %
 \part{Structure in Fourier space}
 \include{chapters/eor_window_theory/eor_window_theory}
@@ -337,38 +332,37 @@ Abstracts are written last.
 % -- sort of a lit review chapter --
 % The issue of low frequency foregrounds for EoR measurements
 % Define power spectra...
-% foreground wedge and EoR window
+% foreground wedge and EoR window -- Nithya predictions
 % Foreground avoidence: delay spectrum
 % Foreground subtraction: theory and LOFAR results
 % Hybrid approach: MWA
-% polarization in wedge space -- my nice freq vs fourier space diagram? -- basically everything from Moore papers
+% polarization in wedge space -- my nice freq vs fourier space diagram? -- basically everything from Moore 2013
 %
 % in the following chapters I will speak about...
 %
 \include{chapters/data_processing/data_processing}
 %
-% compression -- DDR algorithm & software overview -- DONE
-% PAPER-128 RFI memo -- DONE
-% HERA RFI memo -- DONE
-% PAPER QA
+% TODO:
+% PAPER QA pre/post omnical
 %
 \include{chapters/polcal/polcal}
 %
 % Omnical (2pol vs 4pol vs 4polminV) [omnipolcal.pdf, Dillon paper]
-% Imaging calibration [briefly, wherever we get to]
+% Imaging calibration [briefly, wherever we get to] -- for D terms
 %
 \include{chapters/ionosphere/ionosphere}
 % 
-% initial pass: Moore et al. 2017
-% radionopy
-% Martinot (?) et al. 2018 (?)
 % 
 %
 \include{chapters/eor_window_PAPER/eor_window_PAPER}
 %
-% Kohn et al. 2016 -- DONE
+%
 %
 \include{chapters/eor_window_HERA/eor_window_HERA}
+%
+% TODO: 
+% - figure out where DI/DD leakage is reviewed vs pushed to previous chapters
+% - bring in results - onwards
 %
 % Kohn et al. 2018 (HERA wedges)
 %
@@ -377,16 +371,22 @@ Abstracts are written last.
 % PAPER-128 (wherever we get to)
 %
 \part{Expanding the potential of EoR measurements}
-% extra stuff
+% other stuff -- needs a brief non-chapter introduction
 \include{chapters/global_signal/global_signal}
+%
 % theory and observation of PAPER and HERA time-averaged visibilities
-% crosstalk memo goes here better?
+% crosstalk memo goes here better than in QA?
+%
 \include{chapters/ksz_21cm/ksz_21cm}
+%
 % bispectrum & trispectrum squeezed formalisms
 % noise in image space
+%
 \include{chapters/hera_ml/hera_ml}
+%
 % CNNs on 21cmFAST - regression
 % CNNs on 21cmFAST - Sultan's classification
+%
 \include{chapters/conclusion/conclusion}
 %
 % how do I write this?! answer: not yet.
