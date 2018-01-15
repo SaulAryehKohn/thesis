@@ -126,8 +126,8 @@
 \newcommand{\MHz}{\mbox{MHz}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\tita}{UNDERSTANDING POLARIZATION AS A FOREGROUND FOR HI EPOCH OF REIONIZATION MEASUREMENTS}
-\newcommand{\titlow}{Understanding polarization as a foreground for HI Epoch of Reionization measurements}
+\newcommand{\tita}{{\bf OUTER SPACE AND FOURIER SPACE}:\\UNDERSTANDING FOREGROUNDS FOR HI EPOCH OF REIONIZATION MEASUREMENTS}
+\newcommand{\titlow}{Outer space and Fourier space:\\ understanding foregrounds for {\sc hi} Epoch of Reionization measurements}
 
 \begin{document}
 \addcontentsline{toc}{chapter}{Title}
@@ -172,20 +172,20 @@ in Partial Fulfillment of the Requirements for the Degree of Doctor of Philosoph
 
 %this is the grad chair, not the chair of the committee, right?
 \begin{flushright}
-Whoever the graduate chair is\\ \small Professor of Physics and Astronomy
+Joshua Klein\\ \small Professor of Physics and Astronomy
 \end{flushright}
 \end{multicols}
 
 \halfspaced
 \noindent Dissertation Committee:
 
+\noindent Cullen Blake, Assistant Professor of Physics and Astronomy
+
 \noindent Adam Lidz, Associate Professor of Physics and Astronomy
 
+\noindent Elliot Lipeles, Associate Professor of Physics and Astronomy
+
 \noindent Masao Sako, Associate Professor of Physics and Astronomy
-
-\noindent another professor, Assistant Professor of Physics and Astronomy
-
-\noindent another professor, Professor of Physics and Astronomy
 
 \newpage
 
@@ -194,7 +194,7 @@ Whoever the graduate chair is\\ \small Professor of Physics and Astronomy
 \doublespaced
 \vspace*{2in}
 \begin{center}
-{\large\emph{for my grandparents, endless sources of inspiration}}
+{\large\emph{to my grandparents}}
 \end{center}
 
 \newpage
@@ -232,13 +232,12 @@ To view a copy of this license, visit
 %blah di blah
 % PAPER & HERA teams
 % Danny, Carina, Matt, Josh K., Paul LP
+% generally awesome and supportive cohort
 % Friends: Ashley, Christian, Elodie, Julie, Steve K., Irteza
 % James (who counts as a friend too)
-% Kohns
-% Goodmans
+% Kohns & Goodmans
 % Gabby
 Acknowledgements require a certain mindset to be written well.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -297,11 +296,15 @@ Abstracts are written last.
 % current (CMB, high-z galaxies, HI limits) and future (HI, CO, C+ intensity mapping, extreme deep fields from JWST) probes
 % in the following chapters I will speak about...
 %
-\include{chapters/astropol/astropol} % Astrophysical Polarization
+\include{chapters/astropol/astropol} % Astrophysical Radiation
 %
+% synchtrotron & bremstrahlung
+% GSM 2008, 2017
 % what is polarization (emag)
 % sources of astrophysical polarization
-% [magnetic fields in SPAAAACE]
+% magnetic fields and rotation measures
+% oppermann map -- high RM point sources
+% Lenc, Jelic, etc. diffuse low RM stuff
 %
 \include{chapters/interferometry/interferometry} % Interferometry
 %
@@ -313,9 +316,7 @@ Abstracts are written last.
 % briefly, redundant calibration (more in polcal chapter)
 % redundant vs imaging configurations
 % CLEAN
-%
-\include{chapters/instrumentpol/instrumentpol} % Instrumental Polarization
-%
+%%% Instrumental polarization:
 % explore the matrix-formalized visibility equation
 % DI leakage
 % DD leakage
@@ -330,7 +331,7 @@ Abstracts are written last.
 %   LOFAR, MWA
 %   SKA-Low
 %
-\part{Outer space in Fourier space}
+\part{Structure in Fourier space}
 \include{chapters/eor_window_theory/eor_window_theory}
 %
 % -- sort of a lit review chapter --
@@ -340,29 +341,32 @@ Abstracts are written last.
 % Foreground avoidence: delay spectrum
 % Foreground subtraction: theory and LOFAR results
 % Hybrid approach: MWA
+% polarization in wedge space -- my nice freq vs fourier space diagram? -- basically everything from Moore papers
 %
+% in the following chapters I will speak about...
 %
 \include{chapters/data_processing/data_processing}
 %
-% compression -- DDR algorithm & software overview
-% PAPER-128 RFI memo
-% HERA RFI memo
+% compression -- DDR algorithm & software overview -- DONE
+% PAPER-128 RFI memo -- DONE
+% HERA RFI memo -- DONE
 % PAPER QA
 %
 \include{chapters/polcal/polcal}
 %
 % Omnical (2pol vs 4pol vs 4polminV) [omnipolcal.pdf, Dillon paper]
-% Imaging calibration [briefly]
+% Imaging calibration [briefly, wherever we get to]
 %
 \include{chapters/ionosphere/ionosphere}
 % 
 % initial pass: Moore et al. 2017
-% Martinot (?) et al. 2018 (?)
 % radionopy
+% Martinot (?) et al. 2018 (?)
+% 
 %
 \include{chapters/eor_window_PAPER/eor_window_PAPER}
 %
-% Kohn et al. 2016
+% Kohn et al. 2016 -- DONE
 %
 \include{chapters/eor_window_HERA/eor_window_HERA}
 %
@@ -385,7 +389,7 @@ Abstracts are written last.
 % CNNs on 21cmFAST - Sultan's classification
 \include{chapters/conclusion/conclusion}
 %
-% WTF how do I write this?! answer: not yet.
+% how do I write this?! answer: not yet.
 %
 
 
