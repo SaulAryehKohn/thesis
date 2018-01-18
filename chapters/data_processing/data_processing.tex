@@ -448,8 +448,97 @@ Efforts to extend the HERA band to lower and possibly higher frequencies are cur
 
 Meanwhile, I note that the RFI flagging routine used here, {\tt xrfi\_simple}, is indeed `simple'. More advanced RFI flagging algorithms such as {\tt AOFlagger} \citep{AOflag} should be tested in later studies.
 
-\section{Pre-Redundant Calibration QA}
-% should I wait for figures from the Ali RTP paper??
+\section{Quality Assurance Metrics}
 
-\section{Post-Redundant Calibration QA}
-% should I wait for figures from the Ali RTP paper??
+Throughout reduction of PAPER-128 data, we found a number of ways for data to become corrupted, including failure of analog or digital components, incorrect cable connections, or improper feed installation. Many of these can cause failure of redundant calibration algorithms that are sensitive to non-redundancies within an array. In the case of a real-time calibration pipeline, such as the one implemented for HERA, it is essential to have quickly-generated metrics to assess the overall health of the array. Much of the heritage of PAPER-128 data processing is present in the HERA Real Time Calibration Pipeline (RTC; {\color{red} Ali et al. (in prep.)}).
+
+\subsection{Mean Amplitude Flagging}
+\label{subsec:meanvij}
+
+The most critical and likely failure that an antenna could have was malfunctioning electronics losing power and temporarily ``killing" it.
+This failure mode was characterized with unusually low signal coming from the antennas, causing the visibilities
+associated with that antenna to have much lower than average amplitude. This
+leads to the definition of the mean visibility metric for antenna ${i}$:
+
+\begin{equation}
+    M_{i} = \frac{ \sum_{j,\nu,t} {|V_{ij}|} }{N-1}
+\label{eq:meanvij}
+\end{equation}
+
+where $V_{ij}$ is the visibility for the baseline involving antennas $i$ and
+$j$, $N$ is the number of antennas in the array, and the sum is taken over all
+antennas $j$ ($i \neq j$), times, and frequencies. When $M_{i}$ is compared across the array, 
+it can reveal antennas with anomalously low signal to noise.
+
+Erroneously cross-polarized antennas were ones where the feed was rotated 90 degrees, or the
+cables were swapped for the two polarizations along the signal path (such a failure mode
+could be expected for a large array under active construction). This caused
+the linear polarization visibilities ($EE$ or $NN$) to have a lower amplitude or
+correlation relative to the cross-polarizations ($EN$ and $NE$). While these could appear to be dead antennas, 
+the cross-polarization visibilities would show that one of the antennas in a given
+visibility is cross-polarized.
+
+We defined the mean visibility cross-polarization metric as 
+
+\begin{equation}
+P_{i} = \frac{M_{i}^{NE} + M_{i}^{EN}}{M_{i}^{NN} + M_{i}^{EE}},
+\label{eq:meancrossvij}
+\end{equation}
+
+where $M_{i}$ is defined in Equation~\ref{eq:meanvij} and are calculated for
+all the polarization pairs. If $P_{i}$ is larger than some threshold, then
+antenna ${i}$ may be cross-polarized. This method is effective when applied
+to long baselines, but for the shortest baselines in HERA, large-scale astrophysical polarization
+\citep[e.g.][]{Lenc.16} is observed by in all the instrumental visibilities 
+(since, for example, the $NN$ visibility is equal to the sum of the 
+Stokes I and Q visibilities). This brings $P_{i}$ closer to unity
+for any antenna $i$.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{chapters/data_processing/figures/metrics.png}
+\caption[An example of the mean amplitude flagging metrics on exercised on HERA-47 data.]{An example of the mean amplitude flagging metrics on exercised on HERA-47 data. The top panel shows the mean amplitude flagging metric $M_i$, and the lower panel shows the cross-polarization metric $P_i$. The $E$ feed of antenna 50 shows at $\sim$15$\sigma$ deviation, causing it to be flagged from further processing.}
+\label{fig:data_metrics}
+\end{figure}
+
+Figure~\ref{fig:data_metrics} shows the application of the metrics described above to raw HERA-47 data in the RTC system. Note that we plotted the modified \textit{z}-score and not
+the raw metric. Traditionally the \textit{z}-score is defined as the deviation from the
+mean divided by the standard deviation, and is a method to detect outliers.
+However, since our metrics were not necessarily normally-distributed, we use the
+modified \textit{z}-score defined as 
+
+\begin{equation}\label{eqn:modifiedzscore}
+    MZ_{i} = 0.6745\frac{|x_{i} - \tilde{x}|} {MAD},
+\end{equation}
+
+where $x_{i}$ is some data point (in our case this was a metric),
+$\tilde{x}$ is the median of ${\{x_{i}\}}$, and MAD is the median absolute
+deviation. \cite{Iglewicz.10} recommend that modified
+\textit{z}-scores with an absolute value greater than 3.5 should be flagged as outliers.
+In the analyses shown in Figure~\ref{fig:data_metrics}, we took the cut-off to be 5, to account for greater acceptable
+variation in our metrics.
+
+The top panel of figure \ref{fig:data_metrics} shows the modified \textit{z}-score for
+the mean visibility metric as a function of antenna number.
+Antenna 50E (East-West polarization) was a $\sim$15$\sigma$ outlier, indicating a problem
+with amplification along the signal chain. Upon further inspection,
+antenna 50E was shown to exhibit strange behavior, dropping in and out of the signal chain. Further
+investigation is needed to know the root cause of this misbehavior. 
+
+The bottom row of figure \ref{fig:data_metrics} shows the modified \textit{z}-score for the cross
+polarization metric as a function of antenna number. There were no modified
+\textit{z}-scores outside of the [-5,5] range, indicating that there were no cross polarized
+antennas. Further inspection of the raw visibility data validated this finding.
+
+\subsection{Flagging on {\tt omnical} $\chi^2$}
+
+We developed a metric that identified days of PAPER-128 observations with poor overall {\tt omnical} $\chi^2$ values. Using the median of the $\chi^2$ values in the EoR band (channels 100--160; 150--180\,MHz), over all days of observation, we flagged days that exceeded the average of the median by one standard deviation from the mean. Figure~\ref{fig:data_chisq_flagging} shows an example of this flagging method used on the latter half of the first PAPER-128 observing season. Clearly, there were just a few JDs that had exceptionally high $\chi^2$ values. Our metric captures almost all of these outliers -- the possible exceptions being JDs 2456717 and 2456718.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{chapters/data_processing/figures/chisq_flagging.png}
+\caption[Flagging Julian Dates based on the median {\tt omnical} $\chi^2$ values in the 150--180\,MHz band.]{Flagging Julian Dates (JDs) based on the median {\tt omnical} $\chi^2$ values in the 150--180\,MHz band. Shown in pink is the flagging boundary. The JD labels have been abbreviated to drop the `245' prefix that they all share. Clearly, there are just a few JDs that have exceptionally high $\chi^2$ values.}
+\label{fig:data_chisq_flagging}
+\end{figure}
+
+The {\tt omnical} software also provides $\chi^2_a$ values for each antenna $a$ -- that is, how much each antenna contributed to the overall non-redundancy of the array. The above sigma-clipping metric was applied to $\chi^2_a$, and was able to identify the same bad antennae using the mean amplitude flagging metric described in Equation~\ref{eq:meanvij}.
