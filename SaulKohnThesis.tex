@@ -233,7 +233,7 @@ To view a copy of this license, visit
 %blah di blah
 % PAPER & HERA teams
 % Danny, Carina, Matt, Josh K., Paul LP, Jon Ringuette, Zac
-% generally awesome and supportive cohort
+% generally awesome and supportive cohort + SAS fellowship
 % Friends: Ashley, Christian, Elodie, Julie, Steve K., Irteza, Rachel W., Christina, Alyssa
 % James (who counts as a friend too)
 % Kohns & Goodmans
@@ -289,21 +289,22 @@ Abstracts are written last.
 
 
 \mainmatter
-\part{Introduction \& Mathematical Formalisms}
+\part{Radiation, Interferometry \& Polarimetry}
 
 \vspace*{\fill} 
 \begin{quote} 
 \centering 
-%... His light is like a niche, within which is a lamp, the lamp within glass, the glass as if it were a white star... Light upon light.\\
-%\textit{Al Quran, Surah An Nur (24:35)}
+... His light is like a niche, within which is a lamp, the lamp within glass, the glass as if it were a white star... Light upon light.\\
+\textit{Al Quran, Surah An Nur (24:35)}
 \end{quote}
 \vspace*{\fill}
 
 \include{chapters/eor_intro/eor_intro} % The Epoch of Reionization
 %
 % what is the EoR
-% why is it interesting
+% why is it interesting (near term) - Liu Tau constraints, Kittiswitt maps, Kern emulators
 % current (CMB, high-z galaxies, HI limits) and future (HI, CO, C+ intensity mapping, extreme deep fields from JWST) probes
+% why are we still looking => foregrounds
 % in the following chapters I will speak about...
 %
 \include{chapters/astropol/astropol} % Astrophysical Radiation
@@ -335,15 +336,16 @@ Abstracts are written last.
 %
 \include{chapters/instruments/instruments}
 %
-% 
+% change rcvr -> hut to 50 Ohm
 %
 \part{Structure in Fourier space}
 
 \vspace*{\fill} 
 \begin{quote} 
 \centering 
-... His light is like a niche, within which is a lamp, the lamp within glass, the glass as if it were a white star... Light upon light.\\
-\textit{Al Quran, Surah An Nur (24:35)}
+The Gemara asks: Do we not see that comets pass Orion? The Gemara rejects this: The aura of the comet passes Orion and it appears as though the comet itself passes. Rav Huna, son of Rav Yehoshua, said a different answer: It is merely that veil, one of the firmaments, rips and furls and the light of the next firmament is seen, and this appears like a comet. Rav Ashi said another explanation: It is not a comet that passes Orion, but a star that is uprooted from one side of Orion, and another star, from the other side of Orion, sees it and gets startled and shudders, and appears as if it is passing.\\
+
+\textit{Talmud Berakhot 58b:11}
 \end{quote}
 \vspace*{\fill}
 
@@ -358,7 +360,7 @@ Abstracts are written last.
 % Hybrid approach: MWA
 % polarization in wedge space -- my nice freq vs fourier space diagram? -- basically everything from Moore 2013
 %
-% in the following chapters I will speak about...
+% in the following chapters I will speak about... ALL MY WORK
 %
 \include{chapters/data_processing/data_processing}
 %
@@ -366,13 +368,17 @@ Abstracts are written last.
 %
 \include{chapters/polcal/polcal}
 %
+% more discussion of what degeneracies are and how they get fixed
+% only use the high band in power spectra
 % Omnical (2pol vs 4pol vs 4polminV) [omnipolcal.pdf, Dillon paper]
+%
+% how 2 image cal with polarization - recipe for future students
 % Imaging calibration [briefly, wherever we get to] -- for D terms
 %
 \include{chapters/ionosphere/ionosphere}
 % 
 % 
-%
+% bridge to EoR window studies?
 \include{chapters/eor_window_PAPER/eor_window_PAPER}
 %
 %
@@ -380,14 +386,31 @@ Abstracts are written last.
 \include{chapters/eor_window_HERA/eor_window_HERA}
 %
 % TODO: 
+% - basically redo everything that's in there, based on collaboration comments
+%
 % - figure out where DI/DD leakage is reviewed vs pushed to previous chapters
 % - bring in results - onwards
 %
 % Kohn et al. 2018 (HERA wedges)
 %
-\include{chapters/psa128_pol/psa128_pol}
+\include{chapters/psa128_pol/psa128_pol} % move above HERA?
 %
-% PAPER-128 (wherever we get to)
+% describe Epochs, Seasons (good summary table in Ridhima's thesis)
+%
+% summary spreadsheets: watch the array die over time, more bad antennae with no.s < 64
+% Season 1 epoch 1 FX failure - blue circles on antennas for diagram, red Xs for bad ants?
+% concentration on Epoch 2 as longest, most well-behaved epoch
+% Season 2 many dying antennas
+%
+%  S1E2: 
+% - bad JD identification, 
+% - xx,yy firstcal (single per epoch), 4pol+minV cal, bl pull, 
+% - linCLEAN, lstbin_{fg,fgsub}
+% - (unpolarized) PicA (Jacobs13) CASA cal on lstbin_fg
+% - Stokes I FRF on all 4pols of fgsub
+% - not-that-great power spectra
+%
+% Pitch to "future work"?
 %
 \part{Expanding the potential of EoR measurements}
 
@@ -398,13 +421,33 @@ Abstracts are written last.
 % other stuff -- needs a brief non-chapter introduction
 \include{chapters/global_signal/global_signal}
 %
+% be upfront about Q in the field about whether this IS possible
+% our argument -> Cls
+% others: mutual coupling
+% future work: how to tell the difference? are they actually the same thing (you need a PB w/ directivity along baseline direction =?= mutual coupling
+%
+% divide data by Rogers & Bowman i.e. normalize to flat sky spectrum, then divide by PLP sim
+% look at TAV of Zac PAPER sim (from omnipolcal)
+%
+% HERA TAV?
+%
 % theory and observation of PAPER and HERA time-averaged visibilities
 % crosstalk memo goes here better than in QA?
 %
 \include{chapters/ksz_21cm/ksz_21cm}
 %
-% bispectrum & trispectrum squeezed formalisms
-% noise in image space
+% kSZ theory, link to EoR
+% bispectrum & trispectrum squeezed formalisms & limitations
+% 21cm fg noise in image space (paul memo)
+%
+% Bispectrum:
+% JEA - wants quantitative check (somehow) of semi-analytic method
+% - S/N naive estimate
+% compare semi-analytic method to Ma, Komatsu et al.?
+%
+% Trispectrum:
+% - filtering stages images
+% 
 %
 \include{chapters/hera_ml/hera_ml}
 %
@@ -413,7 +456,7 @@ Abstracts are written last.
 %
 \include{chapters/conclusion/conclusion}
 %
-% how do I write this?! answer: not yet.
+% where to go next
 %
 
 

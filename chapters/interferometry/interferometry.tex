@@ -47,7 +47,31 @@ An interferometer is an instrument which correlates these electric fields togeth
 = | E_0 |^2 e^{-2\pi i \nu \tau_g}
 \end{equation}
 
-where $e^{-2\pi i \nu \tau_g} = e^{-2\pi i \nu \vec{b}\cdot\hat{s}/c}$ is known as the ``fringe" term, due to its sinusoidal nature. We can generalize this relationship to include more than a single plane wave from direction $\hat{s}$. Many plane waves from all directions can be incident upon the interferometer at a given 
+where $e^{-2\pi i \nu \tau_g} = e^{-2\pi i \nu \vec{b}\cdot\hat{s}/c}$ is known as the ``fringe" term, due to its sinusoidal nature. We can generalize this relationship to include more than a single plane wave from direction $\hat{s}$. Many plane waves, from all directions, can be incident upon the interferometer at a given time and frequency. We can represent the power distribution on the sky as $S(\Omega)$, where $S(\Omega)$. However, no instrument is equally sensitive to radiation from every direction $\hat{s} \in \Omega$. Instead, an instrument has some sensitivity pattern -- a \textit{beam pattern} -- that tapers the power distribution on the sky into an ``observed sky",  $S'(\Omega) = A(\Omega)S(\Omega)$. 
+
+These generalizations lead to the classical visibility equation:
+
+\begin{equation}
+V_{ij}(\nu) = \int A(\Omega, \nu) S(\Omega, \nu) e^{-2\pi i \nu \vec{b}\cdot\hat{s}/c} {\rm d}\Omega
+\label{eq:classical_visibility}
+\end{equation}
+
+If we choose to represent the source direction in terms of directional cosines $\ell$ and $m$, and represent the baseline vector in units of wavelengths, $\vec{b}/\lambda=(u,v,w)$, we can perform a change of variables in Equation~\ref{eq:classical_visibility} to give
+
+\begin{equation}
+V_{ij}(u,v) = \int\int A(\ell, m)S(\ell, m) e^{-2\pi i (u\ell + vm + w\sqrt{1 - \ell^2 - m^2})} {\rm d}\ell {\rm d}m
+\end{equation}
+
+This relationship is often simplified by assuming only a small area of the sky is under observation -- that is, that $A(\ell,m)$ falls-off steeply from zenith -- and therefore $\ell^2$ and $m^2$ are small. This grants
+
+\begin{equation}
+V_{ij}(u,v) \approx e^{-2\pi i w} \int\int A(\ell, m)S(\ell, m) e^{-2\pi i (u\ell + vm)} {\rm d}\ell {\rm d}m
+\end{equation}
+
+which plainly casts $V(u,v)$ as the Fourier transform of the observed sky if $w$ is small. Modern low frequency interferometers used in this work greatly violate this approximation, the consequences of which I will discuss in the proceeding sections.
+
+% fourier relationship, uvws, image plane, touch on deconvolution
+% xx,xy,yx,yy <-> add in feed polarization indicies
 
 \subsection{The Measurement Equation}
 
@@ -55,7 +79,7 @@ where $e^{-2\pi i \nu \tau_g} = e^{-2\pi i \nu \vec{b}\cdot\hat{s}/c}$ is known 
 % pointing vs drift-scanning
 % wide field effects
 % rebuilding the visibility equation for widefield, polarized instruments
-% Stokes visibilities
+% Stokes visibilities -- previous chapter defines Stokes Parameters -- discuss pseudo-ness
 
 \section{Calibration Techniques}
 \label{sec:interferometry_cal}
@@ -63,12 +87,12 @@ where $e^{-2\pi i \nu \tau_g} = e^{-2\pi i \nu \vec{b}\cdot\hat{s}/c}$ is known 
 % basics of calibration for drift-scanning interferometers
 % redundant calibration theory (more in polcal chapter)
 % redundant vs imaging configurations
-% CLEAN
+% CLEAN: Hogbom, 1D-CLEAN [NEEDS DELAY] (Parsons & Backer), linCLEAN
 
 \section{Instrumental Polarization}
 \label{sec:interferometry_pol}
 
 %%% Instrumental polarization:
 % explore the matrix-formalized visibility equation
-% DI leakage
-% DD leakage
+% DI leakage (calibration errors)
+% DD leakage (cannot calibrate away -- must model)

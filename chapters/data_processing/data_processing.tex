@@ -243,7 +243,7 @@ Using the flags per night, I was able to assess the total number of flags as a p
 
 
 JD 2456965 was easily the worst offender, and it exhibited a strange signal that wanders in frequency and time close to the ISS band. An event of note on this date (23rd November 2014) was a Soyuz FG launch that docked with the ISS -- this may have been a signature of their transmissions\footnote{The internet also suggests... less plausible explanations: \url{https://www.youtube.com/watch?t=11&v=VtZx8iPO4zs}. }.
-Similar signals were seen on 2456898 (28th August 2014; although only at the beginning of the night) and 2456924 (23rd September 2014). There was no listed orbital or suborbital activity for 2456898. There was an US ICBM test off of the coast of Virginia on 2456924, but this was probably not the cause of the RFI. The flag waterfalls for these nights are shown in Figure~\ref{fig:wandering}.\\
+Similar signals were seen on 2456898 (28th August 2014; although only at the beginning of the night) and 2456924 (23rd September 2014). There was no listed orbital or suborbital activity for 2456898. There was an US ICBM test off of the coast of Virginia on 2456924, but this was probably not the cause of the RFI. The flag waterfalls for these nights are shown in Figure~\ref{fig:rfi_psa128_wandering}.\\
 
 \begin{figure}[h!]
 \centering
@@ -264,7 +264,7 @@ Based on my findings, I was able to recommend some actions that could be taken i
 \item  Steps to reduce and ideally eliminate the VHF TV transmissions in the area would be very helpful, since these were clearly interfering with our measurements in the high-end of the band.
 \item The ISS 149.75$\pm$0.55\,MHz band should be permanently flagged within the compression pipeline.
 \item Pursuing re-routing of flight paths will not do much to help: we see aircraft signals for the duration of their flight, not just when they're over the Karoo.
-\item A lower threshold for identifying broadband RFI should be optimized.
+\item A lower threshold for identifying broadband RFI should be investigated.
 \end{itemize}
 
 A new, lower-frequency feed is currently under development by the HERA analog group. This would nominally allow measurements to be taken in the range 50--250\,MHz, allowing science observations of the Dark Ages and the post-reionization Universe. It should be noted that at the lowest frequencies FM radio will be a constant harassment to these measurements. At the higher frequencies, VHF TV will be the primary contaminant, but should be much easier to remove as it is both narrow-band and within the KRQZ's power to shut off.
@@ -421,7 +421,7 @@ Figure~\ref{fig:rfi_hex_waterfalls} shows the flags on a per-sample basis (these
 \centering
 \includegraphics[width=0.45\textwidth]{chapters/data_processing/figures/RFI_HH_wf_tzoom.pdf}
 \includegraphics[width=0.45\textwidth]{chapters/data_processing/figures/RFI_PH_wf_tzoom.pdf}
-\caption[RFI flag waterfalls of frequency vs. South Africa Standard Time for the HERA Hex and PAPER Hex.]{RFI flag waterfalls of frequency vs. South Africa Standard Time for the HERA Hex (\textit{left}) and PAPER Hex (\textit{right}). The top panels show the average over time (identical to Figure~\ref{fig:rfi_paperhex}), while the right panels show the average over frequency.}
+\caption[RFI flag waterfalls of frequency vs. South Africa Standard Time for the HERA Hex and PAPER Hex.]{RFI flag waterfalls of frequency vs. South Africa Standard Time for the HERA Hex (\textit{left}) and PAPER Hex (\textit{right}). The top panels show the average over time (identical to Figure~\ref{fig:rfi_spec_hex_comparison}), while the right panels show the average over frequency.}
 \label{fig:rfi_hex_waterfalls}
 \end{figure}
 
