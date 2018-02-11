@@ -68,7 +68,7 @@ power spectrum estimation (see Section~\ref{sec:psa32_res}).
 The average correction in magnitude through this second-order calibration was a $\pm$6\% change for $x$ gains and $\pm$7\% for $y$ gains from those derived in the initial delay-space calibration.
 If the gain on an antenna deviated by more than 30\% from image-to-image during this analysis, it was discarded from future processing stages, since it was likely malfunctioning. This was true for 3 antennae (see the top panel of Figure~\ref{fig:psa32img_config}). 
 
-\begin{figure*}[h!]
+\begin{figure}[h!]
 \centering
 \includegraphics[width=0.4\textwidth]{chapters/eor_window_PAPER/figures/zen_2455819_50285_orig-I-image.pdf}
 \includegraphics[width=0.4\textwidth]{chapters/eor_window_PAPER/figures/zen_2455819_50285_orig-Q-image.pdf}
@@ -83,7 +83,7 @@ If the gain on an antenna deviated by more than 30\% from image-to-image during 
 %We note that the Stokes Q image is relatively featureless apart from a few faint sources that appear instrumentally polarized. Stokes U and Stokes V images are, instead, dominated by Fornax A that shows instrumental polarization leaked from total intensity. 
 Units are Jy~beam$^{-1}$; note the change in scale between polarizations and calibration stages.}
 \label{fig:psa32_sky_image}
-\end{figure*}
+\end{figure}
 
 The final gain amplitude calibration was carried out similarly to \citet{Ali.15}. We generated single channel images between 120 and 174 MHz for each snapshot and deconvolved each of them down to 10 Jy. For each snapshot, a source spectrum is derived for Pictor A by fitting a two dimensional Gaussian the source using the {\tt PyBDSM}\footnote{\url{http://www.lofar.org/wiki/doku.php?id=public:user software:pybdsm}} source extractor \citep{pybdsm}. Spectra were optimally averaged together by weighting them with the primary beam model evaluated in the direction of Pictor A. To fit the absolute calibration, we divided the model spectrum \citep{Jacobs.13} by the measured one and fit a 6th order polynomial over the 120-174 MHz frequency range. This procedure was repeated using Fornax A with the only difference that a taper was applied to the visibilities (120\,m) in order to reduce Fornax A to a point-like source and use the model spectrum from \citet{Bernardi.13}. The best fit coefficients for Pictor A and Fornax A were averaged together to obtain the final absolute flux density calibration. Snapshots of fully CASA-calibrated data are shown in Figure~\ref{fig:psa32_sky_image}.
 
