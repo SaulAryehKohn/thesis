@@ -291,8 +291,9 @@ After a successful conversion, an additional step needs to take place within the
 To calibrate the complex gains, we had to provide {\tt CASA} with a \textit{model image}, from which it will create model visibilities by convolving with a model beam (assumed to be Gaussian, with Full-Width Half Max based on the antenna diameter) and sampling the \textit{uv}-plane according to the antenna positions provided. Images of the primary beam model and point spread function of the PAPER-32 array are shown in Figure~\ref{figure:polcal_beam_and_psf}. The model visibilities were compared to the observed ones, and {\tt CASA}'s internal fitting algorithms determined complex gains to bring the ratio close to unity. 
 
 \begin{figure}
+\centering
 \includegraphics[width=0.8\textwidth]{chapters/polcal/figures/pb_and_psf.pdf}
-\caption[The beam model (\textit{left}) and point spread function (\textit{right}) of the PAPER-32 array, calculated by {\tt CASA}.]{The beam model and point spread function of the PAPER-32 array, calculated by {\tt CASA}. In reality, the beam is far less symmetric. The PSF is likely more accurate. Note the difference in axis scales between the two panels.}
+\caption[The beam model (\textit{left}) and point spread function (\textit{right}) of the PAPER-32 array, calculated by {\tt CASA}.]{The beam model and point spread function of the PAPER-32 array, calculated by {\tt CASA}. In reality, the beam is far less symmetric \citep[e.g.][]{Parsons.10}. The PSF is likely more accurate. Note the difference in axis scales between the two panels.}
 \label{figure:polcal_beam_and_psf}
 \end{figure}
 
@@ -306,20 +307,69 @@ making it an ideal flux-calibrator. While it is highly polarized at optical wave
 To increase the precision of our calibration model, we included a model of Fornax A as well as Pictor A. Fornax A is a bright, resolved radio galaxy which we modelled using three spherical components for its East lobe, West lobe and central core according to MWA observations \citep{McKinley.15}:
 
 \begin{eqnarray}
-F_{\rm East}= 260\,{\rm Jy}\,\times\,(\nu/154{\rm MHz})^{−0.77},\\
-F_{\rm West}= 480\,{\rm Jy}\,\times\,(\nu/154{\rm MHz})^{−0.77},\\
-F_{\rm Core}= 12\,{\rm Jy}\,\times\,(\nu/154{\rm MHz})^{−1.00}.\\
+S_{\rm East}(\nu)= 260\,{\rm Jy}\,\times\,(\nu/154{\rm MHz})^{- 0.77},\\
+S_{\rm West}(\nu)= 480\,{\rm Jy}\,\times\,(\nu/154{\rm MHz})^{- 0.77},\\
+S_{\rm Core}(\nu)= 12\,{\rm Jy}\,\times\,(\nu/154{\rm MHz})^{- 1.00}.\\
 \end{eqnarray}
 
-Fornax A has been found to have a low polarized fraction at higher frequencies \citep[20 GHz][]{Lopez-Caniego.09}, but surprisingly few polarization results have been reported....
+Fornax A has been found to have a low polarized fraction at higher frequencies \citep[20 GHz][]{Lopez-Caniego.09}, and a $\sim20$\% polarized fraction at 1.51 GHz \citep{Fomalont.89}. \cite{Bernardi.13} found no evidence for polarized emission at 151 MHz using the MWA-32, which may have been partially due to beam depolarization (an effect that would only increase with PAPER-32).
 
-% calibrate on one field, apply to same field -- I, Q, U, V
-% apply field 1 calibration to field 2 -- QUV remain noise-like
+Using this two-source (but with four points) sky model, we used the {\tt CASA} {\tt gaincal} and {\tt bandpass} routines to calibrate a 10 minute snapshot of the transit of Pictor A. We were able to specify a ``Stokes Vector" for each source, and we used $S=(1,0,0,0)$: that is, all components were strictly unpolarized. Applying the calibration solutions and gridding to the \textit{uv}-plane and CLEANing granted the pseudo-Stokes images shown in Figure~\ref{fig:polcal_img_PicA}. As expected, Pictor A dominated the sky in pseudo-Stokes I. However, an excess at its position in the pseudo-Stokes Q image suggested a mis-calibration in the diagonal gains at the $\sim10$\% level. No sources are visible above the noise in pseudo-Stokes U and V. However, these parameters (as well as pseudo-Stokes Q) exhibited a high fringe-rate oscillation in the North-West to South-East direction, which suggested that a long baseline of that orientation was poorly calibrated, or the antenna was malfunctioning. A similar effect was seen with a low fringe-rate from North-East to South-West, suggesting a problem on a short baseline with that orientation. Indeed, \cite{Kohn.16} found three malfunctioning antennas during their study using the PAPER-32 imaging array, which match the orientation and lengths indicated by the fringing (see Chapter~\ref{chapter:eor_window_paper32img}, Figure~\ref{fig:psa32img_config}). Removing those antennas resulted in cleaner images with lower noise-floors, as shown in Figure~\ref{fig:polcal_img_PicA_improved}. New fringing is seen at various angles, the source of which would be more difficult to identify. Excesses at the position of Pictor A in pseudo-Stokes U and V are likely the result of uncalibrated D-terms, which will be addressed in Section~\ref{subsec:polcal_Dterms}.
+The morphology of point sources in pseudo-Stokes I matched the PSF shown in Figure~\ref{figure:polcal_beam_and_psf}, showing that the CLEAN algorithm converged when during imaging.
+
+\begin{figure}
+\hspace{-2cm}\begin{tabular}{ll}
+\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-I.pdf} &
+\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-Q.pdf} \\
+\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-U.pdf} &
+\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-V.pdf} \\
+\end{tabular}
+\caption[Full-polarization imaging results from a four-component, Stokes I-only sky model.]{Full-polarization imaging results from a four-component, Stokes I-only sky model. Images are multi-frequency syntheses from 110 to 180 MHz. Pictor A, the brightest unresolved source in the Southern Sky at our frequencies, is in transit and dominates the sky in pseudo-Stokes I. An excess in pseudo-Stokes Q at the $\sim10$\% level indicates inaccuracies in the gain calibration. Pseudo-Stokes U and V are noise-like, save for a fringe that rises above the noise -- indicating a poor calibration of a single baseline of that orientation.}
+\label{fig:polcal_img_PicA}
+\end{figure}
+
+\begin{figure}
+\hspace{-2cm}\begin{tabular}{ll}
+\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-I-improved.pdf} &
+\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-Q-improved.pdf} \\
+\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-U-improved.pdf} &
+\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-V-improved.pdf} \\
+\end{tabular}
+\caption[The same field as shown in Figure~\ref{fig:polcal_img_PicA}, but with the removal of malfunctioning antennas identified by \cite{Kohn.16}.]{The same field as shown in Figure~\ref{fig:polcal_img_PicA}, but with the removal of malfunctioning antennas identified by \cite{Kohn.16}. The noise level drops and much of the fringing in pseudo-Stokes Q, U and V disappears (note the change in color scales and zoom level).}
+\label{fig:polcal_img_PicA_improved}
+\end{figure}
+
+We were able to test the stability of the instrument by applying the calibration solutions derived from the Pictor A transit to a completely different field. The imaging results of such a test at LST$\approx$0.5 hours are shown in Figure~\ref{fig:polcal_img_LST05}. The pseudo-Stokes I image showed a point-source dominated field, as expected for this LST, and pseudo-Stokes Q, U and V were dominated by noise. These results were proof of instrument stability in time at the $\sim$6 hour level.
+
+\begin{figure}
+\hspace{-2cm}\begin{tabular}{ll}
+\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/47501-I-improved.pdf} &
+\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/47501-Q-improved.pdf} \\
+\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/47501-U-improved.pdf} &
+\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/47501-V-improved.pdf} \\
+\end{tabular}
+\caption[Imaging results from a file calibrated with gain values derived from the Pictor A transit, which occurred $\sim$6 hours after these data were acquired.]{Imaging results from a file calibrated with gain values derived from the Pictor A transit, which occurred $\sim$6 hours after these data were acquired. The realistic images suggest that the instrument is stable on such time scales.}
+\label{fig:polcal_img_LST05}
+\end{figure}
 
 \subsection{D-term calibration}
-
+\label{subsec:polcal_Dterms}
 % basic-basic D-term stuff following CASA recipe
 
+Calibration of the off-diagonal terms of the instrumental Jones matrix can be partially calculated using a Stokes I-only sky model. If there were a visible source of known polarization fraction, an absolute phasing could be derived based on its polarization angle. Using the source model described in the section above, we were able to calculate the magnitude of the off-diagonal, \textit{D}-terms.
+
+{\tt CASA} supplies routines for linear-basis feeds that iteratively solve for `x' and `y' gains by, in our case, maximizing pseudo-Stokes I and minimizing pseudo-Stokes Q (if the polarization fraction was known, it would regress on that fraction for pseudo-Stokes Q). The {\tt polcal} routine uses a built-in regressor to find the best fit for the \textit{D}-terms, given previous calibrations. That is, one must have supplied an initial gain calibration and a guess of the parallactic angle of the polarized source.
+
+Using {\tt polcal} on the Pictor A field described in the previous section granted \textit{D}-term estimates of $\sim5\%$; comparable to other low-frequency instruments (MWA-32 was found to have $\sim2$\% \textit{D}-terms [G. Bernardi, private communication]). Correcting for these granted identical pseudo-Stokes I and Q images and lower-amplitude pseudo-Stokes U and V -- as expected for a regime where pseudo-Stokes I leakage dominates over actual polarized power. The improved U and V maps are shown in Figure~\ref{fig:polcal_img_PicA_improved_dterm}.
+
+\begin{figure}
+\hspace{-2cm}\begin{tabular}{ll}
+\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-U-improved-xdel.pdf} &
+\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-V-improved-xdel.pdf} \\
+\end{tabular}
+\caption[The same field as shown in Figure~\ref{fig:polcal_img_PicA_improved}, but for pseudo Stokes U and V only, with \textit{D}-terms partially calibrated.]{The same field as shown in Figure~\ref{fig:polcal_img_PicA_improved}, but for pseudo Stokes U and V only, with \textit{D}-terms partially calibrated. Comparing to Figure~\ref{fig:polcal_img_PicA_improved}, the amplitude at the position of Pictor A has decreased. Pseudo-Stokes I and Q maps are not shown, since they are qualitatively identical to the images in Figure~\ref{fig:polcal_img_PicA_improved} -- as expected for a regime in which pseudo-Stokes I leakage dominates over actual polarized power.}
+\label{fig:polcal_img_PicA_improved_dterm}
+\end{figure}
 
 
 
