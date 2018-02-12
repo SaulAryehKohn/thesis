@@ -120,7 +120,7 @@ In the \textit{2pol} scheme, there are the 8 expected redundancies as expected f
 
 \subsubsection{Expectations from simulation}  
 
-Using the formalism of \cite{Nunhokee.17} and Chapter~\ref{chapter:interferometry}, and the HFSS\footnote{\url{http://www.ansys.com/Products/Electronics/ANSYS-HFSS}} complex voltage simulations of the PAPER beam described therein, we simulated the polarized response of the instrument to an unpolarized sky. That is, we passed a Stokes I - only sky model \citep[][]{GSM.08} over a 30\,m East-West baseline -- the baseline vector of interest for the PAPER experiment \citep{Parsons.14, Jacobs.15, Ali.15, Moore.17}. This means that whatever was observed in the pseudo-Stokes Q, U and V visibilities could be interpreted as direction-dependent leakage from Stokes I (the expected regime for a single night of observations with PAPER; \citealt{Kohn.16}). The 2008 Global Sky Model used for the simulation was primarily diffuse in nature, with the `A-Team' of bright low-frequency sources (Fornax A, Pictor A, etc.) also included. The diffuse nature was appropriate for the fringe profile of a 30\,m baseline. The output of the simulation is shown in Figure~\ref{fig:simvis} with and without the inclusion of an instrumental noise model, with the system noise drawn from \cite{Moore.17}.
+Using the formalism of \cite{Nunhokee.17} and Chapter~\ref{chapter:interferometry}, and the HFSS\footnote{\url{http://www.ansys.com/Products/Electronics/ANSYS-HFSS}} complex voltage simulations of the PAPER beam described therein, we simulated the polarized response of the instrument to an unpolarized sky. That is, we passed a Stokes I - only sky model \citep[][]{GSM.08} over a 30\,m East-West baseline -- the baseline vector of interest for the PAPER experiment \citep{Parsons.14, Jacobs.15, Ali.15, Moore.17}. This meant that whatever was observed in the pseudo-Stokes Q, U and V visibilities could be interpreted as direction-dependent leakage from Stokes I (the expected regime for a single night of observations with PAPER; \citet{Kohn.16}). The 2008 Global Sky Model used for the simulation was primarily diffuse in nature, with the `A-Team' of bright low-frequency sources (Fornax A, Pictor A, etc.) also included. The diffuse nature was appropriate for the fringe profile of a 30\,m baseline. The output of the simulation is shown in Figure~\ref{fig:simvis} with and without the inclusion of an instrumental noise model, with the system noise drawn from \cite{Moore.17}.
 
 \begin{figure}
 \centering
@@ -136,7 +136,7 @@ Using the formalism of \cite{Nunhokee.17} and Chapter~\ref{chapter:interferometr
 
 We tested these different calibration schemes on one night (JD 2456680.20 -- .65; January 22nd-23rd 2014; 6pm -- 6am South African Standard Time; Local Siderial Time 2 -- 13.5 hours) of PAPER 128-element observations. The PAPER-128 signal chain and full observation season results will be discussed in forthcoming publications, but we will provide a brief overview here. 
 
-PAPER-128 consists of 128 dual-polarization dipole receivers, 112 of which are arranged in a highly-redundant configuration, and the rest placed as in- and outriggers to the array in order to improve \textit{uv} coverage; see Figure~\ref{fig:polcal_realarray}. Since all dipole arms are oriented North-South (`x') and East-West (`y'), \textit{xy} and \textit{yx} correlations have very low signal-to-noise compared to \textit{xx} and \textit{yy}.
+PAPER-128 consisted of 128 dual-polarization dipole receivers, 112 of which are arranged in a highly-redundant configuration, and the rest placed as in- and outriggers to the array in order to improve \textit{uv}-coverage; see Figure~\ref{fig:polcal_realarray}. Since all dipole arms were oriented North-South (`x') and East-West (`y'), \textit{xy} and \textit{yx} correlations have very low signal-to-noise compared to \textit{xx} and \textit{yy}.
 
 All visibilities were RFI flagged using {\sc python} scripts from the {\sc aipy}\footnote{\url{https://github.com/HERA-Team/aipy}} library. These took the derivative of the frequency axis of all baselines associated with a given antenna and flagged any frequencies with a derivative 6$\sigma$ above the mean, per integration. We took the union of all baseline flags and applied them to the data. The 5\,MHz on both band-edges were always flagged. Compression proceeded as described in Appendix A of \cite{Parsons.14}, filtering to critical Nyquist sampling rates for the longest (300\,m) baseline of 493 kHz along the frequency axis (203 channels) and 42.9\,s along the time axis. 
 
@@ -147,9 +147,9 @@ All visibilities were RFI flagged using {\sc python} scripts from the {\sc aipy}
 \label{fig:polcal_realarray}
 \end{figure}
 
-After RFI flagging and compression, \textit{xx} and \textit{yy} visibilities were checked for erroneous behavior including 2$\sigma$ deviations from the median in number of RFI flags and mean visibility amplitude. Antennae exhibiting these behavior were excluded from further analysis (and are shown with red crosses in Figure~\ref{fig:polcal_realarray}). If an antenna qualified as `bad' in one polarization, it was excluded in all of them. Also note that we can only calibrate the 112 antennae in the redundant grid using {\sc omnical}.
+After RFI flagging and compression, \textit{xx} and \textit{yy} visibilities were checked for erroneous behavior including 2$\sigma$ deviations from the median in number of RFI flags and mean visibility amplitude. Antennae exhibiting these behavior were excluded from further analysis (and are shown with red crosses in Figure~\ref{fig:polcal_realarray}). If an antenna qualified as `bad' in one polarization, it was excluded in all of them. Also note that we could only calibrate the 112 antennae in the redundant grid using {\sc omnical}.
 
-For the least-squares fit to converge at the \textit{logcal} stage of calibration, visibilities cannot exhibit phase-wraps, since the system of equations solved at this stage are insensitive to additive offsets of $2\pi$ in their imaginary parts (\textit{lincal} will be able to re-insert these as required; \citealt{Liu.10}). Therefore we must flatten the phases on all visibilities prior to any implementation of {\sc omnical}. We were able to do this redundantly without reference to the sky; taking the ratio of redundant (uncalibrated) visibilities together and averaging over time, defined as:
+For the least-squares fit to converge at the \textit{logcal} stage of calibration, visibilities cannot exhibit phase-wraps, since the system of equations solved at this stage are insensitive to additive offsets of $2\pi$ in their imaginary parts (\textit{lincal} will be able to re-insert these as required; \citealt{Liu.10}). Therefore we had to flatten the phases on all visibilities prior to any implementation of {\sc omnical}. We were able to do this redundantly without reference to the sky; taking the ratio of redundant (uncalibrated) visibilities together and averaging over time, defined as:
 
 \begin{equation}
 \mathcal{V}(\nu) = \langle V_{ij, pq}(\nu,t)V^*_{kl, pq}(\nu,t) \rangle_t .
@@ -186,11 +186,11 @@ With enough redundant baselines involving antennae $i,j,k$ \& $l$ this is a line
 \subsection{Results}
 \label{sec:polcal_results}
 
-We ran {\sc omnical} using the \textit{2pol}, \textit{4pol} and \textit{4pol+minV} schemes, which granted complex gain values for each antenna feed in the redundant grid. In this work we chose to concentrate our analysis on the 30\,m East-West spacings used for PAPER power spectrum studies.
+We ran {\sc omnical} using the \textit{2pol}, \textit{4pol} and \textit{4pol+minV} schemes, which granted complex gain values for each antenna feed in the redundant grid. In this Section we chose to concentrate our analysis on the 30\,m East-West spacings used for PAPER power spectrum studies.
 
 \subsubsection{Calibration}
 
-The complex-gains dataset alone was highly multidimensional. We chose to analyze short time- and frequency- averages for these data. For example, the $\langle | g^{\rm 2pol}_{x,a} | \rangle_{t,\nu}$ notation indicates the average of the absolute value of the gain value for antenna $a$, polarization `x' in the \textit{2pol} calibration scheme. The average is over 10 minutes (the length of a single {\sc miriad} file produced by the PAPER correlator) and a 10\,MHz band running from 145 to 155 MHz (the center of the PAPER band, generally clear of RFI and used for power spectrum analyses).
+The complex-gains dataset alone was highly multidimensional. We chose to analyze short time- and frequency- averages for these data. For example, the $\langle | g^{\rm 2pol}_{x,a} | \rangle_{t,\nu}$ notation indicates the average of the absolute value of the gain value for antenna $a$, polarization `x' in the \textit{2pol} calibration scheme. The average was over 10 minutes (the length of a single {\sc miriad} file produced by the PAPER correlator) and a 10\,MHz band running from 145 to 155 MHz (the center of the PAPER band, generally clear of RFI and used for power spectrum analyses).
 
 Figure~\ref{fig:4pol-geo-angle} shows $\langle {\rm arg}( g^{\rm 2pol}_{a} ) \rangle_{t,\nu}$, the average phase of the gain calibration for `x' and `y' polarizations. It very clearly shows the phase-slope degeneracy present for both dipole orientations, sloping in opposite directions. 
 
@@ -204,7 +204,7 @@ Figure~\ref{fig:4pol-geo-angle} shows $\langle {\rm arg}( g^{\rm 2pol}_{a} ) \ra
 Figure~\ref{fig:diff-gains} shows the differences in `x' gain solutions between calibration schemes. 
 The difference between \textit{4pol} and \textit{4pol+minV} was consistently smaller than the difference of either of these with the \textit{2pol} scheme. 
 
-As noted in Section~\ref{subsubsec:degen}, {\sc omnical} tries to fix the average gain amplitude over the array to unity to avoid drifts in the amplitude degeneracy from sample to sample, so we can compare amplitude calibrations in terms of percentage deviation. The average difference in gain amplitude per antenna between \textit{2pol} and \textit{4pol} was 3.5\%, between \textit{2pol} and \textit{4pol+minV} was 2.9\%, and was 0.7\% between \textit{4pol} and \textit{4pol+minV}. The $\sim$30 degree spread in the differenced phases between the \textit{2pol} scheme and the other two is likely due to different realizations of phase degeneracies between these calibration schemes.
+As noted in Section~\ref{subsubsec:degen}, {\sc omnical} tried to fix the average gain amplitude over the array to unity to avoid drifts in the amplitude degeneracy from sample to sample, so we were able compare amplitude calibrations in terms of percentage deviation. The average difference in gain amplitude per antenna between \textit{2pol} and \textit{4pol} was 3.5\%, between \textit{2pol} and \textit{4pol+minV} was 2.9\%, and was 0.7\% between \textit{4pol} and \textit{4pol+minV}. The $\sim$30 degree spread in the differenced phases between the \textit{2pol} scheme and the other two was likely due to different realizations of phase degeneracies between these calibration schemes.
 
 \begin{figure}
 \centering
@@ -217,7 +217,7 @@ The difference between \textit{4pol} and \textit{4pol+minV} is consistently smal
 \end{figure}
 
 
-Figure~\ref{fig:polcal_chisq} shows the sum of $w^2$ values (see Equation~\ref{eq:polcal_w2}) over all antennas in the array for each feed polarization in each of the three calibration schemes. The color scale is logarithmic. Clearly, the \textit{2pol} scheme achieves a much greater level of redundancy in each feed polarization throughout the band. Towards the end of the night, the Galaxy is in the far side-lobes of the PAPER beam and introduces higher sky temperatures, which accounts for the trend in all calibration schemes performing worse towards the end of the night. However, the reason for rapid transitions in $w^2$ at Local Sidereal Time $\sim 10.5$ in the \textit{4pol} and \textit{4pol+minV} schemes is not well understood. In general, $w^2$ is an order of magnitude higher for the \textit{4pol} and \textit{4pol+minV} schemes.
+Figure~\ref{fig:polcal_chisq} shows the sum of $w^2$ values (see Equation~\ref{eq:polcal_w2}) over all antennas in the array for each feed polarization in each of the three calibration schemes. The color scale is logarithmic. Clearly, the \textit{2pol} scheme achieves a much greater level of redundancy in each feed polarization throughout the band. Towards the end of the night, the Galaxy was in the far side-lobes of the PAPER beam and introduces higher sky temperatures, which accounted for the trend in all calibration schemes performing worse towards the end of the night. However, the reason for rapid transitions in $w^2$ at Local Sidereal Time $\sim 10.5$ in the \textit{4pol} and \textit{4pol+minV} schemes is not well understood. In general, $w^2$ was an order of magnitude higher for the \textit{4pol} and \textit{4pol+minV} schemes.
 
 \begin{figure}
 \centering
@@ -228,19 +228,96 @@ Figure~\ref{fig:polcal_chisq} shows the sum of $w^2$ values (see Equation~\ref{e
 
 \subsubsection{Pseudo-Stokes Visibilities}
 
-\subsubsection{Approximate power spectra}
+Applying the complex gains to the visibilities, we constructed pseudo-Stokes visibilities. These data are shown in Figure~\ref{fig:pseudo-stokes-grid}. Figure~\ref{fig:delay-stokes-grid} shows the delay-transformed pseudo-Stokes visibilities. The ``stripe" of power across the frequency axis within the first 100 integrations was a thermal effect due to the sun not yet being fully below the horizon.
 
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{chapters/polcal/figures/vis.png}
+\includegraphics[scale=0.5]{chapters/polcal/figures/phase.png}
+\caption[Pseudo-Stokes visibility amplitudes and phases.]{Pseudo-Stokes visibility amplitudes (\textit{top}) and phases (\textit{bottom}). Amplitudes are plotted on a logarithmic color scale that spans 3 orders of magnitude (without absolute calibration, this scale is in arbitrary units). Phases are on a linear scale of $-\pi$ to $\pi$. The three columns correspond to the three different calibration schemes. Rows are from top to bottom: $V_I$, $V_Q$, $V_U$, and $V_V$.}
+\label{fig:pseudo-stokes-grid}
+\end{figure}
 
+The upper panels in Figure~\ref{fig:pseudo-stokes-grid} -- the absolute-valued visibilities -- show that Stokes I power was dominant given any calibration scheme used. This was expected, since the linear polarizations had much higher signal-to-noise than the cross polarizations that form $V_U$ and $V_V$. We saw that the amplitude of pseudo-Stokes Q was reduced across the band in the \textit{4pol} and \textit{4pol+minV} schemes. This was  also expected, given that these calibration schemes allowed information in $xx$-polarized visibilities to influence the calibration of $yy$-polarized ones, and vice-versa. In the regime of a single night's observation, we did not expect to observe substantial power from the Stokes Q sky \citep{Kohn.16, Lenc.16, Moore.17}. Although we set no specification on the Stokes Q sky during calibration, we observe our gain solutions tending towards lower Stokes Q power during polarized redundant calibration. 
+
+A similar but less-substantial difference was seen in the pseudo-Stokes U visibility amplitudes, but an interesting interplay between pseudo-Stokes U and V was more clearly seen in the delay-transformed visibilities in Figure~\ref{fig:delay-stokes-grid}. First, we must observe that the \textit{4pol+minV} calibration scheme worked as expected, reducing the amplitude of pseudo-Stokes V across most of the band. In Figure~\ref{fig:delay-stokes-grid}, we show that the difference between the foreground signal for pseudo-Stokes U and V in the \textit{4pol} case, compared to the \textit{4pol+minV} case, was the increase in U signal and the decrease of V. This effect was observed in \cite{Kohn.16} when minimizing pseudo-Stokes V using an array-wide constant, as opposed to the per-sample basis implemented in this work. It is mathematically consistent with partially accounting for uncalibrated \textit{D}-terms on each feed.
+
+We also note that the lowest frequencies in the band (below channel 70) are consistently poorly behaved. This is a property seen in many PAPER measurements \citep[e.g.][]{Jacobs.15, Moore.17} and is due to brighter foregrounds at low-frequencies, a larger solid angle of the beam, and higher receiver temperatures at lower frequencies.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{chapters/polcal/figures/dly.png}
+\caption[Delay-transformed pseudo-Stokes visibilities.]{Delay-transformed pseudo-Stokes visibilities. Plotted on a logarithmic color scale that spans 4 orders of magnitude (without absolute calibration, this scale is in arbitrary units). The three columns correspond to the three different calibration schemes. Rows are from top to bottom: $V_I$, $V_Q$, $V_U$, and $V_V$.}
+\label{fig:delay-stokes-grid}
+\end{figure}
+
+A comparison of the simulations presented in Figure~\ref{fig:simvis} is best made using the phase panels of Figure~\ref{fig:pseudo-stokes-grid}. Comparison of phase structure in frequency and time showed that the \textit{4pol+minV} scheme gave the best match with simulation. The \textit{2pol} scheme did not allow pseudo-Stokes Q visibilities to be constructed in a way that replicates the constant-in-time striping seen in the simulations. Instead, we see an imprint of the fringing as seen in pseudo-Stokes I. This was most likely direction-independent leakage from this parameter. The \textit{4pol} and \textit{4pol+minV} schemes contained most of this fringing to the pseudo-Stokes I visibilities. The \textit{4pol+minV} scheme achieves a noise-like pseudo-Stokes V, whereas the \textit{4pol} scheme shows V at a higher signal-to-noise than expected from PAPER system temperature measurements.
 
 \subsection{Discussion \& Conclusions}
 \label{sec:polcal_disc}
 
+The {\sc omnical} software package was optimized to calculate diagonal gains as efficiently as possible \citep{Zheng.14}. Of course, this meant that it is impossible to fully address the \textit{D}-terms in the instrumental Jones matrix \citep[e.g.][]{TMS} within the {\sc omnical} framework. This incomplete modelling of the instrument will result in biased gain solutions \citep[e.g.][]{Barry.16, Dillon.17}. 
+%Instruments capable of imaging polarized point sources are able to calibrate their average \textit{D}-term values, but PAPER's redundant grid configuration provides very poor signal-to-noise in image space, insufficient to resolve and calibrate on polarized point sources. 
+
+\cite{Dillon.17} showed that the relative gain error incurred through redundantly calibrating in the presence of 1\% \textit{D}-terms was $\sim$0.3\% in the \textit{2pol} scheme, and systematically higher in the \textit{4pol} scheme by an additional $\sim$0.2\%. Additional work is required to understand how the \textit{4pol+minV} calibration scheme interacts with \textit{D}-terms.
+
+In this Section we have demonstrated the capacity for polarized redundant calibration of radio interferometric data from the PAPER-128 array. The three redundant calibration schemes we investigate have different strengths. Neglecting the polarized component of the measurements in the \textit{2pol} scheme grants lower values of $w^2$ than the other schemes. 
+%Including polarization information in the calibration gives more consistent noise profiles in power spectra.
+Imposing that the Stokes V sky be empty in the \textit{4pol+minV} gives the best agreement with simulation. Conservatively, this points to using the \textit{2pol} scheme to give the most precise gain calibrations. However, given that \textit{2pol} matches full-polarization simulations the least well, the calibrations it produces may be inaccurate, even if they are precise. 
+
+Unlike PAPER, HERA is designed to be both highly-redundant and a capable imaging array, since outrigger antennae, although physically separated from the redundant core, are arranged on their own redundant sub-grid, and the redundant core itself is fragmented into three redundantly-calibrate-able sub-grids (see \citealt{Dillon.16} for full details). The utility of redundant and imaging calibration routines will allow for more thorough tests of the nature of the polarized sky at low frequencies.
 
 \section{Imaging Calibration}
 \label{sec:polcal_imagecal}
 
+The PAPER-32 imaging array sampled a large region of the \textit{uv}-plane at relatively low signal-to-noise (see Chapters~\ref{chapter:instruments}, \ref{chapter:eor_window_paper32img} and \citet{Kohn.16}). The extreme wide field of view of the PAPER feeds provided an interesting opportunity to test polarized imaging calibration. In this Section we provide an initial exploration of PAPER-32 data using the {\tt CASA} software package \citep{casa}.
+
+\subsection{Converting historical PAPER data into Measurement Sets}
+
+As described in Chapter~\ref{chapter:instruments}, PAPER-32 was arranged in an imaging configuration for three nights in September 2011. In order to interact with these data using modern software packages, including the conversion into ``Measurement Set" format used by {\tt CASA}, several changes to the {\sc miriad} files had to be implemented.
+
+\begin{enumerate}
+\item After the first night of integration, it was discovered that antenna number 24 was malfunctioning, and it was replaced with antenna number 63. This presents complications for conversion into Measurement Sets, since this format requires a constantly-incremented antenna axis -- no numbers may be ``skipped". A simple work-around is to relabel the data from antenna 63 to that of antenna 24.
+\item The PAPER-32 imaging configuration was really a subset of the PAPER-64 imaging configuration. The existing correlator had only 64 inputs, so the 64-element imaging configuration could be run in single-polarization mode, or half of it could be used in full-polarization mode. However, within the {\sc miriad} files, 64 antennas are listed, with only half of them containing data. These must be specifically down-selected upon.
+\item PAPER correlators incorrectly labelled the \textit{uv} coordinates of all baselines. This was by design, since PAPER build outs were purposefully reconfigurable and therefore the antenna positions were not built-in to hardware. However, correct \textit{uv} information is essential for imaging algorithms. These coordinates must be placed inside the {\sc miriad} file, instead of supplied externally.
+\item {\tt CASA} cannot convert {\sc miriad} files to Measurement Sets on its own, but it can do so for {\sc uvfits} files. Seamless {\sc miriad} to {\sc uvfits} conversions are implemented by the {\tt pyuvdata} Python package \citep{pyuvdata}. During conversion, antenna diameters and physical antenna positions must be supplied as metadata.
+\item {\tt CASA}'s {\tt importfits} function can then be used for the {\sc uvfits} to Measurement Set conversion.
+\end{enumerate}
+
+After a successful conversion, an additional step needs to take place within the {\tt CASA} Measurement Set. The {\sc miriad} files could have their antenna indices out of order, such that a baseline could be referenced as $i,j$ where $i>j$. This can be easily corrected within the {\tt CASA} console.
+
+\subsection{Imaging PAPER-32 data with {\tt CASA}}
+
+To calibrate the complex gains, we had to provide {\tt CASA} with a \textit{model image}, from which it will create model visibilities by convolving with a model beam (assumed to be Gaussian, with Full-Width Half Max based on the antenna diameter) and sampling the \textit{uv}-plane according to the antenna positions provided. Images of the primary beam model and point spread function of the PAPER-32 array are shown in Figure~\ref{figure:polcal_beam_and_psf}. The model visibilities were compared to the observed ones, and {\tt CASA}'s internal fitting algorithms determined complex gains to bring the ratio close to unity. 
+
+\begin{figure}
+\includegraphics[width=0.8\textwidth]{chapters/polcal/figures/pb_and_psf.pdf}
+\caption[The beam model (\textit{left}) and point spread function (\textit{right}) of the PAPER-32 array, calculated by {\tt CASA}.]{The beam model and point spread function of the PAPER-32 array, calculated by {\tt CASA}. In reality, the beam is far less symmetric. The PSF is likely more accurate. Note the difference in axis scales between the two panels.}
+\label{figure:polcal_beam_and_psf}
+\end{figure}
+
+The times observed by the PAPER-32 imaging array contained the transits of Pictor A and Fornax A. Pictor A is one of the brightest sources in the low frequency sky, is an unresolved point source, and has a simple spectrum \citep{Jacobs.13}:
+
+\begin{equation}
+S_{\rm Pic A}(\nu) = 382 \pm 5.4\,{\rm Jy}\,\times\,(\nu/150{\rm MHz})^{−0.76 \pm 0.01},
+\end{equation}
+making it an ideal flux-calibrator. While it is highly polarized at optical wavelengths \citep[$\sim 50$\%][]{Thomson.95}, it has a low polarization fraction at radio frequencies ($<$5\%; \citet{Perley.97, Huffenberger.15}). Little-to-no expected polarization is useful for obtaining diagonal gains, but a polarized point source is more useful for precisely calculating the off-diagonal \textit{D}-terms (see, for example, Chapter~\ref{chapter:interferometry} or \citet{TMS}). There is a dearth of low-frequency polarized point sources in the low frequency sky \citep{Bernardi.13, Asad.16, Lenc.16}, and only one that is bright enough to be detected by PAPER-32 -- PMN J0351-2744 -- and this we were not able to detect.
+
+To increase the precision of our calibration model, we included a model of Fornax A as well as Pictor A. Fornax A is a bright, resolved radio galaxy which we modelled using three spherical components for its East lobe, West lobe and central core according to MWA observations \citep{McKinley.15}:
+
+\begin{eqnarray}
+F_{\rm East}= 260\,{\rm Jy}\,\times\,(\nu/154{\rm MHz})^{−0.77},\\
+F_{\rm West}= 480\,{\rm Jy}\,\times\,(\nu/154{\rm MHz})^{−0.77},\\
+F_{\rm Core}= 12\,{\rm Jy}\,\times\,(\nu/154{\rm MHz})^{−1.00}.\\
+\end{eqnarray}
+
+Fornax A has been found to have a low polarized fraction at higher frequencies \citep[20 GHz][]{Lopez-Caniego.09}, but surprisingly few polarization results have been reported....
+
 % calibrate on one field, apply to same field -- I, Q, U, V
 % apply field 1 calibration to field 2 -- QUV remain noise-like
+
+\subsection{D-term calibration}
+
 % basic-basic D-term stuff following CASA recipe
 
 
