@@ -300,7 +300,7 @@ To calibrate the complex gains, we had to provide {\tt CASA} with a \textit{mode
 The times observed by the PAPER-32 imaging array contained the transits of Pictor A and Fornax A. Pictor A is one of the brightest sources in the low frequency sky, is an unresolved point source, and has a simple spectrum \citep{Jacobs.13}:
 
 \begin{equation}
-S_{\rm Pic A}(\nu) = 382 \pm 5.4\,{\rm Jy}\,\times\,(\nu/150{\rm MHz})^{−0.76 \pm 0.01},
+S_{\rm Pic A}(\nu) = 382 \pm 5.4\,{\rm Jy}\,\times\,(\nu/150{\rm MHz})^{-0.76 \pm 0.01},
 \end{equation}
 making it an ideal flux-calibrator. While it is highly polarized at optical wavelengths \citep[$\sim 50$\%][]{Thomson.95}, it has a low polarization fraction at radio frequencies ($<$5\%; \citet{Perley.97, Huffenberger.15}). Little-to-no expected polarization is useful for obtaining diagonal gains, but a polarized point source is more useful for precisely calculating the off-diagonal \textit{D}-terms (see, for example, Chapter~\ref{chapter:interferometry} or \citet{TMS}). There is a dearth of low-frequency polarized point sources in the low frequency sky \citep{Bernardi.13, Asad.16, Lenc.16}, and only one that is bright enough to be detected by PAPER-32 -- PMN J0351-2744 -- and this we were not able to detect.
 
@@ -330,10 +330,10 @@ The morphology of point sources in pseudo-Stokes I matched the PSF shown in Figu
 
 \begin{figure}
 \hspace{-2cm}\begin{tabular}{ll}
-\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-I-improved.pdf} &
-\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-Q-improved.pdf} \\
-\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-U-improved.pdf} &
-\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-V-improved.pdf} \\
+\includegraphics[clip, trim=0.5cm 11cm 4cm 5cm, width=0.6\textwidth]{chapters/polcal/figures/68380-I-better.pdf} &
+\includegraphics[clip, trim=0.5cm 11cm 4cm 5cm, width=0.6\textwidth]{chapters/polcal/figures/68380-Q-better.pdf} \\
+\includegraphics[clip, trim=0.5cm 11cm 4cm 5cm, width=0.6\textwidth]{chapters/polcal/figures/68380-U-better.pdf} &
+\includegraphics[clip, trim=0.5cm 11cm 4cm 5cm, width=0.6\textwidth]{chapters/polcal/figures/68380-V-better.pdf} \\
 \end{tabular}
 \caption[The same field as shown in Figure~\ref{fig:polcal_img_PicA}, but with the removal of malfunctioning antennas identified by \cite{Kohn.16}.]{The same field as shown in Figure~\ref{fig:polcal_img_PicA}, but with the removal of malfunctioning antennas identified by \cite{Kohn.16}. The noise level drops and much of the fringing in pseudo-Stokes Q, U and V disappears (note the change in color scales and zoom level).}
 \label{fig:polcal_img_PicA_improved}
@@ -343,10 +343,10 @@ We were able to test the stability of the instrument by applying the calibration
 
 \begin{figure}
 \hspace{-2cm}\begin{tabular}{ll}
-\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/47501-I-improved.pdf} &
-\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/47501-Q-improved.pdf} \\
-\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/47501-U-improved.pdf} &
-\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/47501-V-improved.pdf} \\
+\includegraphics[clip, trim=0.5cm 11cm 3cm 5cm, width=0.6\textwidth]{chapters/polcal/figures/47501-I-better.pdf} &
+\includegraphics[clip, trim=0.5cm 11cm 3cm 5cm, width=0.6\textwidth]{chapters/polcal/figures/47501-Q-better.pdf} \\
+\includegraphics[clip, trim=0.5cm 11cm 3cm 5cm, width=0.6\textwidth]{chapters/polcal/figures/47501-U-better.pdf} &
+\includegraphics[clip, trim=0.5cm 11cm 3cm 5cm, width=0.6\textwidth]{chapters/polcal/figures/47501-V-better.pdf} \\
 \end{tabular}
 \caption[Imaging results from a file calibrated with gain values derived from the Pictor A transit, which occurred $\sim$6 hours after these data were acquired.]{Imaging results from a file calibrated with gain values derived from the Pictor A transit, which occurred $\sim$6 hours after these data were acquired. The realistic images suggest that the instrument is stable on such time scales.}
 \label{fig:polcal_img_LST05}
@@ -363,10 +363,8 @@ Calibration of the off-diagonal terms of the instrumental Jones matrix can be pa
 Using {\tt polcal} on the Pictor A field described in the previous section granted \textit{D}-term estimates of $\sim5\%$; comparable to other low-frequency instruments (MWA-32 was found to have $\sim2$\% \textit{D}-terms [G. Bernardi, private communication]). Correcting for these granted identical pseudo-Stokes I and Q images and lower-amplitude pseudo-Stokes U and V -- as expected for a regime where pseudo-Stokes I leakage dominates over actual polarized power. The improved U and V maps are shown in Figure~\ref{fig:polcal_img_PicA_improved_dterm}.
 
 \begin{figure}
-\hspace{-2cm}\begin{tabular}{ll}
-\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-U-improved-xdel.pdf} &
-\includegraphics[clip, trim=0.1cm 11cm 6cm 6cm, width=0.6\textwidth]{chapters/polcal/figures/68380-V-improved-xdel.pdf} \\
-\end{tabular}
+\includegraphics[clip, trim=0.5cm 11cm 4cm 5cm, width=0.8\textwidth]{chapters/polcal/figures/6830-U-better-dcal.pdf}
+\includegraphics[clip, trim=0.5cm 11cm 4cm 5cm, width=0.8\textwidth]{chapters/polcal/figures/6830-V-better-dcal.pdf}
 \caption[The same field as shown in Figure~\ref{fig:polcal_img_PicA_improved}, but for pseudo Stokes U and V only, with \textit{D}-terms partially calibrated.]{The same field as shown in Figure~\ref{fig:polcal_img_PicA_improved}, but for pseudo Stokes U and V only, with \textit{D}-terms partially calibrated. Comparing to Figure~\ref{fig:polcal_img_PicA_improved}, the amplitude at the position of Pictor A has decreased. Pseudo-Stokes I and Q maps are not shown, since they are qualitatively identical to the images in Figure~\ref{fig:polcal_img_PicA_improved} -- as expected for a regime in which pseudo-Stokes I leakage dominates over actual polarized power.}
 \label{fig:polcal_img_PicA_improved_dterm}
 \end{figure}
