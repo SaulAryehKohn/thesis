@@ -3,7 +3,7 @@
 
 In this Chapter I wished to build a formalism around wide-field, polarized interferometric measurements that could be used throughout this work. Many traditional assumptions used in radio interferometry are broken in the case of the wide-field, fully-polarized, drift-scanning measurements native to interferometric EoR observations. In Section~\ref{sec:interferometry_vis}, I derive the equation describing the fundamental observable for an interferometer, called a ``visibility". Section~\ref{sec:interferometry_cal}, I describe calibration techniques relevant to this work and in Section~\ref{sec:interferometry_pol} I review some of the implications of the previous two sections for polarized measurements.
 
-For a comprehensive review of interferometry from a more traditional perspective, see \cite{TMS}.
+For a comprehensive review of interferometry from a traditional perspective, see \cite{TMS}.
 
 \section{The Visibility Equation}
 \label{sec:interferometry_vis}
@@ -273,17 +273,39 @@ Due to the turbulent nature of the ionosphere, both of these terms are extremely
 
 Traditionally, the approach taken for estimating the components of all of the above was to observe a calibration source. A calibrator source would be unresolved, such that its position and phase is a direct measure of ionospheric diffraction and instrumental phase. Deviation from its catalogued position can be subtracted off, calibrating the phase (the argument of the components of $\textbf{J}_i^{\rm G}$; Equation~\ref{eq:jones-gains}). For an interferometer that cannot point in a given direction, but instead ``drift-scans", observing the sky as the Earth rotates, calibration takes place when the calibrator source is at zenith (for a telescope that can point, the calibrator source would be observed in the center of the field-of-view). With a well-catalogued flux density and minimal beam attenuation, the amplitude of the visibility can be scaled appropriately to estimate the moduli of instrumental gains.
 
-If the polarization state of the calibration source was known (and non-zero), forming Stokes parameters in the image plane can provide a measure of instrumental polarization, as gain errors and $D$-terms move power between the Stokes parameters (see Section~\ref{sec:interferometry_pol}).
+If the polarization state of the calibration source was known (and non-zero), forming Stokes parameters in the image plane can provide a measure of instrumental polarization, as gain errors and $D$-terms move power between the Stokes parameters (see Section~\ref{sec:interferometry_pol} and Chapter~\ref{chapter:polcal}). If the calibration source is known to be unpolarized, then the same method can be used to place a limit on the $D$-term magnitudes by maximizing Stokes I while minimizing Stokes Q, U and V.
 
 The approach described above is only as good as the sky and instrument models used, as one must ``simulate" a the expected visibilities for a given sky model passing over a simulated instrument. For the wide field-of-view observations that are native to low-frequency instruments, obtaining a sky model that accurately describes the point sources and diffuse structure on the sky is a daunting task. \cite{Barry.16} included the 4,000 brightest catalog sources in their sky (unpolarized) model of the one of the Murchinson Widefield Array's (see Chapter~\ref{chapter:instruments}) EoR observation fields, but this granted insufficient dynamic range to allow for an EoR measurement. They found too much contamination from a large population of faint, unmodelled point sources.
 
-% D-term estimation? Throw to polcal chapter
-
 \subsection{CLEAN}
 
-\subsubsection{H{\"o}gbom algorithm}
+An uncalibrated array is one where the power in the $uv$-plane is incorrectly distributed. Transforming an uncalibrated $uv$ distribution to the image plane will result in power scattered throughout the image plane; this is referred to as a ``dirty image". By precisely calibrating visibility complex gains (etc.), one is in effect rearranging the power distribution on the sky into the distribution astrophysical sources. An accurate calibration is one that does so and reproduces the flux density measured by other studies.
+
+To perform an image-based calibration, one must be able to move easily between the $uv$ and image planes. There are two major challenges in doing so: the limited distribution of spatial scales probed by an interferometer, as encapsulated by the $\Xi(u,v)$ sampling function, and errors in instrumental calibration. The former challenge can be faced by using deconvolution techniques that estimate the missing information, known under the umbrella term of ``CLEANing algorithms". The latter can be faced by precise calibration -- in which an image can be of great utility to iterate upon. 
+
+\subsubsection{H{\"o}gbom's algorithm}
+
+\cite{Hogbom.74} devised the first deconvolution algorithms to become widely used by the radio astronomy community, known as CLEAN. It is an iterative numerical deconvolution process applied in the image plane, based on the assumption that the sky is composed of a distribution of point sources
+\footnote{In the era of wide field-of-view instruments, many more accurate and precise deconvolution algorithms have been developed that are able to calibrate images of diffuse structures, rather than point sources. There are also many other algorithms besides H{\"o}gbom's that focus on point sources, such as Clark or Cotton-Schwab. However, for the purposes of this descriptive chapter, we focus on the H{\"o}gbom CLEAN.}.
+
+The H{\"o}gbom algorithm proceeds as follows:
+\begin{itemize}
+\item Compute the amplitude and position of the point of greatest intensity (the `peak') in the dirty image.
+\item Subtract from the dirty image, at the position of the peak, the peak strength multiplied by the dirty beam pattern (recall that the dirty beam is the Fourier transform of $\Xi(u,v)$) and a factor $\gamma \leqslant 1$ (the `loop gain'). Record the position and amplitude of the subtracted component, as this will form the model that will become the CLEANed image.
+\item Repeat Steps 1 \& 2 iteratively until all significant structure has been removed from the image (where the value of `significance' is set by the astronomer). This may be constrained to `CLEAN-windows' within a larger image.
+\item Convolve the accumulated point model with a `CLEAN beam', usually a Gaussian with Full-Width Half-Max equal to the central lobe of the dirty beam. This is the `CLEAN image'
+\item Add the residuals of the dirty image to the CLEAN image.
+\end{itemize}
+
+A major shortcoming of the H{\"o}gbom algorithm is its proliferation of small-scale structures around the locations of point sources. This is because the subtraction in Step 2, above, leaves new, local maxima around the perimeter of subtracted region. Later deconvolution algorithms, such as the one devised by \cite{Cornwell.83}, avoid this by padding the surrounding region according to an additional smoothness parameter. 
+
+Imaging with extremely wide field-of-view instruments is explored in Chapter~\ref{chapter:polcal}.
 
 \subsubsection{1D-CLEAN}
+
+There are a variety of CLEANing techniques that are central to this thesis, but do not operate on images at all.
+\cite{ParsonsBacker.09} and \cite{Parsons.12b} introduced ...
+
 % throw to linCLEAN in psa128 chapter
 
 % basics of calibration for drift-scanning interferometers
