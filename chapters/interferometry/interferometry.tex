@@ -229,6 +229,7 @@ D_i^q & 1\\
 \textit{D}-terms are often left un-calibrated, as they are generally a few percent of the gain term for a given feed. However, a $\sim$5\% error in calibration could represent an error large enough to inhibit an EoR detection. Unless an EoR instrument is shown to have very low D-terms, they must be taken in to account.
 
 \subsubsection{Ionospheric effects}
+\label{subsubsec:jones-ionosphere}
 
 Chapter~\ref{chapter:ionosphere} details the importance of the ionosphere for EoR measurements. Briefly put, the ionosphere is an upper layer of the Earth's atmosphere; an ionized plasma formed from solar radiation. Coupled with the Earth's magnetic field, it becomes a time- and position-variable Faraday screen (see Chapter~\ref{chapter:astro_rad}) capable of rotating the polarization axis of an incident electromagnetic wave. This adds an additional term to the Jones chain in Equation~\ref{eq:RIME}. Representing the ionospheric Faraday screen as $\Phi (\hat{s},t)$, this term is
 
@@ -289,40 +290,138 @@ To perform an image-based calibration, one must be able to move easily between t
 \footnote{In the era of wide field-of-view instruments, many more accurate and precise deconvolution algorithms have been developed that are able to calibrate images of diffuse structures, rather than point sources. There are also many other algorithms besides H{\"o}gbom's that focus on point sources, such as Clark or Cotton-Schwab. However, for the purposes of this descriptive chapter, we focus on the H{\"o}gbom CLEAN.}.
 
 The H{\"o}gbom algorithm proceeds as follows:
-\begin{itemize}
+\begin{enumerate}
 \item Compute the amplitude and position of the point of greatest intensity (the `peak') in the dirty image.
 \item Subtract from the dirty image, at the position of the peak, the peak strength multiplied by the dirty beam pattern (recall that the dirty beam is the Fourier transform of $\Xi(u,v)$) and a factor $\gamma \leqslant 1$ (the `loop gain'). Record the position and amplitude of the subtracted component, as this will form the model that will become the CLEANed image.
 \item Repeat Steps 1 \& 2 iteratively until all significant structure has been removed from the image (where the value of `significance' is set by the astronomer). This may be constrained to `CLEAN-windows' within a larger image.
 \item Convolve the accumulated point model with a `CLEAN beam', usually a Gaussian with Full-Width Half-Max equal to the central lobe of the dirty beam. This is the `CLEAN image'
 \item Add the residuals of the dirty image to the CLEAN image.
-\end{itemize}
+\end{enumerate}
+
+An example of different CLEANing stages is shown in Figure~\ref{fig:gbt_clean_example}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.85\textwidth]{chapters/interferometry/figures/gbt_clean.pdf}
+\caption[Four stages of the H{\"o}gbom CLEAN.]{Four stages of the H{\"o}gbom CLEAN, as implemented on data from the Green Bank Interferometer. The top left panel shows the dirty image, with power scattered throughout the image plane. The top right panel shows the image after a single iteration with $\gamma=1$. The bottom left and bottom right panels show the image after two and six iterations, respectively. Contours are steps of 5\% from the maximum in each image. Figure taken from \cite{Hogbom.74, TMS}.}
+\label{fig:gbt_clean_example}
+\end{figure}
 
 A major shortcoming of the H{\"o}gbom algorithm is its proliferation of small-scale structures around the locations of point sources. This is because the subtraction in Step 2, above, leaves new, local maxima around the perimeter of subtracted region. Later deconvolution algorithms, such as the one devised by \cite{Cornwell.83}, avoid this by padding the surrounding region according to an additional smoothness parameter. 
 
 Imaging with extremely wide field-of-view instruments is explored in Chapter~\ref{chapter:polcal}.
 
-\subsubsection{1D-CLEAN}
+\subsubsection{Delay Transforms and the 1D-CLEAN}
 
 There are a variety of CLEANing techniques that are central to this thesis, but do not operate on images at all.
-\cite{ParsonsBacker.09} and \cite{Parsons.12b} introduced ...
+\cite{ParsonsBacker.09} and \cite{Parsons.12a} introduced the 1D-CLEAN, a deconvolution algorithm that operates on visibilities Fourier-transformed along the frequency axis, never gridding them on the $uv$-plane. Much more about Fourier-transformed visibilities will be spoken of throughout this work, and we discuss the basic points here.
 
-% throw to linCLEAN in psa128 chapter
+A Fourier transform along the frequency axis of a visibility is called a `delay transform'. This nomenclature comes from the fact that Fourier conjugate of frequency is a quantity in units of time -- and the correct interpretation of this value is the time delay between a wavefront incident upon antenna $i$ and $j$. The delay $\tau_g$ of a source at (R.A.,Dec.)=($\alpha,\delta$) is
 
-% basics of calibration for drift-scanning interferometers
-% redundant calibration theory (more in polcal chapter)
-% redundant vs imaging configurations
-% CLEAN: Hogbom, 1D-CLEAN [NEEDS DELAY] (Parsons & Backer), linCLEAN(??)
+\begin{equation}
+\tau_g = \frac{\vec{b}}{c}\cdot
+\begin{pmatrix}
+\cos\delta\cos({\rm h}-\alpha) \\
+-\cos\delta\sin({\rm h}-\alpha) \\
+\sin\delta \\
+\end{pmatrix},
+\end{equation}
+for local sidereal time h. This value can be isolated in ``delay space" via a delay transform (where it is convenient to use the classical visibility equation for clarity, but all steps can be folded into the Jones formalism),
+
+\begin{equation}
+\begin{split}
+\tilde{V}_{ij}(\tau, t) &= \int {\rm d}\nu g_i^*(\nu, t)g_j(\nu, t) V_{ij}(\nu,t)e^{2\pi i \nu \tau} \\
+								   &= \int \tilde{g}_i(\tau, t)^*\tilde{g}_j(\tau, t) *
+								   \sum_n^N \left[ \tilde{A}(\tau,\hat{s}_n(t)) * \tilde{S}_n(\tau) * \delta_D(\tau_g + \tau_{e,i,j} - \tau)\right]
+\end{split}		   
+\end{equation}
+which is true for any polarization, so we have dropped our polarization indexing. Like the H{\"o}gbom algorithm, this explicitly assumes the sky can be expressed by $N$ point sources at positions $\hat{s}_n$. Instrumental absolute gains and phases are expressed as $g_i$, $g_j$ and $\tau_{e,i,j}= \tau_j - \tau_i$. Clearly, this procedure isolates a source $n$ as a delta function with amplitude $\tilde{S}_n$ at a given delay (assuming a smooth spectrum; see below), convolved by a kernel that describes the chromaticity of the instrument. If the instrument is designed to have a smooth frequency response, the $\tilde{g}_{i,j}(\tau)$ and $\tilde{A}(\tau)$ terms will be narrow functions in delay space and the value of $\tau_g + \tau_{e,i,j}$ will be well-constrained. If the instrument has an un-smooth spectral response, many more $\tau$-modes will be required to describe it, resulting in a spread of power in delay space. 
+
+Figure~\ref{fig:delay_space_parsons12b} shows a graphical representation of a two-source sky model mapping from celestial coordinates to delay space. Note that the delay transform is not a one-to-one mapping -- sources in a plane perpendicular to the baseline vector share the same $\tau_g$. Dotted lines in the delay-space plot demarcate an extremely important value of $\tau$. A given baseline will have a \textit{maximum delay value}, $\tau_{\rm max} = |b|/c$, the light travel time between the antennas. With sufficient bandwidth and frequency resolution, this boundary can be clearly resolved, and all sources with smooth spectra (as is the case for unpolarized synchrotron radiation, but not for Faraday rotated polarized radiation or {\sc hi}; see Chapter~\ref{chapter:astro_rad} and almost all of Part II) will have their maximum power values within the $-\tau_{\rm max} \leqslant \tau \leqslant \tau_{\rm max}$ region.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{chapters/interferometry/figures/delay_space_Parsons12b.png}
+\caption[A graphical representation of the delay transform.]{A graphical representation of the delay transform. The left panel shows the relationship between celestial position and geometrical delay relative to a 60\,m baseline (which has a $\sim$20\,ns light-travel-time between antennas). The right panel shows an example delay transform of the visibilities recorded by this model interferometer. With perfect phase calibration, power from the sources is isolated to their geometrical delay, with some spread in delay space due to the chromaticity of the instrument. Figure taken from \cite{Parsons.12a}.} 
+\label{fig:delay_space_parsons12b}
+\end{figure}
+
+By delay-transforming simulated visibilities with a simple sky model of the brightest sources and comparing to an observed sky with those sources close to zenith, one can estimate the instrumental delays and gains and obtain a delay-based calibration for $\textbf{J}_i^{\rm G}$. However, Fourier-transforming along an axis with discontinuities -- such as spikes or divets caused by Radio Frequency Interference (RFI) and its subsequenct flagging -- will result in sinc-like side lobes throughout delay space. Some interpolation is required to bridge these gaps, presented in \cite{ParsonsBacker.09} as the complex 1D-CLEAN. The algorithm proceeds as follows:
+
+\begin{enumerate}
+\item Delay-transform the visibility containing nulled frequency channels -- this is the ``dirty image".
+\item As in the H{\"o}gbom algorithm, iteratively propagate the largest magnitude feature, by $\tau$ bin, to a model after convolving it with the Fourier transform of the flags themselves -- this is the ``dirty beam".
+\item Stop when the residual power in delay space is beneath some defined threshold. Add this residual power to the model.
+\end{enumerate}
+
+The importance of the delay transform for EoR studies is discussed in Chapter~\ref{chapter:eor_window_theory}, and a variant of it is presented in Chapter~\ref{chapter:eor_window_psa128}.
 
 \subsection{Redundant calibration}
 
+Thus far we have discussed calibration techniques that require some model of the sky to begin with. For an interferometer without any repeated baseline vectors, these methods are sufficient. However, some EoR studies, such as those discussed in this thesis, have opted to construct highly redundant arrays, with many repeated baselines. Such interferometers sample comparatively few modes of the $uv$-plane, leading to poor images -- but their visibilities can be averaged together in order to reduce noise for EoR measurements on specific spatial scales.
+
+We defer detailed discussion of redundant calibration to Chapter~\ref{chapter:polcal}, but provide a brief overview here (studies that explore this technique in depth include \cite{Wieringa.92, Liu.10, Zheng.14} and \cite{Dillon.17}). In a redundant array, there are several examples of a given ``visibility type". Assuming the antennas have identical beams (understanding non-redundant beams is a contemporary effort), the only difference between the visibilities should be due to their complex gains. For a visibility type $V^{pq}_{|i-j|}(\nu, t)$, all baselines with baseline vector $\vec{b}_{|i-j|}$ may be described as 
+
+\begin{equation}
+V_{ij}(\nu, t) = g^{p*}_i(\nu, t)  g^{q}_j(\nu, t) V^{pq}_{|i-j|}(\nu, t) + n_{ij}(\nu,t),
+\label{eq:interferometry_redcal}
+\end{equation}
+where the $n_{ij}$ term represents noise on that visibility. For a redundant array, this system of equations is highly overdetermined to solve for $g^p_i$ and $ g^{q}_j$, as long as $V^{pq}_{|i-j|}$ can be formed (this can simply be the median of all of the visibilities of that type in the data). Again, for a fuller mathematical overview we defer to Chapter~\ref{chapter:polcal}.
+
+We have made the frequency and time dependence explicit in order to emphasize that the complex gains can be solved-for each every frequency,time sample. This is unlike the delay transform (which requires a frequency bandwidth to transform over) or imaging calibration (which can in principle be implemented per-time and frequency, but is difficult due to the resultant very noisy dirty images). 
+
+Using redundant calibration, when available, can reduce the number of diagonal gains to solve for from $\frac{1}{2}N_{\rm ants}(N_{\rm ants} - 1)$ to just a few unknowns. These unknowns are degeneracies of the system of equations defined in Equation~\ref{eq:interferometry_redcal}, and arise from the fact that no information from the sky is required to obtain diagonal gains that are self-consistent between antennas. For the simplest implementation of such a system, as presented in \cite{Zheng.14}, there are four degeneracies per feed arm (so eight overall). These are:
+
+\begin{itemize}
+\item Overall amplitude scaling (to obtain the correct flux density of the sky),
+\item Overall phasing (an arbitrary additional phase ramp),
+\item Phasing along the $\hat{\theta}$ direction (correct positions on the sky),
+\item Phasing along the $\hat{\phi}$ direction (correct positions on the sky).
+\end{itemize}
+
+These additional parameters can be obtained by making an image of a calibration field -- no CLEANing should be required, since power should be self-consistently distributed in the $uv$-plane -- where the sky will likely be incorrectly centered and of incorrect amplitude.
+
 \section{Instrumental Polarization}
 \label{sec:interferometry_pol}
-
 % pseudo-Stokes as sum of Mueller terms
+
+An interferometer is capable of measuring pseudo-Stokes visibilities, which contain components of Stokes power, somehow convolved by the instrumental response. Understanding this instrumental response is crucial for performing polarimetry at low frequencies. As we will see, the instrument will inherently `leak' power between polarizations in direction dependent (effects that occur inside the visibility integral) and independent (outside of the visibility integral) ways. These leakage modes must be well-understood in order to make any statements about the nature of the polarized sky.
+
+Synthesizing the Jones formalism introduced in Section~\ref{sec:interferometry_vis} and the calibration terms in Section~\ref{sec:interferometry_cal}, we seek to understand how the Jones chain,
+
+\begin{equation}
+\textbf{J}_i = \textbf{J}_i^{\rm D}(\nu) \textbf{J}_i^{\rm G}(\nu)  \textbf{J}_i^{\rm I}(\hat{s},\nu) \textbf{J}_i^{\rm \Gamma}(\hat{s},\nu)  \textbf{J}_i^{\rm B}(\hat{s},\nu) ,
+\end{equation}
+influences the power in pseudo-Stokes visibilities.
 
 \subsection{Direction-Dependent Leakage}
 
-%Unless J is both diagonal and, at any given point on the sphere, the diagonal elements are equal, there will be mixing or ‘leaking’ different Stokes parameters together into each element of V in a direction dependent way (Geil et al. 2011; Smirnov 2011a,b; Nunhokee et al. 2017).
+The direction-dependent terms in the Jones chain concern the beam, and ionospheric effects. In this section, we will concentrate on the beam Jones matrix -- the ionospheric effects are discussed in detail elsewhere \citep[e.g.][{\color{red} Martinot et al. (in prep.)}]{Intema.09,Vedantham.15,Vedantham.16}.
+
+Unless $\textbf{J}_i^{\rm B}(\hat{s},\nu)$ is both diagonal and, at any given point on the sphere, the diagonal elements are equal, there will be mixing or ``leaking" of different Stokes parameters together into each element of $\textbf{V}_{ij}$ in a direction dependent way \citep[e.g.][]{Geil.11, Smirnov.11, Smirnov.11.2, Nunhokee.17}. Focusing on pseudo-Stokes I and neglecting other Jones terms for a moment,
+
+\begin{equation}
+\begin{split}
+V^I_{ij}(\nu) &= {\rm Tr}(\textbf{V}_{ij}) = \int {\rm Tr}(\textbf{J}_i^{\rm B}\textbf{C}_{ij}\textbf{J}_j^{{\rm B}H}) \exp(-2\pi i \nu \vec{b}\cdot\hat{s}/c) {\rm d}\Omega \\
+					  &= \int \textbf{M}_{00}I + \textbf{M}_{01}Q + \textbf{M}_{02}U + \textbf{M}_{03}V \exp(-2\pi i \nu \vec{b}\cdot\hat{s}/c) {\rm d}\Omega
+\end{split}
+\end{equation}
+where I, Q, U and V are the true Stokes sky and are functions of direction and frequency, and the $\textbf{M}_{ab}$ terms are components of the direction dependent instrumental Mueller matrix, also functions of direction and frequency:
+
+\begin{equation}
+\textbf{M}_{ab}(\hat{s},\nu) = {\rm Tr} ( \sigma_a \textbf{J}_i^{\rm B} \sigma_b \textbf{J}_j^{{\rm B}H})
+\end{equation}
+and $\sigma_k$ are the Pauli matrices, where the indices are reordered from the quantum mechanical convention such that 
+
+\begin{equation}
+\begin{split}
+\sigma_0 &=\begin{pmatrix}1 & 0 \\0 & 1 \\ \end{pmatrix},\,
+\sigma_1 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \\ \end{pmatrix},\,
+\sigma_2 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \\ \end{pmatrix},\,
+\sigma_3 = \begin{pmatrix} 0 & -i \\ i & 0 \\ \end{pmatrix} \\\\
+V^I &= {\rm Tr}\left( \sigma_0\textbf{V} \right),\, V^Q= {\rm Tr}\left( \sigma_1\textbf{V} \right),\, V^U = {\rm Tr}\left( \sigma_2\textbf{V} \right),\, V^V = {\rm Tr}\left( \sigma_3\textbf{V} \right).
+\end{split}
+\end{equation}
 
 \subsection{Direction-Independent Leakage}
 %%% Instrumental polarization:
