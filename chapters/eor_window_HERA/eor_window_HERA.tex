@@ -10,8 +10,31 @@ This work is organized as follows: in Section~\ref{sec:hera19_leak} we review th
 \section{Polarization Leakage Simulations}
 \label{sec:hera19_leak}
 
-% NEEDS DD MUELLER MATRICES
-% needs review of DI-leakage
+In Chapter~\ref{chapter:interferometry}, we presented direction dependent and independent ways for polarized power to ``leak" between visibilities. Direction dependent leakage arises because dipole arm `n' is sensitive to electromagnetic radiation with polarization axis aligned with perpendicular dipole arm `e'. Forming pseudo-Stokes visibilities from those in the instrumental basis,
+
+\begin{equation}
+\left(\begin{array}{c}
+V^{I}\\
+V^{Q}\\
+V^{U}\\
+V^{V}\end{array} \right)
+= \frac{1}{2}
+\left( \begin{array}{cccc}
+1 & 0 & 0 & 1 \\
+1 & 0 & 0 & -1 \\
+0 & 1 & 1 & 0 \\
+0 & -i & i & 0 \end{array} \right) 
+\left(\begin{array}{c}
+V^{nn}\\
+V^{ne}\\
+V^{en}\\
+V^{ee}\end{array} \right) .
+\label{eq:pseudo-stokes}
+\end{equation}
+results in each pseudo-Stokes visibility containing a direction-dependent mix of the ``true" Stokes parameters on the sky. Using simulations of the HERA feed, faceted parabolic dish and analog signal chain \citep{Fagnoni.16}, we proceeded to simulate pseudo-Stokes visibilities using the polarized formalism in Chapter~\ref{chapter:interferometry} (Figure~\ref{fig:interferometry_Mab} shows the direction-dependent leakage matrices used here). 
+We simulated visibilities for the HERA-19 commissioning array, described below, using an \textit{unpolarized} model of the low frequency sky from the Global Sky Model \citep[GSM;]{GSM.08, pygsm, GSM.17} at the appropriate R.A. range to match our observations. Forming power spectra and images from these visibilities allowed for a comparison of our data to a `leakage from Stokes I only' regime. At the low frequencies and large scales probed by HERA, Stokes I is extremely bright compared to the other Stokes parameters (e.g. Chapter~\ref{chapter:astro_rad}, \citet{Kohn.16}), so this regime is realistic for the measurements in question.
+
+In Chapter~\ref{chapter:interferometry}, we also presented a formalism for propagating direction-independent calibration errors into polarization leakage. We did not include calibration errors in our simulations, allowing us to build intuition around power spectrum estimates for a ``perfectly behaving" instrument.
 
 \section{Observations \& Reduction}
 \label{sec:hera19_obs}

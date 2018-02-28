@@ -276,7 +276,7 @@ Traditionally, the approach taken for estimating the components of all of the ab
 
 If the polarization state of the calibration source was known (and non-zero), forming Stokes parameters in the image plane can provide a measure of instrumental polarization, as gain errors and $D$-terms move power between the Stokes parameters (see Section~\ref{sec:interferometry_pol} and Chapter~\ref{chapter:polcal}). If the calibration source is known to be unpolarized, then the same method can be used to place a limit on the $D$-term magnitudes by maximizing Stokes I while minimizing Stokes Q, U and V.
 
-The approach described above is only as good as the sky and instrument models used, as one must ``simulate" a the expected visibilities for a given sky model passing over a simulated instrument. For the wide field-of-view observations that are native to low-frequency instruments, obtaining a sky model that accurately describes the point sources and diffuse structure on the sky is a daunting task. \cite{Barry.16} included the 4,000 brightest catalog sources in their sky (unpolarized) model of the one of the Murchinson Widefield Array's (see Chapter~\ref{chapter:instruments}) EoR observation fields, but this granted insufficient dynamic range to allow for an EoR measurement. They found too much contamination from a large population of faint, unmodelled point sources.
+The approach described above is only as good as the sky and instrument models used, as one must ``simulate" a the expected visibilities for a given sky model passing over a simulated instrument. For the wide field-of-view observations that are native to low-frequency instruments, obtaining a sky model that accurately describes the point sources and diffuse structure on the sky is a daunting task. \cite{Barry.16} included the 4,000 brightest catalog sources in their sky (unpolarized) model of the one of the Murchinson Widefield Array's (MWA; see Chapter~\ref{chapter:instruments}) EoR observation fields, but this granted insufficient dynamic range to allow for an EoR measurement. They found too much contamination from a large population of faint, unmodelled point sources.
 
 \subsection{CLEAN}
 
@@ -405,11 +405,13 @@ Unless $\textbf{J}_i^{\rm B}(\hat{s},\nu)$ is both diagonal and, at any given po
 V^I_{ij}(\nu) &= {\rm Tr}(\textbf{V}_{ij}) = \int {\rm Tr}(\textbf{J}_i^{\rm B}\textbf{C}_{ij}\textbf{J}_j^{{\rm B}H}) \exp(-2\pi i \nu \vec{b}\cdot\hat{s}/c) {\rm d}\Omega \\
 					  &= \int \textbf{M}_{00}I + \textbf{M}_{01}Q + \textbf{M}_{02}U + \textbf{M}_{03}V \exp(-2\pi i \nu \vec{b}\cdot\hat{s}/c) {\rm d}\Omega
 \end{split}
+\label{eq:interferometry_pseudo-stokes-I-leakage}
 \end{equation}
 where I, Q, U and V are the true Stokes sky and are functions of direction and frequency, and the $\textbf{M}_{ab}$ terms are components of the direction dependent instrumental Mueller matrix, also functions of direction and frequency:
 
 \begin{equation}
 \textbf{M}_{ab}(\hat{s},\nu) = {\rm Tr} ( \sigma_a \textbf{J}_i^{\rm B} \sigma_b \textbf{J}_j^{{\rm B}H})
+\label{eq:interferometry_mueller-terms}
 \end{equation}
 and $\sigma_k$ are the Pauli matrices, where the indices are reordered from the quantum mechanical convention such that 
 
@@ -423,12 +425,93 @@ V^I &= {\rm Tr}\left( \sigma_0\textbf{V} \right),\, V^Q= {\rm Tr}\left( \sigma_1
 \end{split}
 \end{equation}
 
+Equation~\ref{eq:interferometry_pseudo-stokes-I-leakage} explicitly shows that the pseudo-Stokes I visibility is inherently composed of the weighted sum of all of the Stokes parameters, where the weighting is direction- and frequency-dependent, given by the Mueller terms  $\textbf{M}_{ab}(\hat{s},\nu)$ in Equation~\ref{eq:interferometry_mueller-terms}. In turn, the $\textbf{M}_{ab}(\hat{s},\nu)$ terms are completely determined by the beam Jones matrix; a collection of complex voltage beam patterns. With a simulated instrument, one can obtain the $4\times 4$ $\textbf{M}(\hat{s},\nu)$ matrix and model the contribution of each Stokes parameter to each pseudo-Stokes visibility. The key to such a Mueller matrix is
+
+\begin{equation}
+\mathcal{M}_{ab}(\hat{s},\nu) =
+\begin{pmatrix}
+I \rightarrow V^I & I \rightarrow V^Q & I \rightarrow V^U & I \rightarrow V^V\\
+Q \rightarrow V^I  & Q \rightarrow V^Q & Q \rightarrow V^U & Q \rightarrow V^V\\
+U \rightarrow V^I  & U \rightarrow V^Q & U \rightarrow V^U & U \rightarrow V^V\\
+V \rightarrow V^I  & V \rightarrow V^Q & V \rightarrow V^U & V \rightarrow V^V\\
+\end{pmatrix}
+\label{eq:interferometry_Mab}
+\end{equation}
+
+\cite{Fagnoni.16} simulated the feed, faceted parabolic dish and analog signal chain for the Hydrogen Epoch of Reionization Array (HERA) instrument using the CST\footnote{\url{www.cst.com}} package. They generated the $\vec{E}$-field receptivity patterns that could be used to form $\textbf{J}_i^{\rm B}$ and $\textbf{M}(\hat{s},\nu)$. Examples of $\textbf{M}(\hat{s},\nu)$ at 120\,MHz and 160\,MHz are shown in Figure~\ref{fig:interferometry_Mab}, projected in the R.A., Dec. basis. Note that this basis has a singularity at the South Pole, leading to wide-field asymmetries in components to do with Stokes Q and U. Due to the large spread in dynamic ranges between $\textbf{M}_{00}$, other diagonal terms, and off-diagonal terms, we use separate color maps for each. All of the dynamic ranges are normalized to the peak of $\textbf{M}_{00}$, which is 1 at zenith. The off-diagonal terms are 2- to 8-orders of magnitude less than the diagonal terms.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{chapters/interferometry/figures/full_mueller_120MHz.png}
+\par\noindent\rule{0.8\textwidth}{0.4pt}
+\includegraphics[width=0.7\textwidth]{chapters/interferometry/figures/full_mueller_160MHz.png}
+\caption[Simulations of the instrumental direction-dependent Mueller matrix at 120 MHz and 160 MHz.]{Simulations of the instrumental direction dependent Mueller matrix at 120 MHz and 160 MHz (\textit{above} and \textit{below}, respectively) projected into the RA, Dec basis. Color scales for frequencies are relative to the peak of $\textbf{M}_{00}$ (which itself is normalized to 1 at zenith). To account for the wide variety of dynamic ranges required to show detail, we use separate color maps for $\textbf{M}_{00}$, diagonal, and off-diagonal terms. The off-diagonal terms are 2- to 8-orders of magnitude less than the diagonal terms. For a key to these matrices, see Equation~\ref{eq:interferometry_Mab}.}
+\label{fig:interferometry_Mab}
+\end{figure}
+
+As discussed in Chapter~\ref{chapter:astro_rad}, at the low frequencies and large scales relevant to EoR experiments, the Stokes I sky is extremely bright compared to the other Stokes parameters, and few polarized point sources have been found. This makes the first column of $\textbf{M}(\hat{s},\nu)$, representing $I\,\rightarrow\,V^I\,V^Q\,V^U\,V^V$ the most interesting for characterizing the polarized response of an instrument observationally. It can be reasonably expected that even a small amount of leakage from Stokes I into the other Stokes parameters will dominate over Stokes Q, U and V power alone.
+
+Deconvolution of $\textbf{M}(\hat{s},\nu)$ for wide field-of-view instruments is not at all a solved problem, with contemporary studies ``learning to live with it". Hypothetically, with accurate polarized sky and instrument models, one could use the linear nature of the Jones formalism to compute each ``visibility component",
+
+\begin{equation}
+\hat{V}^{ab}_{ij} = \int \textbf{M}_{ab}(\hat{s},\nu)S_P(\hat{s},\nu)\exp(-2\pi i \nu \vec{b}\cdot\hat{s}/c) {\rm d}\Omega,
+\end{equation}
+where $S_P \in (I, Q, U, V)$. Subtracting the additional components from a given pseudo-Stokes visibility could isolate that Stokes parameter. While accurate instrument models are presently becoming available (see Chapter~\ref{chapter:eor_window_HERA} for verification of the simulations shown in Figure~\ref{fig:interferometry_Mab}, at least for pseudo-Stokes I), verifying the accuracy of such a method would require precise expectations of the nature of the low frequency polarized sky. At the time of writing, this is only beginning to become clear through polarized sky surveys from the Low Frequency Array (LOFAR; e.g. \citet{VanEck.18}) and the MWA \citep[e.g.][]{Lenc.16, Lenc.17}.
+
 \subsection{Direction-Independent Leakage}
-%%% Instrumental polarization:
-% TAU_XY !
-% explore the matrix-formalized visibility equation
-% DI leakage (calibration errors -- D terms worse for cross pols)
-% DD leakage (cannot calibrate away -- must model)
+
+In addition to the mixing of Stokes parameters due to the primary beam, it is possible to mix them in a direction independent way. Calibration errors -- errors in the estimation of the components of $\textbf{J}_i^{\rm D}(\nu)$ and $\textbf{J}_i^{\rm G}(\nu)$ -- are capable of leaking signal between pseudo-Stokes visibilities independent of the sky. Writing the gains as $g_i^p(\nu) + \delta g_i^p(\nu)$, and $\textbf{J}_i (\nu)=\textbf{J}_i^{\rm D}(\nu)\textbf{J}_i^{\rm G}(\nu)$,  a direction-independent Mueller matrix may be composed \citep{TMS}:
+
+\begin{equation}
+\textbf{M}'(\nu) = \textbf{J}_i (\nu) \otimes \textbf{J}_j^H (\nu)
+\end{equation}
+such that
+
+\begin{equation}
+\begin{pmatrix}
+V'_I \\
+V'_Q \\
+V'_U \\
+V'_V \\
+\end{pmatrix}
+=
+(\textbf{I} - \frac{1}{2}\delta\textbf{M}')
+\begin{pmatrix}
+V_I \\
+V_Q \\
+V_U \\
+V_V \\
+\end{pmatrix}
+\end{equation}
+where
+
+\begin{table}[h!]
+\setcounter{MaxMatrixCols}{4}
+\renewcommand\arraystretch{1.25}
+\resizebox{\textwidth}{!}{$
+\delta\textbf{M}' = 
+\begin{pmatrix}
+\delta g_i^p + \delta g_i^q + \delta g_j^{p*} +  \delta g_j^{q*} &
+\delta g_i^p - \delta g_i^q + \delta g_j^{p*} -  \delta g_j^{q*} &
+D_i^p - D_i^q + D_j^{p*} - D_j^{q*} &
+-\textbf{i}( D_i^p + D_i^q - D_j^{p*} - D_j^{q*} ) \\
+\delta g_i^p - \delta g_i^q + \delta g_j^{p*} -  \delta g_j^{q*}  &
+\delta g_i^p + \delta g_i^q + \delta g_j^{p*} +  \delta g_j^{q*} &
+D_i^p + D_i^q + D_j^{p*} + D_j^{q*} & 
+-\textbf{i}(D_i^p - D_i^q - D_j^{p*} + D_j^{q*})\\
+D_i^p - D_i^q + D_j^{p*} - D_j^{q*} &
+- (D_i^p + D_i^q + D_j^{p*} + D_j^{q*}) &
+\delta g_i^p + \delta g_i^q + \delta g_j^{p*} +  \delta g_j^{q*} &
+\textbf{i}(\delta g_i^p - \delta g_i^q - \delta g_j^{p*} +  \delta g_j^{q*})\\
+-\textbf{i}(D_i^p + D_i^q - D_j^{p*} - D_j^{q*}) &
+-\textbf{i}(D_i^p - D_i^q - D_j^{p*} + D_j^{q*}) &
+\textbf{i}(\delta g_i^p - \delta g_i^q - \delta g_j^{p*} +  \delta g_j^{q*}) &
+\delta g_i^p + \delta g_i^q + \delta g_j^{p*} +  \delta g_j^{q*} \\
+\end{pmatrix}$}
+\end{table}
+where we have approximated the components to first order in $\delta g$ and $D$, dropped the frequency dependence of each term, and \textbf{i} indicates the imaginary unit. $V'_I$ denotes the observed value of the pseudo-Stokes I visibility. In the regime of leaked pseudo-Stokes I power dominating over pseudo-Stokes Q, U and V, this shows that pseudo-Stokes I appears in pseudo-Stokes Q through errors in diagonal gain calibration, and pseudo-Stokes U and V through uncalibrated \textit{D}-terms.
+
+A fraction of the \textit{D}-term leakage from pseudo-Stokes I into U and V may approximated by a delay between the $p$ and $q$ feeds, $\tau_{pq}$. This is a valid approximation, as a time delay between a wavefront incident upon two feed arms is exactly what circular polarization is, so signal appearing in Stokes V should be able to be described in this form. I Chapter~\ref{chapter:eor_window_psa32img} we present a fit for this parameter across the array, and find that through such a fit pseudo-Stokes V signal can be transferred to pseudo-Stokes U. In Chapter~\ref{chapter:polcal}, we present a method that combines such a fit with redundant calibration, allowing us to minimize leaked power into pseudo-Stokes V on a per-time and -frequency sample basis.
 
 \section{Conclusion}
 % take-homes going forward -- polarization
