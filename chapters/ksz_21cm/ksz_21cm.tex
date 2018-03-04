@@ -1,24 +1,352 @@
 \chapter{Higher-order correlation functions between kSZ and 21cm observations}
 \label{chapter:ksz_21cm}
 
+In Chapter~\ref{chapter:eor_intro}, it was discussed that there are many probes of the EoR beyond {\sc hi}. Secondary anisotropies of the CMB can be used as probes of reionization, mainly due to the fact that reionization represents a large source of free electrons, which CMB photons can scatter off of. The pattern of scattering -- the secondary anisotropies -- is sensitive to the topology of the {\sc hi} field. This Chapter focuses on a particular mechanism for producing secondary anisotropies; the kinetic Sunyaev-Zel'dovich effect (kSZ; CITE SOMETHING). We present novel mathematical theories for understanding the correlation between future CMB and EoR measurements, taking instrumental noise and the EoR window into account in a way not presently explored in the literature. In Section~\ref{sec:ksz-21cm} we make clear the link between the EoR and the kSZ effect, and the separate challenges to detecting either. In Sections~\ref{sec:bispec} and \ref{sec:trispec}, we present semi-analytic theory and results from simulation for the kSZ$^2$-21cm bispectrum and the kSZ$^2$-21cm$^2$ trispectrum, respectively.
+
 \section{The kSZ-21cm connection}
+\label{sec:ksz-21cm}
+% note somewhere in here that we always need two lots of kSZ 
+
+% Since the kSZ is sourced by the momentum of ionized gas, we expect it to be correlated with the ionized bubbles during reionization, and therefore anticorrelated with 21cm intensity maps.
+
+% note link between n-point correlation functions and fourier spectra
+
+% mathematical form of kSZ and 21cm maps
+
+\begin{equation}
+\delta_{\rm 21cm}(\vec{x}) \approx T_0^{\rm 21cm} \left\langle x_{\sc hi} \right\rangle \left[1 + \delta_{x_{\rm HI}}(\vec{x})\right] \left[1 + \delta_\rho(\vec{x})\right]
+\label{eq:d21cm}
+\end{equation}
+where $\delta_\rho$ is fractional baryon overdensity, and $\left\langle ... \right\rangle$ indicates an average over position $\vec{x}$. To compare with the kSZ, described below, it will be useful to speak in terms of the ionization overdensity field $\delta_x(\vec{x})$, rather than the neutral overdensity one ($\delta_{x_{\sc hi}}(\vec{x})$) above. This just brings out a prefactor:
+
+\begin{equation}
+\delta_{x_{\sc hi}}(\vec{x}) = \frac{-\langle x_i \rangle}{1 - \langle x_i \rangle} \delta_x(\vec{x})
+\end{equation}
+where $\langle x_i \rangle$ is the spatial mean ionization fraction. So our representation of the 21\,cm temperature contrast becomes
+
+\begin{equation}
+\delta_{\rm 21cm}(\vec{x}) = T_0^{\rm21cm} (1 - \langle x_i \rangle ) \left[ 1 - \frac{\langle x_i \rangle}{1 - \langle x_i \rangle} \delta_x(\vec{x}) + \delta_{\rho}(\vec{x})  - \frac{\langle x_i \rangle}{1 - \langle x_i \rangle} \delta_x(\vec{x}) \delta_{\rho}(\vec{x}) \right]
+\label{eq:d21cm_x}
+\end{equation}
+
+% assumptions
+
 
 \subsection{Foregrounds}
 
 \subsection{Noises}
 
 \section{kSZ$^2$-21cm squeezed-triangle bispectra}
+\label{sec:bispec}
+
+In this section we present an estimate for bispectra formed from future HERA 21\,cm intensity maps (large scales; $\ell < 300$) and Stage 3 or 4 CMB maps (\citet{cmbS4.16}; small scales $\ell > 3000$). These disparate scales stretch the three-point correlation function into a `squeezed triangle' in Fourier space.
 
 \subsection{Semi-analytic approximation}
+
+Consider the bispectrum of two Fourier transformed kSZ maps and one Fourier transformed 21\,cm map under the Limber approximation: 
+% OVERFLOW
+\begin{equation}
+\left\langle T_{\rm kSZ}(\ell_1) T_{kSZ}(\ell_2) T_{\rm 21cm}(\ell_3)\right\rangle = (2\pi)^2 \delta_D(\ell_1 + \ell_2 + \ell_3) \int \frac{{\rm d}\chi}{\chi^4} W_{\rm 21cm}(\chi) W_{\rm kSZ}^2(\chi) B_{\rm 21cm, kSZ, kSZ}(\ell_1/\chi, \ell_2/\chi,  \ell_3/\chi; \chi)
+\label{eq:bispec_limber}
+\end{equation}
+where the window functions are based on global quantities associated with the maps:
+
+\begin{equation}
+W_{\rm 21cm}(\chi) = {\rm \frac{d}{d\chi}}\left(T_{\rm 21cm}(z)\right)
+\label{eq:W21cm}
+\end{equation}
+where ${\rm d\chi}$ is the comoving distance probed by the 21\,cm map, given by the observing bandwidth, and
+
+\begin{equation}
+W_{\rm kSZ}(\chi) = T_{\rm CMB} \frac{\sigma_T n_e(z)}{c}\frac{\left\langle x_i \right\rangle e^{-\left\langle \tau(z) \right\rangle } }{1+z}
+\label{eq:WkSZ}
+\end{equation}
+where redshift \textit{z} corresponds to a given comoving distance $\chi$, as determined by the central redshift of the 21\,cm cube, $n_e(z)$ is the average number density of electrons at that redshift, $\left\langle x_i \right\rangle $ is the average ionization fraction at that redshift, $\sigma_T$ is the Thomson cross section and $\tau (z)$ is the optical depth to redshift \textit{z}. $T_{\rm CMB} = 2.725\pm0.002$\,K \citep{Mather.99}.
+
+Now we consider the Limber approximation of a related quantity: the 21\,cm field correlated with the square of the line-of-sight-projected momentum field:
+
+\begin{equation}
+\begin{split}
+\left\langle \vec{q} \cdot \hat{n}(\vec{k}_1) \vec{q} \cdot \hat{n} (\vec{k}_2) T_{\rm 21cm}(\vec{k}_3) \right\rangle =
+\int \int \frac{ {\rm d^3k' \, d^3k''} }{(2\pi)^6} (\hat{k'}\cdot\hat{n}) (\hat{k''}\cdot\hat{n}) \times \\
+\left\langle 
+\vec{v}(\vec{k'})\vec{v}(\vec{k''}) 
+\left[ \delta_x(\vec{k}_1 - \vec{k'}) + \delta_{\rho}(\vec{k}_1 - \vec{k'})\right]
+\left[ \delta_x(\vec{k}_2 - \vec{k''}) + \delta_{\rho}(\vec{k}_2 - \vec{k''})\right] 
+T_{\rm 21cm}(\vec{k}_3)
+\right\rangle
+\end{split}
+\label{eq:q_n_21}
+\end{equation}
+where we shifted our concentration from $\ell$ space to $\vec{k}$-space, which was more convenient to work in for the derivations below.
+One of our assumptions in Section~\ref{sec:ksz-21cm} was that the velocity was coherent on large scales, and therefore should not correlate with $\delta_{x}$ or $\delta_{\rho}$. This allows us to expand the $[...]$ terms in Equation~\ref{eq:q_n_21} in their own spatial averages, and take the product of velocities into its own spatial average:
+
+\begin{equation}
+\left\langle \vec{v}(\vec{k'})\vec{v}(\vec{k''}) \right\rangle = (2\pi)^3 \delta_D(\vec{k'} + \vec{k''})P_{vv}(\vec{k'})
+\label{eq:Pvv}
+\end{equation}
+where the $\delta_D(\vec{k'} + \vec{k''})$ in the above relation allowed us to integrate-out our $k''$ dependence. Referring to terms of the form $\langle \delta_i(\vec{k}_1 - \vec{k'}) \delta_j(\vec{k}_2 - \vec{k''}) \delta_{\rm 21cm}\rangle$ as $B_{i,j,{\rm 21cm}}$, we could express the overall correlator $\left\langle \vec{q} \cdot \hat{n}(\vec{k}_1) \vec{q} \cdot \hat{n} (\vec{k}_2) T_{\rm 21cm}(\vec{k}_3) \right\rangle$ in terms of ``component bispectra":
+
+\begin{equation}
+\begin{split}
+\left\langle \vec{q} \cdot \hat{n}(\vec{k}_1) \vec{q} \cdot \hat{n} (\vec{k}_2) T_{\rm 21cm}(\vec{k}_3) \right\rangle = \\
+(2\pi)^3 \delta_D(\vec{k}_1 + \vec{k}_2 + \vec{k}_3) 
+\int \frac{{\rm d^3}k'}{(2\pi)^3} (\hat{k'}\cdot\hat{n})^2 P_{vv}(k') 
+\left[ B_{x,x,\rm 21cm} + B_{x,\rho,\rm 21cm} + B_{\rho,x,\rm 21cm} +B_{\rho,\rho,\rm 21cm} \right].
+\end{split}
+\end{equation}
+
+In the squeezed-triangle limit, where $k_3 << k_1,k_2$, this reduced to:
+\begin{equation}
+\begin{split}
+\left\langle \vec{q} \cdot \hat{n}(\vec{k}_1) \vec{q} \cdot \hat{n} (\vec{k}_2) T_{{\rm 21cm}}(\vec{k}_3) \right\rangle = \\
+(2\pi)^3 \delta_D(\vec{k}_1 + \vec{k}_2 + \vec{k}_3) \frac{v_{\rm rms}^2}{3}
+\left[ B_{x,x,{\rm 21cm}} + B_{x,\rho,{\rm 21cm}} + B_{\rho,x,{\rm 21cm}} +B_{\rho,\rho,{\rm 21cm}} \right]
+\end{split}
+\label{eq:component_bispectra}
+\end{equation}
+
+Of course, $\delta_{\rm 21cm}$ also contains information about $\delta_x$ and $\delta_{\rho}$. Using Equation~\ref{eq:d21cm_x}, we expanded each component bispectrum as functions of $\delta_x$, $\delta_{\rho}$ and $\delta_x\delta_{\rho}$:
+
+\begin{equation}
+\begin{split}
+B_{x,x,{\rm 21cm}} \propto B_{x,x,x} + B_{x,x,\rho} + B_{x,x,x\rho}\\
+B_{x,\rho,{\rm 21cm}} \propto B_{x,\rho,x} + B_{x,\rho,\rho} + B_{x,\rho,x\rho}\\
+B_{\rho,x,{\rm 21cm}} \propto B_{\rho,x,x} + B_{\rho,x,\rho} + B_{\rho,x,x\rho}\\
+B_{\rho,\rho,{\rm 21cm}} \propto B_{\rho,\rho,x} + B_{\rho,\rho,\rho} + B_{\rho,\rho,x\rho}\\
+\end{split}
+\label{eq:lots_of_bispectra}
+\end{equation}
+where the third index corresponds to large scales, and the first and second indices are probing the same small scale. To gain intuition for what to expect from simulations, we could make some approximations that allow us to reduce each subcomponent bispectrum into power spectra, which are inexpensively estimated from simulations.
+
+\subsubsection{$B_{x,x,\rm 21cm}$}
+\label{subsec:B_xx21}
+Using Equations~\ref{eq:d21cm_x} and \ref{eq:bispec_limber}, we could write:
+% TOO CLOSE TO PAGE EDGE
+\begin{equation}
+\begin{split}
+\langle \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_{{\rm 21cm}}(\vec{k}_3) \rangle = 
+\langle
+T_0(1- \left\langle x_i \right\rangle ) \times \\
+\left[
+- \frac{\left\langle x_i \right\rangle}{1 - \left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_x(\vec{k}_3) + \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_{\rho}(\vec{k}_3)
+ - \frac{\left\langle x_i \right\rangle}{1 - \left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \int \frac{{\rm d^3}k'}{(2\pi)^3} \delta_x(\vec{k}_3 - \vec{k'})\delta_{\rho}(\vec{k'})
+\right] \\
+\delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3) 
+\rangle .
+\end{split}
+\label{eq:B_xx21}
+\end{equation}
+
+Taking the averages inside the square brackets reduces all the terms to the to component bispectra written in Equation~\ref{eq:lots_of_bispectra}. The first and second terms are simpler to understand, whereas the third term contains a convolution left-over from Fourier transforming $\delta_x(\vec{x})\delta_{\rho}(\vec{x})$ from Equation~\ref{eq:d21cm_x}:
+
+\begin{equation}
+\begin{split}
+B_{x,x,{\rm 21cm}} = \left( -T_0 \left\langle x_i \right\rangle B_{x,x,x} + T_0(1-\left\langle x_i \right\rangle) B_{x,x,\rho} - T_0 \left\langle x_i \right\rangle \int \frac{{\rm d^3}k'}{(2\pi)^3}
+\langle \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_x(\vec{k}_3 - \vec{k'})\delta_{\rho}(\vec{k'}) \rangle \right)\\
+\delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3)
+\end{split}
+\end{equation}
+
+\subsubsection*{$B_{x,x,x}$}
+\label{subsubsec:Bxxx}
+Consider the bispectrum $\langle\delta_x(\vec{k}_1)\delta_x(\vec{k}_2)\delta_x(\vec{k}_3)\rangle$. In the squeezed triangle limit of $k_3 << k_1, k_2$, we concentrated on the correlator
+
+\begin{equation}
+\langle \langle \delta_x(\vec{k}_1)\delta_x(\vec{k}_2) | \delta_x(\vec{k}_3)\rangle \delta_x(\vec{k}_3) \rangle
+\end{equation}
+This could be interpreted as: what is the correlation between expectation value of $\delta_x(\vec{k}_1)\delta_x(\vec{k}_2)$ given that $\delta_x(\vec{k}_3)$ has some value, with the ionization overdensity field $\delta_x(\vec{k}_1)$? If $\delta_x(\vec{k}_3)$ is sufficiently small, the expectation value may be expanded as a Taylor Series:
+
+\begin{equation}
+\langle \delta_x(\vec{k}_1)\delta_x(\vec{k}_2) | \delta_x(\vec{k}_3)\rangle =
+\langle \delta_x(\vec{k}_1)\delta_x(\vec{k}_2) \rangle + 
+\delta_x(\vec{k}_3) \frac{{\rm d}\langle\delta_x(\vec{k}_1)\delta_x(\vec{k}_2) | \delta_x(\vec{k}_3)\rangle}{{\rm d}\delta_x(\vec{k}_3)}|_{\delta_x(\vec{k}_3)=0} + \ldots.
+\end{equation}
+
+We could evaluate the derivative by assuming that the small-scale power $P_{\delta_x,\delta_x}(\vec{k_1}) = \langle \delta_x(\vec{k}_1)\delta_x(\vec{k}_2) \rangle$ in a large-scale ionized region is \textit{identical} to a typical region some time later when $\left\langle x_i \right\rangle$ has increased. This allows us to express the subcomponent bispectrum as 
+
+\begin{equation}
+B_{x,x,x} \approx P_{\delta_x,\delta_x}(\vec{k_3}) \frac{\partial P_{\delta_x,\delta_x}(\vec{k_2}) }{\partial\delta_x}|_{x_i = \left\langle x_i \right\rangle}
+\end{equation}
+
+Using the definition of $\delta_x = (x_i - \left\langle x_i \right\rangle)/\left\langle x_i \right\rangle$, we can rewrite the derivative with respect to $\left\langle x_i \right\rangle$ and use the chain rule
+\begin{equation}
+B_{x,x,x} = P_{\delta_x,\delta_x}(\vec{k_1}) P_{\delta_x,\delta_x}(\vec{k_3}) \left\langle x_i \right\rangle \frac{{\rm d} \ln (P_{\delta_x,\delta_x}(\vec{k_1}))}{{\rm d}\left\langle x_i \right\rangle}
+\end{equation}
+
+\subsubsection*{$B_{x,x,\rho}$}
+\label{subsubsec:Bxxrho}
+This subcomponent could be neglected for our estimate, since large-scale $\delta_{\rho}$ should be negligible.
+
+\subsubsection*{$B_{x,x,x\rho}$}
+\label{subsubsec:B_xxxrho}
+The third term of $B_{x,x,{\rm 21cm}}$ takes the unflattering form of
+
+\begin{equation}
+- T_0 \left\langle x_i \right\rangle \int \frac{{\rm d^3}k'}{(2\pi)^3} 
+\langle \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_x(\vec{k}_3 - \vec{k'})\delta_{\rho}(\vec{k'}) \rangle .
+\end{equation}
+
+Making the assumption that all our fields are Gaussian\footnote{This is a highly-idealistic assumption, but allows the mathematics to be tangible. For a fast estimator this is acceptable, but it should not be interpreted as extremely physically motivated.}, we could expand the four-point function as three products of two-point functions. Evaluating them one-at-a-time:
+
+\begin{equation}
+\int \frac{{\rm d^3}k'}{(2\pi)^3} \langle \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \rangle \langle \delta_x(\vec{k}_3 - \vec{k'})\delta_{\rho}(\vec{k'}) \rangle
+\end{equation}
+This vanishes, since the integration of the second term picks-out the $\vec{k}_3 = \vec{k'}$ mode. Under the squeezed triangle approximation we can send $k_3 \rightarrow 0$, and $\delta_{\rho}(k'=0)=0$.
+
+\begin{equation}
+\int \frac{{\rm d^3}k'}{(2\pi)^3} \langle \delta_x(\vec{k}_1)\delta_x(\vec{k}_3 - \vec{k'}) \rangle \langle \delta_x(\vec{k}_2) \delta_{\rho}(\vec{k'}) \rangle \approx P_{\delta_x, \delta_x}(\vec{k}_1) P_{\delta_x, \delta_{\rho}}(\vec{k}_2) 
+\end{equation}
+The integration of the first term selects the $\vec{k_1} + \vec{k_3} = \vec{k'}$ mode. Under the squeezed triangle approximation, $\vec{k_1} \approx \vec{k'}$.
+
+The third integral was just a permutation of the second, above. This meant that we can write the third subcomponent bispectrum as
+
+\begin{equation}
+-T_0 \left\langle x_i \right\rangle \left(P_{\delta_x, \delta_x}(\vec{k}_1) P_{\delta_x, \delta_{\rho}}(\vec{k}_2)  + P_{\delta_x, \delta_{\rho}}(\vec{k}_1) P_{\delta_x, \delta_x}(\vec{k}_2)  \right)
+\end{equation}
+and the component bispectrum from this subsection can be expressed as
+% OVERFLOW
+\begin{equation}
+B_{x,x,{\rm 21cm}} \approx 
+ - T_0 \left\langle x_i \right\rangle P_{\delta_x,\delta_x}(\vec{k_1}) \left(
+P_{\delta_x,\delta_x}(\vec{k_3}) \left\langle x_i \right\rangle \frac{{\rm d} \ln (P_{\delta_x,\delta_x}(\vec{k_1}))}{{\rm d}\left\langle x_i \right\rangle} 
++ P_{\delta_x, \delta_{\rho}}(\vec{k}_2)  +\frac{ P_{\delta_x, \delta_{\rho}}(\vec{k}_1)P_{\delta_x, \delta_x}(\vec{k}_2)}{P_{\delta_x,\delta_x}(\vec{k_1}) } 
+\right)
+\delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3)
+\end{equation}
+
+\subsubsection{$B_{x,\rho,{\rm 21cm}}$ and $B_{x,\rho,{\rm 21cm}}$}
+\label{subsec:B_xrho21}
+
+In the squeezed triangle limit, these two component bispectra are identical. Their joint contribution was:
+% OVERFLOW
+\begin{equation}
+\begin{split}
+2\langle \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_{{\rm 21cm}}\rangle = \\
+2T_0(1-\left\langle x_i \right\rangle) \left\langle 
+- \frac{\left\langle x_i \right\rangle}{1-\left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_{\rho}(\vec{k}_2) \delta_x(\vec{k}_3)
++ \delta_x(\vec{k}_1) \delta_{\rho}(\vec{k}_2) \delta_{\rho}(\vec{k}_3)
+- \frac{\left\langle x_i \right\rangle}{1-\left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_{\rho}(\vec{k}_2) \int \frac{{\rm d^3}k'}{(2\pi)^3} \delta_x(\vec{k}_3 - \vec{k'})\delta_{\rho}(\vec{k'})\right\rangle
+\end{split}
+\end{equation}
+
+\subsubsection*{$B_{x,\rho,x}$}
+\label{subsubsec:Bxrhox}
+We could follow a similar line of reasoning as in Section~\ref{subsubsec:Bxxx} by assuming that the small-scale $\delta_x\delta_{\rho}$ cross-power in an ionized region is the same as a typical region some time later when $\langle x_i \rangle$ has increased. This allowed us to express:
+
+\begin{equation}
+B_{x,\rho,x} \approx P_{\delta_x,\delta_{\rho}}(\vec{k}_1) P_{\delta_x,\delta_x}(\vec{k}_3)\left\langle x_i \right\rangle \frac{{\rm d} \ln (P_{\delta_x,\delta_{\rho}}(\vec{k_1}))}{{\rm d}\left\langle x_i \right\rangle}
+\end{equation}
+
+\subsubsection*{$B_{x,\rho,\rho}$}
+\label{subsubsec:Bxrhorho}
+This subcomponent could be neglected for our estimate, since large-scale $\delta_{\rho}$ should be negligible.
+
+\subsubsection*{$B_{x,\rho,x\rho}$}
+\label{subsubsec:Bxrhoxrho}
+
+Following the same reasoning as in Section~\ref{subsubsec:B_xxxrho}, we arrived at the expression
+
+\begin{equation}
+\delta_x(\vec{k}_1)\delta_{\rho}(\vec{k}_2) \int \frac{\rm{d}k'}{(2\pi)^3}\delta_x(\vec{k}_3-\vec{k'})\delta_{\rho}(\vec{k'})
+\approx
+P_{\delta_x,\delta_x}(\vec{k}_1)P_{\delta_{\rho},\delta_{\rho}}(\vec{k}_2) + P_{\delta_x,\delta_{\rho}}(\vec{k}_1)P_{\delta_x,\delta_{\rho}}(\vec{k}_2)
+\end{equation}
+so the component bispectrum from this subsection can be expressed as
+
+\begin{equation}
+\begin{split}
+-2 T_0 \left\langle x_i \right\rangle \left( P_{\delta_x,\delta_{\rho}}(\vec{k}_1) P_{\delta_x,\delta_x}(\vec{k}_3)\left\langle x_i \right\rangle \frac{{\rm d} \ln (P_{\delta_x,\delta_{\rho}}(\vec{k_1}))}{{\rm d}\left\langle x_i \right\rangle} +  P_{\delta_x,\delta_x}(\vec{k}_1)P_{\delta_{\rho},\delta_{\rho}}(\vec{k}_2) + P_{\delta_x,\delta_{\rho}}(\vec{k}_1)P_{\delta_x,\delta_{\rho}}(\vec{k}_2) \right) \\ 
+\delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3)
+\end{split}
+\end{equation}
+
+
+\subsubsection{$B_{\rho,\rho,{\rm 21cm}}$}
+\label{subsec:B_rhorho21}
+
+This component bispectrum was much simpler to calculate, as we expected the overdensity power to be subdominant to the ionization field.
+
+\subsubsection*{$B_{\rho,\rho,x}$}
+\label{subsubsec:Brhorhox}
+Following results from Section~\ref{subsubsec:B_xxxrho}, this should be negligible so long as $P_{\delta_{\rho},\delta_{\rho}}(\vec{k}_1) < P_{\delta_{x},\delta_{x}}(\vec{k}_1)$, as expected.
+
+\subsubsection*{$B_{\rho,\rho,\rho}$}
+\label{subsubsec:Brhorhorho}
+This subcomponent could be neglected for our estimate, since large-scale $\delta_{\rho}$ should be negligible.
+
+\subsubsection*{$B_{\rho,\rho,x\rho}$}
+\label{subsubsec:Brhorhoxrho}
+
+As in Sections~\ref{subsubsec:B_xxxrho} and \ref{subsubsec:Bxrhoxrho}, we could take advantage of the convolution term in the Fourier transform to obtain
+
+\begin{equation}
+\delta_x(\vec{k}_1)\delta_{\rho}(\vec{k}_2) \int \frac{\rm{d}k'}{(2\pi)^3}\delta_x(\vec{k}_3-\vec{k'})\delta_{\rho}(\vec{k'})
+\approx
+P_{\delta_{\rho},\delta_x}(\vec{k}_1)P_{\delta_{\rho},\delta_{\rho}}(\vec{k}_2) + P_{\delta_{\rho},\delta_{\rho}}(\vec{k}_1)P_{\delta_{\rho},\delta_x}(\vec{k}_2)
+\end{equation}
+
+So the overall component bispectrum is the above, multiplied by a factor of $-T_0\left\langle x_i \right\rangle$.
+
+\subsubsection{Full estimator}
+
+Under the above assumptions, and simplifying with the squeezed triangle $P_{f,f}(\vec{k}_1)\approx P_{f,f}(\vec{k}_2)$ for $f=[x,\rho]$, we obtained our estimate for the bispectrum:
+
+\begin{equation}
+\begin{split}
+B_{\rm kSZ, kSZ, {\rm 21cm}}(\vec{k}_1,\vec{k}_2,\vec{k}_3) \approx \\
+-2T_0\left\langle x_i \right\rangle
+\left[
+P_{\delta_x,\delta_x}(\vec{k}_1) \left( P_{\delta_x,\delta_x}(\vec{k}_3)\frac{\left\langle x_i \right\rangle}{2} \frac{{\rm d} \ln (P_{\delta_x,\delta_x}(\vec{k_1}))}{{\rm d}\left\langle x_i \right\rangle} + P_{\delta_x,\delta_{\rho}}(\vec{k}_1) + P_{\delta_{\rho},\delta_{\rho}}(\vec{k}_1) \right) \right. \\
+\left.
++ P_{\delta_x,\delta_{\rho}}(\vec{k}_1) \left( P_{\delta_x,\delta_x}(\vec{k}_3)\left\langle x_i \right\rangle \frac{{\rm d} \ln (P_{\delta_x,\delta_{\rho}}(\vec{k}_1))}{{\rm d}\left\langle x_i \right\rangle} + P_{\delta_x,\delta_{\rho}}(\vec{k}_1) + P_{\delta_{\rho},\delta_{\rho}}(\vec{k}_1) \right)
+\right]
+\delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3)
+\end{split}.
+\end{equation}
+
 
 \subsection{Counting triangles}
 
-\subsection{Signal-to-noise estimates}
+A closed triangle in $\ell$-space can be represented by a two-dimensional Dirac delta-distribution $\delta^{(2)}_{D}(\vec{\ell_1}+\vec{\ell_2}+\vec{\ell_3})$. A count of the different orientations of such a triangle was formulated by \cite{Joachimi.09} as:
 
+\begin{equation}
+\int^{2\pi}_0 {\rm d}\phi_{\ell1} \int^{2\pi}_0 {\rm d}\phi_{\ell2} \int^{2\pi}_0 {\rm d}\phi_{\ell3} \,\delta^{(2)}_{D}(\vec{\ell_1}+\vec{\ell_2}+\vec{\ell_3})
+\end{equation}
+
+Which can be represented as an exponential:
+
+\begin{equation}
+\begin{split}
+\int^{2\pi}_0 {\rm d}\phi_{\ell1} \int^{2\pi}_0 {\rm d}\phi_{\ell2} \int^{2\pi}_0 {\rm d}\phi_{\ell3} \,\int^{\infty}_0 \frac{{\rm d^2\theta}}{(2\pi)^2}\exp\left(i(\vec{\ell_1}+\vec{\ell_2}+\vec{\ell_3})\cdot\vec{\theta}\right)\\
+= (2\pi)^2\int^{\infty}_0 {\rm d}\theta \theta J_0(\ell_1\theta)J_0(\ell_2\theta)J_0(\ell_3\theta)
+\end{split}
+\end{equation}
+
+Where they used the definition $J_0(x) = \int^{2\pi}_0 {\rm d}\phi e^{ix\cos\phi}/2\pi$. \cite{gradshteyn2000table} give the analytic solution for the final integral for closed-triangle configurations for triple products of any order of Bessel Function. For zeroth-order Bessel Functions, their solution reduces to the reciprocal of the area of the triangle:
+
+\begin{equation}
+(2\pi)^2\int^{\infty}_0 {\rm d}\theta \theta J_0(\ell_1\theta)J_0(\ell_2\theta)J_0(\ell_3\theta) = \left( \frac{1}{4}\sqrt{2\ell_1^2\ell_2^2 + 2\ell_1^2\ell_3^2 + 2\ell_2^2\ell_3^2 - \ell_1^4 - \ell_2^4 - \ell_3^4} \right)^{-1}
+\end{equation}
+
+In reality, measurements of any bispectrum or power spectrum will be binned in $\ell$, with central values and widths of $\bar{\ell}$ and $\Delta\ell$ respectively. The number of triangles in a kSZ$^2$-21cm bispectrum bin will be given by:
+
+\begin{equation}
+N_{\rm Tri} \approx 2\pi\Omega_S^2\bar{\ell_1}\bar{\ell_2}\bar{\ell_3}\Delta\ell_1\Delta\ell_2 \Delta\ell_3 \int^{\infty}_0 {\rm d}\theta \theta J_0(\bar{\ell_1}\theta)J_0(\bar{\ell_2}\theta)J_0(\bar{\ell_3}\theta)
+\label{eq:Ntri}
+\end{equation}
+
+Signal-to-noise scales with  $\sqrt{N_{\rm Tri}}$....
+
+\subsection{Results}
+
+\subsubsection{Signal-to-noise estimates}
+% graphs!
 % but stuck at k_parallel=0...
 
 \section{kSZ$^2$-21cm$^2$ squeezed-rectangle trispectra}
+\label{sec:trispec}
 
 \subsection{Semi-analytic approximation}
 
-\subsection{kSZ$^2$-21cm bispectra cross-power spectrum}
+\subsection{kSZ$^2$-21cm trispectra cross-power spectrum}
