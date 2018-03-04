@@ -24,6 +24,8 @@ This Chapter is structured as follows. In Section~\ref{sec:eor_intro_current} I 
 
 The existence of Cosmic Dawn and the Dark Ages, at least as described above, have not yet been observationally confirmed. We do however have tantalizing clues of it's nature, and evidence when it ended. So far, these clues have largely come from high redshift galaxies and the CMB.
 
+\subsection{High-redshift galaxies}
+
 Quasars\footnote{``Quasar" is a contraction of ``quasi-stellar radio source". They were first identified in radio surveys as extremely bright point-like sources, which might have been characterized as stars when compared to optical images -- except that stars do not shine brightly at radio wavelengths.} are among the most luminous objects in Universe \citep[e.g.][]{Manti.17}. Powered by accretion of gas onto a supermassive black hole, quasars emit an abundance of UV and X-ray photons. Most notably, they are bright sources of Lyman-$\alpha$ photons (Ly$\alpha$; rest-wavelength of 121.567\,nm). Ly$\alpha$ is a spectral line from the $2p \rightarrow 1s$ transition of {\sc hi} with a high cross-section, so it will become absorbed if propagating through a neutral region of the IGM. 
 
 \cite{Gunn.65} exploited this effect, predicting that quasars embedded in a highly neutral IGM would have all emission at wavelengths smaller than Ly$\alpha$ obscured. This was because all spectral emission at bluer wavelengths would redshift into the Ly$\alpha$ wavelength and be absorbed by the IGM. This effect, known as the Gunn-Peterson Trough, was finally detected by \cite{Becker.01}. Their investigation of the spectra of four quasars with $5.80<z<6.28$ found the optical depth towards the quasars increasing with redshift, indicating an increasing neutral fraction with redshift. \cite{Gunn.65} showed that the optical depth of Ly$\alpha$ through {\sc hi} is $\tau_{\rm GP}\sim10^4x_H$, where $x_{HI}$ is the fraction of {\sc hi} out of {\sc hi} and {\sc hii} towards the quasar. This meant that \cite{Becker.01} could claim evidence of the IGM having $x_{HI}\geqslant\sim10^{-4}$ in the direction of the quasar at $z\sim6$ -- and that the EoR did not end before that redshift. \cite{Fan.06.2} presented spectra of 19 $z\sim 6$ quasars, finding a sharp increase in $\tau_{\rm GP}$ with increasing redshift, suggesting evolution of $x_{HI}$ at $z>5.7$. Figure~\ref{fig:eor_intro_qso} shows the spectra from their study, featuring Gunn-Peterson troughs. The sharpness of the cut-off -- related to the effective optical depth -- increases with redshift.
@@ -35,14 +37,20 @@ Quasars\footnote{``Quasar" is a contraction of ``quasi-stellar radio source". Th
  \label{fig:eor_intro_qso}
  \end{figure}
 
-Spectroscopic observations of high-redshift sources are relatively difficult to perform, and require large amounts of integration time. However, the distinctive Ly$\alpha$ limit in the spectra shown in Figure~\ref{fig:eor_intro_qso} is a distinctive property of high-redshift quasars. As an alternative, astronomers have developed a photometric method that is cheaper and easier to perform, called the ``Ly$\alpha$ dropout" technique. In this scheme, a survey will use an appropriate set of filters to probe a given redshift (imagine rectangles overlaid on the spectra in Figure~\ref{fig:eor_intro_qso}). If an excess is seen towards one galaxy in one filter, and very little signal is seen in the next-bluest filter, that galaxy may be considered
+Spectroscopic observations of high-redshift sources are relatively difficult to perform, and require large amounts of integration time. However, the distinctive Ly$\alpha$ limit in the spectra shown in Figure~\ref{fig:eor_intro_qso} is a distinctive property of high-redshift quasars. As an alternative, astronomers have developed a photometric method that is cheaper and easier to perform, called the ``Ly$\alpha$ dropout" technique. In this scheme, a survey will use an appropriate set of filters to probe a given redshift (imagine rectangles overlaid on the spectra in Figure~\ref{fig:eor_intro_qso}). If an excess is seen towards one galaxy in one filter, and very little signal is seen in the next-bluest filter, that galaxy may be considered a candidate high-$z$ quasar. With some modelling, the luminosity function of  Ly$\alpha$ dropout galaxies can be used to measure the mass distribution of galaxies as a function of redshift \citep[e.g.][]{Bouwens.15, Bouwens.16}. Using these luminosity functions and comparing to star formation rate models and measurements, \cite{Roberston.15} argue that current measurements are consistent with quasars playing a relatively minor role in reionization, with the bulk of ionizing photons arising form ``normal" galaxies rather than black hole accretion discs. However, this claim is moderately dependent upon uncertain model parameters, such as the escape fraction of ionizing photons from their local halo \citep{Robertson.13} and the star formation history at high redshifts. The latter is beginning to be answered as more high-redshift gamma-ray bursts are detected and characterized \citep{Wang.09, Robertson.12, Wang.15}\footnote{In work unrelated to the bulk of this thesis, I presented observations of gamma-ray burst hosts suggesting that gamma-ray bursts were unbiased tracers of star formation rate -- a crucial component for using gamma-ray bursts to inform our understanding of the EoR.}.
 
-% PARAGRAPH EACH: Gunn-Peterson troughs, Lyman alpha dropouts, CMB tau, kSZ
-% "why do we think reionization ended at z=6?"
-% current (CMB tau, high-z galaxies (CANDELS; lyman alpha dropouts; quasars), Gunn Peterson, AHEM AHEM kSZ), 
+At the time of writing, photometric and spectroscopic observations of high-$z$ quasars suggest that the IGM had a neutral fraction $>10^{-4}$ at $z\sim 6$, indicating that the EoR ended around 1 Gyr after the Big Bang \citep{Barnett.17}. \cite{Fan.06.2} report a direction dependence on their measurements, suggesting that reionization was patchy, rather than homogeneous.
+
+\subsection{Observations of the CMB}
+% CMB tau, kSZ
+CMB photons will Thomson-scatter off-of free electrons in their path, suppressing the amplitude of the observed primordial anisotropies by a factor of $e^{-\tau_{\rm re}}$. This optical depth is an integrated quantity, but the largest contribution to the integral will come from the large injection of free electrons into the IGM during the EoR.
+% ME NO LIKEY
+The effect is degenerate with the overall scaling of the total intensity power of the CMB, but if the free electron is within a quadrupolar anisotropy, it will also induce linear polarization in the CMB \citep{Zaldarriaga.97.pol}, boosting polarized power at specific spatial scales (the CMB is most-usefully described in harmonic $\ell$-space). \cite{Zaldarriaga.97.pol} show that the excess in polarized power should occur at $\ell\sim2\sqrt{\tau_{\rm re}}$. Polarized measurements of the CMB are able to leverage this effect to break the degeneracy between the optical depth and the overall scaling to obtain an estimate of $\tau_{re}$. If there were no anisotropies and no EoR, $\tau_{re}$ would not arise; its detection (the first of which is shown in Figure~XXX) confirms a scenario consistent with the EoR. The integral nature of $\tau_{re}$ ...
 
 \section{Direct measurements of {\sc hi}}
 \label{sec:eor_intro_hi}
+
+
 % 21cm mechanism
 % WF coupling
 % UNPOLARIZED
@@ -82,6 +90,10 @@ thorough understanding of systematic uncertainties of the instrument.
 \subsection{Anisotropic signal}
 
 \subsubsection{Current Limits}
+% galaxies => z_end
+% CMB => z_middle
+% global limits => dz
+% 
 
 \section{Future probes}
 \label{sec:eor_intro_future}
