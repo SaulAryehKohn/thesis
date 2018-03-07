@@ -95,7 +95,7 @@ Wide-field measurements of the kSZ would be rewarding, but the foregrounds of th
 
 To borrow a line from \cite{DannyThesis}, the Dark Ages were not dark. Our Universe is dynamic and energetic, and particles constantly seek a lower energy state.
 
-Throughout the Dark Ages and the EoR, {\sc hi} was shining, weakly, at radio wavelengths. The {\sc hi} atom is capable of a hyperfine transition between the ${}_{1}s_{1}$ and ${}_{1}s_{0}$. The electron spin can spontaneously change from parallel to the proton spin to antiparallel, emitting a photon of frequency $\nu_{21\,cm}\approx1420.4$\,MHz; a rest-wavelength of roughly 21\,cm. The emission coefficient of this transition is $\sim 2.9\times10^{-15}\,s^{-1}$, corresponding to a half-life of approximately 11 million years per atom. This is both the strength and the weakness of observing {\sc hi}. According to Fermi's Golden Rule, the probability of emission is equal to that of absorption; a small transition rate leads to a relatively dim signal, but 21\,cm photons are extremely unlikely to be observed between their emission and observation. This allows the 21\,cm signal to be tomographically mapped -- a sharp excess at the relevant frequency indicates a redshift -- and constructed into a 3D cube in space and time.
+Throughout the Dark Ages and the EoR, {\sc hi} was shining, weakly, at radio wavelengths. The {\sc hi} atom is capable of a hyperfine transition between its ${}_{1}s_{1}$ and ${}_{0}s_{1}$ energy levels. The electron spin can spontaneously change from parallel to the proton spin to antiparallel, emitting a photon of frequency $\nu_{21\,cm}\approx1420.4$\,MHz; a rest-wavelength of roughly 21\,cm. The emission coefficient of this transition is $\sim 2.9\times10^{-15}\,s^{-1}$, corresponding to a half-life of approximately 11 million years per atom. This is both the strength and the weakness of observing {\sc hi}. According to Fermi's Golden Rule, the probability of emission is equal to that of absorption; a small transition rate leads to a relatively dim signal, but 21\,cm photons are extremely unlikely to be observed between their emission and observation. This allows the 21\,cm signal to be tomographically mapped -- a sharp excess at the relevant frequency indicates a redshift -- and constructed into a 3D cube in space and time.
 
 Observations of {\sc hi} during the Dark Ages and the EoR would directly constrain the ionization history of the Universe, allowing us to probe the evolution of the density field at high redshifts, the properties of the first stars, galaxies and black holes, and map the structure of the IGM as it evolves as a function of redshift. It would also represent the furthest baryons ever detected, and the largest volume of the Universe ever surveyed. This Section reviews the nature of the 21\,cm line during the EoR, and two parallel endeavours to detect it, using the monopolar signal (i.e. power averaged over the sky), and the anisotropic signal (power as a function of spatial scale).
 
@@ -111,8 +111,9 @@ where $g_1$ and $g_0$ refer to the triplet and singlet states of the atom and ar
 
 \begin{equation}
 T(z) = T_S \tau_{\nu}(z) + T_{\rm bg}(1-\tau_nu(z)),
+\label{eq:eor_intro_brightness_temp}
 \end{equation}
-where the optical depth of {\sc hi}, $\tau_{\nu}$, is assumed to be small, and the temperature of the background radiation $T_{\rm bg}$ is, for EoR observations, the temperature of the CMB at redshift $z$. \cite{Furlanetto.06} show that the optical depth can be expressed in terms of cosmologically-interesting quantities, assuming the IGM is diffuse:
+where the optical depth of {\sc hi}, $\tau_{\nu}$, is assumed to be small, and the temperature of the background radiation $T_{\rm bg}$ is, for EoR observations, the temperature of the CMB at redshift $z$. \cite{Furlanetto.06} showed that the optical depth can be expressed in terms of cosmologically-interesting quantities, assuming the IGM is diffuse:
 
 \begin{equation}
 \tau_{\nu} \approx 9.2\times10^{-3} (1+\delta_b)(1+z)^{3/2}\frac{x_{HI}}{T_S}\frac{H(z)}{1+z}\frac{{\rm d}v_{\parallel}}{{\rm d}r_{\parallel}},
@@ -124,94 +125,102 @@ Combining the above equations, we can define the brightness contrast between red
 \begin{equation}
 \delta T \approx 9{\rm mK} \times x_{HI} (1+\delta_b)(1+z)^{1/2} \left( 1 - \frac{T_{\rm CMB}(z)}{T_S} \right)
 \left( \frac{H(z)/(1+z)}{{\rm d}v_{\parallel}/{\rm d}r_{\parallel}} \right).
+\label{eq:eor_intro_dT_reionization}
 \end{equation}
 
+Note that $\delta T$ can saturate if $T_S \gg T_{\rm CMB}$, and can become arbitrarily negative if $T_S \ll T_{\rm CMB}$. The observed emission is `backlit' by the CMB -- it's observability hinges on its relationship to $T_{\rm CMB}$.
+Also note that the characteristic brightness temperature in Equation~\ref{eq:eor_intro_dT_reionization} is of order mK. By the time it is observed, the 21\,cm emission from the EoR has redshifted into meter wavelengths. At these wavelengths, Galactic synchrotron dominates the sky with brightness temperatures $\sim 10^3$\,K (see Chapter~\ref{chapter:astro_rad}; \citealt{McQuinn.07}). Foreground removal or avoidance remains the primary challenge for all EoR experiments, and will be discussed extensively throughout this thesis. I believe that the promises of 21\,cm tomography, outlined below, make the challenge worth pursuing. For a comprehensive reviews of the theory behind high-redshift 21\,cm tomography, see \cite{Madau.97}, \cite{Furlanetto.06} and \cite{Pritchard.10}. 
 
+It is important to mention here, and will be re-iterated, that the 21\,cm photons generated through the hyperfine transition are highly unpolarized. Primordial magnetic fields could induce circular polarization via Zeeman splitting, but such an effect would be 3 to 4 orders of magnitude smaller than the already faint 21\,cm signal itself \citep{Babich.05}.
 
-
-% spin temperaure
-% WF coupling
-% unpolarized
 % spectral structure?
-
-% foregrounds at the redshifted low frequency ~ 10^5 K, signal at 10^-3 K
 
 % why is it interesting (near term) - Liu Tau constraints, Kittiswitt maps (topology of EoR = cool), Kern emulators -- sensitivity to astrophysics & cosmology
 
-%\subsection{Foreground Challenges}
-% foreground sychtrotron and thermal noise
+\subsection{Global signal}
+% WF coupling
 
-\subsection{Global spectrum}
-% spectrum cartoon
+The sky-averaged 21\,cm signal, sometimes called ``global signal", is a direct measurement of the spin temperature as a function of redshift. Equation~\ref{eq:eor_intro_brightness_temp} can be approximated as \citep{Field.56}:
 
-%The 21 cm signal from the Epoch of Reionization (EoR) contains a wealth of information about the Universe at these early times, and can provide key insight inaccessible to other observational techniques \citep{Loeb.12}. 
+\begin{equation}
+T_S^{-1} = \frac{T_{\rm CMB}^{-1} + x_cT_K^{-1} + x_{\alpha}T_c^{-1} }{1 + x_c + x_{\alpha}}
+\end{equation}
+where $x_c$ and $x_{\alpha}$ are coupling coefficients for collisions and UV scattering, respectively, $T_K$ is the kinetic temperature of the gas, and $T_c$ is the effective temperature of the UV radiation field. The magnitude and sign of $T_S$ with respect to $T_{\rm CMB}$ is therefore proportional to each coupling constant.
 
-In particular, the sky-averaged 21 cm signal, the so-called global signal, directly
-contains key information about the thermal history of the intergalactic medium
-(IGM) as a function of redshift \citep{Pritchard.10}. Historically,
-observational efforts to detect the global signal have been ``single dish''
-experiments, where a single receiving element is characterized to high
-precision, and then operated in an effort to detect the EoR signal as a function
-of frequency (and thus redshift). 
+At high redshifts, \cite{Wouthuysen.52} and \cite{Field.59} showed that there was good reason to expect that $T_c \rightarrow T_K$, such that $T_S$ decouples from $T_{\rm CMB}$. The effect -- now known as the Wouthuysen-Field Effect -- relies on Ly$\alpha$ radiation from early luminous sources exciting {\sc hi} in the ${}_1s$ states into the ${}_2p$ states. The atoms can then decay to the  ${}_1s_1$ state via allowed transitions, overpopulating that hyperfine energy level. This couples the {\sc hi} to the UV radiation field; the strength of the coupling depends on the spectral shape of the Ly$\alpha$ line. Increasing the coupling to UV scattering would make $T_S$ large and negative.
 
-\subsubsection{Limits on the EoR} % change this title...
+A fiducial reionization history is shown in Figure~\ref{fig:eor_global_signal_sketch} \citep{Mirocha.12}, with important turning points and zero-crossings highlighted. Working forwards through history, collisional coupling is relatively large in the Dark Ages, and couples $T_S$ to a low $T_K$, creating an absorption trough. The Universe continues to expand, baryon density drops, and $T_S$ and $T_K$ decouple; $T_S$ tends towards zero as it grows closer to $T_{\rm CMB}$.
+As the first stars ignite, marking the end of the Dark Ages, their UV emission couples to the spin temperature via the Wouthuysen-Field Effect, creating a sharp absorption feature. As more massive structures form, X-rays begin to dominate the ionizing radiation field, increasing $T_K > T_{\rm CMB}$ such that the 21\,cm signal is seen in emission for the rest of the EoR. The 21\,cm spin temperature goes to zero, as it must, at the end of the EoR \citep[e.g.][]{Pritchard.10, Rao.17}. 
 
-Experiments such as the Experiment to Detect
-the Global EoR Step (EDGES, \citealt{Bowman.10}), Sonda Cosmol\'{o}gica
-de las Islas para la Detecc\'{i}on de Hidr\'{o}geno Neutro (SCI-HI,
-\citealt{Voytek.14}), and the Cosmic Twilight Polarimeter (CPT,
-\citealt{Nhan.16}), have been proposed or constructed seeking to measure
-the global signal from the Dark Ages or the EoR, through a deep understanding of
-the properties of the instruments. In all cases, the instruments consist of a
-single-element, and much of the observational effort contributes toward a
-thorough understanding of systematic uncertainties of the instrument. 
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{chapters/eor_intro/figures/ares_sketch.pdf}
+\caption[The history of the EoR global signal.]{The history of the EoR global signal, with important turning-points indicated. This figure was produced using the fiducial model of \cite{Mirocha.12}.}
+\label{fig:eor_global_signal_sketch}
+\end{figure}
 
-%The signal from the Dark Ages and EoR is thought to be 4--5 orders of magnitude fainter than nearby bright foregrounds, such as galactic synchrotron radiation \citep{McQuinn.07}. As such, an exquisite understanding of the correlated noise in these instruments is of the utmost importance. Largely, these experiments have not yet detected a feature in frequency-space that can clearly be interpreted as a detection of either the Dark Ages or EoR global signal. To date, EDGES has provided a lower-limit on the duration of reionization of $\Delta z \geq 0.06$ \citep{Bowman.10}.
+Given the history described above, detection of the global signal would provide key information about the thermal history of the IGM as a function of redshift, and about the high-energy emission spectra of early stars and galaxies. Historically, observational efforts to detect the global signal have been ``single dish'' experiments, where a single receiving element is characterized to high precision, and then operated in an effort to detect the EoR signal as a function of frequency (and thus redshift). Such experiments typically seek to characterize the location and depth of the turning points, with the advent of X-ray sources giving the highest potential signal-to-noise. Experiments such as the Experiment to Detect the Global EoR Step (EDGES, \citealt{Bowman.10}), Sonda Cosmol\'{o}gica de las Islas para la Detecc\'{i}on de Hidr\'{o}geno Neutro (SCI-HI, \citealt{Voytek.14}), and the Cosmic Twilight Polarimeter (CPT, \citealt{Nhan.16}), have been proposed or constructed seeking to measure the global signal from the Dark Ages or the EoR, through a deep understanding of the properties of the instruments.
+
+In all cases, the instruments consist of a single element, and much of the observational effort contributes toward a thorough understanding of systematic uncertainties of the instrument. Given that the signal is thought to be 4--5 orders of magnitude fainter than the foregrounds, an exquisite understanding of the correlated noise in these instruments is of the utmost importance. At the time of writing, the most mature global experiment is EDGES, an extremely well-characterized radio spectrometer. By subtracting a precise model of the foreground spectrum (\citealt{Rogers.08}, improved upon by \citealt{Mozden.17}), \cite{Bowman.10} were able to set a lower limit on the length of the reionization tail (and hence of the EoR itself) of  $\Delta z \geq 0.06$, ruling-out instantaneous reionization.
+
+Excitingly, as this Chapter was being written, the EDGES team announced a detection of the X-ray heating turning point at 78\,MHz \citep{Bowman.18}. Their detected absorption trough was so deep, however, that it exceeds physical models for the (negative) magnitude of $T_S$. \cite{Bowman.18} and \cite{Barkana.18} suggested that the excess depth could be accounted for by additional collisions with dark matter. \cite{Ewall-Wice.18.edges} have shown that the excess could also be accounted for by an additional radio background from early black holes formed form Pop{\sc iii} stars. Confirmation from other global signal experiments will be required before the \cite{Bowman.18} result can be fully trusted, but it leaves open the possibility of {\sc hi} global signal experiments probing exotic particle physics, as well as astrophysics and cosmology.
 
 \subsection{Anisotropic signal}
 
-\subsubsection{Current Limits}
+While the global signal may be computed by measuring the average brightness temperature at a given frequency, a richer astrophysical story can be told by measuring the anisotropies in the spin temperature at each redshift. Similarly to the CMB, these anisotropies can be represented through a 2-point correlation function; a power spectrum in Fourier space. Unlike the CMB, of course, this power spectrum  can be measured at each frequency observed, allowing us to construct a history of {\sc hi} emission on different spatial scales. 
+
+Inspection of Equation~\ref{eq:eor_intro_dT_reionization} shows that the fluctuations will trace the underlying baryonic density field, but with a complicated bias depending upon the ionization fraction, peculiar velocities and importantly the nature of the ionizing sources, their clustering and their UV and X-ray spectra. This convolution of astrophysical and cosmological dependencies means that the redshift dependence of a given Fourier mode will give clues about the ionization history. Maxima represent high contrasts in the brightness temperature field, suggesting middle stages of the EoR. However, the bulk of information contained in power spectra will require models to extract. This requirement is not as onerous as it might sound, thanks to decades of theoretical work (an exhaustive list is impossible, but the literature reviews of \citealt{Greig.17} and \citealt{Kern.17} provide useful starting points). 
+
+For example, Figure~\ref{fig:eor_intro_liu_history} shows the enormous improvement in modelling the ionization history, given high signal-to-noise measurements of the 21\,cm power spectrum. Including {\sc hi} data leads to precise constraints on $x_{HI}(z)$ -- but the constrains may be inaccurate in their timing of the EoR without including CMB polarization measurements. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{chapters/eor_intro/figures/Liu_history.png}
+\caption[Forecasts for constraints on the ionization history, given high signal-to-noise measurements of the {\sc hi} power spectrum at each redshift from HERA.]{Forecasts for constraints on the ionization history, given high signal-to-noise measurements of the {\sc hi} power spectrum at each redshift from HERA. The grey band shows constraints on the ionization history without measurements of {\sc hi}, while the blue and orange curves include power spectrum measurements in their modelling. Without CMB polarization measurements, an shift in the timing of reionization can occur. Figure taken from \cite{Liu.16}.}
+\label{fig:eor_intro_liu_history}
+\end{figure}
+
+As discussed in Section~\ref{sec:eor_intro_current}, parametrizing the optical depth to the CMB can grant a model-dependent measurement of the ionization history, but one must rely on models in which reionization occurs very quickly. Curves such as those shown in Figure~\ref{fig:eor_intro_liu_history} would eliminate the need for such models by providing a measurement of the ionization history. This in turn can break degeneracies in other measurements from the CMB. For example, \cite{Liu.16.tau} showed that estimates of the sum of neutrino masses\footnote{Understanding the sum of the masses of the three flavors of neutrinos is a critical measurement in the realm of quantum chromodynamics. It is informed by the CMB, as neutrinos can suppress the formation small-scale anisotropies.} can be improved by $\sim10\%$ -- importantly, with likelihood contours perpendicular to other probes.
+
+\cite{Kern.17} used machine-learning techniques to generate a suite of emulators for the {\sc hi} power spectrum. Given measurements of the power spectrum as a function of redshift, with realistic errors and foreground mitigation, their emulators would be able to constrain cosmological and astrophysical parameters for the EoR and the Dark Ages to relatively high precision. Their constraints on astrophysical parameters were tighter than cosmological ones due to the fact that the brightness contrast is a complicated proxy for the cosmic density field. To illustrate this complication, we show slices of simulation cubes in Figure~\ref{fig:eor_intro_plp_sim}, showing the baryon density field and the corresponding 21\,cm brightness temperature close the middle of the EoR.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{chapters/eor_intro/figures/density.png}
+\includegraphics[width=0.5\textwidth]{chapters/eor_intro/figures/t21.png}
+\caption[An example cosmological simulation of the EoR at a single redshift.]{An example cosmological simulation of the EoR, at a single redshift. On the left is the baryon density field, and on the right is the corresponding 21\,cm brightness contrast. Both fields have been normalized for this illustration, the purpose of which is to show that there is not a simple mapping between the cosmological density field and the {\sc hi} observable.}
+\label{fig:eor_intro_plp_sim}
+\end{figure}
+
+Moving beyond statistical measurements to maps of the EoR\footnote{The reason for this order is due to the strength of the foregrounds, and strategies employed mitigate them. These will be explored at length in Chapter~\ref{chapter:eor_window_theory}.} opens a rich window for observational cosmology. Performing real-space tomography would allow us to construct cubes of the {\sc hi} field at different redshifts. Studying the shape and size of bubbles would provide us with a way to identify individual ionizing sources and interpret them. \cite{Robertson.15} showed that there are barely enough galaxies to account for the ionization of the Universe, suggesting that other sources such as quasars must play a role -- and the signature of which would be detectable in tomographic cubes (Chapter~\ref{chapter:hera_ml}, shows an initial machine learning framework to perform this characterization).
+
+
+% imaging things:
+% - Kittiswitt maps...
+
+Radio interferometers (see Chapter~\ref{chapter:interferometry}), are excellent instruments for probing temperature anisotropies, and their measurements naturally translate into the Fourier space native to power spectrum measurements (see Chapters~\ref{chapter:instruments} and \ref{chapter:eor_window_theory}). Interferometers currently pursing detection of the EoR power spectrum include the Giant Meterwave Radio Telescope \citep[GMRT;][]{Paciga.13}, the Low Frequency Array \citep[LOFAR;][]{vanHaarlem.13}, the Murchinson Widefield Array \citep[MWA;][]{Tingay.13}, the Donald C. Backer Precision Array for Probing the Epoch of Reionization \citep[PAPER;][]{Parsons.10} and the Hydrogen Epoch of Reionization Array \citep{deBoer.17}.
+
+% why are we still looking => foregrounds -> relative signal scales -> more next chapter
+% kolopanis limits
+
+\section{Current Limits and Future probes}
+\label{sec:eor_intro_future}
+% 
 % galaxies => z_end -- ended z < 6 and z > 5.8 (kSZ limits)
 % CMB tau => z_middle -- middle 7.8 < z < 8.8
 % CMB kSZ + tau => dz < 2.8
 % global limits => dz 
-% 
-
-\section{Future probes}
-\label{sec:eor_intro_future}
-% 
+%
+% future:
 % HI, CO, C+ intensity mapping, extreme deep fields from JWST [HIGH REDSHIFT SPECTROSCOPY? e.g. Salvaterra+ 2011]
 % 
-
-
-%
-% what is the EoR -- history (global signal history)
 % why is it interesting (near term) - Liu Tau constraints, Kittiswitt maps, Kern emulators -- sensitivity to astrophysics & cosmology
-% "why do we think reionization ended at z=6?"
-% --> hold cosmo params fixed, then we can constrain astro ones. If you want to constrain cosmology, we have some, weak, sensitivity (we have a complicated proxy for the density field)
 
-% current (CMB tau, high-z galaxies (CANDELS; lyman alpha dropouts; quasars), Gunn Peterson, AHEM AHEM kSZ), EoR power spectrum, and future (HI, CO, C+ intensity mapping, extreme deep fields from JWST [HIGH REDSHIFT SPECTROSCOPY? e.g. Salvaterra+ 2011]) probes
-% --> check out Mesinger paper trail and Robertson+'15
-% current state of the art -- power spectra -- (limits from PAPER, LOFAR, MWA).
-
-
-% why are we still looking => foregrounds -> relative signal scales -> more next chapter
-% in the following chapters I will speak about...
-%
-
-
-% spectrum
-% global signal - EDGES
-
-
-
-
-% in the following chapters I will speak about...
 
 
 \section{This thesis}
 \label{sec:eor_intro_this_thesis}
-Everything in this work -- algorithmic development, mathematical theory, observations -- was carried-out in order to facilitate the detection of the EoR. While these efforts took many forms, they shared that singular motivation of moving the field forward towards a detection of {\sc hi} at cosmological distances. 
+Everything in this work -- algorithmic development, mathematical theory, observations -- was carried-out in order to facilitate the detection of the EoR. While these efforts took many forms, they shared that singular motivation of moving the field forward towards a detection of {\sc hi} anisotropies at cosmological distances. 
 
 This thesis is divided into three parts. Part {\sc i} is devoted to introducing concepts used throughout this work and building a mathematical formalism around those concepts. 
 Chapter~\ref{chapter:astro_rad} reviews astrophysical mechanisms for producing polarized and unpolarized radiation at low radio frequencies. 
