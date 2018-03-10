@@ -169,7 +169,7 @@ Excitingly, as this Chapter was being written, the EDGES team announced a detect
 
 While the global signal may be computed by measuring the average brightness temperature at a given frequency, a richer astrophysical story can be told by measuring the anisotropies in the spin temperature at each redshift. Similarly to the CMB, these anisotropies can be represented through a 2-point correlation function; a power spectrum in Fourier space. Unlike the CMB, of course, this power spectrum  can be measured at each frequency observed, allowing us to construct a history of {\sc hi} emission on different spatial scales. 
 
-Inspection of Equation~\ref{eq:eor_intro_dT_reionization} shows that the fluctuations will trace the underlying baryonic density field, but with a complicated bias depending upon the ionization fraction, peculiar velocities and importantly the nature of the ionizing sources, their clustering and their UV and X-ray spectra. This convolution of astrophysical and cosmological dependencies means that the redshift dependence of a given Fourier mode will give clues about the ionization history. Maxima represent high contrasts in the brightness temperature field, suggesting middle stages of the EoR. However, the bulk of information contained in power spectra will require models to extract. This requirement is not as onerous as it might sound, thanks to decades of theoretical work (an exhaustive list is impossible, but the literature reviews of \citealt{Greig.17} and \citealt{Kern.17} provide useful starting points). 
+Inspection of Equation~\ref{eq:eor_intro_dT_reionization} shows that the fluctuations will trace the underlying baryonic density field, but with a complicated bias depending upon the ionization fraction, peculiar velocities and importantly the nature of the ionizing sources, their clustering and their UV and X-ray spectra. This convolution of astrophysical and cosmological dependencies means that the redshift dependence of a given Fourier mode will give clues about the ionization history. Maxima represent high contrasts in the brightness temperature field, suggesting middle stages of the EoR. However, the bulk of information contained in power spectra will require models to extract. This requirement is not as onerous as it might sound, thanks to decades of theoretical work (an exhaustive list is impossible, but the literature reviews of \citealt{Grieg.17} and \citealt{Kern.17} provide useful starting points). 
 
 For example, Figure~\ref{fig:eor_intro_liu_history} shows the enormous improvement in modelling the ionization history, given high signal-to-noise measurements of the 21\,cm power spectrum. Including {\sc hi} data leads to precise constraints on $x_{HI}(z)$ -- but the constrains may be inaccurate in their timing of the EoR without including CMB polarization measurements. 
 
@@ -192,35 +192,37 @@ As discussed in Section~\ref{sec:eor_intro_current}, parametrizing the optical d
 \label{fig:eor_intro_plp_sim}
 \end{figure}
 
-Moving beyond statistical measurements to maps of the EoR\footnote{The reason for this order is due to the strength of the foregrounds, and strategies employed mitigate them. These will be explored at length in Chapter~\ref{chapter:eor_window_theory}.} opens a rich window for observational cosmology. Performing real-space tomography would allow us to construct cubes of the {\sc hi} field at different redshifts. Studying the shape and size of bubbles would provide us with a way to identify individual ionizing sources and interpret them. \cite{Robertson.15} showed that there are barely enough galaxies to account for the ionization of the Universe, suggesting that other sources such as quasars must play a role -- and the signature of which would be detectable in tomographic cubes (Chapter~\ref{chapter:hera_ml}, shows an initial machine learning framework to perform this characterization).
-
-
-% imaging things:
-% - Kittiswitt maps...
+Moving beyond statistical measurements to maps of the EoR\footnote{The reason for this order is due to the strength of the foregrounds, and strategies employed mitigate them. These will be explored at length in Chapter~\ref{chapter:eor_window_theory}.} opens a rich window for observational cosmology. Performing real-space tomography would allow us to construct cubes of the {\sc hi} field at different redshifts. Studying the shape and size of bubbles would provide us with a way to identify individual ionizing sources and interpret them. \cite{Robertson.15} showed that there are barely enough galaxies to account for the ionization of the Universe, suggesting that other sources such as quasars must play a role -- the signature of which would be detectable in tomographic cubes (Chapter~\ref{chapter:hera_ml}, shows an initial machine learning framework to perform this characterization). % more imaging things?
 
 Radio interferometers (see Chapter~\ref{chapter:interferometry}), are excellent instruments for probing temperature anisotropies, and their measurements naturally translate into the Fourier space native to power spectrum measurements (see Chapters~\ref{chapter:instruments} and \ref{chapter:eor_window_theory}). Interferometers currently pursing detection of the EoR power spectrum include the Giant Meterwave Radio Telescope \citep[GMRT;][]{Paciga.13}, the Low Frequency Array \citep[LOFAR;][]{vanHaarlem.13}, the Murchinson Widefield Array \citep[MWA;][]{Tingay.13}, the Donald C. Backer Precision Array for Probing the Epoch of Reionization \citep[PAPER;][]{Parsons.10} and the Hydrogen Epoch of Reionization Array \citep{deBoer.17}.
 
-% why are we still looking => foregrounds -> relative signal scales -> more next chapter
-% kolopanis limits
+Low-frequency radio interferometers such as those listed above have not yet reported results of sufficient depth to claim a detection of the EoR power spectrum. This is largely due to the major challenge faced by all EoR experiments -- extremely bright foregrounds. The intensity of the synchrotron radiation that dominates the low-frequency sky scales as a power law in frequency, so probing higher and higher redshifts becomes more and more difficult (see Chapter~\ref{chapter:astro_rad}). As we discuss in Chapter~\ref{chapter:eor_window_theory}, the chromatic response of an interferometer may provide a crucial lever arm for disentangling foreground and background radiation. The instrument itself also behaves as a foreground, as at such low frequencies, thermal noise in the electronics is a much larger fraction of the `observed' signal than redshifted 21\,cm emission.
 
 \section{Current Limits and Future probes}
 \label{sec:eor_intro_future}
-% 
-% galaxies => z_end -- ended z < 6 and z > 5.8 (kSZ limits)
-% CMB tau => z_middle -- middle 7.8 < z < 8.8
-% CMB kSZ + tau => dz < 2.8
-% global limits => dz 
-%
-% future:
-% HI, CO, C+ intensity mapping, extreme deep fields from JWST [HIGH REDSHIFT SPECTROSCOPY? e.g. Salvaterra+ 2011]
-% 
-% why is it interesting (near term) - Liu Tau constraints, Kittiswitt maps, Kern emulators -- sensitivity to astrophysics & cosmology
 
+Over the past decade, immense progress has been made to constrain the global history of the EoR. To review a few limits that have been discussed in this Chapter, limits from quasars and the kSZ have set the end of reionization $5.8 < z_{\rm end} < 6.0$. Measurements of the optical depth to the CMB have set model-dependent limits that put the middle of reionization at $7.8 < z_{\rm mid} < 8.8$. Combining kSZ measurements with the optical depth of the CMB has set an upper limit on the duration of the EoR, and measurements from EDGES have set a lower limit, such that $0.06 < \Delta z < 2.8$.
 
+Current kSZ limits and low-significance detections, and measurements from quasars, are consistent with a patchy EoR -- bubbles opening to create an inhomogeneous spin temperature field. Figure~\ref{fig:eor_intro_pspec_limits} shows current limits on the EoR power spectrum from radio interferometers, as a function of redshift {\color{red} (Kolopanis et al., in prep.)}. The limits correspond to different spatial scales, but until some scale-dependence of the EoR power spectrum is detected, plotting them along side one another is valid. Integrations are becoming successively deeper, but there is a ways to go, as shown by a fiducial reionization power spectrum curve \citep{Mesinger.11}. Deeper integrations require more interferometric baselines and longer observing seasons, both of which require precision calibration and control of instrument systematics. New techniques for some of these challenges are presented in Part {\sc ii}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{chapters/eor_intro/figures/eor_lowest_limits.png}
+\caption[Current limits on the EoR power spectrum, as a function of redshift.]{Current limits on the EoR power spectrum, as a function of redshift. Different symbol shapes correspond to different instruments, with stars \citep{Dillon.14, Dillon.15, Beardsley.16} indicating measurements from the MWA, blue hexagons \citep{Patil.17} from LOFAR, the brown pentagon from the GMRT \citep{Paciga.13} and the black diamonds from PAPER-64 {\color{red} (Kolopanis et al., in prep.)}. Figure taken from {\color{red} Kolopanis et al., in prep}. Plotted beneath all of the limits is a fiducial 21\,cm power spectrum \citep{Mesinger.11} -- there is still a factor of $\sim 10^3$ to integrate-down upon.}
+\label{fig:eor_intro_pspec_limits}
+\end{figure}
+
+This Chapter has reviewed our current understanding of the EoR, and why it's observation would represent an enormous advancement for modern cosmology. The pursuit of realizing 21\,cm tomography is relatively mature, but other atomic transitions could contain similar promise. \cite{Silva.13} suggested that one could perform an intensity-mapping survey of Ly$\alpha$ emission. Such an experiment would involve several narrow-band filters to extract the high-redshift Ly$\alpha$ power spectrum at $z\sim7$, statistically probing the population of ionizing sources towards the end of the EoR, when Ly$\alpha$ is detectable. Narrow-band surveys for Ly$\alpha$ emission yielded a possible detection of Pop{\sc iii}-like stars at $z\sim 6.6$ \citep{Sobral.15}.
+
+Carbon is easily ionized by diffuse starlight. The forbidden [C{\sc ii}] transition in ionized carbon could be used to perform tomography with advantages similar to {\sc hi}, as a probe of star formation history. At EoR redshifts, the emission line would redshift into an atmospheric window detectable in the Far Infra-red from Earth \citep[e.g.][]{Gong.12, Hunacek.16, Pentericci.16}. 
+The polar nature of the CO molecule leads to a quantization of its energy states in integer multiples if its angular momentum, appearing as a `ladder' of emission lines that can be used for extremely precise redshift determination, and the relative intensity of which are determined by the temperature of the molecular cloud. Intensity mapping CO emission could provide a cosmic history of star forming giant molecular clouds \citep[e.g.][]{Righi.08,Lidz,11.CO}.
+It is worth mentioning that all of these intensity mapping proposals suggest cross-correlation with 21\,cm tomographic measurements as a central science objective.
+
+The James Webb Space Telescope is scheduled to launch between October 2018 and June 2019, and will be the most sensitive infra-red telescope ever constructed \citep{jwst}. It is predicted to be able to detect small mass halos ($\sim 10^5 M_{\odot}$) at $z\sim 10$ in its planned ultra-deep integrations \citep{Salvaterra.11, Zackrisson.11}. Its relatively small field of view will not allow for comprehensive surveys of the high-redshift Universe or the EoR, but correlating its measurements with 21\,cm maps would provide a probe of the dependence of high-redshift galaxies on their ionization environment \citep[e.g.][]{Beardsley.15}.
 
 \section{This thesis}
 \label{sec:eor_intro_this_thesis}
-Everything in this work -- algorithmic development, mathematical theory, observations -- was carried-out in order to facilitate the detection of the EoR. While these efforts took many forms, they shared that singular motivation of moving the field forward towards a detection of {\sc hi} anisotropies at cosmological distances. 
+Everything in this work -- algorithmic development, mathematical theory, observations -- was carried-out in order to facilitate the detection of the EoR. While these efforts took many forms, they shared that singular motivation of moving the field forward, towards a detection of {\sc hi} anisotropies at cosmological distances. 
 
 This thesis is divided into three parts. Part {\sc i} is devoted to introducing concepts used throughout this work and building a mathematical formalism around those concepts. 
 Chapter~\ref{chapter:astro_rad} reviews astrophysical mechanisms for producing polarized and unpolarized radiation at low radio frequencies. 
