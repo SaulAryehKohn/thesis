@@ -8,7 +8,7 @@ However, when the flat-sky approximation is no longer valid, a monopole moment m
 
 However, \cite{Venumadhav.16} presented a general argument that an interferometer is not sensitive to the global signal, except by means of instrument imperfections. They argued that sensitivity to a global signal only enters an interferometric measurement by way of: (1) direct cross-talk between two antennas, (2) cross-talk between two antennas by way of a mutual coupling with a third antenna, or (3) a mutual coherent noise source between two antennas. The authors claimed that upon performing a cross-correlation operation on the received voltage measurements, any correlations disappear. They also claimed that interferometers are incapable of understanding these noise properties.
 
-In this Chapter, we present a formalism that shows that interferometers may be sensitive to the global signal. Our analysis is complimentary to the one presented by \cite{Presley.15}, but approaches the problem from a more spherical basis. We also present measurements that are suggestive, but not conclusive, of measurements of a global signal of the Galactic foregrounds with the PAPER interferometer.
+In this Chapter, we present a formalism that shows that interferometers may be sensitive to the global signal. Our analysis is complimentary to the one presented by \cite{Presley.15}, but approaches the problem from a more spherical basis. We also present measurements that are suggestive, but not conclusive, of measurements of the global signal of Galactic foregrounds with the PAPER interferometer.
 
 \section{Mathematical Formalism}
 \label{sec:global_signal_math}
@@ -139,7 +139,7 @@ where $\Xi(\hat{b},\nu)$ is a transfer function containing the response of the b
 The expression for $\Xi(\hat{b},\nu)$ shows that the sensitivity to the monopole is closely connected to the baseline length and spherical harmonic coefficients of the beam. One can expand a given model beam and baseline to an arbitrary $\ell, m$. The spherical Bessel function falls exponentially with $\ell$, so the sum should converge.
 
 \subsection{Toy Model}
-
+\label{subsec:toy_model}
 To build intuition, we implement a simple toy model for $V_0(\nu)$. We assume a global sky model of $s_{00}(\nu) = S_0\nu^{-\alpha}$ (which is roughly consistent with current global low-frequency measurements \citealt{Mozden.17}), and a beam model such that $a_{00}(\nu) = A_0\nu^{-\beta}$. We only endeavour to calculate the ($\ell,m$) = (0,0) component; the first term of the sum. Figure~\ref{fig:xi_toy} shows $\Xi(\hat{b},\nu)$ for $\alpha=1.5$, $\beta = 1$. 
 
 \begin{figure}
@@ -200,7 +200,7 @@ The prefactor of Equation~\ref{eq:vg} also indicates that the power in delay spa
 \end{figure}
 
 \subsection{Instrument Simulation}
-Using the Jones formalism developed in Chapter~\ref{chapter:interferometry} (also see Chapter~\ref{chapter:eor_window_HERA}) and a complex-voltage model of the PAPER \citep[e.g.][]{Parsons.10} beam, we were able to simulate $\Xi(\hat{b},\nu)$. Figure~\ref{fig:paper_jones} shows the direction-dependent Mueller matrix for the PAPER beam at 150\,MHz. Note the separate color maps for $I\rightarrow I$, the other diagonal terms, and the off-diagonal ones, which we use for dynamic range changes in order capture sufficient detail. The dipole beam, as expected, extends across the sky.
+Using the Jones formalism developed in Chapter~\ref{chapter:interferometry} (also see Chapter~\ref{chapter:eor_window_HERA}) and a complex-voltage model of the PAPER \citep[e.g.][]{Parsons.10} dipole beam \citep{Pober.12}, we were able to simulate $\Xi(\hat{b},\nu)$. Figure~\ref{fig:paper_jones} shows the direction-dependent Mueller matrix for the PAPER beam at 150\,MHz. Note the separate color maps for $I\rightarrow I$, the other diagonal terms, and the off-diagonal ones, which we use for dynamic range changes in order capture sufficient detail. The dipole beam, as expected, extends across the sky.
 
 \begin{figure}
 \centering
@@ -223,18 +223,38 @@ Non-constant components of the sky, when measured by an interferometer, are mult
 
 \section{Time-averages from PAPER}
 
-The Season 1 Epoch 2 observations season of PAPER-128 was defined and described in Chapter~\ref{chapter:eor_window_psa128}. 
+The Season 1 Epoch 2 observations of PAPER-128 were defined and described in Chapter~\ref{chapter:eor_window_psa128}. In that Chapters~\ref{chapter:instruments}, \ref{chapter:data_prep_and_proc} and \ref{chapter:eor_window_psa128} we elaborated upon the instrumental design, quality assurance metrics and compression implemented on the data. Season 1 Epoch 2 consists of $\sim 45$ nights of well-characterized observations. In this Chapter, we used Season 1 Epoch 2 PAPER-128 data that was quality assured, and calibrated using the {\sc omnical} \citep{Zheng.14} \textit{4pol+minV} calibration scheme (see Chapter~\ref{chapter:polcal}). 
 
-% isolating the global value by attenuating fringing components through time averaging
-% comparison to Xi
+We then extracted only the 30\,m East-West baselines, in the instrumental `ee' polarization, for analysis. Unlike in Chapter~\ref{chapter:eor_window_psa128}, we did not implement a foreground avoidance scheme. The data were gridded and binned according to their LST of observation, and absolute-calibrated according to the flux density and position of Pictor A at transit \citep[][the same calibration shown in Chapter~\ref{chapter:eor_window_psa128}]{Jacobs.13}.
 
-\section{Conclusions}
-% unsolved problems:
-% l = even terms => m modes
-% differences for HERA
-% calibrating between baselines -- OMNICAL?
-% instrument systematics <=> effect of mis-calibration
-% better understanding of polarization leakage
+To isolate the global component of the signal, which does not `fringe' on the sky as observed by the interferometer, we averaged all LSTs into a single frequency spectrum. The real part of the averaged spectrum is shown in the upper panel of Figure~\ref{fig:global_signal_data_vs_sim}, with the simulated PAPER transfer function (Figure~\ref{fig:xi_vis}) over-plotted for reference. The delay transforms of the two spectra are shown in the lower panel of the Figure.
+
+There were some enticing qualitative agreements. Clearly, the phases of the oscillations between simulation and data were very similar to one another; noticeable in the upper panel and very clear in the lower one. 
+The power within the foreground wedge region (e.g. Chapter~\ref{chapter:eor_window_theory}) was at the level of noise in the EoR window, indicating that foregrounds were attenuated at the appropriate delays, save, of course, the horizon delays.
+
+As predicted by the toy model in Section~\ref{subsec:toy_model}, the only unattenuated foreground signal appeared at the horizon delays of the 30\,m East-West baselines used in this analysis. As noted above, the observed and simulated delays aligned almost perfectly in delay space. This indicated that the dipole beam, as expected, was accurately described by a small number of spherical harmonic modes. The width of the peaks is determined by the width of the beam in delay space: that the simulated and observed widths matched relatively closely was indicative of an accurate polarized beam model. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{chapters/global_signal/figures/data_sim_freq.png}
+\includegraphics[width=0.7\textwidth]{chapters/global_signal/figures/data_sim_delay.png}
+\caption[Comparison of time-averaged PAPER-128 visibilities to the simulated transfer function. ]{Comparison of time-averaged, LST-binned PAPER-128 visibilities to the simulated transfer function in the `ee' polarization. Upper and lower panels show the spectra in frequency and delay space. See the text for discussion.}
+\label{fig:global_signal_data_vs_sim}
+\end{figure}
+
+The imperfect alignment of the oscillatory spectra was most likely due to some frequency-dependent phase slope, possibly from an imperfect projection of redundant calibration degeneracies \citep[e.g.][Chapter~\ref{chapter:polcal}]{Dillon.17}. Dividing one by the other would, according to Equation~\ref{eq:xi_def}, grant the global spectrum of the Galactic foregrounds, but that requires perfect alignment in order to avoid divisions by zero. \cite{Presley.15} provided an optimal quadratic estimator formalism to address this problem, which may be a promising route to pursue in future investigations.
+
+The amplitude of the observed spectrum in frequency space increased towards higher frequencies, the opposite direction as predicted by the simulations and as expected for a signal tied to low-frequency synchrotron radiation \citep{Mozden.17}. The cause of this effect was unclear, but may be due to imperfect wide-band bandpass calibration\footnote{Note that such imperfections were unlikely to affect the power spectra reported in Chapter~\ref{chapter:eor_window_psa128}, as these used only a narrow range of frequencies.}.
+
+\section{Discussion}
+
+This analysis was an exploratory one, driven by investigations in to time-averages from PAPER-64 data as reported in the public HERA memo \#6. In that memo I investigated the impact of calibration errors and antenna cross-talk on time-averaged visibilities, showing that D-term leakage (e.g. Chapter~\ref{chapter:polcal}) could introduce low levels of spectral structure into the time-average, broadening the `wings' of horizon-power in delay space. Understanding the cause and shape of this delay space power is essential for obtaining EoR power spectra at $k$-values close to the foreground wedge.
+
+The above analyses have shown that the PAPER beam and sky signal are accurately described by a low number of spherical harmonic modes. In our toy model we obtained delay-space signatures similar to those observed in data using only the ($\ell,m$)=(0,0) mode of the beam and sky, which had a relatively simple analytical form. The selection rules in our formalism do allow an arbitrary number of even $\ell$ modes to contribute to $\Xi(\hat{b},\nu)$, and developing a better understanding of those contributions may lead to a resolution to some of the problems described in the previous Section. Furthermore, a more advanced understanding of the effect of mis-calibration on the data that exceeds the conjectures above may resolve the offset between data and simulation. There may also be redundant calibration schemes that could provide an estimate of $\Xi(\hat{b},\nu)$ directly from the observed data.
+
+HERA \citep{deBoer.17} will represent the most powerful low-frequency interferometer of its kind, with far more redundant baselines to average-over and experiment with in its search for the EoR power spectrum. However, it may not be the best instrument for a search for the global signal. Its faceted dish structure leads to smaller beams, which in turn leads to a large number of spherical harmonic modes required for its description. This complicates an accurate simulation of $\Xi(\hat{b},\nu)$ and hence the extraction of the global signal from observations. Interferometers specifically designed to target the global signal and adhere to \cite{Venumadhav.16} may be more fruitful efforts.
+
+We have shown that the global signal is, in theory, detectable by an interferometer. Our exploration with PAPER-128 data yielded imperfect but promising results -- we may be quite close to a characterization of monopole power, following a relatively simple scheme. Much more work is required before a definitive claim of a detection, but in the mean time, our present observations remain exciting. % XXX NOT REALLY SURE HOW TO END THIS...
 
 \section*{Note: interpretation in light of \cite{Venumadhav.16}}
 The paper by \citealt{Venumadhav.16} conceptualizes a single
