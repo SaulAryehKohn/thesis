@@ -1,34 +1,42 @@
 \chapter{Peering through the EoR Window}
 \label{chapter:eor_window_theory}
 
-Chapter~\ref{chapter:eor_intro} argued the promise of direct observations of {\sc hi} during the EoR. A direct detection has not yet been made, largely due to the overwhelming power of foregrounds compared to the target signal. As shown in Chapter~\ref{chapter:astro_rad}, foreground radiation is a factor of roughly $10^4 -- 10^5$ times brighter than predicted 21\,cm anisotropies .  In the past decade, however, enormous improvements have been made in understanding how to decontaminate interferometric visibilities, and excavate the target signal. The leverage astronomers have to use is the exceptional smoothness of low-frequency synchrotron radiation, the dominant foreground emission mechanism. In this Chapter, I review the `Foreground Wedge \& EoR Window' paradigm used to delineate foreground power from noise and {\sc hi} emission. In Section
+Chapter~\ref{chapter:eor_intro} argued the promise of direct observations of {\sc hi} during the EoR. A direct detection has not yet been made, largely due to the overwhelming power of foregrounds compared to the target signal. As shown in Chapter~\ref{chapter:astro_rad}, foreground radiation is a factor of roughly $10^4 -- 10^5$ times brighter than predicted 21\,cm anisotropies .  In the past decade, however, enormous improvements have been made in understanding how to decontaminate interferometric visibilities, and excavate the target signal. The leverage astronomers have to use is the exceptional smoothness of low-frequency synchrotron radiation, the dominant foreground emission mechanism. In this Chapter, I review the `Foreground Wedge \& EoR Window' paradigm used to delineate foreground power from noise and {\sc hi} emission. In Section~\ref{sec:eor_window_foreground_wedge} I introduce the concept of the foreground wedge, and methods used by astronomers to take advantage of it: either avoiding it, or subtracting it. In Section~\ref{sec:eor_window_problem_of_pol}, I make plain how astrophysical and instrumental polarization complicates this picture.
 
-\section{The Wedge and the Window}  % ugh I don't like this section title
-\label{sec:wedge_and_window}
+\section{The foreground wedge \& the EoR window}  % ugh I don't like this section title
+\label{sec:eor_window_foreground_wedge}
 
+Mitigation of foregrounds is essential for accessing the EoR. This fact was recognized by \cite{Madau.97} in one of the first in-depth studies of the promises and challenges of 21\,cm tomography. To overcome foreground radiation, they suggested that fitting the synchrotron spectra, relying on its smoothness, may have been sufficiently accurate to subtract the foregrounds from the total signal.
+However, for the next two-or-so decades, there were few low-frequency instruments powerful and well-characterized enough to attempt an EoR detection, and precise observations of low-frequency foregrounds did not exist. The first work to concentrate solely on the foreground challenge was \cite{DiMatteo.02}. Their outlook was pessimistic, but they suggested the challenge was surmountable with sufficiently accurate and precise multi-frequency fitting. \cite{Peng.03} were among the first to point out that interferometers are inherently chromatic, and therefore the instrument itself must be taken in to account when considering the frequency dependence of EoR foregrounds.
 
+\cite{Wang.06}, while theoretically pursuing optimal methods of frequency cleaning, were among the first to discover the advantages of describing the foregrounds statistically in Fourier space. In their numerical simulations they recognized that visibilities, for single baselines, dominated by smooth synchrotron foregrounds could be Fourier transformed along their frequency axis and mapped in to a relatively narrow range of Fourier space. If the visibilities also contained spectrally-structured EoR and noise models, these required many more Fourier modes for their description. With sufficient bandwidth and frequency resolution, one would be able to delineate a boundary between these regions of Fourier space.
 
-%(Datta et al. 2010; Parsons et al. 2012b; Vedantham et al. 2012; Morales et al. 2012; Hazelton et al. 2013; Pober et al. 2013; Thyagarajan et al. 2013; Liu et al. 2014a,b).
+% Datta = coined term "wedge" and "window". "Discovered" the wedge -- more than one baseline!
+% Parsons 2012b => delay spectrum, provided explanation
+% explanation has been continually refined (Morales 12, Vedantham 12, Hazelton 13, Pober 13, Thyagarajan 2013, Trott 14, Liu 14a,b)
+% Nithya => importance of instrument, beam => strategies per instrument
 
 % foreground wedge and EoR window -- Nithya predictions -- importance of beam
-
-
 
 \subsection{Foreground avoidance}
 % Foreground avoidence: delay spectrum; basic PAPER and HERA results (including Kohn et al. 2016, 2018)
 \subsubsection{Power spectra}
 % Define power spectra in the delay paradigm
+% X and Y factors
 \subsubsection{Noise spectra}
 % define noise spectrum
 
 \subsection{Foreground subtraction}
 % Foreground subtraction: theory and LOFAR results
+% they need to subtract because they have almost no window
 
 \subsection{Hybrid methods}
 % Hybrid approach: MWA
 
 \section{The Problem of Polarization}
+\label{sec:eor_window_problem_of_pol}
 % polarization in wedge space -- my nice freq vs fourier space diagram? -- basically everything from Moore 2013
 
 
+% for the rest of this Part...
 In this Part, I have recorded my efforts to reduce interferometric observations from PAPER and HERA, taking as much care as possible to avoid introducing spectral structure to the visibilities. My work has centered around the problem of polarization in the EoR window paradigm. In the following Chapters, I discuss quality assurance metrics and data compression (Chapter~\ref{chapter:data_prep_and_proc}), polarized calibration (Chapter~\ref{chapter:polcal}), the effect of the ionosphere on polarized power spectra (Chapter~\ref{chapter:ionosphere}), and three successively deeper integrations on polarized power, concentrating on successively thinner slices of $k_{\perp}$ (Chapters~\ref{chapter:eor_window_paper32img} -- \ref{chapter:eor_window_psa128}).
