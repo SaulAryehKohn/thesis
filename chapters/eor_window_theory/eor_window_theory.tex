@@ -1,42 +1,102 @@
 \chapter{Peering through the EoR Window}
 \label{chapter:eor_window_theory}
 
-Chapter~\ref{chapter:eor_intro} argued the promise of direct observations of {\sc hi} during the EoR. A direct detection has not yet been made, largely due to the overwhelming power of foregrounds compared to the target signal. As shown in Chapter~\ref{chapter:astro_rad}, foreground radiation is a factor of roughly $10^4 -- 10^5$ times brighter than predicted 21\,cm anisotropies .  In the past decade, however, enormous improvements have been made in understanding how to decontaminate interferometric visibilities, and excavate the target signal. The leverage astronomers have to use is the exceptional smoothness of low-frequency synchrotron radiation, the dominant foreground emission mechanism. In this Chapter, I review the `Foreground Wedge \& EoR Window' paradigm used to delineate foreground power from noise and {\sc hi} emission. In Section~\ref{sec:eor_window_foreground_wedge} I introduce the concept of the foreground wedge, and methods used by astronomers to take advantage of it: either avoiding it, or subtracting it. In Section~\ref{sec:eor_window_problem_of_pol}, I make plain how astrophysical and instrumental polarization complicates this picture.
+Chapter~\ref{chapter:eor_intro} argued the promise of direct observations of {\sc hi} during the EoR. A direct detection has not yet been made, largely due to the overwhelming power of foregrounds compared to the target signal. As shown in Chapter~\ref{chapter:astro_rad}, foreground radiation is a factor of roughly $10^4 - 10^5$ times brighter than predicted 21\,cm anisotropies .  In the past decade, however, enormous improvements have been made in understanding how to decontaminate interferometric visibilities, and excavate the target signal. The leverage astronomers have to use is the exceptional smoothness of low-frequency synchrotron radiation, the dominant foreground emission mechanism. In this Chapter, I review the `Foreground Wedge \& EoR Window' paradigm used to delineate foreground power from noise and {\sc hi} emission. In Section~\ref{sec:eor_window_foreground_wedge} I introduce the concept of the foreground wedge, and methods used by astronomers to take advantage of it: either avoiding it, or subtracting it. In Section~\ref{sec:eor_window_problem_of_pol}, I make plain how astrophysical and instrumental polarization complicates this picture.
 
-\section{The foreground wedge \& the EoR window}  % ugh I don't like this section title
+\section{Foreground isolation}
 \label{sec:eor_window_foreground_wedge}
 
 Mitigation of foregrounds is essential for accessing the EoR. This fact was recognized by \cite{Madau.97} in one of the first in-depth studies of the promises and challenges of 21\,cm tomography. To overcome foreground radiation, they suggested that fitting the synchrotron spectra, relying on its smoothness, may have been sufficiently accurate to subtract the foregrounds from the total signal.
 However, for the next two-or-so decades, there were few low-frequency instruments powerful and well-characterized enough to attempt an EoR detection, and precise observations of low-frequency foregrounds did not exist. The first work to concentrate solely on the foreground challenge was \cite{DiMatteo.02}. Their outlook was pessimistic, but they suggested the challenge was surmountable with sufficiently accurate and precise multi-frequency fitting. \cite{Peng.03} were among the first to point out that interferometers are inherently chromatic, and therefore the instrument itself must be taken in to account when considering the frequency dependence of EoR foregrounds.
 
-\cite{Wang.06}, while theoretically pursuing optimal methods of frequency cleaning, were among the first to discover the advantages of describing the foregrounds statistically in Fourier space. In their numerical simulations they recognized that visibilities, for single baselines, dominated by smooth synchrotron foregrounds could be Fourier transformed along their frequency axis and mapped in to a relatively narrow range of Fourier space. If the visibilities also contained spectrally-structured EoR and noise models, these required many more Fourier modes for their description. With sufficient bandwidth and frequency resolution, one would be able to delineate a boundary between these regions of Fourier space.
+\cite{Wang.06} were among the first to discover the advantages of describing the foregrounds statistically in Fourier space. Working with numerical simulations, they recognized that forming 1-dimensional power spectra of brightness temperature anisotropies allowed them to isolate the foreground signal to low $k$ values (inverse spatial scales; units h/Mpc), while the EoR signal and noise dominated at high $k$s. With sufficient bandwidth and frequency resolution, one would be able to delineate a boundary between these regions of Fourier space.
 
-% Datta = coined term "wedge" and "window". "Discovered" the wedge -- more than one baseline!
-% Parsons 2012b => delay spectrum, provided explanation
-% explanation has been continually refined (Morales 12, Vedantham 12, Hazelton 13, Pober 13, Thyagarajan 2013, Trott 14, Liu 14a,b)
-% Nithya => importance of instrument, beam => strategies per instrument
+Simulating the GSM \citep{GSM.08}, a point source model, and an EoR model transiting a 512-element MWA, \cite{Datta.10} `discovered' the Wedge. They gridded power observed by a baseline in to ($k_{\perp}, k_{\parallel}$) space, where $k_{\perp}$ is proportional to the $u$ coordinate in the $uv$-plane (implying that $k_{\perp}$ is a measure of transverse scales) and $k_{\parallel}$ is proportional to the Fourier-conjugate of frequency (for redshifted 21\,cm emission, a measure of line-of-sight distance). This two-dimensional power spectrum was a generalization of the findings by \cite{Wang.06}, localizing foreground power to low $k_{\parallel}$ values (the `wedge') while 21\,cm power was not as contained, leaving EoR signal and noise at high $k_{\parallel}$ for any given baseline length, proportional to $k_{\perp}$ (see Figure~\ref{fig:eor_theory_wedge_cartoon} for an illustration).
 
-% foreground wedge and EoR window -- Nithya predictions -- importance of beam
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{chapters/eor_window_theory/figures/deBoerWedge.png}
+\caption[An illustration of the foreground wedge and the EoR window.]{An illustration of the foreground wedge and the EoR window. Bright synchrotron foregrounds (such as those imaged by the MWA, on the right) are localized in ($k_{\perp}, k_{\parallel}$) to a wedge-shaped region, while spectrally-structured 21\,cm power (simulations from \cite{Mesinger.11} on the left) exists throughout Fourier space -- crucially, outside of the wedge, in an EoR window. \cite{Pober.13} identified the requirement of a buffer region where instrumental effects could spill power just beyond the wedge region. Figure taken from \cite{deBoer.17}.}
+\label{fig:eor_theory_wedge_cartoon}
+\end{figure}
+
+\cite{Parsons.12a} were the first to provide a quantitative explanation of this structure in Fourier space. In their numerical simulations they recognized that visibilities dominated by smooth synchrotron foregrounds could be Fourier transformed along their frequency axis, and mapped into a narrow region of Fourier space. This is because the sinusoidal structure of the fringe term in the visibility equation, coupled with smooth sky emission and a smooth evolution of the beam term, produced a visibility that could be described with a relatively low number of Fourier modes. However, the inherent spectral structure of 21\,cm emission caused its power to scatter to high $k_{\parallel}$. Crucially, they realized that this allowed per-baseline access to a statistical power spectrum measurement of the EoR.
+
+The wedge \& window paradigm has been continually refined. First-principles derivations from, e.g., \cite{Trott.12, Vedantham.12 ,Hazelton.13, Liu.14.1, Liu.14.2} have provided solid theoretical grounding for observational efforts. \cite{Pober.13} identified the requirement of a `supra-horizon buffer' to account for excess power at the boundaries of the wedge, due to a convolution of instrumental spectral structure and beam side-lobes. The buffer is larger for short baselines, since the diffuse structure they probe is typically brighter, and its leaked can dominate over the noise in the EoR window.
+
+\cite{Nithya.15b} identified the importance of the beam for the structure of the EoR window. Forming `pitchfork' (i.e. accounting for the negative Fourier conjugates of frequency; see Figure~XXX) power spectra simulations of dipole, phased array and dish-type beams they showed that an identical sky model produced radically different morphologies in Fourier space. Dipole feeds which are capable of observing the entire hemisphere of the sky, such as those used for PAPER, created full `wedges' compared to, for example, dish elements, the tapered response of which isolated power to much narrower regions of Fourier space. Phased arrays, such as those used by the MWA, lay in a middle-ground of sorts. Their findings are reproduced in Figure~\ref{fig:eor_theory_nithya_pitchforks}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{chapters/eor_window_theory/figures/nithyaWedge.png}
+\caption[Different instrument receptivity patterns -- dipoles, phased arrays and dishes -- have different 2D power spectrum morphologies.]{Different instrument receptivity patterns -- dipoles, phased arrays and dishes -- have different 2D power spectrum morphologies. Figure taken from \cite{Nithya.15b}.}
+\label{fig:eor_theory_nithya_pitchforks}
+\end{figure}
+
+Once the wedge and window have been formed, how does one proceed to extract the 21\,cm EoR signature from the noise? As mentioned above, the instrument used to make the measurement will play a key role in this decision, and PAPER, the MWA and LOFAR have approached extraction of the signal from different directions. These can be roughly placed in to three categories: foreground avoidance, foreground subtraction, and hybrid methods.
 
 \subsection{Foreground avoidance}
-% Foreground avoidence: delay spectrum; basic PAPER and HERA results (including Kohn et al. 2016, 2018)
+
+The foreground avoidance strategy is roughly synonymous with the `delay spectrum' approach. \cite{ParsonsBacker.09} defined the delay spectrum as the Fourier transform of a visibility with respect to the frequency axis (c.f. Chapter~\ref{chapter:interferometry}; Section~\ref{subsubsec:interferometry_1dclean}),
+\begin{equation}
+\tilde{V}_{ij}(\tau,t) = \int {\rm d}\nu V_{ij}(\nu,t)e^{2\pi i \nu \tau},
+\end{equation}
+for delay $\tau$. This transform maps flat-spectrum emitters to Dirac delta functions in delay space, where the delay of the source is the geometrical time delay for their radiation to be received by antenna $i$ and antenna $j$ (see Figure~\ref{fig:delay_space_parsons12b}). Note that this implies a maximum possible delay value, given by the light travel-time along the baseline vector. This maximum occurs at the horizon, and is referred to as the `horizon delay' or `horizon limit', $\tau_h$. With sufficient bandwidth and frequency resolution, this boundary can be clearly delineated, shown as black dashes lines for baselines of increasing length in Figure~\ref{fig:eor_window_parsons_adapt}. Synchrotron sources are not typically flat-spectrum, but their spectra are smooth. This creates a broadening kernel that convolves the delta function at a given delay. Emission with more frequency structure will have a broader signature in delay space. This is the primary motivation of the delay spectrum. Fourier-transforming foreground emission will contain it at delay values $\tau \leq \tau_h$, whereas spectrally structured EoR and noise power will scatter in to modes $\tau > \tau_h$. Figure~\ref{fig:eor_window_parsons_adapt}, adapted from \cite{Parsons.12a}, illustrates this by simulating the delay spectra of visibilities containing four smooth-spectrum sources and a greatly-amplified EoR signature in one portion of the sky. A Blackman-Harris window was used during the delay transform to minimize sidelobes. Time increases up the vertical axis; as time goes by, sources rise and set from horizon to horizon, but the EoR signature exists both inside and outside of horizon delays. The baseline dependence of the maximum delay foregrounds are allowed to occupy is what gives rise to the pitchfork shown in Figure~\ref{fig:eor_theory_nithya_pitchforks}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{chapters/eor_window_theory/figures/parsonsAdapt.pdf}
+\caption[Delay vs. time for a simple sky model of four foreground-like, smooth-spectrum sources and an EoR-like (but greatly amplified), spectrally structured signal.]{Delay vs. time for a simple sky model of four foreground-like, smooth-spectrum sources and an EoR-like (but greatly amplified), spectrally structured signal. The foregrounds are contained within horizon delays (black dashed lines), but the EoR signal scatters outside of the boundaries. The three panels show the same sky observed by progressively longer baselines (left to right: 32, 64, and 128\,m). The horizontal is in units of nanoseconds, and the vertical axis is in units of days. A Blackman-Harris window was used during the delay transform to minimize sidelobes. Figure adapted from \cite{Parsons.12a}.}
+\label{fig:eor_window_parsons_adapt}
+\end{figure}
+
 \subsubsection{Power spectra}
-% Define power spectra in the delay paradigm
-% X and Y factors
+
+To extract cosmological information from observed intensity in delay space, it is useful to form power spectra, which we define for the delay spectrum paradigm below. To convert $u$ to $k_{\perp}$ and $\tau$ to $k_{\parallel}$, \cite{Parsons.12b} defined cosmological scalars:
+\begin{align}
+X &= 6.5 \times 10^3 \sqrt{\frac{0.27}{\Omega_m}}\left(\frac{1+z}{10}\right)^{0.2} {\rm Mpc/(h\,rad)}, \\
+Y &= 1.7 \times 10^{-2} \sqrt{\frac{0.27}{\Omega_m}} \sqrt{\frac{1+z}{10}} {\rm Mpc/(h\,GHz)},
+\end{align}
+such that $X$ describes a comoving transverse scale, $Y$ describes a comoving line-of-sight distance, and
+\begin{equation}
+2\pi(ul + vm + \tau\nu) = k_x x /X + k_y y/ X + k_z z/Y,
+\end{equation}
+where $l$ and $m$ are directional cosines, $k_i$ measure cosmological wavemodes for comoving coordinates $x,y,z$. $k_z$ and $k_{\parallel}$ are interchangeable in this convention, and $k_{\perp} = \sqrt{k_x^2 + k_y^2}$.
+
+The power measured by a delay-transformed visibility is given by a cross-multiplication of two instances of the visibility. Using the classical visibility equation for simplicity,
+\begin{align}
+\tilde{V}^*\tilde{V} &\approx \int^{(6)} A(l,m,\nu)A(l',m',\nu') S(l,m,\nu) S(l',m',\nu')\\
+					\times	 & e^{-2\pi i (u (l-l') + v (m-m') + \tau (\nu - \nu'))} {\rm d}l {\rm d}l' {\rm d}m {\rm d}m' {\rm d}\nu {\rm d}\nu'.
+\end{align}
+We can convert from intensity to brightness temperature using $S(l,m,\nu) = 2k_BT(l,m,\nu)/\lambda^2$. 
+This leads to a correlation function $\xi_{T}$ within the integral.
+For a beam that spans area $\Omega$ and a delay transform over $\Delta\nu$, \cite{Parsons.12a} showed that the power can be expressed as
+\begin{equation}
+| \tilde{V}(u,v,\tau) |^2 \approx \frac{Omega\Delta\nu}{X^2 Y} \left(\frac{2k_B}{\lambda^2}\right)^2 \int^{X\sqrt{\Omega}_{-X\sqrt{\Omega}} \int^{X\sqrt{\Omega}_{-X\sqrt{\Omega}} \int^{Y\Delta\nu}_{-Y\Delta\nu} \xi_T(\vec{r})e^{-i\vec{k}\cdot\vec{r}}{\rm d}^3r.
+\end{equation}
+In the limit of the integral spanning many phase-wraps of $e^^{-i\vec{k}\cdot\vec{r}}$, the integral can be expressed as a power spectrum of $\vec{k}$, and the above equation can be rearranged to give
+\begin{equation}
+P(\vec{k}) = \left(\frac{\lambda^2}{2k_B}\right)^2 \frac{(\Omega \Delta\nu)^2}{D^2 \Delta D} | \tilde{V}(u,v,\tau) |^2
+\end{equation}
+for comoving area $D^2 = X^2\Omega$ and comoving distance $Y\Delta\nu = \Delta D$.
+
 \subsubsection{Noise spectra}
 % define noise spectrum
+%"The foreground avoidance scheme is to filter or mask-out the wedge, leaving only noise+EoR..."
 
 \subsection{Foreground subtraction}
 % Foreground subtraction: theory and LOFAR results
 % they need to subtract because they have almost no window
+%% Patil 17
 
 \subsection{Hybrid methods}
 % Hybrid approach: MWA
+%% Jacobs 2016(?)
 
 \section{The Problem of Polarization}
 \label{sec:eor_window_problem_of_pol}
 % polarization in wedge space -- my nice freq vs fourier space diagram? -- basically everything from Moore 2013
-
+%% "PAPER/HERA from Kohn 2016,18 will be discussed later"
 
 % for the rest of this Part...
 In this Part, I have recorded my efforts to reduce interferometric observations from PAPER and HERA, taking as much care as possible to avoid introducing spectral structure to the visibilities. My work has centered around the problem of polarization in the EoR window paradigm. In the following Chapters, I discuss quality assurance metrics and data compression (Chapter~\ref{chapter:data_prep_and_proc}), polarized calibration (Chapter~\ref{chapter:polcal}), the effect of the ionosphere on polarized power spectra (Chapter~\ref{chapter:ionosphere}), and three successively deeper integrations on polarized power, concentrating on successively thinner slices of $k_{\perp}$ (Chapters~\ref{chapter:eor_window_paper32img} -- \ref{chapter:eor_window_psa128}).
