@@ -24,16 +24,16 @@ Simulating the GSM \citep{GSM.08}, a point source model, and an EoR model transi
 
 The wedge \& window paradigm has been continually refined. First-principles derivations from, e.g., \cite{Trott.12, Vedantham.12 ,Hazelton.13, Liu.14.1, Liu.14.2} have provided solid theoretical grounding for observational efforts. \cite{Pober.13} identified the requirement of a `supra-horizon buffer' to account for excess power at the boundaries of the wedge, due to a convolution of instrumental spectral structure and beam side-lobes. The buffer is larger for short baselines, since the diffuse structure they probe is typically brighter, and its leaked can dominate over the noise in the EoR window.
 
-\cite{Nithya.15b} identified the importance of the beam for the structure of the EoR window. Forming `pitchfork' (i.e. accounting for the negative Fourier conjugates of frequency; see Figure~XXX) power spectra simulations of dipole, phased array and dish-type beams they showed that an identical sky model produced radically different morphologies in Fourier space. Dipole feeds which are capable of observing the entire hemisphere of the sky, such as those used for PAPER, created full `wedges' compared to, for example, dish elements, the tapered response of which isolated power to much narrower regions of Fourier space. Phased arrays, such as those used by the MWA, lay in a middle-ground of sorts. Their findings are reproduced in Figure~\ref{fig:eor_theory_nithya_pitchforks}.
+\cite{Nithya.15b} identified the importance of the beam for the structure of the EoR window. Forming `pitchfork' (i.e. accounting for the negative Fourier conjugates of frequency; see Figure~\ref{fig:eor_theory_nithya_pitchforks}) power spectra simulations of dipole, phased array and dish-type beams they showed that an identical sky model produced radically different morphologies in Fourier space. Dipole feeds which are capable of observing the entire hemisphere of the sky, such as those used for PAPER, created full `wedges' compared to, for example, dish elements, the tapered response of which isolated power to much narrower regions of Fourier space. Phased arrays, such as those used by the MWA, lay in a middle-ground of sorts. Their findings are reproduced in Figure~\ref{fig:eor_theory_nithya_pitchforks}.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.7\textwidth]{chapters/eor_window_theory/figures/nithyaWedge.png}
+\includegraphics[width=0.8\textwidth]{chapters/eor_window_theory/figures/nithyaWedge.png}
 \caption[Different instrument receptivity patterns -- dipoles, phased arrays and dishes -- have different 2D power spectrum morphologies.]{Different instrument receptivity patterns -- dipoles, phased arrays and dishes -- have different 2D power spectrum morphologies. Figure taken from \cite{Nithya.15b}.}
 \label{fig:eor_theory_nithya_pitchforks}
 \end{figure}
 
-Once the wedge and window have been formed, how does one proceed to extract the 21\,cm EoR signature from the noise? As mentioned above, the instrument used to make the measurement will play a key role in this decision, and PAPER, the MWA and LOFAR have approached extraction of the signal from different directions. These can be roughly placed in to three categories: foreground avoidance, foreground subtraction, and hybrid methods.
+Once the wedge and window have been formed, how does one proceed to extract the 21\,cm EoR signature from the noise? As mentioned above, the instrument used to make the measurement will play a key role in this decision, and PAPER, the MWA and LOFAR have approached extraction of the signal from different directions. These can be roughly placed in to two categories: foreground avoidance and foreground subtraction.
 
 \subsection{Foreground avoidance}
 
@@ -72,31 +72,55 @@ We can convert from intensity to brightness temperature using $S(l,m,\nu) = 2k_B
 This leads to a correlation function $\xi_{T}$ within the integral.
 For a beam that spans area $\Omega$ and a delay transform over $\Delta\nu$, \cite{Parsons.12a} showed that the power can be expressed as
 \begin{equation}
-| \tilde{V}(u,v,\tau) |^2 \approx \frac{Omega\Delta\nu}{X^2 Y} \left(\frac{2k_B}{\lambda^2}\right)^2 \int^{X\sqrt{\Omega}_{-X\sqrt{\Omega}} \int^{X\sqrt{\Omega}_{-X\sqrt{\Omega}} \int^{Y\Delta\nu}_{-Y\Delta\nu} \xi_T(\vec{r})e^{-i\vec{k}\cdot\vec{r}}{\rm d}^3r.
+| \tilde{V}(u,v,\tau) |^2 \approx \frac{\Omega\Delta\nu}{X^2 Y} \left(\frac{2k_B}{\lambda^2}\right)^2 \int^{X\sqrt{\Omega}}_{-X\sqrt{\Omega}} \int^{X\sqrt{\Omega}}_{-X\sqrt{\Omega}} \int^{Y\Delta\nu}_{-Y\Delta\nu} \xi_T (\vec{r})e^{-i\vec{k}\cdot\vec{r}}{\rm d}^3 r.
 \end{equation}
-In the limit of the integral spanning many phase-wraps of $e^^{-i\vec{k}\cdot\vec{r}}$, the integral can be expressed as a power spectrum of $\vec{k}$, and the above equation can be rearranged to give
+In the limit of the integral spanning many phase-wraps of $e^{-i\vec{k}\cdot\vec{r}}$, the integral can be expressed as a power spectrum of $\vec{k}$, and the above equation can be rearranged to give
 \begin{equation}
 P(\vec{k}) = \left(\frac{\lambda^2}{2k_B}\right)^2 \frac{(\Omega \Delta\nu)^2}{D^2 \Delta D} | \tilde{V}(u,v,\tau) |^2
+\label{eq:eor_theory_pspec_def}
 \end{equation}
-for comoving area $D^2 = X^2\Omega$ and comoving distance $Y\Delta\nu = \Delta D$.
+for comoving area $D^2 = X^2\Omega$ and comoving distance $Y\Delta\nu = \Delta D$. For 21\,cm emission, we can describe the transverse and line-of-sight components of $\vec{k}$ as
+\begin{equation}
+k_{\parallel} = \frac{2\pi\nu_{\rm 21\,cm}H(z)}{c(1+z)^2}\tau ;\,\,\,\,k_{\perp} = \frac{2\pi}{D\lambda}b
+\end{equation}
+
+The definition in Equation~\ref{eq:eor_theory_pspec_def} allows us to describe delay-transformed visibilities in terms of cosmological power, as a function of $\vec{k}$. In the foreground avoidance scheme, filters or masks can be implemented to remove or ignore power at values of $k_{\parallel}$ corresponding to delays $\tau \leq \tau_h + \tau_{sh}$, where $\tau_{sh}$ is the supra-horizon buffer discovered by \cite{Pober.13} and chosen by the observer. This nominally leaves only noise and EoR signals in the power spectra.
 
 \subsubsection{Noise spectra}
-% define noise spectrum
-%"The foreground avoidance scheme is to filter or mask-out the wedge, leaving only noise+EoR..."
+
+To estimate the sensitivity of the delay spectrum to 21\,cm anisotropies, we must map the thermal noise of the interferometer in to delay space. Noise in visibilities is described by the \textit{system temperature}, consisting of two components: the receiver temperature ($T_{\rm rxr}$), representing the noise due to the electronics and outside noise from ground reflections and ohmic loss, and the sky temperature ($T_{\rm sky}$), representing the variance in power emitted from the field of observation \citep{TMS}.
+
+Concentrating on the $I\rightarrow I$ component of the direction dependent Mueller matrix (c.f. Chapter~\ref{chapter:interferometry}), 
+\begin{equation}
+T_{\rm sky}(\nu) = \frac{\int {\rm d}\hat{s} A(\hat{s},\nu) S(\hat{s},\nu) }{\int {\rm d}\hat{s} A(\hat{s},\nu)}
+\end{equation}
+which at low-frequencies and wide fields-of-view is expected to dominate over $T_{\rm rxr}$. Measuring the average root mean square difference between every-other visibility recorded for a given baseline typically gives a good estimate of the system temperature $T_{\rm sys} = T_{\rm sky} + T_{\rm rxr}$. \cite{Parsons.12b} (and also see public HERA memo \#27) showed that the power spectrum due to system noise is approximately
+\begin{equation}
+P_N(k) \approx \frac{1}{2\Delta t} X^2 Y \Omega_{\rm eff} B_{\rm NE} T_{\rm sys}^2,
+\end{equation}
+where $\Delta t$ is the integration time, $B_{\rm NE}$ is the noise-effective bandwidth given by the choice of window used during the delay transform, and $\Omega_{\rm eff}$ is the effective beam area, defined in \cite{Parsons.14} as
+\begin{equation}
+\Omega_{\rm eff}(\nu) = \frac{| \int {\rm d}\hat{s} A(\hat{s}\nu) |^2}{\int {\rm d}\hat{s} | A(\hat{s},\nu) |^2 }.
+\end{equation}
+
+The system temperatures of PAPER and the MWA are between 200 and 300\,K (public HERA memo \#10). These levels make the instrument itself a substantial noise source to overcome in order to reach EoR power levels. This forces EoR experiments to integrate noise down over long observing seasons -- and the data under integration must be noise limited, rather than systematic limited (c.f. Chapter~\ref{chapter:data_prep_and_proc}) -- to obtain limits, and in the future, detections, of the EoR. {\color{red} Cheng et al. (in prep.)} show in detail that many factors of the observation season contribute to averaging-down the noise. Specifically,
+\begin{equation}
+P_N(k) \propto \frac{T_{\rm sys}^2}{\sqrt{N_{\rm LST} N_{\rm seps}} t_{\rm int} N_{\rm days} N_{\rm bl} N_{\rm pol}} 
+\end{equation}
+where $N_{\rm LST}$ are the number of LST hours sampled, $N_{\rm seps}$ are the number of baseline types averaged incoherently (in Chapter~\ref{chapter:eor_window_psa128}, this number is 3),  $t_{\rm int}$ is the effective integration time after fringe-rate filtering (see Chapters~\ref{chapter:data_prep_and_proc} and \ref{chapter:eor_window_psa128}), $N_{\rm days}$ is the effective number of days analyzed, given LST-coverage per day, $N_{\rm bl}$ is the total number of baselines used, and $N_{\rm pol}$ is the number of instrumental polarizations -- which for all power spectra in this thesis is 2.
+
+In Chapter~\ref{chapter:eor_window_psa128} I present the deepest limits achieved by the PAPER experiment using foreground-avoidance techniques. Figure~\ref{fig:eor_intro_pspec_limits} showed the current best limits on the EoR power spectrum, most of which were noise-limited. The best limits still require a factor of $10^3$ more sensitivity before a marginal detection is possible. This in turn requires larger arrays, integrating for longer amounts of time -- an effort that the construction of HERA represents progress on.
 
 \subsection{Foreground subtraction}
-% Foreground subtraction: theory and LOFAR results
-% they need to subtract because they have almost no window
-%% Patil 17
 
-\subsection{Hybrid methods}
-% Hybrid approach: MWA
-%% Jacobs 2016(?)
+Given a finite bandwidth, increasing the length of baselines shrinks the size of the EoR window for that $k_{\perp}$ value. It is possible to construct arrays with such long baselines that the EoR window effectively disappears, and the delay spectrum approach becomes inappropriate. Instead, the wedge must be interacted with in some way. Substantial progress has been made by modelling and subtracting point source contributions from visibilities \citep[e.g.][]{Patil.17}. Point sources dominate the wedge at high $k_{\perp}$ values \citep[e.g.][]{Trott.12} -- subtraction of point source power has the effect of `flattening' the top of the wedge and opening-up some region of it for EoR analysis. However, \cite{Barry.16} showed that an incomplete point source catalog can lead to contamination large enough to prohibit a statistical detection of the EoR.
+Both \cite{Kohn.16} and \cite{Patil.17} found -- for very different regions of $k$-space -- that improved phase calibration had a similar effect to point source subtraction, lowering the amplitude of the high ($k_{\perp},k_{\parallel}$) region of the wedge.
 
 \section{The Problem of Polarization}
 \label{sec:eor_window_problem_of_pol}
-% polarization in wedge space -- my nice freq vs fourier space diagram? -- basically everything from Moore 2013
-%% "PAPER/HERA from Kohn 2016,18 will be discussed later"
+% polarization in wedge space -- my nice freq vs fourier space diagram? -- basically everything from Moore 2013, 17
+
+
 
 % for the rest of this Part...
 In this Part, I have recorded my efforts to reduce interferometric observations from PAPER and HERA, taking as much care as possible to avoid introducing spectral structure to the visibilities. My work has centered around the problem of polarization in the EoR window paradigm. In the following Chapters, I discuss quality assurance metrics and data compression (Chapter~\ref{chapter:data_prep_and_proc}), polarized calibration (Chapter~\ref{chapter:polcal}), the effect of the ionosphere on polarized power spectra (Chapter~\ref{chapter:ionosphere}), and three successively deeper integrations on polarized power, concentrating on successively thinner slices of $k_{\perp}$ (Chapters~\ref{chapter:eor_window_paper32img} -- \ref{chapter:eor_window_psa128}).
