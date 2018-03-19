@@ -119,8 +119,21 @@ Both \cite{Kohn.16} and \cite{Patil.17} found -- for very different regions of $
 \section{The Problem of Polarization}
 \label{sec:eor_window_problem_of_pol}
 % polarization in wedge space -- my nice freq vs fourier space diagram? -- basically everything from Moore 2013, 17
+Polarized, Faraday-rotated radiation represents a challenge for both foreground avoidance and subtraction strategies. This challenge is summarized in Figure~XXX.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.55\textwidth]{chapters/eor_window_theory/figures/vis_divBp_1pctDIleak_RM500.png}
+\includegraphics[width=0.55\textwidth]{chapters/eor_window_theory/figures/dly_1pctDIleak_RM500.png}
+\caption[A summary of the problem posed by polarization for EoR experiments.]{A summary of the problem posed by polarization for EoR experiments. This is somewhat of a cartoon representation, so the overall power levels should not be taken as accurate forecasts, but they are physically motivated (see Chapter~\ref{chapter:astro_rad}). Above are spectra for unpolarized and polarized synchrotron, the EoR, Faraday-rotated Stokes Q, and a fraction $\gamma_{+-}$ of Faraday-rotated Stokes Q that can leak in to Stokes I. Below, those spectra multiplied by a model bandpass and delay-transformed; the horizon delay for a 30\,m baseline is shown in black. Leaked, Faraday-rotated Stokes Q resembles the EoR.}
+\end{figure}
 
 
+% talk through diagram
+% Moore 13 => different RMs affect different k-modes
+% Moore 17 (and Chapters paper wedge + hera wedge + psa128 corroborate) => any leakage still below noise level
+% Nunhokee 17 => Moore 17 sets <p> <0.1% @ 126 MHz (observed; not accounting for depolarization) => perhaps something to worry about
+% Moore 17, Chapter~ionosphere, Martinot et al. in prep. => seasons of high solar activity <=> more ionospheric depol
 
 % for the rest of this Part...
 In this Part, I have recorded my efforts to reduce interferometric observations from PAPER and HERA, taking as much care as possible to avoid introducing spectral structure to the visibilities. My work has centered around the problem of polarization in the EoR window paradigm. In the following Chapters, I discuss quality assurance metrics and data compression (Chapter~\ref{chapter:data_prep_and_proc}), polarized calibration (Chapter~\ref{chapter:polcal}), the effect of the ionosphere on polarized power spectra (Chapter~\ref{chapter:ionosphere}), and three successively deeper integrations on polarized power, concentrating on successively thinner slices of $k_{\perp}$ (Chapters~\ref{chapter:eor_window_paper32img} -- \ref{chapter:eor_window_psa128}).
