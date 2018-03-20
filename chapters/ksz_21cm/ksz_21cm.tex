@@ -1,53 +1,104 @@
 \chapter{Higher-order correlation functions between kSZ and 21cm observations}
 \label{chapter:ksz_21cm}
 
-In Chapter~\ref{chapter:eor_intro}, it was discussed that there are many probes of the EoR beyond {\sc hi}. Secondary anisotropies of the CMB can be used as probes of reionization, mainly due to the fact that reionization represents a large source of free electrons, which CMB photons can scatter off of. The pattern of scattering -- the secondary anisotropies -- is sensitive to the topology of the {\sc hi} field. This Chapter focuses on a particular mechanism for producing secondary anisotropies; the kinetic Sunyaev-Zel'dovich effect (kSZ; CITE SOMETHING). We present novel mathematical theories for understanding the correlation between future CMB and EoR measurements, taking instrumental noise and the EoR window into account in a way not presently explored in the literature. In Section~\ref{sec:ksz-21cm} we make clear the link between the EoR and the kSZ effect, and the separate challenges to detecting either. In Sections~\ref{sec:bispec} and \ref{sec:trispec}, we present semi-analytic theory and results from simulation for the kSZ$^2$-21cm bispectrum and the kSZ$^2$-21cm$^2$ trispectrum, respectively.
+In Chapter~\ref{chapter:eor_intro}, it was discussed that there are many probes of the EoR beyond {\sc hi}. Secondary anisotropies of the CMB can be used as probes of reionization, mainly due to the fact that reionization represents a large source of free electrons, which CMB photons can scatter off of. The pattern of scattering -- the secondary anisotropies -- is sensitive to the topology of the {\sc hi} field. This Chapter focuses on a particular mechanism for producing secondary anisotropies; the kinetic Sunyaev-Zel'dovich effect (kSZ). We present novel mathematical theories or understanding the correlation between future CMB and EoR measurements, taking instrumental noise and the EoR window into account in a way not presently explored in the literature. In Section~\ref{sec:ksz-21cm} we make clear the link between the EoR and the kSZ effect, and the separate challenges to detecting either. In Sections~\ref{sec:bispec} and \ref{sec:trispec}, we present semi-analytic theory and results from simulation for the kSZ$^2$-21cm bispectrum and the kSZ$^2$-21cm$^2$ trispectrum, respectively.
 
 \section{The kSZ-21cm connection}
 \label{sec:ksz-21cm}
-% note somewhere in here that we always need two lots of kSZ 
 
-% Since the kSZ is sourced by the momentum of ionized gas, we expect it to be correlated with the ionized bubbles during reionization, and therefore anticorrelated with 21cm intensity maps.
+The kSZ probes the cosmic momentum field; photons are Doppler-boosted off of clouds of electrons around ionizing sources. The 21\,cm signal, of course, probes where those ionizing sources \textit{are not}, so we should expect the kSZ and 21\,cm signal to be anti-correlated. 
 
-% note link between n-point correlation functions and fourier spectra
+The anisotropies induced on the CMB by the kSZ is given by (Equation~\ref{eq:eor_intro_ksz}):
+\begin{equation}
+\frac{\delta T_{\rm kSZ}}{T_{\rm CMB}}(\hat{s}) = \frac{\sigma_T}{c} \int_0^{z_{\rm recomb}} n_e(z)e^{-\tau(z)} \hat{s}\cdot\vec{q} \frac{{\rm d}s}{{\rm d}z}{\rm d}z,
+\label{eq:eor_intro_ksz}
+\end{equation}
+where $\sigma_T$ is the Thomson Cross Section, $n_e(z)$ is the average number density of electrons at redshift $z$, $\tau(z)$ is the optical depth to redshift $z$, and d$s$/d$z$ is the cosmological line element to redshift $z$ along direction $\hat{s}$. 
+The momentum field $q$ can be expressed as:
+\begin{equation}
+\vec{q}(\hat{s}) = (1+\delta_x)(1+\delta_b)\vec{v}(\hat{s}),
+\end{equation}
+where  $1+\delta_x = x_i/\left\langle x_i \right\rangle$, $1+\delta_b= \rho_b/\left\langle \rho_b \right\rangle$, $\vec{v}$ is the free electron bulk flow, and $\left\langle ... \right\rangle$ indicates an average over position $\vec{x}$. 
+The kSZ is sourced by momentum of ionized gas, but we only detect the component of that momentum over a given line-of-sight $\hat{n}$, of which only the integrated, transverse component of the wavevector $\vec{k}$ will survive.
+This representation allows us to approximate $\delta T_{\rm kSZ}$ as
+\begin{align}
+\delta T_{\rm kSZ} &\propto \vec{q}\cdot\hat{n}(\vec{k}) = \vec{v}(\vec{x})\left[1 + \delta_x(\vec{x}) + \delta_{\rho}(\vec{x})\right]\cdot\hat{n}(\vec{k})\\
+\times & \int \frac{{\rm d}^3k'}{(2\pi)^3}\vec{v}(\vec{k}')\hat{k}'\cdot\hat{n}\left[\delta_x(\vec{k}-\vec{k}') + \delta_{\rho}(\vec{k}-\vec{k}')\right].
+\end{align}
+where the constant of proportionality can be expressed as a window function, described below in Equation~\ref{eq:WkSZ}. 
 
-% mathematical form of kSZ and 21cm maps
-
+Likewise, the 21\,cm brightness temperature as a function of position can be expressed as (see Chapter~\ref{chapter:eor_intro}):
 \begin{equation}
 \delta_{\rm 21cm}(\vec{x}) \approx T_0^{\rm 21cm} \left\langle x_{\sc hi} \right\rangle \left[1 + \delta_{x_{\rm HI}}(\vec{x})\right] \left[1 + \delta_\rho(\vec{x})\right]
 \label{eq:d21cm}
 \end{equation}
-where $\delta_\rho$ is fractional baryon overdensity, and $\left\langle ... \right\rangle$ indicates an average over position $\vec{x}$. To compare with the kSZ, described below, it will be useful to speak in terms of the ionization overdensity field $\delta_x(\vec{x})$, rather than the neutral overdensity one ($\delta_{x_{\sc hi}}(\vec{x})$) above. This just brings out a prefactor:
-
+To compare with the kSZ, it will be useful to speak in terms of the ionization overdensity field rather than neutral overdensity $\delta_{x_{\sc hi}}(\vec{x})$. This just brings out a prefactor,
 \begin{equation}
-\delta_{x_{\sc hi}}(\vec{x}) = \frac{-\langle x_i \rangle}{1 - \langle x_i \rangle} \delta_x(\vec{x})
+\delta_{x_{\sc hi}}(\vec{x}) = \frac{-\langle x_i \rangle}{1 - \langle x_i \rangle} \delta_x(\vec{x}).
 \end{equation}
-where $\langle x_i \rangle$ is the spatial mean ionization fraction. So our representation of the 21\,cm temperature contrast becomes
-
+So our representation of the 21\,cm temperature contrast becomes
 \begin{equation}
 \delta_{\rm 21cm}(\vec{x}) = T_0^{\rm21cm} (1 - \langle x_i \rangle ) \left[ 1 - \frac{\langle x_i \rangle}{1 - \langle x_i \rangle} \delta_x(\vec{x}) + \delta_{\rho}(\vec{x})  - \frac{\langle x_i \rangle}{1 - \langle x_i \rangle} \delta_x(\vec{x}) \delta_{\rho}(\vec{x}) \right]
 \label{eq:d21cm_x}
 \end{equation}
 
-% assumptions
+In the proceeding sections, we form higher-order correlation functions represented as bispectra (the Fourier analog of the three-point function) and trispectra (the four-point function). The reason for moving higher than the power spectrum (the two-point function) was because while the 21\,cm field is positive-definite, the kSZ anisotropies are not. Cosmic bulk flows could be oriented towards or away from the observer, and averaging the kSZ over the field would heavily attenuate it. Therefore, we required at least the square of the kSZ field -- and thus a move to higher-order statistics.
 
+To simplify the mathematical derivations, we made a few simplifying assumptions: (i) at high redshifts, peculiar velocities along the line-of-sight were small compared to the Hubble Flow, (ii) X-ray heating effects close to the start of reionization pushed the spin temperature of {\sc hi} $T_S \gg T_{\rm CMB}$ \citep[e.g.][]{Meiksin.17}, and (iii) the velocity field was coherent on large scales \citep[e.g.][]{Smith.16}.
 
 \subsection{Foregrounds}
 
-\subsection{Noises}
+As discussed throughout this work, the major foreground EoR experiments face is bright Galactic and extragalactic synchrotron. We ignore polarization contamination for this Chapter. In Section~\ref{sec:bispec}, we will show that the bispectrum, while theoretically and computationally tangible, is extremely sub-optimal in the context of 21\,cm observations, forcing the power measured to be sourced from within the wedge. The study of the trispectrum, presented in Section~\ref{sec:trispec}, was motivated by this limitation and overcomes it in a rather elegant fashion.
+
+Foreground challenges for the kSZ exist on large scales as the primary CMB anisotropies and the secondary ones from the thermal Sunyaev-Zeldovich effect, and on small scales as the far-infrared background (FIB). Both of these foregrounds are minimal around multipoles $\ell 3000 - 6000$. The FIB effectively manifests as a shot-noise term in CMB maps, and could reasonably be windowed or subtracted to allow access to multipoles out to $\ell\sim 13,000$ for near-future CMB surveys (known as `Stage 3 and 4' in the cosmology community; \citealt{cmbS4.16}).
+
+\subsection{Noise Estimates}
+
+The single bispectrum triangle or trispectrum rectangle (see Sections~\ref{sec:bispec} and \ref{sec:trispec} respectively) will depend on the $C_{\ell}$ spectrum of noise arising from CMB and 21\,cm experiments. 
+
+For the CMB, as noted above, measurements at appropriate $\ell$ values will leave the FIB as the dominant noise source. The minimum value of this term was reported by \cite{George.15} as 
+\begin{equation}
+\hat{D}_{\ell = 3501 - 3900} = \left\langle \frac{\ell(\ell+1)}{2\pi}C_{\ell} \right\rangle_{\ell = 3501 - 3900} = 30.8\pm 1.2\mu {\rm K}^2.
+\end{equation}
+
+\subsubsection{$C_{\ell}$ noise for HERA}
+
+Massively-redundant interferometers typically make for poor imaging instruments, since they probe a relatively small number of $uv$ modes (e.g. Chapter~\ref{chapter:interferometry}). One of HERA's innovations is that, once fully constructed, it will be both highly redundant and a relatively high-fidelity imager. This is due to its raw number of baselines, but also because it will be split in to three dense sections with a cloud of outriggers, each positioned on a redundant sub-grid. This allows HERA to gain the long baselines required for point-source imaging and a more fully-populated $uv$-plane, while maintaining redundant calibratability \citep{Dillon.16, deBoer.17}.
+
+As such, the expression for $C^N_{\ell}$ spherically-averaged power spectrum for noise on multipole $\ell$ has not yet been formulated in the literature. We calculate it here, starting from Equation 57 of \cite{Zaldarriaga.04}, assuming it holds for a single baseline:
+\begin{equation}
+C^N_{\ell, {\rm single}} = \frac{T_{\rm sys}^2}{\Delta\nu t_{\nu} {\rm d}^2 u} = 4\pi^2 \frac{T_{\rm sys}^2}{\Delta\nu t_{\nu} {\rm d}^2 \ell}
+\end{equation}
+where $T_{\rm sys}$ is the system temperature, $\Delta\nu$ is the bandwidth integrated over time $t$, for baseline probing a spread of values ${\rm d}u$ over $\Delta\nu$.
+We assumed that each baseline could be added coherently for an amount of time each day (e.g. the length of time a given source takes to transit the main lobe of the beam) $t_c$, observed $N_{\rm obs}$ times over an observing season. 
+For the term ${\rm d}^2\ell \equiv (\Delta\ell)^2$, we note that for HERA, the effective $\ell$ range most-probed has $\Delta\ell\approx 20$ (given by the redundant 14.6\,m baselines for a wavelength 2\,m). 
+
+For an estimate of the noise levels achieved by an entire array over an observing season, we used the fact that the noise for a single baseline should average down linearly in time over the coherence time scale, i.e. $\t_{\nu} = N_{\rm obs}t_c$. The noise should reduced linearly by the total number of baselines $N_{\rm bl}$ and the square-root of the incoherently-averaged time samples, $N_i = t_i/t_c$, for the length of time for incoherent time averages $t_i$. This leads to the expression
+\begin{equation}
+C^N_{\ell,{\rm total}} = 4\pi^2\frac{T_{\rm sys}^2}{\Delta\nu(\Delta\ell)^2 t_c N_{\rm obs} N_{\rm bl}\sqrt{N_i}}.
+\end{equation}
+
+Assuming a $T_{\rm sys}$=400 K. For HERA, the coherent integration time is $t_c\approx 15$\,minutes, with $N_{\rm obs}\approx100$ over a season. For delay-spectrum measurements, the typical parameters used are $\Delta\nu$=8\,MHz and $t_i$=8 hours \citep{Ali.15}. As noted above, the most numerous HERA baselines have $\Delta\ell\approx 20$, and there are roughly 4200 of them in the final HERA core. Together, these grant a noise level of $C^N_{\ell,{\rm total}}\approx 1 \mu$K$^2$.
+
+Using the Equations from \cite{Zaldarriaga.04} directly without explicit modification for redundancy (the redundancy instead arising implicitly from considerations of the aperture of the array), one arrives at a similar figure of $C^N_{\ell,{\rm total}}\approx 7 \mu$K$^2$.
+
 
 \section{kSZ$^2$-21cm squeezed-triangle bispectra}
 \label{sec:bispec}
 
-In this section we present an estimate for bispectra formed from future HERA 21\,cm intensity maps (large scales; $\ell < 300$) and Stage 3 or 4 CMB maps (\citet{cmbS4.16}; small scales $\ell > 3000$). These disparate scales stretch the three-point correlation function into a `squeezed triangle' in Fourier space.
+In this section we present an estimate for bispectra formed from future HERA 21\,cm intensity maps (large scales; $\ell < 300$) and Stage 3 or 4 CMB maps (smaller scales; $\ell > 3000$). These disparate scales stretch the three-point correlation function into a `squeezed triangle' in Fourier space.
 
 \subsection{Semi-analytic approximation}
 
-Consider the bispectrum of two Fourier transformed kSZ maps and one Fourier transformed 21\,cm map under the Limber approximation: 
-% OVERFLOW
+Consider the bispectrum of two Fourier transformed kSZ maps and one Fourier transformed 21\,cm map under the Limber approximation:
 \begin{equation}
-\left\langle T_{\rm kSZ}(\ell_1) T_{kSZ}(\ell_2) T_{\rm 21cm}(\ell_3)\right\rangle = (2\pi)^2 \delta_D(\ell_1 + \ell_2 + \ell_3) \int \frac{{\rm d}\chi}{\chi^4} W_{\rm 21cm}(\chi) W_{\rm kSZ}^2(\chi) B_{\rm 21cm, kSZ, kSZ}(\ell_1/\chi, \ell_2/\chi,  \ell_3/\chi; \chi)
+\begin{split}
+ \left\langle T_{\rm kSZ}(\ell_1) T_{kSZ}(\ell_2) T_{\rm 21cm}(\ell_3)\right\rangle &= 
+(2\pi)^2 \delta_D(\ell_1 + \ell_2 + \ell_3) \times \int
+ \frac{{\rm d}\chi}{\chi^4} W_{\rm 21cm}(\chi) W_{\rm kSZ}^2(\chi)  \\
+ & \times B_{\rm 21cm, kSZ, kSZ}(\ell_1/\chi, \ell_2/\chi,  \ell_3/\chi; \chi)
 \label{eq:bispec_limber}
+\end{split}
 \end{equation}
 where the window functions are based on global quantities associated with the maps:
 
@@ -89,9 +140,9 @@ where the $\delta_D(\vec{k'} + \vec{k''})$ in the above relation allowed us to i
 
 \begin{equation}
 \begin{split}
-\left\langle \vec{q} \cdot \hat{n}(\vec{k}_1) \vec{q} \cdot \hat{n} (\vec{k}_2) T_{\rm 21cm}(\vec{k}_3) \right\rangle = \\
-(2\pi)^3 \delta_D(\vec{k}_1 + \vec{k}_2 + \vec{k}_3) 
-\int \frac{{\rm d^3}k'}{(2\pi)^3} (\hat{k'}\cdot\hat{n})^2 P_{vv}(k') 
+\left\langle \vec{q} \cdot \hat{n}(\vec{k}_1) \vec{q} \cdot \hat{n} (\vec{k}_2) T_{\rm 21cm}(\vec{k}_3) \right\rangle &= 
+(2\pi)^3 \delta_D(\vec{k}_1 + \vec{k}_2 + \vec{k}_3) \times \\
+& \int \frac{{\rm d^3}k'}{(2\pi)^3} (\hat{k'}\cdot\hat{n})^2 P_{vv}(k') 
 \left[ B_{x,x,\rm 21cm} + B_{x,\rho,\rm 21cm} + B_{\rho,x,\rm 21cm} +B_{\rho,\rho,\rm 21cm} \right].
 \end{split}
 \end{equation}
@@ -99,8 +150,9 @@ where the $\delta_D(\vec{k'} + \vec{k''})$ in the above relation allowed us to i
 In the squeezed-triangle limit, where $k_3 << k_1,k_2$, this reduced to:
 \begin{equation}
 \begin{split}
-\left\langle \vec{q} \cdot \hat{n}(\vec{k}_1) \vec{q} \cdot \hat{n} (\vec{k}_2) T_{{\rm 21cm}}(\vec{k}_3) \right\rangle = \\
-(2\pi)^3 \delta_D(\vec{k}_1 + \vec{k}_2 + \vec{k}_3) \frac{v_{\rm rms}^2}{3}
+\left\langle \vec{q} \cdot \hat{n}(\vec{k}_1) \vec{q} \cdot \hat{n} (\vec{k}_2) T_{{\rm 21cm}}(\vec{k}_3) \right\rangle &= 
+(2\pi)^3 \delta_D(\vec{k}_1 + \vec{k}_2 + \vec{k}_3) \times \\
+& \frac{v_{\rm rms}^2}{3} 
 \left[ B_{x,x,{\rm 21cm}} + B_{x,\rho,{\rm 21cm}} + B_{\rho,x,{\rm 21cm}} +B_{\rho,\rho,{\rm 21cm}} \right]
 \end{split}
 \label{eq:component_bispectra}
@@ -110,10 +162,10 @@ Of course, $\delta_{\rm 21cm}$ also contains information about $\delta_x$ and $\
 
 \begin{equation}
 \begin{split}
-B_{x,x,{\rm 21cm}} \propto B_{x,x,x} + B_{x,x,\rho} + B_{x,x,x\rho}\\
-B_{x,\rho,{\rm 21cm}} \propto B_{x,\rho,x} + B_{x,\rho,\rho} + B_{x,\rho,x\rho}\\
-B_{\rho,x,{\rm 21cm}} \propto B_{\rho,x,x} + B_{\rho,x,\rho} + B_{\rho,x,x\rho}\\
-B_{\rho,\rho,{\rm 21cm}} \propto B_{\rho,\rho,x} + B_{\rho,\rho,\rho} + B_{\rho,\rho,x\rho}\\
+B_{x,x,{\rm 21cm}} &\propto B_{x,x,x} + B_{x,x,\rho} + B_{x,x,x\rho}\\
+B_{x,\rho,{\rm 21cm}} &\propto B_{x,\rho,x} + B_{x,\rho,\rho} + B_{x,\rho,x\rho}\\
+B_{\rho,x,{\rm 21cm}} &\propto B_{\rho,x,x} + B_{\rho,x,\rho} + B_{\rho,x,x\rho}\\
+B_{\rho,\rho,{\rm 21cm}} &\propto B_{\rho,\rho,x} + B_{\rho,\rho,\rho} + B_{\rho,\rho,x\rho}\\
 \end{split}
 \label{eq:lots_of_bispectra}
 \end{equation}
@@ -122,21 +174,18 @@ where the third index corresponds to large scales, and the first and second indi
 \subsubsection{$B_{x,x,\rm 21cm}$}
 \label{subsec:B_xx21}
 Using Equations~\ref{eq:d21cm_x} and \ref{eq:bispec_limber}, we could write:
-% TOO CLOSE TO PAGE EDGE
-\begin{equation}
-\begin{split}
+\begin{multline}
 \langle \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_{{\rm 21cm}}(\vec{k}_3) \rangle = 
 \langle
 T_0(1- \left\langle x_i \right\rangle ) \times \\
 \left[
-- \frac{\left\langle x_i \right\rangle}{1 - \left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_x(\vec{k}_3) + \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_{\rho}(\vec{k}_3)
+- \frac{\left\langle x_i \right\rangle}{1 - \left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_x(\vec{k}_3) + \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_{\rho}(\vec{k}_3) 
  - \frac{\left\langle x_i \right\rangle}{1 - \left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \int \frac{{\rm d^3}k'}{(2\pi)^3} \delta_x(\vec{k}_3 - \vec{k'})\delta_{\rho}(\vec{k'})
 \right] \\
-\delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3) 
+\times \delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3) 
 \rangle .
-\end{split}
 \label{eq:B_xx21}
-\end{equation}
+\end{multline}
 
 Taking the averages inside the square brackets reduces all the terms to the to component bispectra written in Equation~\ref{eq:lots_of_bispectra}. The first and second terms are simpler to understand, whereas the third term contains a convolution left-over from Fourier transforming $\delta_x(\vec{x})\delta_{\rho}(\vec{x})$ from Equation~\ref{eq:d21cm_x}:
 
@@ -144,7 +193,7 @@ Taking the averages inside the square brackets reduces all the terms to the to c
 \begin{split}
 B_{x,x,{\rm 21cm}} = \left( -T_0 \left\langle x_i \right\rangle B_{x,x,x} + T_0(1-\left\langle x_i \right\rangle) B_{x,x,\rho} - T_0 \left\langle x_i \right\rangle \int \frac{{\rm d^3}k'}{(2\pi)^3}
 \langle \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_x(\vec{k}_3 - \vec{k'})\delta_{\rho}(\vec{k'}) \rangle \right)\\
-\delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3)
+\times \delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3)
 \end{split}
 \end{equation}
 
@@ -206,29 +255,28 @@ The third integral was just a permutation of the second, above. This meant that 
 \end{equation}
 and the component bispectrum from this subsection can be expressed as
 % OVERFLOW
-\begin{equation}
+\begin{multline}
 B_{x,x,{\rm 21cm}} \approx 
- - T_0 \left\langle x_i \right\rangle P_{\delta_x,\delta_x}(\vec{k_1}) \left(
+ - T_0 \left\langle x_i \right\rangle P_{\delta_x,\delta_x}(\vec{k_1}) \times \\
+\left(
 P_{\delta_x,\delta_x}(\vec{k_3}) \left\langle x_i \right\rangle \frac{{\rm d} \ln (P_{\delta_x,\delta_x}(\vec{k_1}))}{{\rm d}\left\langle x_i \right\rangle} 
 + P_{\delta_x, \delta_{\rho}}(\vec{k}_2)  +\frac{ P_{\delta_x, \delta_{\rho}}(\vec{k}_1)P_{\delta_x, \delta_x}(\vec{k}_2)}{P_{\delta_x,\delta_x}(\vec{k_1}) } 
-\right)
-\delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3)
-\end{equation}
+\right) \\
+\times \delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3)
+\end{multline}
 
 \subsubsection{$B_{x,\rho,{\rm 21cm}}$ and $B_{x,\rho,{\rm 21cm}}$}
 \label{subsec:B_xrho21}
 
-In the squeezed triangle limit, these two component bispectra are identical. Their joint contribution was:
-% OVERFLOW
-\begin{equation}
-\begin{split}
-2\langle \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_{{\rm 21cm}}\rangle = \\
-2T_0(1-\left\langle x_i \right\rangle) \left\langle 
+In the squeezed triangle limit, these two component bispectra are identical. Their joint contribution can be expressed as:
+% OVERFLOW !!!
+\begin{multline}
+2\langle \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_{{\rm 21cm}}\rangle = 
+2T_0(1-\left\langle x_i \right\rangle) \\ \left\langle 
 - \frac{\left\langle x_i \right\rangle}{1-\left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_{\rho}(\vec{k}_2) \delta_x(\vec{k}_3)
 + \delta_x(\vec{k}_1) \delta_{\rho}(\vec{k}_2) \delta_{\rho}(\vec{k}_3)
 - \frac{\left\langle x_i \right\rangle}{1-\left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_{\rho}(\vec{k}_2) \int \frac{{\rm d^3}k'}{(2\pi)^3} \delta_x(\vec{k}_3 - \vec{k'})\delta_{\rho}(\vec{k'})\right\rangle
-\end{split}
-\end{equation}
+\end{multline}
 
 \subsubsection*{$B_{x,\rho,x}$}
 \label{subsubsec:Bxrhox}
@@ -257,10 +305,9 @@ so the component bispectrum from this subsection can be expressed as
 \begin{equation}
 \begin{split}
 -2 T_0 \left\langle x_i \right\rangle \left( P_{\delta_x,\delta_{\rho}}(\vec{k}_1) P_{\delta_x,\delta_x}(\vec{k}_3)\left\langle x_i \right\rangle \frac{{\rm d} \ln (P_{\delta_x,\delta_{\rho}}(\vec{k_1}))}{{\rm d}\left\langle x_i \right\rangle} +  P_{\delta_x,\delta_x}(\vec{k}_1)P_{\delta_{\rho},\delta_{\rho}}(\vec{k}_2) + P_{\delta_x,\delta_{\rho}}(\vec{k}_1)P_{\delta_x,\delta_{\rho}}(\vec{k}_2) \right) \\ 
-\delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3)
+\times \delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3)
 \end{split}
 \end{equation}
-
 
 \subsubsection{$B_{\rho,\rho,{\rm 21cm}}$}
 \label{subsec:B_rhorho21}
@@ -292,22 +339,23 @@ So the overall component bispectrum is the above, multiplied by a factor of $-T_
 
 Under the above assumptions, and simplifying with the squeezed triangle $P_{f,f}(\vec{k}_1)\approx P_{f,f}(\vec{k}_2)$ for $f=[x,\rho]$, we obtained our estimate for the bispectrum:
 
-\begin{equation}
-\begin{split}
-B_{\rm kSZ, kSZ, {\rm 21cm}}(\vec{k}_1,\vec{k}_2,\vec{k}_3) \approx \\
--2T_0\left\langle x_i \right\rangle
+\begin{multline}
+B_{\rm kSZ, kSZ, {\rm 21cm}}(\vec{k}_1,\vec{k}_2,\vec{k}_3) \approx 
+-2T_0\left\langle x_i \right\rangle \times \\
 \left[
 P_{\delta_x,\delta_x}(\vec{k}_1) \left( P_{\delta_x,\delta_x}(\vec{k}_3)\frac{\left\langle x_i \right\rangle}{2} \frac{{\rm d} \ln (P_{\delta_x,\delta_x}(\vec{k_1}))}{{\rm d}\left\langle x_i \right\rangle} + P_{\delta_x,\delta_{\rho}}(\vec{k}_1) + P_{\delta_{\rho},\delta_{\rho}}(\vec{k}_1) \right) \right. \\
 \left.
 + P_{\delta_x,\delta_{\rho}}(\vec{k}_1) \left( P_{\delta_x,\delta_x}(\vec{k}_3)\left\langle x_i \right\rangle \frac{{\rm d} \ln (P_{\delta_x,\delta_{\rho}}(\vec{k}_1))}{{\rm d}\left\langle x_i \right\rangle} + P_{\delta_x,\delta_{\rho}}(\vec{k}_1) + P_{\delta_{\rho},\delta_{\rho}}(\vec{k}_1) \right)
-\right]
-\delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3)
-\end{split}.
-\end{equation}
+\right] \\
+\times \delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3).
+\label{eq:ksz_full_estimator}
+\end{multline}
 
+Equation~\ref{eq:ksz_full_estimator} shows our estimator consists of several small-scale power spectral components `riding' a large-scale ionization fluctuation. In the expected situation that power spectra consisting of density fluctuation components are subdominant to ionization fluctuations, we may expect a maximum or minimum at the mid-point of reionization, where the gradient of ionization power with respect average ionization is at an extreme.
 
 \subsection{Counting triangles}
 
+The signal-to-noise of a bispectrum scales with $\sqrt{N_{\rm Tri}}$, where $N_{\rm Tri}$ is the number of triangles.
 A closed triangle in $\ell$-space can be represented by a two-dimensional Dirac delta-distribution $\delta^{(2)}_{D}(\vec{\ell_1}+\vec{\ell_2}+\vec{\ell_3})$. A count of the different orientations of such a triangle was formulated by \cite{Joachimi.09} as:
 
 \begin{equation}
@@ -336,16 +384,19 @@ N_{\rm Tri} \approx 2\pi\Omega_S^2\bar{\ell_1}\bar{\ell_2}\bar{\ell_3}\Delta\ell
 \label{eq:Ntri}
 \end{equation}
 
-Signal-to-noise scales with  $\sqrt{N_{\rm Tri}}$....
+For the limits on $\ell_{1,2,3}$ mentioned at the beginning of Section~\ref{sec:bispec} concerning near-future CMB experiments and HERA's most-numerous short baselines, Equation~\ref{eq:Ntri} gives $N_{\rm Tri}\sim10^9$, for a sky fraction of 0.03, surveyed by the HERA drift-scanned stripe.
 
 \subsection{Results}
+% graphs!
 
 \subsubsection{Signal-to-noise estimates}
-% graphs!
+% explicit S/N equation B^2/C_l C_l C_l
 % but stuck at k_parallel=0...
 
 \section{kSZ$^2$-21cm$^2$ squeezed-rectangle trispectra}
 \label{sec:trispec}
+
+%filtering stages - note abs of filtered data (since we lose the zero point)
 
 \subsection{Semi-analytic approximation}
 
