@@ -11,7 +11,6 @@ The kSZ probes the cosmic momentum field; photons are Doppler-boosted off of clo
 The anisotropies induced on the CMB by the kSZ is given by (Equation~\ref{eq:eor_intro_ksz}):
 \begin{equation}
 \frac{\delta T_{\rm kSZ}}{T_{\rm CMB}}(\hat{s}) = \frac{\sigma_T}{c} \int_0^{z_{\rm recomb}} n_e(z)e^{-\tau(z)} \hat{s}\cdot\vec{q} \frac{{\rm d}s}{{\rm d}z}{\rm d}z,
-\label{eq:eor_intro_ksz}
 \end{equation}
 where $\sigma_T$ is the Thomson Cross Section, $n_e(z)$ is the average number density of electrons at redshift $z$, $\tau(z)$ is the optical depth to redshift $z$, and d$s$/d$z$ is the cosmological line element to redshift $z$ along direction $\hat{s}$. 
 The momentum field $q$ can be expressed as:
@@ -73,15 +72,36 @@ where $T_{\rm sys}$ is the system temperature, $\Delta\nu$ is the bandwidth inte
 We assumed that each baseline could be added coherently for an amount of time each day (e.g. the length of time a given source takes to transit the main lobe of the beam) $t_c$, observed $N_{\rm obs}$ times over an observing season. 
 For the term ${\rm d}^2\ell \equiv (\Delta\ell)^2$, we note that for HERA, the effective $\ell$ range most-probed has $\Delta\ell\approx 20$ (given by the redundant 14.6\,m baselines for a wavelength 2\,m). 
 
-For an estimate of the noise levels achieved by an entire array over an observing season, we used the fact that the noise for a single baseline should average down linearly in time over the coherence time scale, i.e. $\t_{\nu} = N_{\rm obs}t_c$. The noise should reduced linearly by the total number of baselines $N_{\rm bl}$ and the square-root of the incoherently-averaged time samples, $N_i = t_i/t_c$, for the length of time for incoherent time averages $t_i$. This leads to the expression
+For an estimate of the noise levels achieved by an entire array over an observing season, we used the fact that the noise for a single baseline should average down linearly in time over the coherence time scale, i.e. $t_{\nu} = N_{\rm obs}t_c$. The noise should reduced linearly by the total number of baselines $N_{\rm bl}$ and the square-root of the incoherently-averaged time samples, $N_i = t_i/t_c$, for the length of time for incoherent time averages $t_i$. This leads to the expression
 \begin{equation}
 C^N_{\ell,{\rm total}} = 4\pi^2\frac{T_{\rm sys}^2}{\Delta\nu(\Delta\ell)^2 t_c N_{\rm obs} N_{\rm bl}\sqrt{N_i}}.
+\label{eq:ksz_21cm_HERA_noise_total}
 \end{equation}
 
 Assuming a $T_{\rm sys}$=400 K. For HERA, the coherent integration time is $t_c\approx 15$\,minutes, with $N_{\rm obs}\approx100$ over a season. For delay-spectrum measurements, the typical parameters used are $\Delta\nu$=8\,MHz and $t_i$=8 hours \citep{Ali.15}. As noted above, the most numerous HERA baselines have $\Delta\ell\approx 20$, and there are roughly 4200 of them in the final HERA core. Together, these grant a noise level of $C^N_{\ell,{\rm total}}\approx 1 \mu$K$^2$.
 
 Using the Equations from \cite{Zaldarriaga.04} directly without explicit modification for redundancy (the redundancy instead arising implicitly from considerations of the aperture of the array), one arrives at a similar figure of $C^N_{\ell,{\rm total}}\approx 7 \mu$K$^2$.
 
+\subsection{Simulations}
+
+We simulated the redshift evolution of the 21\,cm brightness temperature field and the integrated kSZ using a similar approach to \cite{LaPlante.14}; using semi-analytic models of reionization coupled with an N-body simulation. Initial conditions for the N-body simulation -- with 512$^3$ resolution elements in a 500 comoving Mpc/h box -- were set by a matter power spectrum as predicted by CAMB \citep{Lewis.99} at redshift $z=150$ assuming the WMAP cosmology \citep{Hinshaw.13}.
+
+The N-body simulation gave a realization of the density field at the midpoint of reionization (around $z\sim 8$, see Figure~\ref{fig:ksz_21cm_sim_ionfrac_avg}). Using this and the $k$-space semi-analytic bias model of reionization from \cite{Battaglia.13}, we were able to `paint-on' the 21\,cm brightness temperature to each point of the volume \citep{LaPlante.14}. For each point in the volume we also saved velocity and electron density. To obtain the kSZ, we built a light-cone projection of the box. For each point in the volume, we traced rays through the box at lines of constant angle (\textit{not} constant comoving distance) and computed the contribution to the kSZ from that sight line. These calculations resulted in a 3D 21\,cm field cube of fixed comoving size, and a 2D kSZ field map of fixed angular size. In Figure~\ref{fig:ksz_21cm_sim_ionfrac_avg} we show the global ionization history of the cube. Figure~\ref{fig:ksz_21cm_sim_example} shows an example slice of the 21\,cm brightness temperature cube at redshift and the resultant kSZ map. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.6\textwidth]{chapters/ksz_21cm/figures/smoothed_ionfrac.png}
+\caption{The average ionized fraction as a function of redshift in our cosmological simulation.}
+\label{fig:ksz_21cm_sim_ionfrac_avg}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.49\textwidth]{chapters/ksz_21cm/figures/21cmExample_z7p8.png}
+\includegraphics[width=0.49\textwidth]{chapters/ksz_21cm/figures/kszmap.png}
+\caption[An example 21\,cm brightness temperature field and integrated kSZ map from our cosmological simulation.]{An example 21\,cm brightness temperature field at redshift $z\sim$7.8 (left) and integrated kSZ map (right) from our cosmological simulation. Both have color bars in units of mK.}
+\label{fig:ksz_21cm_sim_example}
+\end{figure}
 
 \section{kSZ$^2$-21cm squeezed-triangle bispectra}
 \label{sec:bispec}
@@ -89,6 +109,7 @@ Using the Equations from \cite{Zaldarriaga.04} directly without explicit modific
 In this section we present an estimate for bispectra formed from future HERA 21\,cm intensity maps (large scales; $\ell < 300$) and Stage 3 or 4 CMB maps (smaller scales; $\ell > 3000$). These disparate scales stretch the three-point correlation function into a `squeezed triangle' in Fourier space.
 
 \subsection{Semi-analytic approximation}
+\label{subsec:ksz_21cm_semi_analytic_approximation}
 
 Consider the bispectrum of two Fourier transformed kSZ maps and one Fourier transformed 21\,cm map under the Limber approximation:
 \begin{equation}
@@ -387,17 +408,81 @@ N_{\rm Tri} \approx 2\pi\Omega_S^2\bar{\ell_1}\bar{\ell_2}\bar{\ell_3}\Delta\ell
 For the limits on $\ell_{1,2,3}$ mentioned at the beginning of Section~\ref{sec:bispec} concerning near-future CMB experiments and HERA's most-numerous short baselines, Equation~\ref{eq:Ntri} gives $N_{\rm Tri}\sim10^9$, for a sky fraction of 0.03, surveyed by the HERA drift-scanned stripe.
 
 \subsection{Results}
-% graphs!
 
-\subsubsection{Signal-to-noise estimates}
-% explicit S/N equation B^2/C_l C_l C_l
-% but stuck at k_parallel=0...
+The $P_{\delta_{\rho},\delta_{\rho}}(k)$, $P_{\delta_x,\delta_x}(k)$ and $P_{\delta_x,\delta_{\rho}}(k)$ power spectra relevant to the estimator are shown (from top to bottom) in Figure~\ref{fig:ksz_21cm_power_spectra_stuff} . The line colors, as labelled, correspond to different redshift slices from the simulation cube. As expected, the density power spectrum slowly increased in amplitude with decreasing redshift, as structure grew hierarchically.  The ionization power spectrum was highest at the midpoint of reionization, when there was maximal contrast in the brightness temperature field. This latter trend dominated their cross-power spectrum.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{chapters/ksz_21cm/figures/d_x_cross_powerspecs.png}
+\caption[The $P_{\delta_{\rho},\delta_{\rho}}(k)$, $P_{\delta_x,\delta_x}(k)$ and $P_{\delta_x,\delta_{\rho}}(k)$ power spectra relevant to our semianalytic estimate of the bispectrum.]{The (top to bottom) $P_{\delta_{\rho},\delta_{\rho}}(k)$, $P_{\delta_x,\delta_x}(k)$ and $P_{\delta_x,\delta_{\rho}}(k)$ power spectra relevant to our semianalytic estimate of the bispectrum.}
+\label{fig:ksz_21cm_power_spectra_stuff}
+\end{figure}
+
+Coupled with relevant derivatives with respect to ionization fraction, and averages with respect to redshift, we could use the power spectra above to calculate the estimator in Equation~\ref{eq:ksz_full_estimator} as a function of redshift -- shown in Figure~\ref{fig:ksz_21cm_semianalytic_result}. As expected, the magnitude of the estimated bispectrum is at an extreme close to the center of reionization. Also as expected, it is negative, showing that the 21\,cm and kSZ power are anti-correlated. It also appears to be quite noisy, with the large dip at $z\sim 7.3$ lacking a clear explanation.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.65\textwidth]{chapters/ksz_21cm/figures/semianalytic_bispec_vs_z.png}
+\caption{The semianalytic expression of the bispectrum, calculated as a function of redshift from our simulation.}
+\label{fig:ksz_21cm_semianalytic_result}
+\end{figure}
+
+Of course, we were also able to calculate the bispectrum directly from the simulated 21\,cm and kSZ fields, restricting ourselves to relevant $\ell$ modes for HERA baselines and CMB experiments. However, we found that the box was too small to sample an appropriate number of large-scale modes, such that there were too few triangles in the box to converge on a given magnitude. In Figure~\ref{fig:ksz_21cm_direct_bispectrum}, we show bispectum power binned as a function of angle between the $\vec{k}$ vector for the 21\,cm field and one of the $\vec{k}$ vectors from the kSZ map (a dimension which our semianalytic estimator does not probe, as it uses power spectra and assumes the ultimate squeezed triangle limit of $\theta = 0$) from $z=7.6$. The values, while larger than the expected experimental noise\footnote{The signal to noise of the bispectrum is given by: \begin{equation}
+\left(\frac{S}{N}\right)^2 = \frac{B(\ell_1, \ell_2, \ell_3)}{C_{\rm CMB}^N(\ell_1)C_{\rm CMB}^N(\ell_2)C_{\rm 21cm}^N(\ell_3)}
+\end{equation}} by a factor of at least $10$, are consistent with numerical noise, oscillating about zero with high variance. This is true for all redshifts probed.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.65\textwidth]{chapters/ksz_21cm/figures/analytic_bispec_decimate1.png}
+\caption[Bispectrum values, binned as a function of angle between the 21\,cm and CMB $\vec{k}$ vectors, measured directly from the simulation.]{Bispectrum values, binned as a function of angle between the 21\,cm and CMB $\vec{k}$ vectors, measured directly from the simulation at $z=7.6$. The values are consistent with zero, most likely due to too few large-scale modes present in the cube.}
+\label{fig:ksz_21cm_direct_bispectrum}
+\end{figure}
+
+% w.r.t redshift???
+
+Figure~\ref{fig:ksz_21cm_direct_bispectrum} highlights one of the limitations of using the bispectrum as a statistic to probe reionization. It is difficult to obtain sufficient numbers of triangles in a simulation cube to converge on a bispectrum value. While it was possible to calculate the bispectrum for a single redshift on a $512^3$ resolution element box in minutes, running the same calculation on a $2048^3$ element box would take roughly six hours. This means that characterization of the bispectrum -- understanding its sensitivity to astrophysical and cosmological parameters -- is difficult to obtain, as this would require large numbers of simulations with varied parameters, large enough to produce higher signal-to-noise bispectra than we are capable of in this work. \cite{Sefusatti.16} and \cite{Watkinson.17} have suggested FFT-based estimators to overcome the poor scaling associated with bispectrum calculations; pursuing these methods in future investigations may prove worthwhile.
+
+Possibly the largest limitation of the bispectrum is one that has been brushed under the carpet in most of the discussion above. The kSZ only exists in the $k_{\parallel}=0$ plane, since by its integral definition it has not line-of-sight component. Because two kSZ terms are required, this forces any closed triangle (enforced by the Dirac delta functions throughout Section~\ref{subsec:ksz_21cm_semi_analytic_approximation}) to exist only at $k_{\parallel}=0$ values: the 21\,cm component is trapped within the center of the wedge! One could argue that the foreground contamination problem is not strictly the same for the bispectrum as it is for the 21\,cm power spectrum, as the `true' foreground for the bispectrum is the correlation of the CMB with low-frequency Galactic synchrotron, which is low \citep[e.g.][]{Ichiki.14}. However, while the effective $T^2_{\rm sys}$ in Equation~\ref{eq:ksz_21cm_HERA_noise_total} is close to receiver noise outside of the wedge, at $k_{\parallel}=0$ its value becomes very large, as it is dominated by $T_{\rm sky}$. 
+
+To be non-zero outside of the wedge, two 21\,cm fields are required in the correlation function. This moved us to a minimum four point function, which we explored with the trispectrum below.
 
 \section{kSZ$^2$-21cm$^2$ squeezed-rectangle trispectra}
 \label{sec:trispec}
 
+As noted above, to correlate with a kSZ map, we have to square the it to force it to be positive-definite. If we use a single 21\,cm map to correlate with two kSZ maps (i.e. a bispectrum), we must satisfy a Dirac delta function of the form $\delta_D(\vec{k}_1 + \vec{k}_2 + \vec{k}_3)$. Since the kSZ is a projected quantity, it contains no line-of-sight modes, so two of the k vectors have no line-of-sight component; the third k vector must also have no line-of-sight component. That means that the 21\,cm contribution is stuck in the center of the wedge.
+
+The trispectrum of these fields, with two 21\,cm maps and two kSZ maps, does not share this problem. Its Dirac delta function has two \textit{k} vectors associated with the 21\,cm field, and these can cancel each other to satisfy a closed-quadrilateral condition. We limit ourselves to discussion of the squeezed trispectrum, where the k modes of the 21cm field are much larger than the k modes of the kSZ field. This is a realistic regime for the combination of HERA with Stage 3 or 4 CMB experiments. The geometry of these statistics are shown in Figure~\ref{fig:ksz_21cm_correlation_geometries}. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{chapters/ksz_21cm/figures/trispec_and_bispec_3d_fig.png}
+\caption[The geometry of the correlation statistics considered in this Chapter.]{The geometry of the correlation statistics considered in this Chapter. The conical shape indicates the boundaries of the wedge in $k_x,k_y,k_z$ space (i.e. not cylindrically averaged into $k_{\perp},k_{\parallel}$), where being `within' the wedge is being outside of the boundaries. Closed triangles of the 21\,cm-kSZ$^2$ bispectrum are represented by the black lines -- because of the projected nature of the kSZ, they must exist within the wedge. 21\,cm$^3$ bispectra, the green lines, could potentially recover 21\,cm statistics from within the wedge. 21\,cm$^2$-kSZ$^2$ trispectra, the magenta lines, allow us to correlate the 21\,cm signal and the kSZ without the limitations of working within foreground-contaminated regions.}
+\label{fig:ksz_21cm_correlation_geometries}
+\end{figure}
+
+\subsection{Mathematical formulation}
+
+The trispectrum can be written as follows (note that in terms such as $\vec{k}^2_{\perp}$, the 2 is a label and not an exponent):
+
+\begin{equation}
+\begin{split}
+\mathcal{T}(\delta^{2D}_{\rm 21\,cm}, \delta^{2D}_{\rm 21\,cm}, \delta_{\rm kSZ}, \delta_{\rm kSZ}; z) &=
+\langle \delta^{2D}_{\rm 21\,cm}(\vec{k}^1_{\perp})  \delta^{2D}_{\rm 21\,cm}(\vec{k}^2_{\perp})  \delta_{\rm kSZ}(\vec{k}^3_{\perp})\delta_{\rm kSZ}(\vec{k}^4_{\perp}) \rangle \\
+&=
+\int \frac{{\rm d}k^1_{\parallel}}{2\pi} \frac{{\rm d}k^2_{\parallel}}{2\pi} \frac{{\rm d}k^3_{\parallel}}{2\pi} \frac{{\rm d}k^4_{\parallel}}{2\pi}
+W_{\rm 21\,cm}(k^1_{\parallel}) W_{\rm 21\,cm}(k^2_{\parallel}) W_{\rm kSZ}(k^3_{\parallel}) W_{\rm kSZ}(k^4_{\parallel}) \\
+&
+\times \langle \delta^{3D}_{\rm 21\,cm}(k^1_{\parallel}, \vec{k}^1_{\perp}) \delta^{3D}_{\rm 21\,cm}(k^2_{\parallel}, \vec{k}^2_{\perp}) \delta_{\rm SZ}(k^3_{\parallel}, \vec{k}^3_{\perp})  \delta_{\rm SZ}(k^4_{\parallel}, \vec{k}^4_{\perp}) \rangle \\
+&
+\times \delta_D(\vec{k}^1 + \vec{k}^2 + \vec{k}^3 + \vec{k}^4)
+\end{split}
+\label{eq:overall_trispec}
+\end{equation}
+
+
 %filtering stages - note abs of filtered data (since we lose the zero point)
 
-\subsection{Semi-analytic approximation}
 
 \subsection{kSZ$^2$-21cm trispectra cross-power spectrum}
+
+% future work - 21\,cm bispectrum with one point inside the wedge

@@ -42,8 +42,10 @@
 \usepackage{epstopdf}
 \usepackage{accents}
 \usepackage{multicol}
+
 % XXX CHECK THIS IS OK!
 \bibstyle{apj_w_etal}
+
 
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 %\setlength{\topmargin}{0.9in}
@@ -236,7 +238,7 @@ While I am the one to have performed the research and compiled it, this thesis i
 
 % PAPER & HERA teams
 \noindent
-It has been a privilege to work alongside the talented and passionate individuals that comprise the PAPER and HERA teams. My co-conspirators of PAPER analysis -- Danny Jacobs, Carina Cheng, Matt Kolopanis and Josh Kerrigan -- it has been a struggle and a pleasure, and I will sorely miss working with you. A special thanks to the Penn portion to the effort: David Moore, Paul La Plante, Zac Martinot, Immanuel Washington and Tashalle Billings. I look forward to continued conversations and updates as long as we are still in Philadelphia together.\\
+It has been a privilege to work alongside the talented and passionate individuals that comprise the PAPER and HERA teams. My co-conspirators of PAPER analysis -- Danny Jacobs, Carina Cheng, Matt Kolopanis and Josh Kerrigan -- it has been a struggle and a pleasure, and I will sorely miss working with you. A special thanks to the Penn portion to the effort: David Moore, Paul La Plante, Zac Martinot, Immanuel Washington and Tashalle Billings. I look forward to continued conversations and updates!\\
 
 \noindent
 The Department of Physics \& Astronomy of the University of Pennsylvania is a fantastic place to work. The cohorts of graduate students it brings together are consistently awesome, engaging and friendly. I have made some of my best friends here, including Ashley Baker, Christian Herwig, Elodie Resseguie, Christina Krawiec, Rachel Wolf and Alyssa Barlis. Outside of Physics \& Astronomy, but within the Penn umbrella, I must thank my dear friends Julie Westover, Irteza Binte-Farid and Steve Kocher for their loving support. This is also a good place to thank the School of Arts and Sciences for supporting my final year at Penn with a Dissertation Completion Fellowship.\\
@@ -254,7 +256,7 @@ My siblings, Hannah, Yosef and Ezra, you are are always full of loving support a
 Mom and Dad, this thesis belongs to you as much as it does me. Your hard work, encouragement and love made me who I am. Thank you.\\
 
 \noindent
-Gabby -- words here simply won't do justice to how grateful I am to you. You're the best, and I love you. What more can I say? I'll save the good stuff for the wedding.
+Gabby -- words here simply won't do justice to how grateful I am to you, for you. You're the best, and I love you.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -321,13 +323,7 @@ Abstracts are written last.
 %
 \include{chapters/astropol/astropol} % Astrophysical Radiation
 %
-% GSM 2008, 2017
-% what is polarization (emag) -- STOKES PARAMETER DEFINITIONS 
-% sources of astrophysical polarization
-% magnetic fields and rotation measures - REMARK UPON UNSMOOTHNESS
-% oppermann map -- high RM point sources
-% Lenc, Jelic, etc. diffuse low RM stuff -- RELATIVE POWER BETWEEN STOKES PARAMETERS
-% compare to 21cm -- UNPOLARIZED
+%
 %
 \include{chapters/interferometry/interferometry}
 %
@@ -387,27 +383,23 @@ There is one glory of the sun, and another glory of the moon, and another glory 
 \end{quote}
 \vspace*{\fill}
 
-
+%
 % other stuff -- needs a brief non-chapter introduction
+%
 \include{chapters/global_signal/global_signal}
 %
-%
+% more detail on l=0 claim
 %
 \include{chapters/ksz_21cm/ksz_21cm}
 %
-% Interpretation of component, subcomponent bispectra
-%
-% kSZ theory, link to EoR
 % bispectrum & trispectrum squeezed formalisms & limitations
-% 21cm fg noise in image space (paul memo)
 %
 % Bispectrum:
-% JEA - wants quantitative check (somehow) of semi-analytic method
-% - S/N naive estimate
-% compare semi-analytic method to Ma, Komatsu et al.?
+% - plot w.r.t. redshift
 %
 % Trispectrum:
 % - filtering stages images
+% - cross-power estimator results
 % 
 %
 \include{chapters/hera_ml/hera_ml}
@@ -418,6 +410,14 @@ There is one glory of the sun, and another glory of the moon, and another glory 
 %
 % where to go next
 %
+% polarization needs to be characterized down to EoR dynamic ranges
+% imaging and subtraction of individual Mueller components is low hanging fruit
+% solar minimum for HERA makes the ionosphere unimportant, but could be for long term projects e.g. SKA Low
+% polcal has great potential, requires characterization
+% global signal needs dedicated experiment -- cite something from Kara
+% trispectra may be one of the most viable options for cross-correlation studies in the short term
+% ML has huge potential -- clustering on data_prep_and_proc statistics, RFI flagging, source subtraction...
+% let's detect the EoR!!! GO TEAM HERA.
 
 
 %\appendix
