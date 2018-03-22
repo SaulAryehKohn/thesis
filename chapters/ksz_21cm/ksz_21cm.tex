@@ -462,7 +462,7 @@ The trispectrum of these fields, with two 21\,cm maps and two kSZ maps, does not
 
 \subsection{Mathematical formulation}
 
-The trispectrum can be written as follows (note that in terms such as $\vec{k}^2_{\perp}$, the 2 is a label and not an exponent):
+The trispectrum can be written as follows (note that in terms such as $\vec{k}^2_{\perp}$, the 2 is a label and not an exponent; we will define terms below):
 
 \begin{equation}
 \begin{split}
@@ -478,11 +478,71 @@ W_{\rm 21\,cm}(k^1_{\parallel}) W_{\rm 21\,cm}(k^2_{\parallel}) W_{\rm kSZ}(k^3_
 \end{split}
 \label{eq:overall_trispec}
 \end{equation}
+The window functions above represent the key motivation for calculating the trispectrum.
+\begin{equation}
+W_{\rm 21cm}(k_{\parallel}) = 
+\begin{cases} 
+      1 & k_{\parallel, {\rm min}}\leq k_{\parallel} \leq k_{\parallel, {\rm max}} \\
+      0 & {\rm otherwise}
+\end{cases},
+\label{eq:trispec_W21_kpl}
+\end{equation}
+where $k_{\parallel, {\rm min}}$ is set by the interferometer baseline $\vec{b}$ and is the boundary of the wedge, and $k_{\parallel, {\rm max}}$ could take a range of values, the smallest of which proportional to the Fourier conjugate of a single frequency channel-width. This window function filters-out the wedge. $W_{\rm kSZ}$ is given by Equation~\ref{eq:WkSZ}. We represent the wedge-filtered 21\,cm field as
+\begin{equation}
+\delta^{2D}_{\rm 21\,cm}(\vec{k}_{\perp}) = \int \frac{{\rm d}k_{\parallel}}{2\pi} W_{\rm 21\,cm}(k_{\parallel}) \delta^{3D}_{\rm 21\,cm}(k_{\parallel}, \vec{k}_{\perp}).
+\end{equation}
 
+Equation~\ref{eq:overall_trispec} could be simplified. The Dirac delta functions may be factored into line-of-sight and transverse components,
+\begin{equation}
+\delta_D(\vec{k}^1 + \vec{k}^2 + \vec{k}^3 + \vec{k}^4) = \delta_D(k^1_{\parallel} + k^2_{\parallel} + k^3_{\parallel} + k^4_{\parallel})\delta_D(\vec{k}^1_{\perp} + \vec{k}^2_{\perp} + \vec{k}^3_{\perp} + \vec{k}^4_{\perp}).
+\end{equation}
+In the squeezed limit, $k^3_{\parallel},k^4_{\parallel} \ll k^1_{\parallel},k^2_{\parallel}$. This allowed us to use the Limber approximation for the kSZ window function, as written in Equation~\ref{eq:WkSZ}. 
 
+We may also approximate the central $k$ mode picked-out by the 21\,cm window function in Equation~\ref{eq:trispec_W21_kpl} as a single $k_{\parallel,\alpha}$. We write $\delta^{3D}_{\rm 21\,cm}(k^{\alpha}_{\parallel},\vec{k_{\perp}}) = \delta^{2D}_{\rm 21\,cm,\alpha}(\vec{k}_{\perp})$.
+
+Together these simplifications allowed three of the four integrations to be performed:
+\begin{equation}
+\begin{split}
+\mathcal{T}(\delta^{2D}_{\rm 21\,cm}, \delta^{2D}_{21\,cm}, \delta_{\rm kSZ}, \delta_{\rm kSZ}; z) &= 
+\langle \delta^{2D}_{\rm 21\,cm,\alpha}(\vec{k}^1_{\perp})  \delta^{2D}_{\rm 21\,cm,\alpha}(\vec{k}^2_{\perp})  \delta_{\rm kSZ}(\vec{k}^3_{\perp})\delta_{\rm kSZ}(\vec{k}^4_{\perp}) \rangle \\ 
+& \times \delta_D(\vec{k}^1_{\perp} + \vec{k}^2_{\perp} + \vec{k}^3_{\perp} + \vec{k}^4_{\perp}) | W_{\rm kSZ}(z) |^2\int \frac{{\rm d}k^1_{\parallel}}{2\pi} | W_{\rm 21\,cm,\alpha} (k^1_{\parallel}) |^2
+\end{split}
+\label{eq:squeezed_trispec}
+\end{equation}
 %filtering stages - note abs of filtered data (since we lose the zero point)
 
+\subsection{Effects of filtering}
 
-\subsection{kSZ$^2$-21cm trispectra cross-power spectrum}
+It is valuable to note that filtering the 21\,cm and kSZ maps has a dire effect on how simple it is to interpret these objects in image space. As an illustration, in Figure~\ref{fig:effect_of_filtering_panels} we show a representative slice of our 21\,cm brightness temperature cube before and after wedge filtering, and the kSZ map before and after low- and high-pass filtering. The effect on the kSZ is relatively easy to understand -- most of the large diffuse features ($\ell < 3000$)are eliminated by the high-pass cutoff, while the low-pass is not as stringent ($\ell > 13000$), leaving only small-scale modes within the image. However, removing the wedge does not constitute a simple high or low-pass filter. Instead, power is shifted around in image-space. This effect lead to \cite{Beardsley.15} showing that a given cell in a wedge-filtered image can only be used to obtain a model-dependent estimate of the ionization fraction.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{chapters/ksz_21cm/figures/filter_compare.pdf}
+\caption[The effect of filtering kSZ and 21cm maps to avoid foreground contamination.]{The effect of filtering kSZ and 21cm maps to avoid foreground contamination. Top panels are the kSZ map from our simulation, before (left) and after (right) high and low pass filtering. After filtering, only small-scale modes survive. The bottom panels show a slice of the 21\,cm brightness temperature cube before (left) and after (right) wedge-filtering. Power is entirely scrambled, and small-scale details are removed. The colorbars are matched for pre- and post- filtered maps.}
+\label{fig:effect_of_filtering_panels}
+\end{figure}
+
+We can also see strange effects of wedge filtering more qualitatively by forming 1D power spectra of the 21\,cm$^2$ brightness temperature before and after the cube has been filtered. This is shown for several different redshifts in Figure~\ref{fig:effect_of_filtering_21squared}. As expected, removing modes from inside the wedge results in a decrease in power. However, the hierarchy of power as a function of redshift also changes after the filter. This lacks an easy explanation.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.6\textwidth]{chapters/ksz_21cm/figures/unfilt_filt_pspec21.png}
+\caption[21\,cm$^2$ power spectra before and after filtering the wedge for several redshifts.]{21\,cm power spectra before (solid) and after (dotted) filtering the wedge for several redshifts. Not only does filtering the wedge decrease power, it also changes the hierarchy of power between power spectra, with respect to redshift.}
+\label{fig:effect_of_filtering_21squared}
+\end{figure} 
+
+\subsection{kSZ$^2$-21cm$^2$ cross-power spectrum}
+
+While bispectra are computationally costly to calculate, trispectra are even more so. However, unlike the bispectrum, the trispectrum lacks an easy-to-understand semianalytic estimator. When we applied the same tactics as used in Section~\ref{subsec:ksz_21cm_semi_analytic_approximation}, all terms vanished except for the `connected' Gaussian term, that we would need to subtract from our final trispectrum estimate in the end, anyway:
+\begin{equation}
+\Delta\mathcal{T} \approx P_{\rm 21cm}(vec{k}^1_{\perp})P_{\rm kSZ}(vec{k}^3_{\perp}) \times |W_{\rm kSZ}(z)|^2.
+\end{equation}
+
+However, the form of Equation~\ref{eq:squeezed_trispec} suggests that one term in the overall trispectrum that may be an interesting and efficient quantity to calculate is the cross-power spectrum between the squared 21\,cm and squared kSZ fields. Each would have to be filtered before squaring, in order to not convolve foreground-contaminated modes with otherwise clean ones. For the cross-spectrum of squared fields $P_X(k)$, we defined a ratio
+\begin{equation}
+r_k = \frac{P_X(k)}{\sqrt{P_{\rm 21cm^2}(k) + P_{\rm kSZ^2}(k)} }
+\end{equation}
+...
+% what's the point of the ratio again?
 
 % future work - 21\,cm bispectrum with one point inside the wedge
