@@ -55,7 +55,7 @@ By DDR filtering of PAPER-128 data using a 300\,m baseline to set the width of t
 \subsection{Software Implementation}
 \label{subsec:compression_software}
 
-The first season of PAPER-128 data, due to a variety of circumstances, required compression on the computing cluster at the University of Pennsylvania. The raw data were stored on a high-volume drive that was able to connect with the cluster via a low-speed switch. The hardware capable of performing any sort of high-performance processing (i.e. holding the data in RAM) were ten ``compute nodes" connected to the cluster via a high-speed switch, and mounted in an NFS architecture. The compute nodes could only hold $\sim 10$ PAPER-128 files in storage. 
+The first season of PAPER-128 data, due to a variety of circumstances, required compression on the computing cluster at the University of Pennsylvania. The raw data were stored on a high-volume drive that was able to connect with the cluster via a low-speed switch. The hardware capable of performing any sort of high-performance processing (i.e. holding the data in RAM) were ten `compute nodes' connected to the cluster via a high-speed switch, and mounted in an NFS architecture. The compute nodes could only hold $\sim 10$ PAPER-128 files in storage. 
 
 The processing stages for compression of a night of PAPER data, described below, required knowledge of the location and compression state of not only individual files, but also the neighbors-in-time of the file in question, in order to implement the DDR filter described above. To supervise the compression we created a MySQL database, which we interacted with via Shell and Python scripts. The database contained a table for the data files under processing and their compression state, a table of neighbor-relations, a table of file details, and a table of the processing nodes available. The schema of this database is shown in Figure~\ref{fig:database_schema}.
 
@@ -93,13 +93,13 @@ In total, this meant that across ten compute nodes, and efficient use of the fac
 \section{Radio Frequency Interference}
 \label{sec:RFI}
 
-As noted above, RFI was able to introduce spectral and temporal structure that would cause ringing in the data during compression if it was not flagged. This meant that both identification and characterization of RFI was crucial to the scientific goals of the PAPER and HERA experiments. In Section~\ref{subsec:rfi_paper128}, I present characterization of RFI in the second season of PAPER-128 data. By averaging flags in local time I was able to investigate ``repeat offender" frequency bands and identify outlying ``quiet" and ``loud" days.
+As noted above, RFI was able to introduce spectral and temporal structure that would cause ringing in the data during compression if it was not flagged. This meant that both identification and characterization of RFI was crucial to the scientific goals of the PAPER and HERA experiments. In Section~\ref{subsec:rfi_paper128}, I present characterization of RFI in the second season of PAPER-128 data. By averaging flags in local time I was able to investigate ``repeat offender'' frequency bands and identify outlying ``quiet'' and ``loud'' days.
 In Section~\ref{subsec:rfi_hera19paper19} I analyze RFI flags from the first Internal Data Release (IDR1) of HERA commissioning data, which contained 19 HERA feeds suspended above 5\,m dishes in a close-packed hexagon, and 19 PAPER feeds in the same positions as the central dishes, allowing us to investigate the difference in flagging between feeds at different altitudes.
 
 \subsection{PAPER-128}
 \label{subsec:rfi_paper128}
 
-The PAPER-128 2014 observation season ran from 18th June 2014 through the 30th April 2015. During this run, some 150 nights of data were recorded. A ``night", which I will refer to using the JD at the start of observations, consists of twelve hours of observation from 6pm to 6am South African Standard Time (SAST). Observations as processed by the PAPER correlator are recorded in {\sc miriad} uv files. These files contain visibilities for each antenna pair in the array. Each integration is 20 seconds long over 1024 frequency bins from 100 to 200\,MHz. Each uv file contains 56 integrations per antenna pair, and 72 uv files are recorded per linear polarization (xx, xy, yx, yy) per night.
+The PAPER-128 2014 observation season ran from 18th June 2014 through the 30th April 2015. During this run, some 150 nights of data were recorded. A ``night'', which I will refer to using the JD at the start of observations, consists of twelve hours of observation from 6pm to 6am South African Standard Time (SAST). Observations as processed by the PAPER correlator are recorded in {\sc miriad} uv files. These files contain visibilities for each antenna pair in the array. Each integration is 20 seconds long over 1024 frequency bins from 100 to 200\,MHz. Each uv file contains 56 integrations per antenna pair, and 72 uv files are recorded per linear polarization (xx, xy, yx, yy) per night.
 
 Early in the PAPER data compression process, visibilities are flagged for RFI. This is accomplished by the {\tt aipy} script \textit{xrfi\_simple.py}, which takes the derivative of the frequency axis of all baselines associated with a single antenna, and flags any frequencies with a derivative $\geqslant 6\sigma$ above the mean. We always flag the band-edges ($\sim$7\,MHz on each side), since these frequencies are not useful to us, and always flag the 137$\pm$0.6\,MHz band associated with ORBCOMM satellite network transmissions. This process is repeated per integration within each uv file and stored in a Python numpy zip (npz) file. This means that any baseline associated with antenna 1 can contribute a flag to the resultant npz file, which in turn is applied to the data.
 
@@ -112,7 +112,7 @@ In order to assess the average properties of the RFI environment, I calculated a
 
 Nominally, each night should grant 3920 integrations-worth of flags over 1024 frequency bins, per linear polarization. In reality, most of the time this holds true, but occasionally not all files are compressible (hence failing to generate flags) or observations fail to start at the correct time (so there are no data to flag). Also, in the event of an X-engine failure within the correlator, contiguous chunks of the band (in eighths, i.e. 25\,MHz across) are flagged-out, usually for the rest of the night.
 
-For this reason, I calculated a weighted average of the flags across the season, but neglected nights with correlator failures or late starts. Weights were simply the number of nights that contained that integration-bin in SAST. The resultant ``flag density waterfall" is shown in Figure~\ref{fig:rfi_psa128_waterfall}. The color scale is indicative of flagging frequency across the season, and line plots above and to the right of the the waterfall showing the percentage of times and frequencies that were flagged, respectively. 
+For this reason, I calculated a weighted average of the flags across the season, but neglected nights with correlator failures or late starts. Weights were simply the number of nights that contained that integration-bin in SAST. The resultant ``flag density waterfall'' is shown in Figure~\ref{fig:rfi_psa128_waterfall}. The color scale is indicative of flagging frequency across the season, and line plots above and to the right of the the waterfall showing the percentage of times and frequencies that were flagged, respectively. 
 
 A summary of the persistent (flagged $\geq1\%$ of the time per channel) RFI frequencies can be found in Table~\ref{tab:rfi_psa128}. I have investigated each frequency and tried to find the most likely source for each. In most cases, this required looking at the properties in time as well as frequency. Others were more obvious from frequency alone, e.g. the 149.8\, MHz transmission frequency from the International Space Station (ISS). Still others I could not track down a convincing explanation for, and these are listed with a `?'. A `?' next to a possible cause indicates that the listed cause is the most prevalent at that frequency, but that the temporal properties of that cause do not necessarily make sense. Many of the characterizations arise from the South African Table of Frequency Allocations (SATFA; \cite{SAFreqTable}).
 
@@ -150,7 +150,7 @@ A summary of the persistent (flagged $\geq1\%$ of the time per channel) RFI freq
 137.35	$\pm$	0.85	&	100	&	ORBCOMM	&		\\
 141.45	$\pm$	0.35	&	2.1	&	Mobile phones?	&	High until 9pm, then at background 1\% level	\\
 145.85	$\pm$	0.45	&	10.7	&	Amateur radio& Strong 9pm-1am -- this is the official downlink for ISS-HAM	\\
-149.75	$\pm$	0.55	&	90.7	&	ISS	&	``Beeps", but in stacked data peaks 2am	\\
+149.75	$\pm$	0.55	&	90.7	&	ISS	&	``Beeps'', but in stacked data peaks 2am	\\
 175.15	$\pm$	0.35	&	20.5	&	VHF TV	 (video) &	 Channel 4. Peaks at 8:30pm, then falls to background 7\%	\\
 181.15	$\pm$	0.15	&	1.6	&	VHF TV (audio) & Channel 4. 2\% level turns-off at 10pm	\\
 182.15	$\pm$	0.35	&	75	&	?4	&	Decreases until 10pm (to ~15\%), when it begins a slow rise again	\\
@@ -304,10 +304,10 @@ A particularly annoying `new' emitter was in the 153.8$\pm$0.2~MHz region, which
 \colhead{MHz} & \colhead{\%} & \colhead{(Possible)} & \colhead{PAPER-128} &\colhead{} \\
 }
 \startdata													
-100.7	$\pm$	0.2	&	50	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Prieska		\\
-101.5	$\pm$	0.3	&	36	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Calvinia	\\
-102.4	$\pm$	0.1	&	100	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Carnarvon	\\
-102.8	$\pm$	0.3	&	57	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Pofadder	\\
+100.7	$\pm$	0.2	&	50	&	FM Radio	&	n/a	&	RSG ``Dis Die Een'' Prieska		\\
+101.5	$\pm$	0.3	&	36	&	FM Radio	&	n/a	&	RSG ``Dis Die Een'' Calvinia	\\
+102.4	$\pm$	0.1	&	100	&	FM Radio	&	n/a	&	RSG ``Dis Die Een'' Carnarvon	\\
+102.8	$\pm$	0.3	&	57	&	FM Radio	&	n/a	&	RSG ``Dis Die Een'' Pofadder	\\
 104.2	$\pm$	0.1	&	100	&	FM Radio	&	n/a	&	SAfm Prieska	\\
 105.1	$\pm$	0.2	&	100	&	FM Radio	&	n/a	&	SAfm Calvinia	\\
 106.2	$\pm$	0.3	&	100	&	FM Radio	&	n/a	&	SAfm Carnarvon	\\
@@ -365,10 +365,10 @@ Table~\ref{tab:rfi_paperhex} has the same description as Table~\ref{tab:rfi_hera
 }
 \startdata	
 100.0	$\pm$	0.1	&	100	&	BAND EDGE	&	n/a	&		\\		
-100.7	$\pm$	0.1	&	11	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Calvinia			\\		
-101.6	$\pm$	0.2	&	6	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Calvinia			\\		
-102.4	$\pm$	0.1	&	100	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Carnarvon		\\		
-102.7	$\pm$	0.1&	100	&	FM Radio	&	n/a	&	RSG ``Dis Die Een" Pofadder		\\		
+100.7	$\pm$	0.1	&	11	&	FM Radio	&	n/a	&	RSG ``Dis Die Een'' Calvinia			\\		
+101.6	$\pm$	0.2	&	6	&	FM Radio	&	n/a	&	RSG ``Dis Die Een'' Calvinia			\\		
+102.4	$\pm$	0.1	&	100	&	FM Radio	&	n/a	&	RSG ``Dis Die Een'' Carnarvon		\\		
+102.7	$\pm$	0.1&	100	&	FM Radio	&	n/a	&	RSG ``Dis Die Een'' Pofadder		\\		
 104.2	$\pm$	0.2	&	100	&	FM Radio	&	n/a	&	SAfm Prieska		\\		
 105.1	$\pm$	0.2	&	100	&	FM Radio	&	n/a	&	SAfm Calvinia	\\		
 106.2	$\pm$	0.3	&	100	&	FM Radio	&	n/a	&	SAfm Carnarvon	\\		
@@ -455,7 +455,7 @@ Throughout reduction of PAPER-128 data, we found a number of ways for data to be
 \subsection{Mean Amplitude Flagging}
 \label{subsec:meanvij}
 
-The most critical and likely failure that an antenna could have was malfunctioning electronics losing power and temporarily ``killing" it.
+The most critical and likely failure that an antenna could have was malfunctioning electronics losing power and temporarily `killing' it.
 This failure mode was characterized with unusually low signal coming from the antennas, causing the visibilities
 associated with that antenna to have much lower than average amplitude. This
 leads to the definition of the mean visibility metric for antenna ${i}$:

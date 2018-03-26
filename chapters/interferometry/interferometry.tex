@@ -1,14 +1,14 @@
 \chapter{Interferometry, Calibration \& Polarimetry}
 \label{chapter:interferometry}
 
-In this Chapter I wished to build a formalism around wide-field, polarized interferometric measurements that could be used throughout this work. Many traditional assumptions used in radio interferometry are broken in the case of the wide-field, fully-polarized, drift-scanning measurements native to interferometric EoR observations. In Section~\ref{sec:interferometry_vis}, I derive the equation describing the fundamental observable for an interferometer, called a ``visibility". Section~\ref{sec:interferometry_cal}, I describe calibration techniques relevant to this work and in Section~\ref{sec:interferometry_pol} I review some of the implications of the previous two sections for polarized measurements.
+In this Chapter I wished to build a formalism around wide-field, polarized interferometric measurements that could be used throughout this work. Many traditional assumptions used in radio interferometry are broken in the case of the wide-field, fully-polarized, drift-scanning measurements native to interferometric EoR observations. In Section~\ref{sec:interferometry_vis}, I derive the equation describing the fundamental observable for an interferometer, called a ``visibility''. Section~\ref{sec:interferometry_cal}, I describe calibration techniques relevant to this work and in Section~\ref{sec:interferometry_pol} I review some of the implications of the previous two sections for polarized measurements.
 
 For a comprehensive review of interferometry from a traditional perspective, see \cite{TMS}.
 
 \section{The Visibility Equation}
 \label{sec:interferometry_vis}
 
-A radio interferometer (a term used interchangeably with ``interferometric array" for radio observations) is an ensemble of receiving elements, where each element's measurement is correlated with every other element's. The simplest case is a two-element interferometer, which we will focus on below. We assume that the elements are coplanar and identical.
+A radio interferometer (a term used interchangeably with ``interferometric array'' for radio observations) is an ensemble of receiving elements, where each element's measurement is correlated with every other element's. The simplest case is a two-element interferometer, which we will focus on below. We assume that the elements are coplanar and identical.
 
 \subsection{The Classical Visibility Equation}
 
@@ -28,7 +28,7 @@ E_i = E_0 e^{-2\pi i \nu t}.
 \label{eq:Ei}
 \end{equation}
 
-The time difference between the arrival at $i$ and $j$ is called the ``geometrical delay", $\tau_g$:
+The time difference between the arrival at $i$ and $j$ is called the ``geometrical delay'', $\tau_g$:
 
 \begin{equation}
 \tau_g = \frac{\vec{b}\cdot\hat{s}}{c},
@@ -47,7 +47,7 @@ An interferometer is an instrument which measured voltages induced by these elec
 = | E_0 |^2 e^{-2\pi i \nu \tau_g}
 \label{eq:vis_time_integration}
 \end{equation}
-where $e^{-2\pi i \nu \tau_g} = e^{-2\pi i \nu \vec{b}_{ij}\cdot\hat{s}/c}$ is known as the ``fringe" term, due to its sinusoidal nature. We can generalize this relationship to include more than a single plane wave from direction $\hat{s}$. Many plane waves, from all directions, can be incident upon the interferometer at a given time and frequency. We can represent the power distribution on the sky as $S(\Omega)$, where $S(\Omega)$. However, no instrument is equally sensitive to radiation from every direction $\hat{s} \in \Omega$. Instead, an instrument has some sensitivity pattern -- a \textit{beam pattern} -- that tapers the power distribution on the sky into an ``observed sky",  $S'(\Omega) = A(\Omega)S(\Omega)$. 
+where $e^{-2\pi i \nu \tau_g} = e^{-2\pi i \nu \vec{b}_{ij}\cdot\hat{s}/c}$ is known as the ``fringe'' term, due to its sinusoidal nature. We can generalize this relationship to include more than a single plane wave from direction $\hat{s}$. Many plane waves, from all directions, can be incident upon the interferometer at a given time and frequency. We can represent the power distribution on the sky as $S(\Omega)$, where $S(\Omega)$. However, no instrument is equally sensitive to radiation from every direction $\hat{s} \in \Omega$. Instead, an instrument has some sensitivity pattern -- a \textit{beam pattern} -- that tapers the power distribution on the sky into an ``observed sky'',  $S'(\Omega) = A(\Omega)S(\Omega)$. 
 
 These generalizations lead to the classical visibility equation:
 
@@ -55,7 +55,7 @@ These generalizations lead to the classical visibility equation:
 V_{ij}(\nu) = \int A(\Omega, \nu) S(\Omega, \nu) e^{-2\pi i \nu \vec{b}_{ij}\cdot\hat{s}/c} {\rm d}\Omega
 \label{eq:classical_visibility}
 \end{equation}
-for a ``visibility" -- the fundamental interferometric observable -- $V_{ij}$ as a function of frequency.
+for a ``visibility'' -- the fundamental interferometric observable -- $V_{ij}$ as a function of frequency.
 
 If we choose to represent the source direction in terms of directional cosines $\ell$ and $m$, and represent the baseline vector in units of wavelengths, $\vec{b}_{ij}/\lambda=(u,v,w)$, we can perform a change of variables in Equation~\ref{eq:classical_visibility} to give
 
@@ -79,16 +79,16 @@ Even though it is often violated, the Fourier relationship shown in Equation~\re
 \label{eq:image_estimate}
 \end{equation}
 
-In Equation~\ref{eq:image_estimate}, we see that the reconstructed image $\tilde{S}(\ell, m)$ is attenuated by the beam response $A(\ell, m)/\sqrt{1 - \ell^2 - m^2}$. The function $\Xi(u, v)$ defines the sampling of the $u,\,v$ - plane. It is equal to 1 at the points sampled by the interferometer (baselines of length and direction defined by the vector  $\vec{b} = (u,v)$ exist in the array) and 0 elsewhere. As an example, the ``array" shown in Figure~\ref{fig:interferometry_2element} would be described by a $\Xi(u, v)$ function that was zero at all points except for a single ($u,\,v$) coordinate described by baseline vector $\vec{b}$.
+In Equation~\ref{eq:image_estimate}, we see that the reconstructed image $\tilde{S}(\ell, m)$ is attenuated by the beam response $A(\ell, m)/\sqrt{1 - \ell^2 - m^2}$. The function $\Xi(u, v)$ defines the sampling of the $u,\,v$ - plane. It is equal to 1 at the points sampled by the interferometer (baselines of length and direction defined by the vector  $\vec{b} = (u,v)$ exist in the array) and 0 elsewhere. As an example, the array shown in Figure~\ref{fig:interferometry_2element} would be described by a $\Xi(u, v)$ function that was zero at all points except for a single ($u,\,v$) coordinate described by baseline vector $\vec{b}$.
 
-The effect of the sampling function $\Xi(u, v)$ is that the true sky $S(\ell,m)$ can never be completely reconstructed, since it is impossible to build an interferometer that samples every $u,v$ mode. The true sky is convolved with the Fourier transform of $\Xi(u, v)$, which astronomers refer to as the ``dirty beam". $\Xi(u, v)$ contains zeros, so a complete deconvolution of $\tilde{S}(\ell, m)$ is impossible.
+The effect of the sampling function $\Xi(u, v)$ is that the true sky $S(\ell,m)$ can never be completely reconstructed, since it is impossible to build an interferometer that samples every $u,v$ mode. The true sky is convolved with the Fourier transform of $\Xi(u, v)$, which astronomers refer to as the ``dirty beam''. $\Xi(u, v)$ contains zeros, so a complete deconvolution of $\tilde{S}(\ell, m)$ is impossible.
 
 We now note that an important aspect of light has been absent throughout the derivations above: the polarization state of the radio wave that induces the electric field in Equation~\ref{eq:Ei}. Interferometers are typically constructed with two feeds, sensitive to polarization states of an incident radio wave along two separate axes. In the case of all of the instruments used in this work (see Chapter~\ref{chapter:instruments}), an antenna $i$ had two dipole feeds perpendicular to one another. These were along the North-South direction (`n') and the East-West direction (`e'). We can attempt to generalize Equation~\ref{eq:classical_visibility} to include polarization, setting antenna $i$ to have orientation $p$ and antenna $j$ to have orientation $q$, $p,q\in(e,n)$:
 
 \begin{equation}
 V^{pq}_{ij} = \int A_{pq}(\Omega, \nu) S_{pq}(\Omega, \nu) e^{-2\pi i \nu \vec{b}_{ij}\cdot\hat{s}/c} {\rm d}\Omega.
 \end{equation} 
-However, two aspects of this equation are unsatisfactory. As explored in Chapter~\ref{chapter:astro_rad}, the polarized sky is defined with the four Stokes parameters; an ``$S_{pq}$" polarized sky does not exist. Likewise, a dipole is not purely sensitive to a single vector orientation from the sky, but probes a wide range of angles\footnote{In the case of the PAPER instrument, described in the next Chapter, the dipole feeds probed the entire hemisphere of the sky.}. Therefore a $A_{pq}$ polarized beam is ill-defined. These shortcomings lead us to rewrite the visibility equation, cohesively including polarization from the outset.  
+However, two aspects of this equation are unsatisfactory. As explored in Chapter~\ref{chapter:astro_rad}, the polarized sky is defined with the four Stokes parameters; an `$S_{pq}$' polarized sky does not exist. Likewise, a dipole is not purely sensitive to a single vector orientation from the sky, but probes a wide range of angles\footnote{In the case of the PAPER instrument, described in the next Chapter, the dipole feeds probed the entire hemisphere of the sky.}. Therefore a $A_{pq}$ polarized beam is ill-defined. These shortcomings lead us to rewrite the visibility equation, cohesively including polarization from the outset.  
 
 \subsection{The Measurement Equation}
 
@@ -100,7 +100,7 @@ Returning to Equation~\ref{eq:Ei}, a radio wave incident on an antenna induces a
 \vec{E} = (e_p, e_q);\,\,\,\vec{v} = (v_p,v_q) = \textbf{J}\vec{E}
 \label{eq:voltage_jones}
 \end{equation}
-where \textbf{J} is a $2\times2$ complex matrix termed the ``Jones matrix" \citep{Jones.41}. Jones matrices represent linear transformations along the signal path, from the emission of the radio wave onwards. Multiple stages along the signal propagation can be represented by multiplying different Jones matrices together as a ``Jones chain", which may be expanded or collapsed as convenient.
+where \textbf{J} is a $2\times2$ complex matrix termed the ``Jones matrix'' \citep{Jones.41}. Jones matrices represent linear transformations along the signal path, from the emission of the radio wave onwards. Multiple stages along the signal propagation can be represented by multiplying different Jones matrices together as a ``Jones chain'', which may be expanded or collapsed as convenient.
 
 Interferometric visibilities are pairwise correlations of the components of $\vec{v}$ between antennas $i$ and $j$, integrated over some small time span (Equation~\ref{eq:vis_time_integration}), which we can represent hold in matrix form (the layout of which will become clear in a moment):
 
@@ -119,7 +119,7 @@ Using this formalism allows us to map the emitted electric field to the observed
 \langle e^q_i e^{p*}_j \rangle & \langle e^q_i e^{q*}_j \rangle \\
  \end{pmatrix} \textbf{J}^H_j = \textbf{J}_i \textbf{C}_{ij} \textbf{J}^H_j
 \end{equation}
-where \textbf{J}$_{i,j}$ may be Jones chains of arbitrary length. We have assumed instrument stability to move them out of the time averages in the central matrix. We refer to $\textbf{C}_{ij}$ as the ``coherency matrix". 
+where \textbf{J}$_{i,j}$ may be Jones chains of arbitrary length. We have assumed instrument stability to move them out of the time averages in the central matrix. We refer to $\textbf{C}_{ij}$ as the ``coherency matrix''. 
 
 In Chapter~\ref{chapter:astro_rad} the Stokes parameters we introduced. \cite{Hamaker-Bregman.96} showed that the components of the coherency matrix are closely related to the Stokes parameters:
 
@@ -142,9 +142,9 @@ The Jones formalism allows for a construction of the visibility equation that do
 \textbf{V}_{ij} = \int \textbf{J}_i(\hat{s}) \textbf{C}_{ij}(\hat{s}) \textbf{J}_j^H(\hat{s}) e^{-2\pi i \nu \vec{b}_{ij}\cdot\hat{s}/c} {\rm d}\Omega,
 \label{eq:RIME}
 \end{equation}
-which \cite{Smirnov.11} refers to as the ``Full Sky Radio Interferometric Measurement Equation"\footnote{We choose to explicitly show the exponent in this formulation for ease of comparison with Equation~\ref{eq:classical_visibility}. \cite{Smirnov.11} shows that this term can written as a ``phase delay Jones matrix" and absorbed into the Jones chain.}. Note that all of these quantities are functions of frequency as well, in general.
+which \cite{Smirnov.11} refers to as the ``Full Sky Radio Interferometric Measurement Equation''\footnote{We choose to explicitly show the exponent in this formulation for ease of comparison with Equation~\ref{eq:classical_visibility}. This term can written as a ``phase delay Jones matrix'' and absorbed into the Jones chain.}. Note that all of these quantities are functions of frequency as well, in general.
 
-So far, the formalism shown has used the $2\times 2$ ``Jones basis". It is sometimes more useful to work in the $4\times 4$ ``Mueller basis" \citep{Mueller.48}, which acts on visibilities in $4\times 1$ vector form:
+So far, the formalism shown has used the $2\times 2$ ``Jones basis''. It is sometimes more useful to work in the $4\times 4$ ``Mueller basis'' \citep{Mueller.48}, which acts on visibilities in $4\times 1$ vector form:
 
 \begin{equation}
 \begin{pmatrix}
@@ -171,7 +171,7 @@ V^{qq} \\
 \label{eq:interferometry_pseudo_stokes}
 \end{equation} 
 
-It is important to note that Equation~\ref{eq:interferometry_pseudo_stokes} lists a vector of ``Stokes-polarized visibilities" on the left-hand side, whereas  Equation~\ref{eq:interferometry-stokes-coherency} shows that the coherency matrix contains linear combinations the Stokes parameters. This is not an inconsistency. While visibilities are quantities that are integrated over the sky, the Stokes parameters are only defined \textit{on} the sky. One must transform the visibilities from the $uv$-plane onto the image-plane and deconvolve the beam in order to measure the Stokes parameters. Instead, linear combinations of visibilities measure a proxy for each the Stokes parameters. To make the inequality between visibilities and Stokes parameters explicit, I will refer to the ``Stokes-polarized visibilities" as ``pseudo-Stokes visibilities" from now on.
+It is important to note that Equation~\ref{eq:interferometry_pseudo_stokes} lists a vector of ``Stokes-polarized visibilities'' on the left-hand side, whereas  Equation~\ref{eq:interferometry-stokes-coherency} shows that the coherency matrix contains linear combinations the Stokes parameters. This is not an inconsistency. While visibilities are quantities that are integrated over the sky, the Stokes parameters are only defined \textit{on} the sky. One must transform the visibilities from the $uv$-plane onto the image-plane and deconvolve the beam in order to measure the Stokes parameters. Instead, linear combinations of visibilities measure a proxy for each the Stokes parameters. To make the inequality between visibilities and Stokes parameters explicit, I will refer to the ``Stokes-polarized visibilities'' as ``pseudo-Stokes visibilities'' from now on.
 
 One can translate between these two formalisms using the definition of $\vec{V}_{ij}$ (c.f. Equation~\ref{eq:voltage_jones}),
 
@@ -184,7 +184,7 @@ Comparison of Equation~\ref{eq:classical_visibility} and \ref{eq:RIME} shows tha
 \begin{equation}
 \vec{A}_i^p(\hat{s}) = A^p_{i,\theta}(\hat{s})\hat{\theta} + A^p_{i,\phi}(\hat{s})\hat{\phi},
 \end{equation}
-where we have suppressed the frequency dependence. The antenna patterns may be written as components of a ``Beam Jones matrix" for an antenna,
+where we have suppressed the frequency dependence. The antenna patterns may be written as components of a ``Beam Jones matrix'' for an antenna,
 
 \begin{equation}
 \textbf{J}_i^{\rm B}(\hat{s}) = 
@@ -200,11 +200,11 @@ These are the essential components for understanding the fundamental measurement
 \section{Calibration Techniques}
 \label{sec:interferometry_cal}
 
-The purpose of calibration is to remove effects of the instrument and the atmosphere from the data. Visibilities are measured in ``data units". That is, a given feed on an antenna will record some measurement of power, but some scalar conversion factor is required to calibrate that power to units of flux density. As visibilities measure the pairwise correlations of antenna powers, the estimation of the calibration factors can quickly become difficult as the number of antennas increases. In this Section we explain different approaches to such a challenge.
+The purpose of calibration is to remove effects of the instrument and the atmosphere from the data. Visibilities are measured in ``data units''. That is, a given feed on an antenna will record some measurement of power, but some scalar conversion factor is required to calibrate that power to units of flux density. As visibilities measure the pairwise correlations of antenna powers, the estimation of the calibration factors can quickly become difficult as the number of antennas increases. In this Section we explain different approaches to such a challenge.
 
 \subsection{Diagonal and off-diagonal calibration}
 
-The calibration term that converts the power measured by an antenna to physical units is referred to as the ``antenna gain". This may be summarized per feed as a direction-independent ``Gain Jones matrix",
+The calibration term that converts the power measured by an antenna to physical units is referred to as the ``antenna gain''. This may be summarized per feed as a direction-independent ``Gain Jones matrix'',
 
 \begin{equation}
 \textbf{J}_i^{\rm G} = 
@@ -216,7 +216,7 @@ g_i^p &0 \\
 \end{equation}
 where we have suppressed the frequency dependence. The components of $\textbf{J}_i^{\rm G}$ are complex numbers, the argument of which represents instrumental phase, and the modulus represents instrumental amplitude. Note that this formulation of $\textbf{J}_i^{\rm G}$ is only appropriate for linear antenna feeds. Circular feeds, which we will not comment on for the rest of this work, require an additional rotation matrix applied to move from a linear to a circular polarization frame.
 
-Unfortunately, a direction-independent scaling is not the only term that requires estimation. As Equation~\ref{eq:jones-beam} makes clear, a given feed is not receptive to a single plane of polarization. In general, we expect some fraction of power measured by feed $p$ to be transferred into feed $q$ via imperfect electronics \citep[clever feed designs can attempt to minimize this effect, e.g.][]{Parashare.06, Parsons.10}. This kind of power leakage is described by an off-diagonal matrix, and the components are known as ``\textit{D}-terms",
+Unfortunately, a direction-independent scaling is not the only term that requires estimation. As Equation~\ref{eq:jones-beam} makes clear, a given feed is not receptive to a single plane of polarization. In general, we expect some fraction of power measured by feed $p$ to be transferred into feed $q$ via imperfect electronics \citep[clever feed designs can attempt to minimize this effect, e.g.][]{Parashare.06, Parsons.10}. This kind of power leakage is described by an off-diagonal matrix, and the components are known as ``\textit{D}-terms'',
 
 \begin{equation}
 \textbf{J}_i^{\rm D} = 
@@ -272,17 +272,17 @@ Due to the turbulent nature of the ionosphere, both of these terms are extremely
 
 \subsection{Image-based calibration}
 
-Traditionally, the approach taken for estimating the components of all of the above was to observe a calibration source. A calibrator source would be unresolved, such that its position and phase is a direct measure of ionospheric diffraction and instrumental phase. Deviation from its catalogued position can be subtracted off, calibrating the phase (the argument of the components of $\textbf{J}_i^{\rm G}$; Equation~\ref{eq:jones-gains}). For an interferometer that cannot point in a given direction, but instead ``drift-scans", observing the sky as the Earth rotates, calibration takes place when the calibrator source is at zenith (for a telescope that can point, the calibrator source would be observed in the center of the field-of-view). With a well-catalogued flux density and minimal beam attenuation, the amplitude of the visibility can be scaled appropriately to estimate the moduli of instrumental gains.
+Traditionally, the approach taken for estimating the components of all of the above was to observe a calibration source. A calibrator source would be unresolved, such that its position and phase is a direct measure of ionospheric diffraction and instrumental phase. Deviation from its catalogued position can be subtracted off, calibrating the phase (the argument of the components of $\textbf{J}_i^{\rm G}$; Equation~\ref{eq:jones-gains}). For an interferometer that cannot point in a given direction, but instead ``drift-scans'', observing the sky as the Earth rotates, calibration takes place when the calibrator source is at zenith (for a telescope that can point, the calibrator source would be observed in the center of the field-of-view). With a well-catalogued flux density and minimal beam attenuation, the amplitude of the visibility can be scaled appropriately to estimate the moduli of instrumental gains.
 
 If the polarization state of the calibration source was known (and non-zero), forming Stokes parameters in the image plane can provide a measure of instrumental polarization, as gain errors and $D$-terms move power between the Stokes parameters (see Section~\ref{sec:interferometry_pol} and Chapter~\ref{chapter:polcal}). If the calibration source is known to be unpolarized, then the same method can be used to place a limit on the $D$-term magnitudes by maximizing Stokes I while minimizing Stokes Q, U and V.
 
-The approach described above is only as good as the sky and instrument models used, as one must ``simulate" a the expected visibilities for a given sky model passing over a simulated instrument. For the wide field-of-view observations that are native to low-frequency instruments, obtaining a sky model that accurately describes the point sources and diffuse structure on the sky is a daunting task. \cite{Barry.16} included the 4,000 brightest catalog sources in their sky (unpolarized) model of the one of the Murchinson Widefield Array's (MWA; see Chapter~\ref{chapter:instruments}) EoR observation fields, but this granted insufficient dynamic range to allow for an EoR measurement. They found too much contamination from a large population of faint, unmodelled point sources.
+The approach described above is only as good as the sky and instrument models used, as one must ``simulate'' a the expected visibilities for a given sky model passing over a simulated instrument. For the wide field-of-view observations that are native to low-frequency instruments, obtaining a sky model that accurately describes the point sources and diffuse structure on the sky is a daunting task. \cite{Barry.16} included the 4,000 brightest catalog sources in their sky (unpolarized) model of the one of the Murchinson Widefield Array's (MWA; see Chapter~\ref{chapter:instruments}) EoR observation fields, but this granted insufficient dynamic range to allow for an EoR measurement. They found too much contamination from a large population of faint, unmodelled point sources.
 
 \subsection{CLEAN}
 
-An uncalibrated array is one where the power in the $uv$-plane is incorrectly distributed. Transforming an uncalibrated $uv$ distribution to the image plane will result in power scattered throughout the image plane; this is referred to as a ``dirty image". By precisely calibrating visibility complex gains (etc.), one is in effect rearranging the power distribution on the sky into the distribution astrophysical sources. An accurate calibration is one that does so and reproduces the flux density measured by other studies.
+An uncalibrated array is one where the power in the $uv$-plane is incorrectly distributed. Transforming an uncalibrated $uv$ distribution to the image plane will result in power scattered throughout the image plane; this is referred to as a ``dirty image''. By precisely calibrating visibility complex gains (etc.), one is in effect rearranging the power distribution on the sky into the distribution astrophysical sources. An accurate calibration is one that does so and reproduces the flux density measured by other studies.
 
-To perform an image-based calibration, one must be able to move easily between the $uv$ and image planes. There are two major challenges in doing so: the limited distribution of spatial scales probed by an interferometer, as encapsulated by the $\Xi(u,v)$ sampling function, and errors in instrumental calibration. The former challenge can be faced by using deconvolution techniques that estimate the missing information, known under the umbrella term of ``CLEANing algorithms". The latter can be faced by precise calibration -- in which an image can be of great utility to iterate upon. 
+To perform an image-based calibration, one must be able to move easily between the $uv$ and image planes. There are two major challenges in doing so: the limited distribution of spatial scales probed by an interferometer, as encapsulated by the $\Xi(u,v)$ sampling function, and errors in instrumental calibration. The former challenge can be faced by using deconvolution techniques that estimate the missing information, known under the umbrella term of ``CLEANing algorithms''. The latter can be faced by precise calibration -- in which an image can be of great utility to iterate upon. 
 
 \subsubsection{H{\"o}gbom's algorithm}
 
@@ -326,7 +326,7 @@ A Fourier transform along the frequency axis of a visibility is called a `delay 
 \sin\delta \\
 \end{pmatrix},
 \end{equation}
-for local sidereal time h. This value can be isolated in ``delay space" via a delay transform (where it is convenient to use the classical visibility equation for clarity, but all steps can be folded into the Jones formalism),
+for local sidereal time h. This value can be isolated in ``delay space'' via a delay transform (where it is convenient to use the classical visibility equation for clarity, but all steps can be folded into the Jones formalism),
 
 \begin{equation}
 \begin{split}
@@ -349,8 +349,8 @@ Figure~\ref{fig:delay_space_parsons12b} shows a graphical representation of a tw
 By delay-transforming simulated visibilities with a simple sky model of the brightest sources and comparing to an observed sky with those sources close to zenith, one can estimate the instrumental delays and gains and obtain a delay-based calibration for $\textbf{J}_i^{\rm G}$. However, Fourier-transforming along an axis with discontinuities -- such as spikes or divets caused by Radio Frequency Interference (RFI) and its subsequenct flagging -- will result in sinc-like side lobes throughout delay space. Some interpolation is required to bridge these gaps, presented in \cite{ParsonsBacker.09} as the complex 1D-CLEAN. The algorithm proceeds as follows:
 
 \begin{enumerate}
-\item Delay-transform the visibility containing nulled frequency channels -- this is the ``dirty image".
-\item As in the H{\"o}gbom algorithm, iteratively propagate the largest magnitude feature, by $\tau$ bin, to a model after convolving it with the Fourier transform of the flags themselves -- this is the ``dirty beam".
+\item Delay-transform the visibility containing nulled frequency channels -- this is the ``dirty image''.
+\item As in the H{\"o}gbom algorithm, iteratively propagate the largest magnitude feature, by $\tau$ bin, to a model after convolving it with the Fourier transform of the flags themselves -- this is the ``dirty beam''.
 \item Stop when the residual power in delay space is beneath some defined threshold. Add this residual power to the model.
 \end{enumerate}
 
@@ -360,7 +360,7 @@ The importance of the delay transform for EoR studies is discussed in Chapter~\r
 
 Thus far we have discussed calibration techniques that require some model of the sky to begin with. For an interferometer without any repeated baseline vectors, these methods are sufficient. However, some EoR studies, such as those discussed in this thesis, have opted to construct highly redundant arrays, with many repeated baselines. Such interferometers sample comparatively few modes of the $uv$-plane, leading to poor images -- but their visibilities can be averaged together in order to reduce noise for EoR measurements on specific spatial scales.
 
-We defer detailed discussion of redundant calibration to Chapter~\ref{chapter:polcal}, but provide a brief overview here (studies that explore this technique in depth include \cite{Wieringa.92, Liu.10, Zheng.14} and \cite{Dillon.17}). In a redundant array, there are several examples of a given ``visibility type". Assuming the antennas have identical beams (understanding non-redundant beams is a contemporary effort), the only difference between the visibilities should be due to their complex gains. For a visibility type $V^{pq}_{|i-j|}(\nu, t)$, all baselines with baseline vector $\vec{b}_{|i-j|}$ may be described as 
+We defer detailed discussion of redundant calibration to Chapter~\ref{chapter:polcal}, but provide a brief overview here (studies that explore this technique in depth include \cite{Wieringa.92, Liu.10, Zheng.14} and \cite{Dillon.17}). In a redundant array, there are several examples of a given ``visibility type''. Assuming the antennas have identical beams (understanding non-redundant beams is a contemporary effort), the only difference between the visibilities should be due to their complex gains. For a visibility type $V^{pq}_{|i-j|}(\nu, t)$, all baselines with baseline vector $\vec{b}_{|i-j|}$ may be described as 
 
 \begin{equation}
 V_{ij}(\nu, t) = g^{p*}_i(\nu, t)  g^{q}_j(\nu, t) V^{pq}_{|i-j|}(\nu, t) + n_{ij}(\nu,t),
@@ -398,7 +398,7 @@ influences the power in pseudo-Stokes visibilities.
 
 The direction-dependent terms in the Jones chain concern the beam, and ionospheric effects. In this section, we will concentrate on the beam Jones matrix -- the ionospheric effects are discussed in detail elsewhere \citep[e.g.][{\color{red} Martinot et al. (in prep.)}]{Intema.09,Vedantham.15,Vedantham.16}.
 
-Unless $\textbf{J}_i^{\rm B}(\hat{s},\nu)$ is both diagonal and, at any given point on the sphere, the diagonal elements are equal, there will be mixing or ``leaking" of different Stokes parameters together into each element of $\textbf{V}_{ij}$ in a direction dependent way \citep[e.g.][]{Geil.11, Smirnov.11, Smirnov.11.2, Nunhokee.17}. Focusing on pseudo-Stokes I and neglecting other Jones terms for a moment,
+Unless $\textbf{J}_i^{\rm B}(\hat{s},\nu)$ is both diagonal and, at any given point on the sphere, the diagonal elements are equal, there will be mixing or ``leaking'' of different Stokes parameters together into each element of $\textbf{V}_{ij}$ in a direction dependent way \citep[e.g.][]{Geil.11, Smirnov.11, Smirnov.11.2, Nunhokee.17}. Focusing on pseudo-Stokes I and neglecting other Jones terms for a moment,
 
 \begin{equation}
 \begin{split}
@@ -451,7 +451,7 @@ V \rightarrow V^I  & V \rightarrow V^Q & V \rightarrow V^U & V \rightarrow V^V\\
 
 As discussed in Chapter~\ref{chapter:astro_rad}, at the low frequencies and large scales relevant to EoR experiments, the Stokes I sky is extremely bright compared to the other Stokes parameters, and few polarized point sources have been found. This makes the first column of $\textbf{M}(\hat{s},\nu)$, representing $I\,\rightarrow\,V^I\,V^Q\,V^U\,V^V$ the most interesting for characterizing the polarized response of an instrument observationally. It can be reasonably expected that even a small amount of leakage from Stokes I into the other Stokes parameters will dominate over Stokes Q, U and V power alone.
 
-Deconvolution of $\textbf{M}(\hat{s},\nu)$ for wide field-of-view instruments is not at all a solved problem, with contemporary studies ``learning to live with it". Hypothetically, with accurate polarized sky and instrument models, one could use the linear nature of the Jones formalism to compute each ``visibility component",
+Deconvolution of $\textbf{M}(\hat{s},\nu)$ for wide field-of-view instruments is not at all a solved problem, with contemporary studies ``learning to live with it''. Hypothetically, with accurate polarized sky and instrument models, one could use the linear nature of the Jones formalism to compute each ``visibility component'',
 
 \begin{equation}
 \hat{V}^{ab}_{ij} = \int \textbf{M}_{ab}(\hat{s},\nu)S_P(\hat{s},\nu)\exp(-2\pi i \nu \vec{b}\cdot\hat{s}/c) {\rm d}\Omega,

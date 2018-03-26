@@ -1,13 +1,13 @@
 \chapter{Astrophysical Radiation}
 \label{chapter:astro_rad}
 
-As discussed in Chapter~\ref{chapter:eor_intro}, the target signal of EoR experiments has a brightness temperature of order $\sim 10$\,mK. At the $50-200$\,MHz frequencies for these experiments, however, foreground radiation from the Milky Way (referred to as `the Galaxy', with a capital `G' for much of this thesis), extragalactic sources and manmade interference, with total brightness temperature $\sim 10^4$ times greater than the target signal, is the principle challenge to overcome \citep[e.g.][]{Santos.05, GSM.08, Bernardi.09, Bernardi.10, Pober.13, Dillon.14, Kohn.16, Kohn.18}. In this Chapter, I outline our current understanding of polarized and unpolarized foregrounds, and the implications for the dynamic range required for an EoR detection. The Southern Hemisphere is the focus of the chapter, as this is where the instruments used in this work are based (see Chapter~\ref{chapter:instruments}). For a comprehensive review of radiative processes in astrophysics, see \cite{Rybicki.79}. 
+As discussed in Chapter~\ref{chapter:eor_intro}, the target signal of EoR experiments has a brightness temperature of order $\sim 10$\,mK. At the $50-200$\,MHz frequencies for these experiments, however, foreground radiation from the Milky Way (referred to as ``the Galaxy'', with a capital ``G'' for much of this thesis), extragalactic sources and manmade interference, with total brightness temperature $\sim 10^4$ times greater than the target signal, is the principle challenge to overcome \citep[e.g.][]{Santos.05, GSM.08, Bernardi.09, Bernardi.10, Pober.13, Dillon.14, Kohn.16, Kohn.18}. In this Chapter, I outline our current understanding of polarized and unpolarized foregrounds, and the implications for the dynamic range required for an EoR detection. The Southern Hemisphere is the focus of the chapter, as this is where the instruments used in this work are based (see Chapter~\ref{chapter:instruments}). For a comprehensive review of radiative processes in astrophysics, see \cite{Rybicki.79}. 
 
 \section{Synchrotron Radiation}
 
 Any accelerating charged particle will radiate. For low-frequency radio foregrounds, the radiation we are most interested in is emitted by electrons accelerated by Galactic magnetic fields.
-At non-relativistic velocities, the radiation of a charged particle accelerated by magnetic field $\vec{B}$ is well-described by relatively simple formulae, and is referred to as `cyclotron radiation'. In this case, the emission spectrum is simply determined by gyration frequency about the magnetic field lines.
-At relativistic velocities, the spectrum becomes more complicated, and is referred to as `synchrotron radiation'.
+At non-relativistic velocities, the radiation of a charged particle accelerated by magnetic field $\vec{B}$ is well-described by relatively simple formulae, and is referred to as ``cyclotron radiation''. In this case, the emission spectrum is simply determined by gyration frequency about the magnetic field lines.
+At relativistic velocities, the spectrum becomes more complicated, and is referred to as ``synchrotron radiation''.
 
 The equation of motion of a relativistic charged particle of mass $m$, charge $q$ and velocity $\vec{v}$ can be written as 
 \begin{equation}
@@ -117,12 +117,12 @@ Q &\equiv \left\langle E_1E_1^* \right\rangle - \left\langle E_2E_2^* \right\ran
 U &\equiv \left\langle E_1E_2^* \right\rangle + \left\langle E_2E_1^* \right\rangle = \left\langle 2 E_1 E_2 \cos(\phi_1 - \phi_2)\right\rangle, \\
 V &\equiv -i (\left\langle E_1E_2^* \right\rangle - \left\langle E_2E_1^* \right\rangle) = \left\langle 2 E_1 E_2 \sin(\phi_1 - \phi_2)\right\rangle, \\
 \end{align}
-where $E_i^*$ indicates the complex conjugate of $E_i$, and $\left\langle \cdots \right\rangle$ indicates an average over some integration time over which the measurement is made. It is easy to see from the Cauchy-Schwarz inequality that for quasi-monochromatic waves, $I^2 \geq Q^2 + U^2 + V^2$. Radiation is completely unpolarized if $Q=U=V=0$. It it common to refer to the `polarization fraction' or `degree of polarization' of observed radiation, $p$:
+where $E_i^*$ indicates the complex conjugate of $E_i$, and $\left\langle \cdots \right\rangle$ indicates an average over some integration time over which the measurement is made. It is easy to see from the Cauchy-Schwarz inequality that for quasi-monochromatic waves, $I^2 \geq Q^2 + U^2 + V^2$. Radiation is completely unpolarized if $Q=U=V=0$. It it common to refer to the ``polarization fraction'' or ``degree of polarization'' of observed radiation, $p$:
 
 \begin{equation}
 p \equiv \frac{\sqrt{Q^2 + U^2 + V^2}}{I}
 \end{equation}
-and `linear polarized intensity', $P$:
+and ``linear polarized intensity'', $P$:
 
 \begin{equation}
 P = \frac{1}{2}\sqrt{Q^2 + U^2}
@@ -221,11 +221,11 @@ Figure~\ref{fig:astropol_rm_map} shows the all-sky RM measurements of \cite{Oppe
 \subsection{Depolarization}
 \label{subsec:astropol_depolar}
 
-Frequently the intrinsic polarization fraction of a radiating source much greater than the observed value; the observed radiation is `deopolarized'. Modes of depolarization can generally be categorized in to two groups: natural and instrumental. 
+Frequently the intrinsic polarization fraction of a radiating source much greater than the observed value; the observed radiation is `depolarized'. Modes of depolarization can generally be categorized in to two groups: natural and instrumental. 
 
 Instrumental polarization can occur via the beam -- the receptivity pattern, or point spread function (PSF) -- of the instrument (see Chapter~\ref{chapter:interferometry}). If the polarization angle changes significantly within the area of the beam, which is the case for turbulent Galactic magnetic fields and the very large beam areas of modern instruments (e.g. Chapter~\ref{chapter:instruments}), the observed polarization fraction can be attenuated during integration over the beam area. 
 When probing RM distributions via RM synthesis, the channel width over which the data are averaged sets the sensitivity to the maximum RM by definition. Sources with higher RMs will suffer from `bandwidth depolarization', and this effect will strengthen at lower frequencies according to the phase-wrapping factor $2\Phi\lambda^2$.
-As we explore in the next Chapter, interferometric polarization measurements are obtained by measuring the projection of the electric vector field on to orthogonal dipole arms. An electrical phase offset between the two arms will almost certainly exist in any instrument. If left uncalibrated, Stokes U will leak in to Stokes V, consequently depolarizing linear polarized intensity. Likewise, relatively faint polarized emission can be `washed-out' of measurements if Stokes I is able to leak in to Stokes Q and U measurements.
+As we explore in the next Chapter, interferometric polarization measurements are obtained by measuring the projection of the electric vector field on to orthogonal dipole arms. An electrical phase offset between the two arms will almost certainly exist in any instrument. If left uncalibrated, Stokes U will leak in to Stokes V, consequently depolarizing linear polarized intensity. Likewise, relatively faint polarized emission can be ``washed-out'' of measurements if Stokes I is able to leak in to Stokes Q and U measurements.
 
 Natural depolarization can arise at the source of the radiation, due to turbulent magnetic fields. Different magnetic field projections along the line-of-sight can produce different angles of polarization, that can on average attenuate the observed polarized intensity. Similarly, radiation emitted from different depths of the source can undergo different amounts of Faraday rotation along the line-of-sight as they pass through regions of different electron densities. This effect is apparent in Figure~\ref{fig:astropol_drao_map}: in the plane of the Galaxy, which has a large column depth, the observed polarized intensity is low compared to, for example, the Northern Galactic Spur, which is physically closer to the Earth. 
 

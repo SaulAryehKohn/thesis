@@ -240,21 +240,22 @@ The expression in Equation~\ref{eq:vgeneral} does not take time into account -- 
 m_1 & 0 & -m_3
 \end{pmatrix},
 \end{multline}
-the second Wigner-3$j$ symbol obeys the selection rule that $m_1 = m_3$. 
-Performing one odd permutation of this second Wigner-3$j$ symbol, and expressing both Wigner-3$j$ symbols as Clebsch-Gordan coefficients:
-\begin{equation}
-\begin{pmatrix}
-\ell_1 & \ell_2 & \ell_3 \\
-0 & 0 & 0
-\end{pmatrix}
-\begin{pmatrix}
-\ell_1 & \ell_2 & \ell_3 \\
-m_1 & 0 & -m_3
-\end{pmatrix}
-\propto
-\left\langle \ell_1 0 \ell_2 0 | \ell_3 0 \right\rangle \left\langle \ell_1 m \ell_3 -m | \ell_2 0 \right\rangle,
-\end{equation}
-it can be shown (e.g. Varshalovich, Moskalev \& Khersonskii, 1988) that the second coefficient obeys the selection rule that $\ell_2 = m_2 = 0$. This shows that time-averaging selects the monopole term of the sky. However, all of the selection rules above stemmed from a totally symmetric averaging of the spherical harmonic modes of the sky. To ensure this is the case, long time-averages are required.
+the second Wigner-3$j$ symbol obeys the selection rule that $m_1 = m_3$.  This leaves all sky $m$-modes attenuated, save for the zero mode, but higher multipole $\ell$ modes survive. These are `stripes' of constant declination along the sky. How to account for contamination from these higher $\ell$ modes is not  a solved problem.
+
+%Performing one odd permutation of this second Wigner-3$j$ symbol, and expressing both Wigner-3$j$ symbols as Clebsch-Gordan coefficients:
+%\begin{equation}
+%\begin{pmatrix}
+%\ell_1 & \ell_2 & \ell_3 \\
+%0 & 0 & 0
+%\end{pmatrix}
+%\begin{pmatrix}
+%\ell_1 & \ell_2 & \ell_3 \\
+%m_1 & 0 & -m_3
+%\end{pmatrix}
+%\propto
+%\left\langle \ell_1 0 \ell_2 0 | \ell_3 0 \right\rangle \left\langle \ell_1 m \ell_3 -m | \ell_2 0 \right\rangle,
+%\end{equation}
+%it can be shown (e.g. Varshalovich, Moskalev \& Khersonskii, 1988) that the second coefficient obeys the selection rule that $\ell_2 = m_2 = 0$. This shows that time-averaging selects the monopole term of the sky. However, all of the selection rules above stemmed from a totally symmetric averaging of the spherical harmonic modes of the sky. To ensure this is the case, long time-averages are required.
 
 \section{Time-averages from PAPER}
 
@@ -262,7 +263,7 @@ The Season 1 Epoch 2 observations of PAPER-128 were defined and described in Cha
 
 We then extracted only the 30\,m East-West baselines, in the instrumental `nn' polarization, for analysis. Unlike in Chapter~\ref{chapter:eor_window_psa128}, we did not implement a foreground avoidance scheme. The data were gridded and binned according to their LST of observation, and absolute-calibrated according to the flux density and position of Pictor A at transit \citep[][the same calibration shown in Chapter~\ref{chapter:eor_window_psa128}]{Jacobs.13}.
 
-To isolate the global component of the signal, which does not `fringe' on the sky as observed by the interferometer, we averaged all LSTs into a single frequency spectrum. The real part of the averaged spectrum is shown in the upper panel of Figure~\ref{fig:global_signal_data_vs_sim}, with the simulated PAPER transfer function (Figure~\ref{fig:xi_vis}) over-plotted for reference. The delay transforms of the two spectra are shown in the lower panel of the Figure.
+To isolate the global ($m=0$) component of the signal, which does not `fringe' on the sky as observed by the interferometer, we averaged all LSTs into a single frequency spectrum. The real part of the averaged spectrum is shown in the upper panel of Figure~\ref{fig:global_signal_data_vs_sim}, with the simulated PAPER transfer function (Figure~\ref{fig:xi_vis}) over-plotted for reference. The delay transforms of the two spectra are shown in the lower panel of the Figure.
 
 There were some enticing qualitative agreements. Clearly, the phases of the oscillations between simulation and data were very similar to one another; noticeable in the upper panel and very clear in the lower one. 
 The power within the foreground wedge region (e.g. Chapter~\ref{chapter:eor_window_theory}) was at the level of noise in the EoR window, indicating that foregrounds were attenuated at the appropriate delays, save, of course, the horizon delays.
@@ -290,7 +291,7 @@ The above analyses have shown that the PAPER beam and sky signal are quite accur
 
 HERA \citep{deBoer.17} will represent the most powerful low-frequency interferometer of its kind, with far more redundant baselines to average-over and experiment with in its search for the EoR power spectrum. However, it may not be the best instrument for a search for the global signal. Its faceted dish structure leads to smaller beams, which in turn leads to a large number of spherical harmonic modes required for its description. This complicates an accurate simulation of $\Xi(\hat{b},\nu)$ and hence the extraction of the global signal from observations. Interferometers specifically designed to target the global signal and adhere to prescriptions set by \cite{Venumadhav.16} may be more fruitful efforts.
 
-We have shown that the global signal is, in theory, detectable by an interferometer. Our exploration with PAPER-128 data yielded imperfect but promising results. We detected a time-constant signal that is characterized by the length of the baseline used for the measurement; it was not simply electrical crosstalk. We may be quite close to a characterization of monopole power, following a relatively simple scheme. Much more work is required before a definitive claim of a detection, but in the meantime, our present observations remain exciting.
+We have shown that the global signal is, in theory, detectable by an interferometer. Our exploration with PAPER-128 data yielded imperfect but promising results. We detected a time-constant signal that is characterized by the length of the baseline used for the measurement; it was not simply electrical crosstalk. However, that signal may contain more than the $(\ell,m)=(0,0)$ mode of the sky, as we have not removed higher $\ell$ modes. That said, we appear to be quite close to a characterization of monopole power, following a relatively simple scheme. Much more work is required before a definitive claim of a detection, but in the meantime, our present observations remain exciting.
 
 \section*{Note: interpretation in light of \cite{Venumadhav.16}}
 The paper by \citealt{Venumadhav.16} conceptualizes a single
