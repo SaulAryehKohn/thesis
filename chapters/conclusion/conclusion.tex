@@ -1,32 +1,22 @@
 \chapter{Conclusions}
 \label{chapter:conc}
 
-% In this work, I have shown.... 
-% - that the EoR is cool and worth looking for
-% - inherent chromatism of the instrument is a challenge, but gives us our greatest tool of wedge+EoR window
-% - MUST MAINTAIN SMOOTHNESS
-% - astrophysical polarization (FRot'd) violates this, must be checked for 
-%
-% - the ins and outs of working with wide-field polarized interferometric measurements
-% -- compression, high-dynamic range calibration, images, the ionosphere 
-% -- wide and shallow (PAPER-32) vs narrow and deep (PAPER-128) integrations on Fourier representation of polarized data
-% -- the first published power spectra from HERA. Everything going to plan.
-% 
-% interesting new ways to use the data:
-% global signal
-% cross correlations
-% ML
+A detection of the EoR would change the landscape of observational cosmology. Direct observation of the large scale structure of {\sc hi} as it evolves through time would profoundly impact the understanding of the birth of the first galaxies and black holes, their influence on the IGM, and the cosmological density field. In combination with other probes of the early universe, EoR measurements will provide a complete picture of reionization and break measurement degeneracies in fundamental cosmological parameters. It's awesome, and it's worth the effort.
 
-% where do we go from here?
-%
-% how smooth are sync foregrounds really - my paper idea
-% jackknife on ionosphere
-% polarization needs to be characterized down to EoR dynamic ranges: WE NEED LITTLE P
-% imaging and subtraction of individual Mueller components is low hanging fruit
-% solar minimum for HERA makes the ionosphere unimportant, but could be for long term projects e.g. SKA Low
-% polcal has great potential, requires characterization
-% global signal needs dedicated experiment -- cite something from Kara -- need to account for higher ell modes if we use our path
-% trispectra may be one of the most viable options for cross-correlation studies in the short term
-% cross correlations with JWST - map ultra deep fields in to k space just as we have with kSZ. Do we overlap?
-% ML has huge potential -- clustering on data_prep_and_proc statistics, RFI flagging, source subtraction...
-% let's detect the EoR!!! GO TEAM HERA.
+At the time of writing, the observational cosmology community is at the stage of setting limits on the power spectrum of the EoR. The primary challenges of astrophysical foregrounds and chromatic, noisy instruments force long integrations with high dynamic range calibration and innovative digital signal processing techniques. The spectral smoothness of synchrotron radiation -- the dominant emission mechanism for low-frequency sources -- compared to the spectrally structured emission from the 21\,cm brightness contrast gives us our most powerful tool. We are able to isolate foreground power into a wedge-shaped region of Fourier space, while the 21\,cm radiation scatters in to the EoR window during the Fourier transform. In order to keep the foregrounds isolated, the instrument, signal path, calibration and reduction stages must all maintain spectral smoothness. One astrophysical effect that violates this paradigm is Faraday-rotated polarized synchrotron, which can be both bright and spectrally structured.
+
+The risk of contamination of the Stokes I EoR window from Faraday-rotated Stokes Q and U foregrounds motivated my study of polarization in Fourier space. Mapping polarized interferometric measurements into the mathematical space relevant to EoR measurements has proven to be rich in its information content, providing useful measurements of the polarized sky and the instrument itself. I have presented both the widest uniform sampling of polarized power in Fourier space, from the PAPER-32 imaging array, and the deepest integration on polarized power to date, using the PAPER-128 redundant grid. These measurements, and an intermediate-depth integration on polarized power with the HERA commissioning array, are all consistent with current models and observations of the diffuse low frequency sky. 
+
+As with the search for the EoR itself, observation of polarized power in Fourier space is currently in the business of limit-setting. The predicted weakness of polarized power at the low $k_{\perp}$, high $k_{\parallel}$ Fourier modes is useful in the sense that contamination levels are inherently low, but makes characterization of polarized power difficult. A definitive measurement of the polarized fraction at the relevant $k$ modes for an EoR detection is a crucial, but elusive measurement.
+
+Throughout this work I have developed an intuition surrounding polarized leakage through direction-dependent and independent Jones matrices. I created a new redundant calibration scheme to account for the diagonal terms of the direction-independent Jones matrix in a polarization-conscious way, which gives very good agreement with instrumental simulations. Imaging-based calibration schemes were shown to correct the off-diagonal terms. HERA, capable of redundant and imaging calibration, will be able to capitalize on both of these schemes. With many more degrees of freedom, the direction-dependent Jones matrix is more difficult to manipulate and correct for. By simulating pseudo-Stokes HERA visibilities using a model Mueller matrix, we were able able to verify the accuracy of our beam models, replicating most of the observations in image and Fourier space. A relatively simple next step would be to produce simulations for each Mueller leakage term and subtract it from the total pseudo-Stokes visibility, in order to recover the diagonal parameters. This could provide a relatively cheap route to images of Stokes Q, U and V, `cleaned' of Stokes I leakage.
+
+For very precise measurements of the polarized sky, the effects of the ionosphere must be taken in to account. Most HERA observations will take place during solar minimum. As such, ionospheric depolarization will be very small. However, for longer-term projects such as SKA-Low, we have developed software packages and mathematical tools for understanding the impact of ionospheric fluctuations on polarized power. To verify our models, jackknives of polarized measurements taken during solar maximum, such as PAPER-64 or 128, could be used and checked for depolarization.
+
+All of our current work suggests that HERA, once fully constructed, is on-track for a statistical detection of the EoR. The latter part of this work has given some suggestions on where we might go from there. Using PAPER-128 measurements, we were able to qualitatively reproduce a global signature in delay-space. While this looks promising, to adhere fully to the theory surrounding interferometric measurements of a monopole signal, it really requires a dedicated experiment, as well as further theoretical work to account for contamination from $\ell > 0$ modes.
+
+I have developed an exciting new formalism to perform cross-correlations between 21\,cm power and other cosmological probes in Fourier space. Using higher-order correlation functions allows for recovery of non-Gaussian signals as well as avoidance of the foreground wedge. While we have concentrated on the kSZ in this work as the most near-term correlation available given the overlapping schedules of HERA and Stage 3 CMB experiments, similar relationships could be derived for ultra-deep pencil-beam integrations from JWST and ALMA, or for future intensity mapping surveys of CO and {\sc ci}.
+
+The machine learning and deep learning communities are currently undergoing radical and rapid innovations. These techniques have huge potential applications for the `big data' inherent to interferometry. Clustering of quality-assurance metrics and automatic, trained detection of RFI and other instrument systematics would be incredibly useful. These tools are currently under construction at UPenn and elsewhere. In this work we have shown the potential for recovery of cosmological information from futuristic EoR measurements.
+
+Through hard-core theoretical work, unconventional instrument design and characterization, observational expertise, and a lot of international cooperation, the cosmology community is closer than ever to a detection of {\sc hi} at cosmological distances. I am optimistic and excited to find out what the future holds.
