@@ -193,7 +193,7 @@ Joshua Klein\\ \small Professor of Physics and Astronomy
 
 \pagestyle{plain}
 \unchapter{Dedication}
-\doublespaced
+%\doublespaced
 \vspace*{2in}
 \begin{center}
 {\large\emph{to my grandparents}}
@@ -231,7 +231,7 @@ To view a copy of this license, visit
 
 \chapter{Acknowledgments}
 %\halfspaced
-
+{\sloppy
 % intro...
 \noindent
 While I am the one to have performed the research and compiled it, this thesis is the product of many, of which I must thank a specific few. \\
@@ -241,23 +241,23 @@ While I am the one to have performed the research and compiled it, this thesis i
 It has been a privilege to work alongside the talented and passionate individuals that comprise the PAPER and HERA teams. My co-conspirators of PAPER analysis -- Danny Jacobs, Carina Cheng, Matt Kolopanis and Josh Kerrigan -- it has been a struggle and a pleasure, and I will sorely miss working with you. A special thanks to the Penn portion to the effort: David Moore, Paul La Plante, Zac Martinot, Immanuel Washington and Tashalle Billings. I look forward to continued conversations and updates!\\
 
 \noindent
-The Department of Physics \& Astronomy of the University of Pennsylvania is a fantastic place to work. The cohorts of graduate students it brings together are consistently awesome, engaging and friendly. I have made some of my best friends here, including Ashley Baker, Christian Herwig, Elodie Resseguie, Christina Krawiec, Rachel Wolf and Alyssa Barlis. Outside of Physics \& Astronomy, but within the Penn umbrella, I must thank my dear friends Julie Westover, Irteza Binte-Farid and Steve Kocher for their loving support. This is also a good place to thank the School of Arts and Sciences for supporting my final year at Penn with a Dissertation Completion Fellowship.\\
+The Department of Physics \& Astronomy of the University of Pennsylvania is a fantastic place to work. The cohorts of graduate students it brings together are consistently awesome, engaging and friendly. I have made some of my best friends here, including Ashley Baker, Christian Herwig, Elodie Resseguie, Christina Krawiec, Rachel Wolf and Alyssa Barlis. Outside of Physics \& Astronomy, but within the Penn umbrella, I must thank my dear friends Julie Westover, Irteza Binte-Farid and Steve Kocher for their loving support. This is also a good place to thank the School of Arts and Sciences for supporting my final year at Penn with a Dissertation Completion Fellowship.\\\\\\
 
 \noindent
 James, you are \textit{the best} supervisor. I have learned so much from you, and treasure the opportunities you have given me to grow and become the scientist that I am. I know how rare it is to be able to call a PhD supervisor a friend, and I count my luck there daily.\\
 
 \noindent
-Matt, Debby and Naomi, thank you for great conversations, encouraging words and hospitality. I can't want to be part of the family.\\
+Matt, Debby and Naomi, thank you for your great conversations, encouraging words and hospitality. I can't want to be part of the family.\\
 
 \noindent
-My siblings, Hannah, Yosef and Ezra, you are are always full of loving support and cutting sarcasm, neither of which I ever want to be without.\\
+To my siblings, Hannah, Yosef and Ezra: you are are always full of loving support and cutting sarcasm, neither of which I ever want to be without.\\
 
 \noindent
 Mom and Dad, this thesis belongs to you as much as it does me. Your hard work, encouragement and love made me who I am. Thank you.\\
 
 \noindent
-Gabby -- words here simply won't do justice to how grateful I am to you, for you. You're the best, and I love you.
-
+Gabby -- words here simply won't do justice to how grateful I am to you; for you. You're the best, and I love you.
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -276,8 +276,22 @@ James E. Aguirre
 \end{center}
 \noindent
 %350 Word Limit
-%Write One
-Abstracts are written last.
+{\sloppy
+The Epoch of Reionization (EoR) was a cosmic phase transition from a neutral to an ionized state.
+The first generation of luminous objects were able to heat and ionize their surrounding media, predominantly clouds of neutral hydrogen.
+Detection of redshifted 21\,cm brightness temperature fluctuations from the neutral hydrogen would provide a direct, inherently three-dimensional probe of astrophysics and cosmology during this transformational stage of cosmic history.
+
+Foreground power dominates the measurements of interferometers that seek a statistical detection of the EoR. The inherent spectral smoothness of synchrotron radiation -- the dominant foreground emission mechanism -- and the chromaticity of the instrument allows these experiments to delineate a boundary between spectrally smooth and structured emission in Fourier space.
+These separate components are referred to as the `foreground wedge' and the `EoR window'.
+However, Faraday rotation of polarized synchrotron radiation induces frequency-dependent structure in its spectrum, which will leak power from the foreground wedge into the EoR window. This makes polarization a potential contaminant for EoR measurements. 
+
+This work presents investigations into the impact of polarization on EoR measurements, in the Fourier space relevant to current EoR experiments. 
+We show, separately, both the widest and the deepest integrations on polarized power in the EoR window. All results are consistent with negligible leakage, to the noise levels attained. Our deep integration also represents the best limits to date on both polarized and unpolarized power in the EoR window. Polarized redundant calibration is also described and implemented on observations for the first time in this work.
+
+We also present new methods to expand the potential of EoR measurements, while remaining within the EoR window paradigm. Interferometric sensitivity to a monopole signal is explored, with the first ever implementations on observational data. We construct higher-order correlation functions to investigate the connection between the kinetic Sunyaev-Zeldovich effect, mapped into Fourier space, and the 21\,cm power spectrum. Finally, we examine the role deep learning could play in the analysis of more futuristic 21\,cm image cubes.
+}
+%Our results continually reinforce the importance of understanding instrumental polarization; how an interferometer is capable of leaking polarized signal into nominally unpolarized data. 
+
 
 \vspace*{\fill}
 
@@ -419,6 +433,7 @@ There is one glory of the sun, and another glory of the moon, and another glory 
 
 %\appendix
 \begin{appendices}
+
 %\addcontentsline{toc}{chapter}{Appendices}
 \include{appendices/software}
 

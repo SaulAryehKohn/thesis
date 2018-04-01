@@ -290,13 +290,12 @@ P_{\delta_x,\delta_x}(\vec{k_3}) \left\langle x_i \right\rangle \frac{{\rm d} \l
 \label{subsec:B_xrho21}
 
 In the squeezed triangle limit, these two component bispectra are identical. Their joint contribution can be expressed as:
-% OVERFLOW !!!
 \begin{multline}
 2\langle \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_{{\rm 21cm}}\rangle = 
-2T_0(1-\left\langle x_i \right\rangle) \\ \left\langle 
-- \frac{\left\langle x_i \right\rangle}{1-\left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_{\rho}(\vec{k}_2) \delta_x(\vec{k}_3)
-+ \delta_x(\vec{k}_1) \delta_{\rho}(\vec{k}_2) \delta_{\rho}(\vec{k}_3)
-- \frac{\left\langle x_i \right\rangle}{1-\left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_{\rho}(\vec{k}_2) \int \frac{{\rm d^3}k'}{(2\pi)^3} \delta_x(\vec{k}_3 - \vec{k'})\delta_{\rho}(\vec{k'})\right\rangle
+2T_0(1-\left\langle x_i \right\rangle) \\ \langle 
+- \frac{\left\langle x_i \right\rangle}{1-\left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_{\rho}(\vec{k}_2) \delta_x(\vec{k}_3) 
++ \delta_x(\vec{k}_1) \delta_{\rho}(\vec{k}_2) \delta_{\rho}(\vec{k}_3) \\
+- \frac{\left\langle x_i \right\rangle}{1-\left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_{\rho}(\vec{k}_2) \int \frac{{\rm d^3}k'}{(2\pi)^3} \delta_x(\vec{k}_3 - \vec{k'})\delta_{\rho}(\vec{k'})\rangle
 \end{multline}
 
 \subsubsection*{$B_{x,\rho,x}$}
@@ -535,19 +534,20 @@ We can also see strange effects of wedge filtering more qualitatively by forming
 
 While bispectra are computationally costly to calculate, trispectra are even more so. However, unlike the bispectrum, the trispectrum lacks an easy-to-understand semianalytic estimator. When we applied the same tactics as used in Section~\ref{subsec:ksz_21cm_semi_analytic_approximation}, all terms vanished except for the `connected' Gaussian term, that we would need to subtract from our final trispectrum estimate in the end, anyway:
 \begin{equation}
-\Delta\mathcal{T} \approx P_{\rm 21cm}(vec{k}^1_{\perp})P_{\rm kSZ}(vec{k}^3_{\perp}) \times |W_{\rm kSZ}(z)|^2.
+\Delta\mathcal{T} \approx P_{\rm 21cm}(\vec{k}^1_{\perp})P_{\rm kSZ}(\vec{k}^3_{\perp}) \times |W_{\rm kSZ}(z)|^2.
 \end{equation}
 
 However, the form of Equation~\ref{eq:squeezed_trispec} suggests that one term in the overall trispectrum that may be an interesting and efficient quantity to calculate is the cross-power spectrum between the squared 21\,cm and squared kSZ fields. Each would have to be filtered before squaring, in order to not convolve foreground-contaminated modes with otherwise clean ones. This cross-power spectrum is defined as
 \begin{equation}
 P_X(k) = \langle \delta^{2D*}_{\rm 21\,cm}(k_1)\delta^{2D}_{\rm 21\,cm}(k_1) \delta^*_{\rm kSZ}(k_3) \delta_{\rm kSZ}(k_3) \rangle
 \end{equation}
-for large-scale modes $k_1$ and small-scale modes $k_3$. This was an inexpensive way to probe the correlation of the squared fields, without calculating the full trispectrum. This quantity is shown in Figure~ZZZ, as a function of redshift of the 21\,cm contribution. Colors indicate redshift, while the solid lines are for unfiltered fields (in which the 21\,cm field is averaged without a window function to form $\delta^{2D}_{\rm 21\,cm}$) and dotted lines indicate data after filtering. The statistic is noisy, but is significantly above theoretical noise levels (passing Gaussian noise fields through the same calculation resulted in a flat power spectrum). Power decreases with redshift, suggesting some dependence on the ionized fraction. Like the 21\,cm$^2$ power spectra shown in Figure~\ref{fig:effect_of_filtering_21squared}, filtering the wedge changes this trend. The correlation was strongest on large scales before and after filtering, which also suggests that the 21\,cm field dominates the correlation.
+for large-scale modes $k_1$ and small-scale modes $k_3$. This was an inexpensive way to probe the correlation of the squared fields, without calculating the full trispectrum. This quantity is shown in Figure~\ref{fig:trispec_estimator_filt_unfilt}, as a function of redshift of the 21\,cm contribution. Colors indicate redshift, while the solid lines are for unfiltered fields (in which the 21\,cm field is averaged without a window function to form $\delta^{2D}_{\rm 21\,cm}$) and dotted lines indicate data after filtering. The statistic is noisy, but is significantly above theoretical noise levels (passing Gaussian noise fields through the same calculation resulted in a flat power spectrum). Power decreases with redshift, suggesting some dependence on the ionized fraction. Like the 21\,cm$^2$ power spectra shown in Figure~\ref{fig:effect_of_filtering_21squared}, filtering the wedge changes this trend. The correlation was strongest on large scales before and after filtering, which also suggests that the 21\,cm field dominates the correlation.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{chapters/ksz_21cm/figures/trispec_estimator_filt_and_unfilt.png}
 \caption[The cross-power spectrum of the squared 21\,cm and kSZ fields, as a function of redshift of the 21\,cm contribution.]{The cross-power spectrum of the squared 21\,cm and kSZ fields, as a function of redshift of the 21\,cm contribution.}
+\label{fig:trispec_estimator_filt_unfilt}
 \end{figure}
 
 Higher-order correlation functions are complicated statistical objects. While they are expensive to compute and prove difficult to initially interpret, they can provide elegant methods for obtaining greater confidence of the data in their correlations. 
