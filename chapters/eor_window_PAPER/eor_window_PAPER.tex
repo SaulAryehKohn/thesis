@@ -86,6 +86,7 @@ Units are Jy~beam$^{-1}$; note the change in scale between polarizations and cal
 \end{figure}
 
 The final gain amplitude calibration was carried out similarly to \citet{Ali.15}. We generated single channel images between 120 and 174 MHz for each snapshot and deconvolved each of them down to 10 Jy. For each snapshot, a source spectrum is derived for Pictor A by fitting a two dimensional Gaussian the source using the {\tt PyBDSM}\footnote{\url{http://www.lofar.org/wiki/doku.php?id=public:user software:pybdsm}} source extractor \citep{pybdsm}. Spectra were optimally averaged together by weighting them with the primary beam model evaluated in the direction of Pictor A. To fit the absolute calibration, we divided the model spectrum \citep{Jacobs.13} by the measured one and fit a 6th order polynomial over the 120-174 MHz frequency range. This procedure was repeated using Fornax A with the only difference that a taper was applied to the visibilities (120\,m) in order to reduce Fornax A to a point-like source and use the model spectrum from \citet{Bernardi.13}. The best fit coefficients for Pictor A and Fornax A were averaged together to obtain the final absolute flux density calibration. Snapshots of fully CASA-calibrated data are shown in Figure~\ref{fig:psa32_sky_image}.
+\clearpage
 
 \subsubsection{Polarimetric factors}
 \label{subsubsec:psa32_polcal}
@@ -105,7 +106,7 @@ Fluctuations of $\phi_{\rm iono}$ will cause incoherent time-averaging and subse
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.3]{chapters/eor_window_PAPER/figures/ionosphere4casacal_morelines.pdf}
+\includegraphics[scale=0.45]{chapters/eor_window_PAPER/figures/ionosphere4casacal_morelines.pdf}
 \caption[The values of ionospheric RM for different lines of sight a range of LSTs.]{The values of ionospheric RM for different lines of sight the range of LSTs in this analysis, as calculated by {\sc ionFR} \protect\citep{Sotomayor-Beltran.13}. The 21h,0$^{\circ}$ line of sight goes beneath the horizon after LST=3h, and therefore has fewer data points. }%As an LoS gets closer to the horizon, the value of $\phi_{\rm iono}$ becomes more uncertain as projection effects become larger.}
 \label{fig:psa32img_ionosphere}
 \end{figure}
@@ -149,7 +150,6 @@ The horizon limit is marked by white dashed lines.
 
 \subsection{Creating power spectra}
 \label{subsec:psa32_create_pspec}
- 
 
 Expressing the visibility $V_{ij}^{pq}(\nu,t)$ observed at time $t$ (see Equation~\ref{eq:psa32_visibility}) in terms of the geometrical delay $\tau_g=\vec{b}(t) \cdot \hat{s}(l,m)/c$ for the baseline $ij$, \citet{Parsons.12a} define the delay transform as the Fourier transform of the visibility along the frequency axis:
 \begin{equation}
@@ -228,7 +228,7 @@ A heartening aspect of Figure~\ref{fig:psa32_high_kperp_slice}, and indeed all o
 Outside of the wedge, Stokes I, Q and U are at noise level, while Stokes V is below noise level, most likely due to the $\tau_{xy}$ calibration scheme removing a degree of freedom from this Stokes parameter. \textit{Right}: the region of k-space that was averaged over to create the lines in the left panel. From top to bottom, the panels correspond to Stokes I, Q U and V.}
 \label{fig:psa32_high_kperp_slice}
 \end{figure}
-
+\clearpage
 \section{Discussion and Conclusions}
 \label{sec:psa32_disc}
 

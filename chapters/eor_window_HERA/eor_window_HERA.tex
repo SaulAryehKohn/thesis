@@ -139,7 +139,7 @@ k_{\parallel} &= \frac{2\pi \nu_{\rm 21cm} H(z) %H_0 \sqrt{\Omega_m (1+z)^3 + \O
 }{c (1+z)^2}\tau, \\\\
 k_{\perp} &= \frac{2\pi}{D(z) \lambda} b\\
 \end{align*}
-for: bandwidth $B$, angular area of the beam $\Omega$, $\nu_{\rm 21cm}\approx$1420 MHz, baseline length $b$, wavelength of observation $\lambda$, Hubble parameter $H(z)$, transverse comoving distance $D(z)$ and redshift-dependent scalars X and Y \citep{Parsons.12b}. Note that the angular area of the beam refers to the diagonal components of the Mueller matrices shown in Figure~XXX. For further discussion of forming polarized power spectra in $k$-space, refer to \cite{Nunhokee.17}.
+for: bandwidth $B$, angular area of the beam $\Omega$, $\nu_{\rm 21cm}\approx$1420 MHz, baseline length $b$, wavelength of observation $\lambda$, Hubble parameter $H(z)$, transverse comoving distance $D(z)$ and redshift-dependent scalars X and Y \citep{Parsons.12b}. Note that the angular area of the beam refers to the diagonal components of the Mueller matrices shown in Figure~\ref{fig:interferometry_Mab}. For further discussion of forming polarized power spectra in $k$-space, refer to \cite{Nunhokee.17}.
 
 To avoid a noise-bias when forming the $ |\tilde{V}_{ij}^{P}(\tau, t) |^2$ term, we cross-multiplied consecutive integrations, rephasing the zenith angle of the latter to the former:
 
@@ -191,7 +191,7 @@ Power at horizon delays, as predicted by \cite{Nithya.15b} and \cite{Neben.16}, 
 \end{figure*}
 
 Visible in the observational data, but not in the simulation, is an excess of power at $k_{\parallel}=0.04$\,h/Mpc, corresponding to a delay of 100\,ns, which is independent of baseline length. This suggests that its origins are in the HERA signal chain. There are 15\,m coaxial cables at one stage of the signal chain from the HERA dishes to the correlator\footnote{This stage of the signal chain is only present in the commissioning array. Future HERA build-outs will transition to a different architecture \citep{deBoer.17}.}. In the limit of little delay induced by the cable and our limited delay resolution, a reflection along this stage of the signal chain would produce an alias of the foreground signal at a $\tau \approx 100$\,ns \citep{Beardsley.16, Ewall-Wice.EoX}.
-
+\clearpage
 \subsection{Day-to-day variability}
 
 The foreground and EoR window power levels appeared to be relatively stable between days, with variation most likely due to the incomplete sky model used for gain calibration. Figure~\ref{fig:hera19_highband_cuts_per_day} shows power as a function of baseline length for $k_{\parallel}=0$ h/Mpc (solid lines) and $k_{\parallel}=0.2$ h/Mpc (dot-dashed lines). Deviations from the mean at $k_{\parallel}=0$ h/Mpc may be a limitation imposed by our simplistic sky model. Since the noise levels in the EoR window region remained noise-like throughout our observations, the uncertainty in the absolute gain scale did not have a large impact on our largely-diagnostic investigation.
@@ -206,7 +206,7 @@ The foreground and EoR window power levels appeared to be relatively stable betw
 \subsection{Polarimetric results}
 \label{subsec:polarimetric_results}
 
-Figures~\ref{fig:hera19_pitchforks_highband} and~\ref{fig:hera19_pitchforks_lowband} qualitatively illustrate that the simulations described in Section~\ref{sec:hera19_leak} reproduced the main features of the observed power spectra. The simulations were run only with a Stokes I sky component and no simulated calibration errors, so the only signal in the polarized power spectra was from wide-field beam leakage (Figure~XXX). An example comparison between simulation and observation in the image plane is shown in Figure~\ref{fig:hera19_GCimage}.
+Figures~\ref{fig:hera19_pitchforks_highband} and~\ref{fig:hera19_pitchforks_lowband} qualitatively illustrate that the simulations described in Section~\ref{sec:hera19_leak} reproduced the main features of the observed power spectra. The simulations were run only with a Stokes I sky component and no simulated calibration errors, so the only signal in the polarized power spectra was from wide-field beam leakage (Figure~\ref{fig:interferometry_Mab}). An example comparison between simulation and observation in the image plane is shown in Figure~\ref{fig:hera19_GCimage}.
 
 In Figure~\ref{fig:hera19_bl0_cuts_vs_sim} we show the power levels observed on the shortest baseline (14.7\,m) compared to our simulations for each band. The simulations used an unpolarized diffuse sky model \citep[the most recent version of the GSM;][]{GSM.17}, which should be accurate at the scales probed by a 14.7\,m baseline. Inset panels zoom-in on the region around $k_{\parallel}=0$\,h/Mpc, where most of the foreground power was concentrated.
 We saw that the simulations reproduced $\sim75\%$ of the foreground power observed in pseudo-Stokes I in the high band, and over-predicted foreground power by $\sim35\%$ in the low band. This could have been due to unrealistic frequency scaling of the diffuse foregrounds in the GSM. 

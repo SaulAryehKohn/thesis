@@ -19,7 +19,7 @@ All the above presents a data processing challenge: these visibilities must be p
 
 Unpolarized redundant calibration has been pursued by the Donald C. Backer Precision Array for Probing the Epoch of Reionization (PAPER; \citet{Parsons.10}), the Hydrogen Epoch of Reionization Array (HERA; \citet{deBoer.17}) and part of the Murchison Widefield Array (MWA; \citet{Tingay.13}). For EoR studies this has the advantage of being able to average-down noise in the EoR window once all redundant visibilities are calibrated, for potentially very high signal-to-noise measurements of narrow regions of \textit{k}-space. However, it sacrifices $uv$-coverage, leading to poor imaging capabilities.
 
-Redundant calibration of low-frequency interferometers has been demonstrated by \citet{Zheng.14} with the MIT EoR experiment, \citet{Parsons.14, Jacobs.15, Ali.15}  and {\color{red} Kolopanis et al. (2018)} with PAPER and {\color{red} Li et al. 2017} with part of the MWA. All of these studies calibrated linearly-polarized instrumental visibilities. 
+Redundant calibration of low-frequency interferometers has been demonstrated by \citet{Zheng.14} with the MIT EoR experiment, \citet{Parsons.14, Jacobs.15, Ali.15} and Kolopanis et al. (\textit{submitted}) with PAPER and Li et al. (\textit{in review}) with part of the MWA. All of these studies calibrated linearly-polarized instrumental visibilities. 
 
 \citet{Moore.17} used the same calibration parameters as \citet{Parsons.14} and \citet{Jacobs.15}, but also solved for a single value of $\tau_{pq}$ for the observing season, since their analysis was for cross-polarized visibilities also. These PAPER studies took linear combinations of instrumental visibilities to form `pseudo-Stokes' visibilities (e.g. \citet{TMS}, \citet{Moore.13}). In this Chapter, we use the notation and convention
 
@@ -351,16 +351,18 @@ We were able to test the stability of the instrument by applying the calibration
 \caption[Imaging results from a file calibrated with gain values derived from the Pictor A transit, which occurred $\sim$6 hours after these data were acquired.]{Imaging results from a file calibrated with gain values derived from the Pictor A transit, which occurred $\sim$6 hours after these data were acquired. The realistic images suggest that the instrument is stable on such time scales.}
 \label{fig:polcal_img_LST05}
 \end{figure}
-
+\clearpage
 \subsection{D-term calibration}
 \label{subsec:polcal_Dterms}
 % basic-basic D-term stuff following CASA recipe
 
 Calibration of the off-diagonal terms of the instrumental Jones matrix can be partially calculated using a Stokes I-only sky model. If there were a visible source of known polarization fraction, an absolute phasing could be derived based on its polarization angle. Using the source model described in the section above, we were able to calculate the magnitude of the off-diagonal, \textit{D}-terms.
 
-{\tt CASA} supplies routines for linear-basis feeds that iteratively solve for `x' and `y' gains by, in our case, maximizing pseudo-Stokes I and minimizing pseudo-Stokes Q (if the polarization fraction was known, it would regress on that fraction for pseudo-Stokes Q). The {\tt polcal} routine uses a built-in regressor to find the best fit for the \textit{D}-terms, given previous calibrations. That is, one must have supplied an initial gain calibration and a guess of the parallactic angle of the polarized source.
+{\tt CASA} supplies routines for linear-basis feeds that iteratively solve for `x' and `y' gains by, in our case, maximizing pseudo-Stokes I and minimizing pseudo-Stokes Q (if the polarization fraction was known, it would regress on that fraction for pseudo-Stokes Q). The {\tt polcal} routine uses a built-in regressor to find the best fit for the \textit{D}-terms, given previous calibrations. That is, one must have supplied an initial gain calibration and a guess of the parallactic angle of the polarized source. 
 
-Using {\tt polcal} on the Pictor A field described in the previous section granted \textit{D}-term estimates of $\sim5\%$; comparable to other low-frequency instruments (MWA-32 was found to have $\sim2$\% \textit{D}-terms [G. Bernardi, private communication]). Correcting for these granted identical pseudo-Stokes I and Q images and lower-amplitude pseudo-Stokes U and V -- as expected for a regime where pseudo-Stokes I leakage dominates over actual polarized power. The improved U and V maps are shown in Figure~\ref{fig:polcal_img_PicA_improved_dterm}.
+Using {\tt polcal} on the Pictor A field described in the previous section granted \textit{D}-term estimates of $\sim5\%$; comparable to other low-frequency instruments (MWA-32 was found to have $\sim2$\% \textit{D}-terms [G. Bernardi, private communication]). 
+
+Correcting for these granted identical pseudo-Stokes I and Q images and lower-amplitude pseudo-Stokes U and V -- as expected for a regime where pseudo-Stokes I leakage dominates over actual polarized power. The improved U and V maps are shown in Figure~\ref{fig:polcal_img_PicA_improved_dterm}.
 
 \begin{figure}
 \includegraphics[clip, trim=0.5cm 11cm 4cm 5cm, width=0.8\textwidth]{chapters/polcal/figures/6830-U-better-dcal.pdf}

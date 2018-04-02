@@ -165,7 +165,7 @@ where the functions $\Gamma_{\pm\pm\pm}$ are defined as
 and $\Gamma(s, z)$ is the upper incomplete Gamma function.
 
 In Figure~\ref{fig:vg_tau}, we show the delay transform for $\alpha=1.5$ and $\beta=0$ (i.e. no frequency evolution) and $\beta=1$ for a 30\,m baseline. Clear in both Equation~\ref{eq:vg} and Figure~\ref{fig:vg_tau} is the selection of the horizon delay (100\,ns) as the location of monopole signal in delay space. 
-The interpretation of this effect is that while the monopole, by definition, emits across the sky, an interferometer is maximally sensitive to it at the horizon. This is the location where the baseline vector is coincident with the $\hat{s}$ term integrated-over in the visibility equation. \cite{Venumadhav.16} showed the same effect (see their Section 5), but not in the delay formalism.
+The interpretation of this effect is that while the monopole, by definition, emits across the sky, an interferometer is maximally sensitive to it at the horizon. This is the location where the baseline vector is coincident with the $\hat{s}$ term integrated-over in the visibility equation. \cite{Venumadhav.16} showed the same effect (see their Section 5), but not in the delay formalism. The oscillations were due to the toy model being undersampled in frequency -- this level of accuracy was acceptable for these relatively qualitative results.
 
 \begin{figure}
 \centering
@@ -180,8 +180,7 @@ The interpretation of this effect is that while the monopole, by definition, emi
     and $\beta = 1$ (dashed blue curve) as the power law index for the
     instrument response. The light-crossing time separation between the antennas
     $\tau_h$ was chosen to be 100 ns, which sets the location of the peaks in
-    the delay spectrum. As can be seen, the chromaticity of the beam smooths out
-    the curve somewhat. The $y$-axis has arbitrary units.}
+    the delay spectrum. The $y$-axis has arbitrary units.}
 \label{fig:vg_tau}
 \end{figure}
 
@@ -202,7 +201,7 @@ The prefactor of Equation~\ref{eq:vg} also indicates that the power in delay spa
 \end{figure}
 
 \subsection{Instrument Simulation}
-Using the Jones formalism developed in Chapter~\ref{chapter:interferometry} (also see Chapter~\ref{chapter:eor_window_HERA}) and a complex-voltage model of the PAPER \citep[e.g.][]{Parsons.10} dipole beam \citep{Pober.12}, we were able to simulate $\Xi(\hat{b},\nu)$. Figure~\ref{fig:paper_jones} shows the direction-dependent Mueller matrix for the PAPER beam at 150\,MHz. Note the separate color maps for $I\rightarrow I$, the other diagonal terms, and the off-diagonal ones, which we use for dynamic range changes in order capture sufficient detail. The dipole beam, as expected, extends across the sky.
+Using the Jones formalism developed in Chapter~\ref{chapter:interferometry} (also see Chapter~\ref{chapter:eor_window_HERA}) and a complex-voltage model of the PAPER dipole beam \citep{Parsons.10, Pober.12}, we were able to simulate $\Xi(\hat{b},\nu)$. The beam was calculated using an electromagnetic simulation (in the HFSS software package) of plane waves incident upon the dipole and ground-screen. Figure~\ref{fig:paper_jones} shows the direction-dependent Mueller matrix for the PAPER beam at 150\,MHz. Note the separate color maps for $I\rightarrow I$, the other diagonal terms, and the off-diagonal ones, which we use for dynamic range changes in order capture sufficient detail. The dipole beam, as expected, extends across the sky.
 
 \begin{figure}
 \centering
@@ -217,7 +216,9 @@ Figure~\ref{fig:xi_vis} shows the value of $\Xi(\hat{b},\nu)$ as a function of f
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{chapters/global_signal/figures/Xi_vis.png}
-\caption[The global signal transfer function as a function of frequency for PAPER.]{The global signal transfer function as a function of frequency for PAPER. It's non-zero nature indicates that the global signal is in principle measurable by an interferometer. However, as $\Xi(\hat{b},\nu)$ must be divided-out of the visibility, the many nulls represent a stringent calibration challenge.}
+\caption[The global signal transfer function as a function of frequency for PAPER.]{The global signal transfer function as a function of frequency for PAPER. It's non-zero nature indicates that the global signal is in principle measurable by an interferometer. 
+%However, as $\Xi(\hat{b},\nu)$ must be divided-out of the visibility, the many nulls represent a stringent calibration challenge.
+}
 \label{fig:xi_vis}
 \end{figure}
 
@@ -278,7 +279,7 @@ As predicted by the toy model in Section~\ref{subsec:toy_model}, the only unatte
 \label{fig:global_signal_data_vs_sim}
 \end{figure}
 
-The imperfect alignment of the oscillatory spectra may have been due to some frequency-dependent phase slope, possibly from an imperfect projection of redundant calibration degeneracies \citep[e.g.][Chapter~\ref{chapter:polcal}]{Dillon.17}. A more likely source of the misalignment was imperfect modelling of the beam. Higher $\ell$ values introduce additional spherical Bessel functions, each with their own phase that will superimpose for the final value of $\Xi(\hat{b},\nu)$.
+The imperfect alignment of the oscillatory spectra may have been due to some frequency-dependent phase slope, possibly from an imperfect projection of redundant calibration degeneracies \citep[e.g.][Chapter~\ref{chapter:polcal}]{Dillon.17}. A more likely source of the misalignment was imperfect modelling of the beam. Higher $\ell$ values introduce additional spherical Bessel functions, each with their own phase that will superimpose for the final value of $\Xi(\hat{b},\nu)$. Higher $\ell$-mode contamination may also be the source of the asymmetry of the observed delay peaks.
 \cite{Presley.15} provided an optimal quadratic estimator formalism to address this problem, which may be a promising route to pursue in future investigations.
 
 The amplitude of the observed spectrum in frequency space increased towards higher frequencies, the opposite direction as predicted by the simulations and as expected for a signal tied to low-frequency synchrotron radiation \citep{Mozden.17}. The cause of this effect was unclear, but may be due to imperfect wide-band bandpass calibration\footnote{Note that such imperfections were unlikely to affect the power spectra reported in Chapter~\ref{chapter:eor_window_psa128}, as these used only a narrow range of frequencies.}.

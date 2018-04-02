@@ -1,14 +1,14 @@
 \chapter{Higher-order correlation functions between kSZ and 21cm observations}
 \label{chapter:ksz_21cm}
 
-In Chapter~\ref{chapter:eor_intro}, it was discussed that there are many probes of the EoR beyond {\sc hi}. Secondary anisotropies of the CMB can be used as probes of reionization, mainly due to the fact that reionization represents a large source of free electrons, which CMB photons can scatter off of. The pattern of scattering -- the secondary anisotropies -- is sensitive to the topology of the {\sc hi} field. This Chapter focuses on a particular mechanism for producing secondary anisotropies; the kinetic Sunyaev-Zel'dovich effect (kSZ). We present novel mathematical theories or understanding the correlation between future CMB and EoR measurements, taking instrumental noise and the EoR window into account in a way not presently explored in the literature. In Section~\ref{sec:ksz-21cm} we make clear the link between the EoR and the kSZ effect, and the separate challenges to detecting either. In Sections~\ref{sec:bispec} and \ref{sec:trispec}, we present semi-analytic theory and results from simulation for the kSZ$^2$-21cm bispectrum and the kSZ$^2$-21cm$^2$ trispectrum, respectively.
+In Chapter~\ref{chapter:eor_intro}, it was discussed that there are many probes of the EoR beyond {\sc hi}. Secondary anisotropies of the CMB can be used as probes of reionization, mainly due to the fact that reionization represents a large source of free electrons, which CMB photons can scatter off of. The pattern of scattering -- the secondary anisotropies -- is sensitive to the topology of the {\sc hi} field. This Chapter focuses on a particular mechanism for producing secondary anisotropies; the kinetic Sunyaev-Zel'dovich effect (kSZ). We present novel mathematical theories for understanding the correlation between future CMB and EoR measurements, taking instrumental noise and the EoR window into account in a way not presently explored in the literature. In Section~\ref{sec:ksz-21cm} we make clear the link between the EoR and the kSZ effect, and the separate challenges to detecting either. In Sections~\ref{sec:bispec} and \ref{sec:trispec}, we present semi-analytic theory and results from simulation for the kSZ$^2$-21cm bispectrum and the kSZ$^2$-21cm$^2$ trispectrum, respectively.
 
 \section{The kSZ-21cm connection}
 \label{sec:ksz-21cm}
 
 The kSZ probes the cosmic momentum field; photons are Doppler-boosted off of clouds of electrons around ionizing sources. The 21\,cm signal, of course, probes where those ionizing sources \textit{are not}, so we should expect the kSZ and 21\,cm signal to be anti-correlated. 
 
-The anisotropies induced on the CMB by the kSZ is given by (Equation~\ref{eq:eor_intro_ksz}):
+The anisotropies induced on the CMB by the kSZ are given by (Equation~\ref{eq:eor_intro_ksz}):
 \begin{equation}
 \frac{\delta T_{\rm kSZ}}{T_{\rm CMB}}(\hat{s}) = \frac{\sigma_T}{c} \int_0^{z_{\rm recomb}} n_e(z)e^{-\tau(z)} \hat{s}\cdot\vec{q} \frac{{\rm d}s}{{\rm d}z}{\rm d}z,
 \end{equation}
@@ -17,7 +17,7 @@ The momentum field $q$ can be expressed as:
 \begin{equation}
 \vec{q}(\hat{s}) = (1+\delta_x)(1+\delta_b)\vec{v}(\hat{s}),
 \end{equation}
-where  $1+\delta_x = x_i/\left\langle x_i \right\rangle$, $1+\delta_b= \rho_b/\left\langle \rho_b \right\rangle$, $\vec{v}$ is the free electron bulk flow, and $\left\langle ... \right\rangle$ indicates an average over position $\vec{x}$. 
+where  $1+\delta_x = x_i/\left\langle x_i \right\rangle$ for ionization fraction $x_i$, $1+\delta_b= \rho_b/\left\langle \rho_b \right\rangle$, $\vec{v}$ is the free electron bulk flow, and $\left\langle ... \right\rangle$ indicates an average over position $\vec{x}$. 
 The kSZ is sourced by momentum of ionized gas, but we only detect the component of that momentum over a given line-of-sight $\hat{n}$, of which only the integrated, transverse component of the wavevector $\vec{k}$ will survive.
 This representation allows us to approximate $\delta T_{\rm kSZ}$ as
 \begin{align}
@@ -64,15 +64,15 @@ For the CMB, as noted above, measurements at appropriate $\ell$ values will leav
 
 Massively-redundant interferometers typically make for poor imaging instruments, since they probe a relatively small number of $uv$ modes (e.g. Chapter~\ref{chapter:interferometry}). One of HERA's innovations is that, once fully constructed, it will be both highly redundant and a relatively high-fidelity imager. This is due to its raw number of baselines, but also because it will be split in to three dense sections with a cloud of outriggers, each positioned on a redundant sub-grid. This allows HERA to gain the long baselines required for point-source imaging and a more fully-populated $uv$-plane, while maintaining redundant calibratability \citep{Dillon.16, deBoer.17}.
 
-As such, the expression for $C^N_{\ell}$ spherically-averaged power spectrum for noise on multipole $\ell$ has not yet been formulated in the literature. We calculate it here, starting from Equation 57 of \cite{Zaldarriaga.04}, assuming it holds for a single baseline:
+As such, the expression for $C^N_{\ell}$ spherically-averaged power spectrum for noise on multipole $\ell$, observed by redundant baselines and binned in LST, has not yet been formulated in the literature. We calculate it here, starting from Equation 57 of \cite{Zaldarriaga.04}, assuming it holds for a single baseline:
 \begin{equation}
 C^N_{\ell, {\rm single}} = \frac{T_{\rm sys}^2}{\Delta\nu t_{\nu} {\rm d}^2 u} = 4\pi^2 \frac{T_{\rm sys}^2}{\Delta\nu t_{\nu} {\rm d}^2 \ell}
 \end{equation}
-where $T_{\rm sys}$ is the system temperature, $\Delta\nu$ is the bandwidth integrated over time $t$, for baseline probing a spread of values ${\rm d}u$ over $\Delta\nu$.
+where $T_{\rm sys}$ is the system temperature, $\Delta\nu$ is the bandwidth integrated over time $t_{\nu}$, for baseline probing a spread of values ${\rm d}u$ over $\Delta\nu$.
 We assumed that each baseline could be added coherently for an amount of time each day (e.g. the length of time a given source takes to transit the main lobe of the beam) $t_c$, observed $N_{\rm obs}$ times over an observing season. 
 For the term ${\rm d}^2\ell \equiv (\Delta\ell)^2$, we note that for HERA, the effective $\ell$ range most-probed has $\Delta\ell\approx 20$ (given by the redundant 14.6\,m baselines for a wavelength 2\,m). 
 
-For an estimate of the noise levels achieved by an entire array over an observing season, we used the fact that the noise for a single baseline should average down linearly in time over the coherence time scale, i.e. $t_{\nu} = N_{\rm obs}t_c$. The noise should reduced linearly by the total number of baselines $N_{\rm bl}$ and the square-root of the incoherently-averaged time samples, $N_i = t_i/t_c$, for the length of time for incoherent time averages $t_i$. This leads to the expression
+For an estimate of the noise levels achieved by an entire array over an observing season, we used the fact that the noise for a single baseline should average down linearly in time over the coherence time scale, i.e. $t_{\nu} = N_{\rm obs}t_c$. The noise should be reduced linearly by the total number of baselines $N_{\rm bl}$ and the square-root of the incoherently-averaged time samples, $N_i = t_i/t_c$, for the length of time for incoherent time averages $t_i$. This leads to the expression
 \begin{equation}
 C^N_{\ell,{\rm total}} = 4\pi^2\frac{T_{\rm sys}^2}{\Delta\nu(\Delta\ell)^2 t_c N_{\rm obs} N_{\rm bl}\sqrt{N_i}}.
 \label{eq:ksz_21cm_HERA_noise_total}
@@ -99,7 +99,7 @@ The N-body simulation gave a realization of the density field at the midpoint of
 \centering
 \includegraphics[width=0.49\textwidth]{chapters/ksz_21cm/figures/21cmExample_z7p8.png}
 \includegraphics[width=0.49\textwidth]{chapters/ksz_21cm/figures/kszmap.png}
-\caption[An example 21\,cm brightness temperature field and integrated kSZ map from our cosmological simulation.]{An example 21\,cm brightness temperature field at redshift $z\sim$7.8 (left) and integrated kSZ map (right) from our cosmological simulation. Both have color bars in units of mK.}
+\caption[An example 21\,cm brightness temperature field and integrated kSZ map from our cosmological simulation.]{An example 21\,cm brightness temperature field at redshift $z\sim$7.8 (left) and integrated kSZ map (right) from our cosmological simulation. Both have color bars in units of mK. Note the lack of obvious correlation.}
 \label{fig:ksz_21cm_sim_example}
 \end{figure}
 
@@ -133,7 +133,7 @@ where ${\rm d\chi}$ is the comoving distance probed by the 21\,cm map, given by 
 W_{\rm kSZ}(\chi) = T_{\rm CMB} \frac{\sigma_T n_e(z)}{c}\frac{\left\langle x_i \right\rangle e^{-\left\langle \tau(z) \right\rangle } }{1+z}
 \label{eq:WkSZ}
 \end{equation}
-where redshift \textit{z} corresponds to a given comoving distance $\chi$, as determined by the central redshift of the 21\,cm cube, $n_e(z)$ is the average number density of electrons at that redshift, $\left\langle x_i \right\rangle $ is the average ionization fraction at that redshift, $\sigma_T$ is the Thomson cross section and $\tau (z)$ is the optical depth to redshift \textit{z}. $T_{\rm CMB} = 2.725\pm0.002$\,K \citep{Mather.99}.
+where redshift \textit{z} corresponds to a given comoving distance $\chi$, as determined by the central redshift of the 21\,cm cube, $n_e(z)$ is the average number density of electrons at that redshift, $\left\langle x_i \right\rangle $ is the average ionization fraction at that redshift, $\sigma_T$ is the Thomson cross section and $\tau (z)$ is the optical depth to redshift \textit{z}. $T_{\rm CMB} = 2.725\pm0.002$\,K \citep{Mather.99, Fixsen.04}.
 
 Now we consider the Limber approximation of a related quantity: the 21\,cm field correlated with the square of the line-of-sight-projected momentum field:
 
@@ -194,7 +194,7 @@ where the third index corresponds to large scales, and the first and second indi
 
 \subsubsection{$B_{x,x,\rm 21cm}$}
 \label{subsec:B_xx21}
-Using Equations~\ref{eq:d21cm_x} and \ref{eq:bispec_limber}, we could write:
+Using Equations~\ref{eq:d21cm_x} and \ref{eq:bispec_limber}, we can write:
 \begin{multline}
 \langle \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_{{\rm 21cm}}(\vec{k}_3) \rangle = 
 \langle
