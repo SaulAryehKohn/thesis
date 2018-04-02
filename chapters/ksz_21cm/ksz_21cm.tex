@@ -1,7 +1,7 @@
 \chapter{Higher-order correlation functions between kSZ and 21cm observations}
 \label{chapter:ksz_21cm}
 
-In Chapter~\ref{chapter:eor_intro}, it was discussed that there are many probes of the EoR beyond {\sc hi}. Secondary anisotropies of the CMB can be used as probes of reionization, mainly due to the fact that reionization represents a large source of free electrons, which CMB photons can scatter off of. The pattern of scattering -- the secondary anisotropies -- is sensitive to the topology of the {\sc hi} field. This Chapter focuses on a particular mechanism for producing secondary anisotropies; the kinetic Sunyaev-Zel'dovich effect (kSZ). We present novel mathematical theories for understanding the correlation between future CMB and EoR measurements, taking instrumental noise and the EoR window into account in a way not presently explored in the literature. In Section~\ref{sec:ksz-21cm} we make clear the link between the EoR and the kSZ effect, and the separate challenges to detecting either. In Sections~\ref{sec:bispec} and \ref{sec:trispec}, we present semi-analytic theory and results from simulation for the kSZ$^2$-21cm bispectrum and the kSZ$^2$-21cm$^2$ trispectrum, respectively.
+In Chapter~\ref{chapter:eor_intro}, it was discussed that there are many probes of the EoR beyond {\sc hi}. Secondary anisotropies of the CMB can be used as probes of reionization, mainly due to the fact that reionization represents a large source of free electrons, which CMB photons can scatter off of. The pattern of scattering -- the secondary anisotropies -- is sensitive to the topology of the {\sc hi} field. This Chapter focuses on a particular mechanism for producing secondary anisotropies; the kinetic Sunyaev-Zel'dovich effect (kSZ). We present novel mathematical theories for understanding the correlation between future CMB and EoR measurements, taking instrumental noise and the EoR window into account in a way not presently explored in the literature. In Section~\ref{sec:ksz-21cm} we make clear the link between the EoR and the kSZ effect. In Sections~\ref{sec:bispec} and \ref{sec:trispec}, we present semi-analytic theory and results from simulation for the kSZ$^2$-21cm bispectrum and the kSZ$^2$-21cm$^2$ trispectrum, respectively. We derive noise estimates in Section~\ref{sec:Cl_fg_and_noise}, and provide a brief discussion in Section~\ref{sec:ksz_21cm_disc}.
 
 \section{The kSZ-21cm connection}
 \label{sec:ksz-21cm}
@@ -10,30 +10,31 @@ The kSZ probes the cosmic momentum field; photons are Doppler-boosted off of clo
 
 The anisotropies induced on the CMB by the kSZ are given by (Equation~\ref{eq:eor_intro_ksz}):
 \begin{equation}
-\frac{\delta T_{\rm kSZ}}{T_{\rm CMB}}(\hat{s}) = \frac{\sigma_T}{c} \int_0^{z_{\rm recomb}} n_e(z)e^{-\tau(z)} \hat{s}\cdot\vec{q} \frac{{\rm d}s}{{\rm d}z}{\rm d}z,
+\frac{\delta T_{\rm kSZ}}{T_{\rm CMB}}(\hat{s}) = \frac{\sigma_T}{c} \int_0^{z_{\rm recomb}} \frac{{\rm d}s}{{\rm d}z}{\rm d}z  n_e(z)e^{-\tau(z)} \hat{s}\cdot\vec{q}(\vec{x}),
 \end{equation}
 where $\sigma_T$ is the Thomson Cross Section, $n_e(z)$ is the average number density of electrons at redshift $z$, $\tau(z)$ is the optical depth to redshift $z$, and d$s$/d$z$ is the cosmological line element to redshift $z$ along direction $\hat{s}$. 
 The momentum field $q$ can be expressed as:
 \begin{equation}
-\vec{q}(\hat{s}) = (1+\delta_x)(1+\delta_b)\vec{v}(\hat{s}),
+\vec{q}(\hat{s}) = (1+\delta_x(\vec{x}))(1+\delta_b(\vec{x}))\vec{v}(\vec{x}) \cdot \hat{s},
 \end{equation}
-where  $1+\delta_x = x_i/\left\langle x_i \right\rangle$ for ionization fraction $x_i$, $1+\delta_b= \rho_b/\left\langle \rho_b \right\rangle$, $\vec{v}$ is the free electron bulk flow, and $\left\langle ... \right\rangle$ indicates an average over position $\vec{x}$. 
+where  $1+\delta_x(\vec{x}) = x_i(\vec{x})/\left\langle x_i(\vec{x}) \right\rangle$ for ionization fraction $x_i(\vec{x})$, $1+\delta_b(\vec{x}) = \rho_b(\vec{x})/\left\langle \rho_b(\vec{x}) \right\rangle$, $\vec{v}(\vec{x})$ is the free electron bulk flow, and $\left\langle ... \right\rangle$ indicates an average over position $\vec{x}$. 
 The kSZ is sourced by momentum of ionized gas, but we only detect the component of that momentum over a given line-of-sight $\hat{n}$, of which only the integrated, transverse component of the wavevector $\vec{k}$ will survive.
 This representation allows us to approximate $\delta T_{\rm kSZ}$ as
 \begin{align}
 \delta T_{\rm kSZ} &\propto \vec{q}\cdot\hat{n}(\vec{k}) = \vec{v}(\vec{x})\left[1 + \delta_x(\vec{x}) + \delta_{\rho}(\vec{x})\right]\cdot\hat{n}(\vec{k})\\
-\times & \int \frac{{\rm d}^3k'}{(2\pi)^3}\vec{v}(\vec{k}')\hat{k}'\cdot\hat{n}\left[\delta_x(\vec{k}-\vec{k}') + \delta_{\rho}(\vec{k}-\vec{k}')\right].
+= & \int \frac{{\rm d}^3k'}{(2\pi)^3}\vec{v}(\vec{k}')\hat{k}'\cdot\hat{n}\left[\delta_x(\vec{k}-\vec{k}') + \delta_{\rho}(\vec{k}-\vec{k}')\right].
 \end{align}
-where the constant of proportionality can be expressed as a window function, described below in Equation~\ref{eq:WkSZ}. 
+where in the first equality we expanded the mass component of the momentum term to first order, and in the second described the problem in $k$-space.
+The constant of proportionality can be expressed as a window function, described below in Equation~\ref{eq:WkSZ}. 
 
 Likewise, the 21\,cm brightness temperature as a function of position can be expressed as (see Chapter~\ref{chapter:eor_intro}):
 \begin{equation}
-\delta_{\rm 21cm}(\vec{x}) \approx T_0^{\rm 21cm} \left\langle x_{\sc hi} \right\rangle \left[1 + \delta_{x_{\rm HI}}(\vec{x})\right] \left[1 + \delta_\rho(\vec{x})\right]
+\delta_{\rm 21cm}(\vec{x}) \approx T_0^{\rm 21cm} \left\langle x_{\rm HI} \right\rangle \left[1 + \delta_{x_{\rm HI}}(\vec{x})\right] \left[1 + \delta_\rho(\vec{x})\right]
 \label{eq:d21cm}
 \end{equation}
-To compare with the kSZ, it will be useful to speak in terms of the ionization overdensity field rather than neutral overdensity $\delta_{x_{\sc hi}}(\vec{x})$. This just brings out a prefactor,
+To compare with the kSZ, it will be useful to speak in terms of the ionization overdensity field rather than neutral overdensity $\delta_{x_{\rm HI}}(\vec{x})$. This just brings out a prefactor,
 \begin{equation}
-\delta_{x_{\sc hi}}(\vec{x}) = \frac{-\langle x_i \rangle}{1 - \langle x_i \rangle} \delta_x(\vec{x}).
+\delta_{x_{\rm HI}}(\vec{x}) = \frac{-\langle x_i \rangle}{1 - \langle x_i \rangle} \delta_x(\vec{x}).
 \end{equation}
 So our representation of the 21\,cm temperature contrast becomes
 \begin{equation}
@@ -41,46 +42,14 @@ So our representation of the 21\,cm temperature contrast becomes
 \label{eq:d21cm_x}
 \end{equation}
 
-In the proceeding sections, we form higher-order correlation functions represented as bispectra (the Fourier analog of the three-point function) and trispectra (the four-point function). The reason for moving higher than the power spectrum (the two-point function) was because while the 21\,cm field is positive-definite, the kSZ anisotropies are not. Cosmic bulk flows could be oriented towards or away from the observer, and averaging the kSZ over the field would heavily attenuate it. Therefore, we required at least the square of the kSZ field -- and thus a move to higher-order statistics.
+While the 21\,cm field is positive-definite, the kSZ anisotropies are not. Cosmic bulk flows could be oriented towards or away from the observer. This motivated moving beyond the power spectrum (the Fourier analog of the two-point function) in the investigation of the kSZ-21\,cm connection, since
+\begin{equation}
+\left\langle \delta_{\rm 21cm}(\vec{x}) \delta_{\rm kSZ}(\vec{x}) \right\rangle =\approx 0.
+\end{equation}
+We required at least the square of the kSZ field -- and hence a higher-order correlation function.
+In the following sections, we form higher-order correlation functions represented as bispectra (the Fourier analog of the three-point function) and trispectra (the Fourier analog of the four-point function). . 
 
 To simplify the mathematical derivations, we made a few simplifying assumptions: (i) at high redshifts, peculiar velocities along the line-of-sight were small compared to the Hubble Flow, (ii) X-ray heating effects close to the start of reionization pushed the spin temperature of {\sc hi} $T_S \gg T_{\rm CMB}$ \citep[e.g.][]{Meiksin.17}, and (iii) the velocity field was coherent on large scales \citep[e.g.][]{Smith.16}.
-
-\subsection{Foregrounds}
-
-As discussed throughout this work, the major foreground EoR experiments face is bright Galactic and extragalactic synchrotron. We ignore polarization contamination for this Chapter. In Section~\ref{sec:bispec}, we will show that the bispectrum, while theoretically and computationally tangible, is extremely sub-optimal in the context of 21\,cm observations, forcing the power measured to be sourced from within the wedge. The study of the trispectrum, presented in Section~\ref{sec:trispec}, was motivated by this limitation and overcomes it in a rather elegant fashion.
-
-Foreground challenges for the kSZ exist on large scales as the primary CMB anisotropies and the secondary ones from the thermal Sunyaev-Zeldovich effect, and on small scales as the far-infrared background (FIB). Both of these foregrounds are minimal around multipoles $\ell 3000 - 6000$. The FIB effectively manifests as a shot-noise term in CMB maps, and could reasonably be windowed or subtracted to allow access to multipoles out to $\ell\sim 13,000$ for near-future CMB surveys (known as `Stage 3 and 4' in the cosmology community; \citealt{cmbS4.16}).
-
-\subsection{Noise Estimates}
-
-The single bispectrum triangle or trispectrum rectangle (see Sections~\ref{sec:bispec} and \ref{sec:trispec} respectively) will depend on the $C_{\ell}$ spectrum of noise arising from CMB and 21\,cm experiments. 
-
-For the CMB, as noted above, measurements at appropriate $\ell$ values will leave the FIB as the dominant noise source. The minimum value of this term was reported by \cite{George.15} as 
-\begin{equation}
-\hat{D}_{\ell = 3501 - 3900} = \left\langle \frac{\ell(\ell+1)}{2\pi}C_{\ell} \right\rangle_{\ell = 3501 - 3900} = 30.8\pm 1.2\mu {\rm K}^2.
-\end{equation}
-
-\subsubsection{$C_{\ell}$ noise for HERA}
-
-Massively-redundant interferometers typically make for poor imaging instruments, since they probe a relatively small number of $uv$ modes (e.g. Chapter~\ref{chapter:interferometry}). One of HERA's innovations is that, once fully constructed, it will be both highly redundant and a relatively high-fidelity imager. This is due to its raw number of baselines, but also because it will be split in to three dense sections with a cloud of outriggers, each positioned on a redundant sub-grid. This allows HERA to gain the long baselines required for point-source imaging and a more fully-populated $uv$-plane, while maintaining redundant calibratability \citep{Dillon.16, deBoer.17}.
-
-As such, the expression for $C^N_{\ell}$ spherically-averaged power spectrum for noise on multipole $\ell$, observed by redundant baselines and binned in LST, has not yet been formulated in the literature. We calculate it here, starting from Equation 57 of \cite{Zaldarriaga.04}, assuming it holds for a single baseline:
-\begin{equation}
-C^N_{\ell, {\rm single}} = \frac{T_{\rm sys}^2}{\Delta\nu t_{\nu} {\rm d}^2 u} = 4\pi^2 \frac{T_{\rm sys}^2}{\Delta\nu t_{\nu} {\rm d}^2 \ell}
-\end{equation}
-where $T_{\rm sys}$ is the system temperature, $\Delta\nu$ is the bandwidth integrated over time $t_{\nu}$, for baseline probing a spread of values ${\rm d}u$ over $\Delta\nu$.
-We assumed that each baseline could be added coherently for an amount of time each day (e.g. the length of time a given source takes to transit the main lobe of the beam) $t_c$, observed $N_{\rm obs}$ times over an observing season. 
-For the term ${\rm d}^2\ell \equiv (\Delta\ell)^2$, we note that for HERA, the effective $\ell$ range most-probed has $\Delta\ell\approx 20$ (given by the redundant 14.6\,m baselines for a wavelength 2\,m). 
-
-For an estimate of the noise levels achieved by an entire array over an observing season, we used the fact that the noise for a single baseline should average down linearly in time over the coherence time scale, i.e. $t_{\nu} = N_{\rm obs}t_c$. The noise should be reduced linearly by the total number of baselines $N_{\rm bl}$ and the square-root of the incoherently-averaged time samples, $N_i = t_i/t_c$, for the length of time for incoherent time averages $t_i$. This leads to the expression
-\begin{equation}
-C^N_{\ell,{\rm total}} = 4\pi^2\frac{T_{\rm sys}^2}{\Delta\nu(\Delta\ell)^2 t_c N_{\rm obs} N_{\rm bl}\sqrt{N_i}}.
-\label{eq:ksz_21cm_HERA_noise_total}
-\end{equation}
-
-Assuming a $T_{\rm sys}$=400 K. For HERA, the coherent integration time is $t_c\approx 15$\,minutes, with $N_{\rm obs}\approx100$ over a season. For delay-spectrum measurements, the typical parameters used are $\Delta\nu$=8\,MHz and $t_i$=8 hours \citep{Ali.15}. As noted above, the most numerous HERA baselines have $\Delta\ell\approx 20$, and there are roughly 4200 of them in the final HERA core. Together, these grant a noise level of $C^N_{\ell,{\rm total}}\approx 1 \mu$K$^2$.
-
-Using the Equations from \cite{Zaldarriaga.04} directly without explicit modification for redundancy (the redundancy instead arising implicitly from considerations of the aperture of the array), one arrives at a similar figure of $C^N_{\ell,{\rm total}}\approx 7 \mu$K$^2$.
 
 \subsection{Simulations}
 
@@ -111,7 +80,7 @@ In this section we present an estimate for bispectra formed from future HERA 21\
 \subsection{Semi-analytic approximation}
 \label{subsec:ksz_21cm_semi_analytic_approximation}
 
-Consider the bispectrum of two Fourier transformed kSZ maps and one Fourier transformed 21\,cm map under the Limber approximation:
+Consider the bispectrum of two Fourier transformed kSZ maps and one Fourier transformed 21\,cm map under the Limber approximation (i.e. the assumption that line-of-sight modes are negligible for projected fields such as the kSZ, allowing us to describe them using only transverse modes):
 \begin{equation}
 \begin{split}
  \left\langle T_{\rm kSZ}(\ell_1) T_{kSZ}(\ell_2) T_{\rm 21cm}(\ell_3)\right\rangle &= 
@@ -122,7 +91,6 @@ Consider the bispectrum of two Fourier transformed kSZ maps and one Fourier tran
 \end{split}
 \end{equation}
 where the window functions are based on global quantities associated with the maps:
-
 \begin{equation}
 W_{\rm 21cm}(\chi) = {\rm \frac{d}{d\chi}}\left(T_{\rm 21cm}(z)\right)
 \label{eq:W21cm}
@@ -375,7 +343,7 @@ Equation~\ref{eq:ksz_full_estimator} shows our estimator consists of several sma
 
 \subsection{Counting triangles}
 
-The signal-to-noise of a bispectrum scales with $\sqrt{N_{\rm Tri}}$, where $N_{\rm Tri}$ is the number of triangles.
+The signal-to-noise of the bispectrum scales with $\sqrt{N_{\rm Tri}}$, where $N_{\rm Tri}$ is the number of triangles (also see Section~\ref{sec:Cl_fg_and_noise}).
 A closed triangle in $\ell$-space can be represented by a two-dimensional Dirac delta-distribution $\delta^{(2)}_{D}(\vec{\ell_1}+\vec{\ell_2}+\vec{\ell_3})$. A count of the different orientations of such a triangle was formulated by \cite{Joachimi.09} as:
 
 \begin{equation}
@@ -426,18 +394,16 @@ Coupled with relevant derivatives with respect to ionization fraction, and avera
 \label{fig:ksz_21cm_semianalytic_result}
 \end{figure}
 
-Of course, we were also able to calculate the bispectrum directly from the simulated 21\,cm and kSZ fields, restricting ourselves to relevant $\ell$ modes for HERA baselines and CMB experiments. However, we found that the box was too small to sample an appropriate number of large-scale modes, such that there were too few triangles in the box to converge on a given magnitude. In Figure~\ref{fig:ksz_21cm_direct_bispectrum}, we show bispectum power binned as a function of angle between the $\vec{k}$ vector for the 21\,cm field and one of the $\vec{k}$ vectors from the kSZ map (a dimension which our semianalytic estimator does not probe, as it uses power spectra and assumes the ultimate squeezed triangle limit of $\theta = 0$) from $z=7.6$. The values, while larger than the expected experimental noise\footnote{The signal to noise of the bispectrum is given by: \begin{equation}
-\left(\frac{S}{N}\right)^2 = \frac{B(\ell_1, \ell_2, \ell_3)}{C_{\rm CMB}^N(\ell_1)C_{\rm CMB}^N(\ell_2)C_{\rm 21cm}^N(\ell_3)}
-\end{equation}} by a factor of at least $10$, are consistent with numerical noise, oscillating about zero with high variance. This is true for all redshifts probed.
+Of course, we were also able to calculate the bispectrum directly from the simulated 21\,cm and kSZ fields, restricting ourselves to relevant $\ell$ modes for HERA baselines and CMB experiments. However, we found that the box was too small to sample an appropriate number of large-scale modes, such that there were too few triangles in the box to converge on a given magnitude. In Figure~\ref{fig:ksz_21cm_direct_bispectrum}, we show bispectum power binned as a function of angle between the $\vec{k}$ vector for the 21\,cm field and one of the $\vec{k}$ vectors from the kSZ map (a dimension which our semianalytic estimator does not probe, as it uses power spectra and assumes the ultimate squeezed triangle limit of $\theta = 0$) from $z=7.3$, 7.8 and 8.3. Error bars indicate the standard deviation of values in that $\theta$ bin. The values, while larger than the expected experimental noise by a factor of at least $10$ (see Section~\ref{sec:Cl_fg_and_noise}), are consistent with numerical noise, oscillating about zero with high variance. This is true for all redshifts probed, likely due to too few large-scale modes existing in the relatively small simulation box used.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.65\textwidth]{chapters/ksz_21cm/figures/analytic_bispec_decimate1.png}
-\caption[Bispectrum values, binned as a function of angle between the 21\,cm and CMB $\vec{k}$ vectors, measured directly from the simulation.]{Bispectrum values, binned as a function of angle between the 21\,cm and CMB $\vec{k}$ vectors, measured directly from the simulation at $z=7.6$. The values are consistent with zero, most likely due to too few large-scale modes present in the cube.}
+\includegraphics[width=0.4\textwidth]{chapters/ksz_21cm/figures/analytic_bispec_decimate0.png}\\
+\includegraphics[width=0.4\textwidth]{chapters/ksz_21cm/figures/analytic_bispec_decimate2.png}\\
+\includegraphics[width=0.4\textwidth]{chapters/ksz_21cm/figures/analytic_bispec_decimate4.png}
+\caption[Bispectrum values, binned as a function of angle between the 21\,cm and CMB $\vec{k}$ vectors, measured directly from the simulation.]{Bispectrum values, binned as a function of angle between the 21\,cm and CMB $\vec{k}$ vectors, measured directly from the simulation at $z=7.3$, 7.8 and 8.3 from top to bottom. The values are consistent with zero, most likely due to too few large-scale modes present in the cube.}
 \label{fig:ksz_21cm_direct_bispectrum}
 \end{figure}
-
-% w.r.t redshift???
 
 Figure~\ref{fig:ksz_21cm_direct_bispectrum} highlights one of the limitations of using the bispectrum as a statistic to probe reionization. It is difficult to obtain sufficient numbers of triangles in a simulation cube to converge on a bispectrum value. While it was possible to calculate the bispectrum for a single redshift on a $512^3$ resolution element box in minutes, running the same calculation on a $2048^3$ element box would take roughly six hours. This means that characterization of the bispectrum -- understanding its sensitivity to astrophysical and cosmological parameters -- is difficult to obtain, as this would require large numbers of simulations with varied parameters, large enough to produce higher signal-to-noise bispectra than we are capable of in this work. \cite{Sefusatti.16} and \cite{Watkinson.17} have suggested FFT-based estimators to overcome the poor scaling associated with bispectrum calculations; pursuing these methods in future investigations may prove worthwhile.
 
@@ -541,7 +507,7 @@ However, the form of Equation~\ref{eq:squeezed_trispec} suggests that one term i
 \begin{equation}
 P_X(k) = \langle \delta^{2D*}_{\rm 21\,cm}(k_1)\delta^{2D}_{\rm 21\,cm}(k_1) \delta^*_{\rm kSZ}(k_3) \delta_{\rm kSZ}(k_3) \rangle
 \end{equation}
-for large-scale modes $k_1$ and small-scale modes $k_3$. This was an inexpensive way to probe the correlation of the squared fields, without calculating the full trispectrum. This quantity is shown in Figure~\ref{fig:trispec_estimator_filt_unfilt}, as a function of redshift of the 21\,cm contribution. Colors indicate redshift, while the solid lines are for unfiltered fields (in which the 21\,cm field is averaged without a window function to form $\delta^{2D}_{\rm 21\,cm}$) and dotted lines indicate data after filtering. The statistic is noisy, but is significantly above theoretical noise levels (passing Gaussian noise fields through the same calculation resulted in a flat power spectrum). Power decreases with redshift, suggesting some dependence on the ionized fraction. Like the 21\,cm$^2$ power spectra shown in Figure~\ref{fig:effect_of_filtering_21squared}, filtering the wedge changes this trend. The correlation was strongest on large scales before and after filtering, which also suggests that the 21\,cm field dominates the correlation.
+for large-scale modes $k_1$ and small-scale modes $k_3$. This was an inexpensive way to probe the correlation of the squared fields, without calculating the full trispectrum. This quantity is shown in Figure~\ref{fig:trispec_estimator_filt_unfilt}, as a function of redshift of the 21\,cm contribution. Colors indicate redshift, while the solid lines are for unfiltered fields (in which the 21\,cm field is averaged without a window function to form $\delta^{2D}_{\rm 21\,cm}$) and dotted lines indicate data after filtering. The statistic is noisy, but is significantly above theoretical noise levels (passing Gaussian noise fields through the same calculation resulted in a flat power spectrum; see Section~\ref{sec:Cl_fg_and_noise}). Power decreases with redshift, suggesting some dependence on the ionized fraction. Like the 21\,cm$^2$ power spectra shown in Figure~\ref{fig:effect_of_filtering_21squared}, filtering the wedge changes this trend. The correlation was strongest on large scales before and after filtering, which also suggests that the 21\,cm field dominates the correlation.
 
 \begin{figure}
 \centering
@@ -550,6 +516,52 @@ for large-scale modes $k_1$ and small-scale modes $k_3$. This was an inexpensive
 \label{fig:trispec_estimator_filt_unfilt}
 \end{figure}
 
+\section{Foregrounds and Noise}
+\label{sec:Cl_fg_and_noise}
+As discussed throughout this work, the major foreground EoR experiments face is bright Galactic and extragalactic synchrotron. We ignore polarization contamination for this Chapter. In Section~\ref{sec:bispec}, we showed that the bispectrum, while theoretically and computationally tangible, is extremely sub-optimal in the context of 21\,cm observations, forcing the power measured to be sourced from within the wedge. The study of the trispectrum, presented in Section~\ref{sec:trispec}, was motivated by this limitation and overcomes it in a rather elegant fashion.
+
+The dominant foregrounds for the kSZ are the other anisotropies present in the CMB. The primary anisotropies are extremely powerful at multipoles $\ell \lesssim 2500$, with additional contributions from the thermal Sunyaev-Zeldovich effect \citep[e.g.][]{George.15}.
+On small scales, $\ell > 6000$, the far-infrared background (FIB) is the primary contaminant. Its contribution, which is essentially a shot-noise term, could be reasonably-well subtracted out to $\ell\sim 13000$ for near-future CMB surveys (known as `Stage 3 and 4' in the cosmology community; \citealt{cmbS4.16}).
+
+The signal-to-noise of a single bispectrum triangle $(\ell_1, \ell_2, \ell_3)$ is given by: 
+\begin{equation}
+\left(\frac{S}{N}\right)^2 = \frac{B(\ell_1, \ell_2, \ell_3)}{C_{\rm CMB}^N(\ell_1)C_{\rm CMB}^N(\ell_2)C_{\rm 21cm}^N(\ell_3)},
+\end{equation}
+and for a single trispectrum quadrilateral $(\ell_1, \ell_2, \ell_3, \ell_4)$:
+\begin{equation}
+\left(\frac{S}{N}\right)^2 = \frac{\mathcal{T}(\ell_1, \ell_2, \ell_3, \ell_4)}{C_{\rm CMB}^N(\ell_1)C_{\rm CMB}^N(\ell_2)C_{\rm 21cm}^N(\ell_3)C_{\rm 21cm}^N(\ell_4)}
+\end{equation}
+for CMB and 21\,cm noise-power spectra $C_{\rm CMB}^N(\ell)$ and $C_{\rm 21cm}^N(\ell)$, respectively.
+
+For the CMB, as noted above, measurements at appropriate $\ell$ values will leave the FIB as the dominant noise source. The minimum value of this term was reported by \cite{George.15} as 
+\begin{equation}
+\hat{D}_{\ell = 3501 - 3900} = \left\langle \frac{\ell(\ell+1)}{2\pi}C_{\ell} \right\rangle_{\ell = 3501 - 3900} = 30.8\pm 1.2\mu {\rm K}^2.
+\end{equation}
+
+Massively-redundant interferometers typically make for poor imaging instruments, since they probe a relatively small number of $uv$ modes (e.g. Chapter~\ref{chapter:interferometry}). One of HERA's innovations is that, once fully constructed, it will be both highly redundant and a relatively high-fidelity imager. This is due to its raw number of baselines, but also because it will be split in to three dense sections with a cloud of outriggers, each positioned on a redundant sub-grid. This allows HERA to gain the long baselines required for point-source imaging and a more fully-populated $uv$-plane, while maintaining redundant calibratability \citep{Dillon.16, deBoer.17}.
+
+As such, the expression for $C^N_{\ell}$ spherically-averaged power spectrum for noise on multipole $\ell$, observed by redundant baselines and binned in LST, has not yet been formulated in the literature. We calculate it here, starting from Equation 57 of \cite{Zaldarriaga.04}, assuming it holds for a single baseline:
+\begin{equation}
+C^N_{\ell, {\rm single}} = \frac{T_{\rm sys}^2}{\Delta\nu t_{\nu} {\rm d}^2 u} = 4\pi^2 \frac{T_{\rm sys}^2}{\Delta\nu t_{\nu} {\rm d}^2 \ell}
+\end{equation}
+where $T_{\rm sys}$ is the system temperature, $\Delta\nu$ is the bandwidth integrated over time $t_{\nu}$, for baseline probing a spread of values ${\rm d}u$ over $\Delta\nu$.
+We assumed that each baseline could be added coherently for an amount of time each day (e.g. the length of time a given source takes to transit the main lobe of the beam) $t_c$, observed $N_{\rm obs}$ times over an observing season. 
+For the term ${\rm d}^2\ell \equiv (\Delta\ell)^2$, we note that for HERA, the effective $\ell$ range most-probed has $\Delta\ell\approx 20$ (given by the redundant 14.6\,m baselines for a wavelength 2\,m). 
+
+For an estimate of the noise levels achieved by an entire array over an observing season, we used the fact that the noise for a single baseline should average down linearly in time over the coherence time scale, i.e. $t_{\nu} = N_{\rm obs}t_c$. The noise should be reduced linearly by the total number of baselines $N_{\rm bl}$ and the square-root of the incoherently-averaged time samples, $N_i = t_i/t_c$, for the length of time for incoherent time averages $t_i$. This leads to the expression
+\begin{equation}
+C^N_{\ell,{\rm total}} = 4\pi^2\frac{T_{\rm sys}^2}{\Delta\nu(\Delta\ell)^2 t_c N_{\rm obs} N_{\rm bl}\sqrt{N_i}}.
+\label{eq:ksz_21cm_HERA_noise_total}
+\end{equation}
+
+Assuming a $T_{\rm sys}$=400 K. For HERA, the coherent integration time is $t_c\approx 15$\,minutes, with $N_{\rm obs}\approx100$ over a season. For delay-spectrum measurements, the typical parameters used are $\Delta\nu$=8\,MHz and $t_i$=8 hours \citep{Ali.15}. As noted above, the most numerous HERA baselines have $\Delta\ell\approx 20$, and there are roughly 4200 of them in the final HERA core. Together, these grant a noise level of $C^N_{\ell,{\rm total}}\approx 1 \mu$K$^2$.
+
+Using the Equations from \cite{Zaldarriaga.04} directly without explicit modification for redundancy (the redundancy instead arising implicitly from considerations of the aperture of the array), one arrives at a similar figure of $C^N_{\ell,{\rm total}}\approx 7 \mu$K$^2$. 
+
+These noise calculations grant estimated noise levels of $31 - 82 \mu K^3$ for the bispectrum, and $31 - 217 \mu K^4$ for the trispectrum.
+
+\section{Discussion}
+\label{sec:ksz_21cm_disc}
 Higher-order correlation functions are complicated statistical objects. While they are expensive to compute and prove difficult to initially interpret, they can provide elegant methods for obtaining greater confidence of the data in their correlations. 
 
 While forming kSZ$^2$-21\,cm bispectra forces the calculation to occur within the wedge, source-subtraction on long baselines could lower the noise sufficiently for a low signal-to-noise detection of some bispectrum triangles. This would provide confidence to both the 21\,cm and CMB experiments that their detections of the respective fields were truly detections.
@@ -557,3 +569,4 @@ While forming kSZ$^2$-21\,cm bispectra forces the calculation to occur within th
 The trispectrum, while less theoretically tangible, provides elegant window functions that allow both 21\,cm and CMB experiments to avoid their respective foreground contaminants in Fourier space. We have provided an initial look at an estimate of this signal. Much more thought must be put into the calculation of the trispectrum for it to be computationally feasible for large-box simulations that sample the low $k$ values HERA will probe.
 
 The delay spectrum is an elegant method to avoid foreground contamination. However, a large fraction of the overall information about the EoR is contained at low $k_{\parallel}$ modes \citep[e.g.][]{Jensen.16}. Being able to extract even some component of that information from within the wedge would prove extremely powerful. One tool that might be used for such a task is a three point correlation function in Fourier space -- with two points outside of the wedge, and one within it (see Figure~\ref{fig:ksz_21cm_correlation_geometries}). Choosing appropriate ($k_{\perp},k_{\parallel}$) coordinates could potentially decorrelate the foregrounds to allow such a measurement.
+
