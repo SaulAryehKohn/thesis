@@ -126,7 +126,7 @@ Using the formalism of \cite{Nunhokee.17} and Chapter~\ref{chapter:interferometr
 \centering
 \includegraphics[width=0.6\textwidth, angle=270]{chapters/polcal/figures/sim_nonoise.pdf}
 \includegraphics[width=0.6\textwidth, angle=270]{chapters/polcal/figures/sim.pdf}
-\caption[Simulations of pseudo-Stokes visibilities,]{Simulations of absolute value (\textit{upper panels}) and phase (\textit{lower panels}) of pseudo-Stokes visibilities (left to right: pseudo-Stokes I, Q, U and V), as measured by a 30\,m East-West PAPER baseline. The upper group shows the noiseless simulation, and the lower shows the same simulation with the addition of a realistic PAPER noise model \citep{Moore.17}. Only a Stokes I sky was used -- all of the structure seen in $V_Q$, $V_U$ and $V_V$ can be attributed to direction-dependent leakage.}
+\caption[Simulations of pseudo-Stokes visibilities,]{Simulations of absolute value (\textit{upper panels}) and phase (\textit{lower panels}) of pseudo-Stokes visibilities (left to right: $V_I$, $V_Q$, $V_U$ and $V_V$), as measured by a 30m East-West PAPER baseline. The upper group shows a noiseless simulation, and the lower shows the same simulation with the addition of a realistic noise model. Only a Stokes I sky was used -- all of the structure seen in $V_Q$, $V_U$ and $V_V$ can be attributed to direction-dependent leakage.}
 \label{fig:simvis}
 \end{figure}
 
@@ -302,9 +302,9 @@ The times observed by the PAPER-32 imaging array contained the transits of Picto
 \begin{equation}
 S_{\rm Pic A}(\nu) = 382 \pm 5.4\,{\rm Jy}\,\times\,(\nu/150{\rm MHz})^{-0.76 \pm 0.01},
 \end{equation}
-making it an ideal flux-calibrator. While it is highly polarized at optical wavelengths \citep[$\sim 50$\%][]{Thomson.95}, it has a low polarization fraction at radio frequencies ($<$5\%; \citet{Perley.97, Huffenberger.15}). Little-to-no expected polarization is useful for obtaining diagonal gains, but a polarized point source is more useful for precisely calculating the off-diagonal \textit{D}-terms (see, for example, Chapter~\ref{chapter:interferometry} or \citet{TMS}). There is a dearth of low-frequency polarized point sources in the low frequency sky \citep{Bernardi.13, Asad.16, Lenc.16}, and only one that is bright enough to be detected by PAPER-32 -- PMN J0351-2744 -- and this we were not able to detect.
+making it an ideal flux-calibrator. While it is highly polarized at optical wavelengths \citep[$\sim 50$\%][]{Thomson.95}, it has a low polarization fraction at radio frequencies ($<$5\%; \citet{Perley.97, Huffenberger.15}). Little-to-no expected polarization is useful for obtaining diagonal gains, but a polarized point source is more useful for precisely calculating the off-diagonal \textit{D}-terms (see, for example, Chapter~\ref{chapter:interferometry} or \citet{TMS}). There is a dearth of low-frequency polarized point sources in the low frequency sky \citep{Bernardi.13, Asad.16, Lenc.16}, and only one that is bright enough to be detected by PAPER-32 -- PMN J0351-2744 -- and this we were not able to detect.\clearpage
 
-To increase the precision of our calibration model, we included a model of Fornax A as well as Pictor A. Fornax A is a bright, resolved radio galaxy which we modelled using three spherical components for its East lobe, West lobe and central core according to MWA observations \citep{McKinley.15}:
+To increase the precision of our calibration model, we included a model of Fornax A as well as Pictor A. Fornax A is a bright, resolved radio galaxy which we modelled using three spherical components for its East lobe, West lobe and central core according to MWA observations at 154\,MHz \citep{McKinley.15}:
 
 \begin{eqnarray}
 S_{\rm East}(\nu)= 260\,{\rm Jy}\,\times\,(\nu/154{\rm MHz})^{- 0.77},\\
@@ -365,8 +365,9 @@ Using {\tt polcal} on the Pictor A field described in the previous section grant
 Correcting for these granted identical pseudo-Stokes I and Q images and lower-amplitude pseudo-Stokes U and V -- as expected for a regime where pseudo-Stokes I leakage dominates over actual polarized power. The improved U and V maps are shown in Figure~\ref{fig:polcal_img_PicA_improved_dterm}.
 
 \begin{figure}
-\includegraphics[clip, trim=0.5cm 11cm 4cm 5cm, width=0.8\textwidth]{chapters/polcal/figures/6830-U-better-dcal.pdf}
-\includegraphics[clip, trim=0.5cm 11cm 4cm 5cm, width=0.8\textwidth]{chapters/polcal/figures/6830-V-better-dcal.pdf}
+\centering
+\includegraphics[clip, trim=0.5cm 11cm 4cm 5cm, width=0.7\textwidth]{chapters/polcal/figures/6830-U-better-dcal.pdf}
+\includegraphics[clip, trim=0.5cm 11cm 4cm 5cm, width=0.7\textwidth]{chapters/polcal/figures/6830-V-better-dcal.pdf}
 \caption[The same field as shown in Figure~\ref{fig:polcal_img_PicA_improved}, but for pseudo Stokes U and V only, with \textit{D}-terms partially calibrated.]{The same field as shown in Figure~\ref{fig:polcal_img_PicA_improved}, but for pseudo Stokes U and V only, with \textit{D}-terms partially calibrated. Comparing to Figure~\ref{fig:polcal_img_PicA_improved}, the amplitude at the position of Pictor A has decreased. Pseudo-Stokes I and Q maps are not shown, since they are qualitatively identical to the images in Figure~\ref{fig:polcal_img_PicA_improved} -- as expected for a regime in which pseudo-Stokes I leakage dominates over actual polarized power.}
 \label{fig:polcal_img_PicA_improved_dterm}
 \end{figure}

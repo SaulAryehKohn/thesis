@@ -54,8 +54,8 @@ for delay $\tau$. This transform maps flat-spectrum emitters to Dirac delta func
 
 To extract cosmological information from observed intensity in delay space, it is useful to form power spectra, which we define for the delay spectrum paradigm below. To convert $u$ to $k_{\perp}$ and $\tau$ to $k_{\parallel}$, \cite{Parsons.12b} defined cosmological scalars:
 \begin{align}
-X &= 6.5 \times 10^3 \sqrt{\frac{0.27}{\Omega_m}}\left(\frac{1+z}{10}\right)^{0.2} {\rm Mpc/(h\,rad)}, \\
-Y &= 1.7 \times 10^{-2} \sqrt{\frac{0.27}{\Omega_m}} \sqrt{\frac{1+z}{10}} {\rm Mpc/(h\,GHz)},
+X &= 6.5 \times 10^3 \sqrt{\frac{0.27}{\Omega_m}}\left(\frac{1+z}{10}\right)^{0.2} {\,\,\rm h^{-1} Mpc\,rad^{-1}}, \\
+Y &= 1.7 \times 10^{-2} \sqrt{\frac{0.27}{\Omega_m}} \sqrt{\frac{1+z}{10}} {\,\,\rm h^{-1} Mpc\,  \,GHz^{-1}},
 \end{align}
 such that $X$ describes a comoving transverse scale, $Y$ describes a comoving line-of-sight distance, and
 \begin{equation}
@@ -64,10 +64,10 @@ such that $X$ describes a comoving transverse scale, $Y$ describes a comoving li
 where $l$ and $m$ are directional cosines, $k_i$ measure cosmological wavemodes for comoving coordinates $x,y,z$. $k_z$ and $k_{\parallel}$ are interchangeable in this convention, and $k_{\perp} = \sqrt{k_x^2 + k_y^2}$.
 
 The power measured by a delay-transformed visibility is given by a cross-multiplication of two instances of the visibility. Using the classical visibility equation for simplicity,
-\begin{align}
-\tilde{V}^*\tilde{V} &\approx \int^{(6)} A(l,m,\nu)A(l',m',\nu') S(l,m,\nu) S(l',m',\nu')\\
-					\times	 & e^{-2\pi i (u (l-l') + v (m-m') + \tau (\nu - \nu'))} {\rm d}l {\rm d}l' {\rm d}m {\rm d}m' {\rm d}\nu {\rm d}\nu'.
-\end{align}
+\begin{multline}
+\tilde{V}^*\tilde{V} \approx \int^{(6)} A(l,m,\nu)A(l',m',\nu') S(l,m,\nu) S(l',m',\nu')\\
+					\times e^{-2\pi i (u (l-l') + v (m-m') + \tau (\nu - \nu'))} {\rm d}l {\rm d}l' {\rm d}m {\rm d}m' {\rm d}\nu {\rm d}\nu'.
+\end{multline}
 We can convert from intensity to brightness temperature using $S(l,m,\nu) = 2k_BT(l,m,\nu)/\lambda^2$. 
 This leads to a correlation function $\xi_{T}$ within the integral.
 For a beam that spans area $\Omega$ and a delay transform over $\Delta\nu$, \cite{Parsons.12a} showed that the power can be expressed as

@@ -1,7 +1,7 @@
 \chapter{A view of the EoR window from the PAPER-32 imaging array}
 \label{chapter:eor_window_paper32img}
 
-In this Section, we present 2D power spectra created from data taken by the PAPER-32 imaging array in Stokes I, Q, U and V. 
+In this Chapter, we present 2D power spectra created from data taken by the PAPER-32 imaging array in Stokes I, Q, U and V, as reported by \cite{Kohn.16}. 
 
 The PAPER 32-antenna array relied on its highly redundant configuration in order to take the measurements resulting in the strong upper limits on the 21 cm power spectrum \citep{Parsons.14, Jacobs.15, Moore.17}. However, for three nights in 2011 September, the 32 elements were reconfigured into an polarized imaging configuration. 
 Creating power spectra allowed us to observe and diagnose systematic effects in our calibration at high signal-to-noise within the Fourier space most relevant to EoR experiments. We observed well-defined windows in the Stokes visibilities, with Stokes Q, U and V power spectra sharing a similar wedge shape to that seen in Stokes I.  With modest polarization calibration, we saw no evidence that polarization calibration errors moved power outside the wedge in any Stokes visibility, to the noise levels attained. Deeper integrations will be required to confirm that this behavior persists to the depth required for EoR detection.
@@ -23,10 +23,8 @@ We present measurements taken overnight on 2011 September 14--15 over local side
 Antennae were arranged in a pseudo-random scatter within a 300\,m-diameter circle, the layout of which is shown in Figure~\ref{fig:psa32img_config}. This allowed us to obtain resolutions between 15' and 25' across the bandwidth (100--200 MHz nominally, although in reality this extends 110--185 MHz due to band edge effects and VHF TV). Drift-scan visibilities were measured every 10.7 s, and divided into datasets about 10 minutes in length. We express an interferometric visibility $V^{pq}_{ij}$ between antennae $i$ (with dipole arm $p$, which can be $x$ (East-West) or $y$ (North-South) for PAPER dipoles), and $j$ (with dipole arm $q$), in directional cosines $l$ and $m$ for frequency $\nu$ at time $t$, as:
 
 \begin{equation}
-\begin{aligned}
-V_{ij}^{pq}(\nu,t) = g^p_i g^{q*}_j \exp(-2\pi i \nu \tau_{pq}) \times \\ \int d\Omega \, A^{pq}(\Omega, \nu)
+V_{ij}^{pq}(\nu,t) = g^p_i g^{q*}_j \exp(-2\pi i \nu \tau_{pq}) \int d\Omega \, A^{pq}(\Omega, \nu)
 S(\Omega, \nu) \exp\left(\frac{ -i\nu}{c} \vec{b}(t) \cdot \hat{s}(\Omega)\right)
-\end{aligned}
 \label{eq:psa32_visibility}
 \end{equation}
 

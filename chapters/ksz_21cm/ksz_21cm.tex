@@ -59,7 +59,7 @@ The N-body simulation gave a realization of the density field at the midpoint of
 
 \begin{figure}
 \centering
-\includegraphics[width=0.6\textwidth]{chapters/ksz_21cm/figures/smoothed_ionfrac.png}
+\includegraphics[width=0.6\textwidth]{chapters/ksz_21cm/figures/unsmoothed_ionfrac.png}
 \caption{The average ionized fraction as a function of redshift in our cosmological simulation.}
 \label{fig:ksz_21cm_sim_ionfrac_avg}
 \end{figure}
@@ -68,7 +68,7 @@ The N-body simulation gave a realization of the density field at the midpoint of
 \centering
 \includegraphics[width=0.49\textwidth]{chapters/ksz_21cm/figures/21cmExample_z7p8.png}
 \includegraphics[width=0.49\textwidth]{chapters/ksz_21cm/figures/kszmap.png}
-\caption[An example 21\,cm brightness temperature field and integrated kSZ map from our cosmological simulation.]{An example 21\,cm brightness temperature field at redshift $z\sim$7.8 (left) and integrated kSZ map (right) from our cosmological simulation. Both have color bars in units of mK. Note the lack of obvious correlation.}
+\caption[An example 21\,cm brightness temperature field and integrated kSZ map from our cosmological simulation.]{An example 21\,cm brightness temperature field at redshift $z\sim$7.8 (left) and integrated kSZ map (right) from our cosmological simulation. Both have color bars in units of mK. Note the lack of obvious correlation or anti-correlation.}
 \label{fig:ksz_21cm_sim_example}
 \end{figure}
 
@@ -409,7 +409,7 @@ Figure~\ref{fig:ksz_21cm_direct_bispectrum} highlights one of the limitations of
 
 Possibly the largest limitation of the bispectrum is one that has been brushed under the carpet in most of the discussion above. The kSZ only exists in the $k_{\parallel}=0$ plane, since by its integral definition it has not line-of-sight component. Because two kSZ terms are required, this forces any closed triangle (enforced by the Dirac delta functions throughout Section~\ref{subsec:ksz_21cm_semi_analytic_approximation}) to exist only at $k_{\parallel}=0$ values: the 21\,cm component is trapped within the center of the wedge! One could argue that the foreground contamination problem is not strictly the same for the bispectrum as it is for the 21\,cm power spectrum, as the `true' foreground for the bispectrum is the correlation of the CMB with low-frequency Galactic synchrotron, which is low \citep[e.g.][]{Ichiki.14}. However, while the effective $T^2_{\rm sys}$ in Equation~\ref{eq:ksz_21cm_HERA_noise_total} is close to receiver noise outside of the wedge, at $k_{\parallel}=0$ its value becomes very large, as it is dominated by $T_{\rm sky}$. 
 
-To be non-zero outside of the wedge, two 21\,cm fields are required in the correlation function. This moved us to a minimum four point function, which we explored with the trispectrum below.
+To be non-zero outside of the wedge, two 21\,cm fields are required in the correlation function. This moved us to a minimum of a four point function, which we explored using trispectra, below.
 
 \section{kSZ$^2$-21cm$^2$ squeezed-rectangle trispectra}
 \label{sec:trispec}

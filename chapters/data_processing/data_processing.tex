@@ -18,7 +18,7 @@ The compression algorithm implemented for PAPER observations, Delay--Delay-Rate 
 The geometric delay of a celestial signal, originating form direction $\hat{s}$, incident on an interferometric baseline described by vector $\vec{b}$, is
 
 \begin{equation}
-\tau_g = |\vec{b} \cdot \hat{s}|/c
+\tau_g = \frac{|\vec{b} \cdot \hat{s}|}/c
 \end{equation}
 
 where $c$ is the speed of light. This relationship implies that $\tau_g$ is bounded for a given baseline
@@ -174,7 +174,7 @@ Figure~\ref{fig:rfi_psa128_freqflags} shows the detail of the top panel of Figur
 
 \subsubsection*{FM Radio}
 
-SATFA lists the frequency band 87.5--108\,MHz as available for FM radio broadcasts, leading me to postulate that the low-level RFI we observed in the 107.25	$\pm$	0.25 and 107.55	$\pm$	0.05\,MHz bands had FM radio as the leading cause. The 108.1	$\pm$	0.4 and 109	$\pm$	0.4\,MHz bands were outside of the official range, and exhibit odd temporal properties for human activity -- two peaks at midnight and 4am -- with a increasing number of flags throughout the average night (see Figure~\ref{fig:rfi_psa128_FMradio}). \\
+SATFA lists the frequency band 87.5--108\,MHz as available for FM radio broadcasts, leading me to postulate that the low-level RFI we observed in the 107.25	$\pm$	0.25 and 107.55	$\pm$	0.05\,MHz bands had FM radio as the leading cause. The 108.1	$\pm$	0.4 and 109	$\pm$	0.4\,MHz bands were outside of the official range, and exhibit odd temporal properties for human activity -- two peaks at midnight and 4am -- with a increasing number of flags throughout the average night (see Figure~\ref{fig:rfi_psa128_FMradio}).
 
 \begin{figure}[h!]
 \centering
@@ -187,10 +187,10 @@ SATFA lists the frequency band 87.5--108\,MHz as available for FM radio broadcas
 \end{figure}
 
 \subsubsection*{Aircraft communications}
-It was difficult to argue that the 112.1$\pm$0.1\,MHz signal is caused by aircraft communications since it maintained a constant background level. However, SATFA listed this frequency as reserved for aircraft communications and it has been used in the past as a calibration frequency for aircraft instruments \cite{AircraftCalibrationFreqs}.\\
+It was difficult to argue that the 112.1$\pm$0.1\,MHz signal is caused by aircraft communications since it maintained a constant background level. However, SATFA listed this frequency as reserved for aircraft communications and it has been used in the past as a calibration frequency for aircraft instruments \cite{AircraftCalibrationFreqs}.
 
 The other aircraft frequencies were obvious, because they closely traced the 2-hour flight from Cape Town to Johannesburg\footnote{Credit to Danny Jacobs for first spotting this and noting it in an internal PAPER circular in December 2009.}. 
-An example (120.15$\pm$0.35\,MHz) is shown in Figure~\ref{fig:rfi_psa128_aircraft}. SATFA reserved frequencies 108--117.975\,MHz for aeronautical radionavigation and 117.975--137\,MHz for aeronautical mobile. In Table~\ref{tab:rfi_psa128} I listed 131.75$\pm$0.35\,MHz as caused by aircraft since it falls in the aeronautical mobile band, but it does not follow the flight patterns as closely as the other bands.\\
+An example (120.15$\pm$0.35\,MHz) is shown in Figure~\ref{fig:rfi_psa128_aircraft}. SATFA reserved frequencies 108--117.975\,MHz for aeronautical radionavigation and 117.975--137\,MHz for aeronautical mobile. In Table~\ref{tab:rfi_psa128} I listed 131.75$\pm$0.35\,MHz as caused by aircraft since it falls in the aeronautical mobile band, but it does not follow the flight patterns as closely as the other bands.
 
 \begin{figure}[h!]
 \centering
@@ -214,7 +214,7 @@ VHF TV is broadcast over specifically-spaced video and audio frequencies. The st
 
 \subsubsection*{Unidentified sources}
 
-There were 5 RFI frequencies in the averaged data that I could not identify the sources of:  weak emissions (flagged $<5\%$ of the season) at 114.05$\pm$0.85, 116.55$\pm$0.35, 130.25$\pm$0.55 and 186.25$\pm$0.35\,MHz, and one strong emission at 182.15$\pm$0.35\,MHz. The variation of each source with time is shown in Figure~\ref{fig:rfi_psa128_unidentified}. The 186.25$\pm$0.35\,MHz had a sharp turn-off around 9:45pm each night, suggesting that it originated from some kind of automated device.\\
+There were 5 RFI frequencies in the averaged data that I could not identify the sources of:  weak emissions (flagged $<5\%$ of the season) at 114.05$\pm$0.85, 116.55$\pm$0.35, 130.25$\pm$0.55 and 186.25$\pm$0.35\,MHz, and one strong emission at 182.15$\pm$0.35\,MHz. The variation of each source with time is shown in Figure~\ref{fig:rfi_psa128_unidentified}. The 186.25$\pm$0.35\,MHz had a sharp turn-off around 9:45pm each night, suggesting that it originated from some kind of automated device.
 
 \begin{figure}[h!]
 \centering
@@ -243,7 +243,7 @@ Using the flags per night, I was able to assess the total number of flags as a p
 
 
 JD 2456965 was easily the worst offender, and it exhibited a strange signal that wanders in frequency and time close to the ISS band. An event of note on this date (23rd November 2014) was a Soyuz FG launch that docked with the ISS -- this may have been a signature of their transmissions\footnote{The internet also suggests... less plausible explanations: \url{https://www.youtube.com/watch?t=11&v=VtZx8iPO4zs}. }.
-Similar signals were seen on 2456898 (28th August 2014; although only at the beginning of the night) and 2456924 (23rd September 2014). There was no listed orbital or suborbital activity for 2456898. There was an US ICBM test off of the coast of Virginia on 2456924, but this was probably not the cause of the RFI. The flag waterfalls for these nights are shown in Figure~\ref{fig:rfi_psa128_wandering}.\\
+Similar signals were seen on 2456898 (28th August 2014; although only at the beginning of the night) and 2456924 (23rd September 2014). There was no listed orbital or suborbital activity for 2456898. There was an US ICBM test off of the coast of Virginia on 2456924, but this was probably not the cause of the RFI. The flag waterfalls for these nights are shown in Figure~\ref{fig:rfi_psa128_wandering}.
 
 \begin{figure}[h!]
 \centering
@@ -286,11 +286,8 @@ Below I present measurements of high-power, mostly narrow-band RFI channels as f
 Table~\ref{tab:rfi_herahex} shows all narrowband frequency ranges flagged in HERA-19 visibilities, with columns of the frequency range in MHz, \% flagging over time, plausible identification, whether or not it was identified in PAPER-128 data, and other notes (often details of the possible identification). Frequencies with 100\% flagging indicate manual flags required for {\tt xrfi\_simple} to work on the rest of the channels. 
 
 Clearly, the low-end of the band was swamped by FM radio broadcasts. One notable frequency was the 109.2$\pm$0.3~MHz band, which was heavily flagged in HERA visibilities, but was only flagged a few percent in PAPER-128 data.
-
 As seen before, ORBCOMM satellite emissions spilled out of their allocated 137-138~MHz band down to 136.3~MHz.
-
 There were many narrowband RFI channels, across the band, that PAPER-128 did not pick-up. Most of these were flagged only at low levels, with two exceptions: 111.3$\pm$0.2~MHz and 113.5$\pm$0.1~MHz. Both of these were in the aircraft navigation band. There is some evidence \citep{airforce} that 111.3~MHz band is fir air force communications. The 113.5~MHz band is a known band for radionavigation beacons \citep[`VOR navaids'][]{navaid}.
-
 A particularly annoying `new' emitter was in the 153.8$\pm$0.2~MHz region, which is close to the center of our nominal EoR band. It could correspond to mobile phones being used close to site.
 
 \begin{deluxetable}{lllll}				
@@ -443,9 +440,7 @@ Table~\ref{tab:rfi_herahex} highlighted many frequencies seen by HERA and not by
 I have presented a first look at RFI in HERA-19 Commissioning data. Probably due to the height of the receiving element on HERA versus PAPER dipoles, much more RFI was apparent, especially on the low and high ends of the band. Luckily, the EoR band was largely clean of RFI, except for an emitter at about 154~MHz, which could have corresponded to single-frequency mobile phone communications. Such communications are officially banned in the SKA Radio Quiet Zone \citep{SAKRQZ}, which HERA is in the center of.
 
 Only looking at a single night of RFI flags limited the predictive power of this study. More data will be required to establish whether or not this is level of RFI was `normal'. Broadband RFI bursts require closer investigation.
-
 Efforts to extend the HERA band to lower and possibly higher frequencies are currently under way. The FM radio band extends to around 65~MHz, while the VHF TV band extends to around 230~MHz, so the RFI environment should be a consideration for these efforts.
-
 Meanwhile, I note that the RFI flagging routine used here, {\tt xrfi\_simple}, is indeed `simple'. More advanced RFI flagging algorithms such as {\tt AOFlagger} \citep{AOflag} should be tested in later studies.
 
 \section{Quality Assurance Metrics}

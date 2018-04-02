@@ -2,7 +2,7 @@
 \label{chapter:eor_window_HERA}
 
 As emphasized in Chapter~\ref{chapter:eor_window_paper32img}, it is important to constrain intrinsic and leaked polarized signal for any {\sc hi} EoR experiment. 
-The objective of this Chapter was an exploration of eight nights of data from the Hydrogen Epoch of Reionization Array (HERA) 19-element commissioning array, coupled with simulations of the instrument, in order to forecast how much of a problem polarization would pose for this interferometer. 
+The objective of this Chapter was an exploration of eight nights of data from the Hydrogen Epoch of Reionization Array (HERA) 19-element commissioning array, coupled with simulations of the instrument, in order to forecast how much of a problem polarization would pose for this interferometer. These results we reported by \cite{Kohn.18}.
 This work also represents the first power spectral analysis from HERA. While not in the realm of an EoR-level integration, we were able to offer some initial expectations for this new instrument's performance in the Fourier domain.
 
 This work is organized as follows: in Section~\ref{sec:hera19_leak} we review the theory behind polarization leakage into unpolarized signal and simulate the effect for a model of HERA. In Section~\ref{sec:hera19_obs} we describe the HERA data that we used, its calibration and reduction to power spectra. We present our results, and discuss the implications for HERA's EoR measurements, in Section~\ref{sec:hera19_results}, and conclude in Section~\ref{sec:hera19_conc}. We assume the cosmological parameters reported by \cite{Planck.16} throughout.
@@ -50,7 +50,7 @@ HERA only observes in drift-scan mode. The observations we used were eight night
 \label{fig:hera19_antpos}
 \end{figure}
 
-To identify samples contaminated by radio frequency interference (RFI), a two-dimensional median filter in time and frequency was applied to the visibility data to smooth out high pixel-to-pixel variations, and remove significant outliers that were likely unphysical. The variance of the resulting data was computed, and points with a $z$-score greater than 6 (i.e., points where the value is more than 6$\sigma$ away from the mean) were flagged as initial seeds for RFI extraction. A two-dimensional watershed algorithm was applied using these seeds as starting points, enlarging the regions of RFI-contamination to neighboring pixels with z-scores greater than 2, until all such pixels were flagged. Figure~\ref{fig:hera19_rfi} shows the fractional RFI flag occupancy per time (displayed in LST) and frequency across the 8 days of observations. The majority of the band is relatively clear of RFI. Some clear features are: the FM radio band (below 110 MHz), ORBCOMM satellite communications (137 MHz), an ISS downlink (150 MHz) and VHF TV channels (above 170 MHz)\footnote{For an extended discussion of RFI as seen by HERA, see the public HERA Memo \# 19}.
+To identify samples contaminated by radio frequency interference (RFI), a 2D median filter in time and frequency was applied to the visibility data to smooth out high pixel-to-pixel variations, and remove significant outliers that were likely unphysical. The variance of the resulting data was computed, and points with a $z$-score greater than 6 (i.e., points where the value is more than 6$\sigma$ away from the mean) were flagged as initial seeds for RFI extraction. A two-dimensional watershed algorithm was applied using these seeds as starting points, enlarging the regions of RFI-contamination to neighboring pixels with z-scores greater than 2, until all such pixels were flagged. Figure~\ref{fig:hera19_rfi} shows the fractional RFI flag occupancy per time (displayed in LST) and frequency across the 8 days of observations. The majority of the band is relatively clear of RFI. Some clear features are: the FM radio band (below 110 MHz), ORBCOMM satellite communications (137 MHz), an ISS downlink (150 MHz) and VHF TV channels (above 170 MHz)\footnote{For an extended discussion of RFI as seen by HERA, see the public HERA Memo \# 19}.
 The Galaxy, when transiting zenith at LST$\approx$17.75 hours, is so bright that it appears to degrade our ability to flag RFI.
 
 \begin{figure}
@@ -66,7 +66,7 @@ The Galaxy, when transiting zenith at LST$\approx$17.75 hours, is so bright that
 HERA is designed to be calibrated using redundant calibration techniques \citep{Dillon.16}, but for this preliminary view of HERA commissioning data, we used image-based calibration. Future studies with deeper integrations targeting EoR detections will take advantage of redundancy to obtain more precise calibration solutions \citep{deBoer.17}. We used the {\sc CASA} \citep{casa} package for calibration, taking advantage of its CLEAN, {\tt gaincal} and {\tt bandpass} functions.
 
 To enable the use of {\sc CASA}, we first converted from native {\sc miriad} to a {\sc uvfits} file format which could be ingested by {\sc CASA} using {\sc pyuvdata} \citep{pyuvdata}. 
-Using LSTs in which the Galactic center (GC; $\alpha, \delta$ = 17h 45m 40.04s,​ ​-29d 0m 28.12s) was transiting, we built a CLEAN model which modeled the GC as an unpolarized point source of strength 1 Jy and flat spectrum, which could be scaled appropriately later (see Equation~\ref{eq:freq_scale}). 
+Using LSTs in which the Galactic center (GC; $\alpha, \delta$ = 17h 45m 40.04s, -29d 0m 28.12s) was transiting, we built a CLEAN model which modeled the GC as an unpolarized point source of strength 1 Jy and flat spectrum, which could be scaled appropriately later (see Equation~\ref{eq:freq_scale}). 
 Clearly, this is an incomplete calibration model. However, as the objective of this work is to explore the response of the instrument in power spectrum space without combining baselines of different lengths, most of the purpose of the calibration is correcting an initial large cable delay per antenna. 
 Treating the GC as unpolarized is adequate for this study. The large optical depth towards the GC \citep{Oppermann.12} results in large amounts depolarization in the plane of the Galaxy \citep{Wolleben.06}. Moreover, we expected non-negligible amounts of beam depolarization due to the large solid angle of the synthesized beam.
 
@@ -99,7 +99,7 @@ Example bandpass solutions from JD 2457548 are shown in Figure~\ref{fig:hera19_b
 \label{fig:hera19_bandpass}
 \end{figure}
 
-The complex gain solutions were subsequently applied to the {\sc miriad} files. Figure~\ref{fig:hera19_phasecal} shows the effect of calibration on the visibilities of three nominally redundantly-spaced baselines. Shown in that figure are the phases of three $V^{nn}$ visibilities from 14.7\,m baselines before and after calibration. There were no shared antennae between the visibilities shown. The qualitative agreement is obvious, providing a consistency check on the solutions.
+The complex gain solutions were subsequently applied to the {\sc miriad} files. Figure~\ref{fig:hera19_phasecal} shows the effect of calibration on the visibilities of three nominally redundantly-spaced baselines. Shown in that figure are the phases of three $V^{nn}$ visibilities from 14.7\,m baselines before and after calibration. There were no shared antennae between the visibilities shown. The qualitative agreement is obvious, providing a consistency check on the solutions. We did not attempt to calibrate \textit{D}-terms in this work.
 
 \begin{figure}
 \centering
@@ -108,7 +108,7 @@ The complex gain solutions were subsequently applied to the {\sc miriad} files. 
 \label{fig:hera19_phasecal}
 \end{figure}
 
-We did not attempt to calibrate \textit{D}-terms in this work.
+
 %This limited our interpretive power, which we discuss in Section~\ref{sec:results}.
 
 We down-selected to two relatively RFI-free 20 MHz sub-bands (Figure~\ref{fig:hera19_rfi}); 115 to 135 MHz and 152 to 172 MHz, henceforth referred to the ``low band'' and the ``high band''. As we discuss in Section~\ref{subsec:hera19_pspec}, these bands were multiplied by a Blackman-Harris window, centered on their central frequencies, before Fourier transforming in order to minimize side-lobes. This windowing lead to an noise-effective bandwidth of 10 MHz, appropriate for EoR analyses since the {\sc hi} signal is to a reasonable approximation coeval over the corresponding redshift range \citep{Furlanetto.06}.
@@ -158,13 +158,13 @@ Pseudo-stokes power spectra were formed for each pair of integrations, for every
 Power spectra are shown for the high and low bands in Figure~\ref{fig:hera19_pitchforks_highband} and Figure~\ref{fig:hera19_pitchforks_lowband}, respectively, where white dotted lines mark the boundary of the EoR window on the 2D plots.  The same data are presented in middle and lower panels, with the latter overlaid as lines to emphasize common features of the power spectra with respect to baseline length. 
 
 Theoretical noise levels for the high and low bands were between 
-$P_{\rm noise}(k)\approx$ 1.7$\times$10$^8$ \,mK$^2$Mpc$^3$h$^{-3}$ and 3.4$\times$10$^9$ \,mK$^2$Mpc$^3$h$^{-3}$ in the high band, and between 2.3$\times$10$^8$ \,mK$^2$Mpc$^3$h$^{-3}$ and 6.1$\times$10$^9$ \,mK$^2$Mpc$^3$h$^{-3}$ in the low band. These estimates used using a temperature model of the sky
+$P_{\rm noise}(k)\approx$ 1.7$\times$10$^8$ \,mK$^2$Mpc$^3$h$^{-3}$ -- 3.4$\times$10$^9$ \,mK$^2$Mpc$^3$h$^{-3}$ in the high band, and 2.3$\times$10$^8$ \,mK$^2$Mpc$^3$h$^{-3}$ -- 6.1$\times$10$^9$ \,mK$^2$Mpc$^3$h$^{-3}$ in the low band. These estimates used a temperature model of the sky
 
 \begin{equation}
 T_{\rm sky} = 180\,{\rm K} \left(\frac{\nu}{180\,{\rm MHz}}\right)^{-2.55},
 \end{equation}
-assume receiver temperatures of 300\,K and 600\,K for the high band and low band, respectively \citep[][also see the public HERA Memo \# 16]{deBoer.17}, and were calculated according to the formalism for noise power spectra in \cite{Parsons.12a}, with the inclusion of a baseline-number dependence (to account for different occupancies in each $k_{\perp}$ bin).
-These noise power estimates were roughly corroborated by our observations (see Figure~\ref{fig:hera19_highband_cuts_per_day}). We observe excess noise on the shortest baselines (also obvious in the lower panels of Figures~\ref{fig:hera19_pitchforks_highband} and \ref{fig:hera19_pitchforks_lowband}). 
+assumed receiver temperatures of 300\,K and 600\,K for the high band and low band, respectively \citep[][also see the public HERA Memo \# 16]{deBoer.17}. They were calculated according to the formalism for noise power spectra in \cite{Parsons.12a}, with the inclusion of a baseline-number dependence (to account for different occupancies in each $k_{\perp}$ bin).
+The estimates were roughly corroborated by our observations (see Figure~\ref{fig:hera19_highband_cuts_per_day}). We observe excess noise on the shortest baselines (also obvious in the lower panels of Figures~\ref{fig:hera19_pitchforks_highband} and \ref{fig:hera19_pitchforks_lowband}). 
 
 \subsection{General features of the power spectra}
 \label{subsec:general_features}
