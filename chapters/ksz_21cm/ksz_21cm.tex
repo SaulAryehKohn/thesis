@@ -15,7 +15,7 @@ The anisotropies induced on the CMB by the kSZ are given by (Equation~\ref{eq:eo
 where $\sigma_T$ is the Thomson Cross Section, $n_e(z)$ is the average number density of electrons at redshift $z$, $\tau(z)$ is the optical depth to redshift $z$, and d$s$/d$z$ is the cosmological line element to redshift $z$ along direction $\hat{s}$. 
 The momentum field $q$ can be expressed as:
 \begin{equation}
-\vec{q}(\hat{s}) = (1+\delta_x(\vec{x}))(1+\delta_b(\vec{x}))\vec{v}(\vec{x}) \cdot \hat{s},
+\vec{q}(\hat{s}) \propto (1+\delta_x(\vec{x}))(1+\delta_b(\vec{x}))\vec{v}(\vec{x}) \cdot \hat{s},
 \end{equation}
 where  $1+\delta_x(\vec{x}) = x_i(\vec{x})/\left\langle x_i(\vec{x}) \right\rangle$ for ionization fraction $x_i(\vec{x})$, $1+\delta_b(\vec{x}) = \rho_b(\vec{x})/\left\langle \rho_b(\vec{x}) \right\rangle$, $\vec{v}(\vec{x})$ is the free electron bulk flow, and $\left\langle ... \right\rangle$ indicates an average over position $\vec{x}$. 
 The kSZ is sourced by momentum of ionized gas, but we only detect the component of that momentum over a given line-of-sight $\hat{n}$, of which only the integrated, transverse component of the wavevector $\vec{k}$ will survive.
@@ -44,7 +44,7 @@ So our representation of the 21\,cm temperature contrast becomes
 
 While the 21\,cm field is positive-definite, the kSZ anisotropies are not. Cosmic bulk flows could be oriented towards or away from the observer. This motivated moving beyond the power spectrum (the Fourier analog of the two-point function) in the investigation of the kSZ-21\,cm connection, since
 \begin{equation}
-\left\langle \delta_{\rm 21cm}(\vec{x}) \delta_{\rm kSZ}(\vec{x}) \right\rangle =\approx 0.
+\left\langle \delta_{\rm 21cm}(\vec{x}) \delta_{\rm kSZ}(\vec{x}) \right\rangle \approx 0.
 \end{equation}
 We required at least the square of the kSZ field -- and hence a higher-order correlation function.
 In the following sections, we form higher-order correlation functions represented as bispectra (the Fourier analog of the three-point function) and trispectra (the Fourier analog of the four-point function). . 
@@ -130,8 +130,8 @@ where the $\delta_D(\vec{k'} + \vec{k''})$ in the above relation allowed us to i
 \begin{equation}
 \begin{split}
 \left\langle \vec{q} \cdot \hat{n}(\vec{k}_1) \vec{q} \cdot \hat{n} (\vec{k}_2) T_{\rm 21cm}(\vec{k}_3) \right\rangle &= 
-(2\pi)^3 \delta_D(\vec{k}_1 + \vec{k}_2 + \vec{k}_3) \times \\
-& \int \frac{{\rm d^3}k'}{(2\pi)^3} (\hat{k'}\cdot\hat{n})^2 P_{vv}(k') 
+(2\pi)^3 \delta_D(\vec{k}_1 + \vec{k}_2 + \vec{k}_3) \int \frac{{\rm d^3}k'}{(2\pi)^3} (\hat{k'}\cdot\hat{n})^2 P_{vv}(k') \times \\
+& 
 \left[ B_{x,x,\rm 21cm} + B_{x,\rho,\rm 21cm} + B_{\rho,x,\rm 21cm} +B_{\rho,\rho,\rm 21cm} \right].
 \end{split}
 \end{equation}
@@ -140,8 +140,8 @@ In the squeezed-triangle limit, where $k_3 << k_1,k_2$, this reduced to:
 \begin{equation}
 \begin{split}
 \left\langle \vec{q} \cdot \hat{n}(\vec{k}_1) \vec{q} \cdot \hat{n} (\vec{k}_2) T_{{\rm 21cm}}(\vec{k}_3) \right\rangle &= 
-(2\pi)^3 \delta_D(\vec{k}_1 + \vec{k}_2 + \vec{k}_3) \times \\
-& \frac{v_{\rm rms}^2}{3} 
+(2\pi)^3 \delta_D(\vec{k}_1 + \vec{k}_2 + \vec{k}_3) \frac{v_{\rm rms}^2}{3}  \times \\
+& 
 \left[ B_{x,x,{\rm 21cm}} + B_{x,\rho,{\rm 21cm}} + B_{\rho,x,{\rm 21cm}} +B_{\rho,\rho,{\rm 21cm}} \right]
 \end{split}
 \label{eq:component_bispectra}
@@ -167,10 +167,10 @@ Using Equations~\ref{eq:d21cm_x} and \ref{eq:bispec_limber}, we can write:
 \langle \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_{{\rm 21cm}}(\vec{k}_3) \rangle = 
 \langle
 T_0(1- \left\langle x_i \right\rangle ) \times \\
-\left[
-- \frac{\left\langle x_i \right\rangle}{1 - \left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_x(\vec{k}_3) + \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_{\rho}(\vec{k}_3) 
+[
+- \frac{\left\langle x_i \right\rangle}{1 - \left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_x(\vec{k}_3) + \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_{\rho}(\vec{k}_3)  \\
  - \frac{\left\langle x_i \right\rangle}{1 - \left\langle x_i \right\rangle} \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \int \frac{{\rm d^3}k'}{(2\pi)^3} \delta_x(\vec{k}_3 - \vec{k'})\delta_{\rho}(\vec{k'})
-\right] \\
+] \\
 \times \delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3) 
 \rangle .
 \label{eq:B_xx21}
@@ -178,13 +178,11 @@ T_0(1- \left\langle x_i \right\rangle ) \times \\
 
 Taking the averages inside the square brackets reduces all the terms to the to component bispectra written in Equation~\ref{eq:lots_of_bispectra}. The first and second terms are simpler to understand, whereas the third term contains a convolution left-over from Fourier transforming $\delta_x(\vec{x})\delta_{\rho}(\vec{x})$ from Equation~\ref{eq:d21cm_x}:
 
-\begin{equation}
-\begin{split}
-B_{x,x,{\rm 21cm}} = \left( -T_0 \left\langle x_i \right\rangle B_{x,x,x} + T_0(1-\left\langle x_i \right\rangle) B_{x,x,\rho} - T_0 \left\langle x_i \right\rangle \int \frac{{\rm d^3}k'}{(2\pi)^3}
-\langle \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_x(\vec{k}_3 - \vec{k'})\delta_{\rho}(\vec{k'}) \rangle \right)\\
-\times \delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3)
-\end{split}
-\end{equation}
+\begin{multline}
+B_{x,x,{\rm 21cm}} = ( -T_0 \left\langle x_i \right\rangle B_{x,x,x} + T_0(1-\left\langle x_i \right\rangle) B_{x,x,\rho} \\ - T_0 \left\langle x_i \right\rangle \int \frac{{\rm d^3}k'}{(2\pi)^3} 
+\langle \delta_x(\vec{k}_1) \delta_x(\vec{k}_2) \delta_x(\vec{k}_3 - \vec{k'})\delta_{\rho}(\vec{k'}) \rangle )
+\delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3)
+\end{multline}
 
 \subsubsection*{$B_{x,x,x}$}
 \label{subsubsec:Bxxx}
@@ -193,7 +191,7 @@ Consider the bispectrum $\langle\delta_x(\vec{k}_1)\delta_x(\vec{k}_2)\delta_x(\
 \begin{equation}
 \langle \langle \delta_x(\vec{k}_1)\delta_x(\vec{k}_2) | \delta_x(\vec{k}_3)\rangle \delta_x(\vec{k}_3) \rangle
 \end{equation}
-This could be interpreted as: what is the correlation between expectation value of $\delta_x(\vec{k}_1)\delta_x(\vec{k}_2)$ given that $\delta_x(\vec{k}_3)$ has some value, with the ionization overdensity field $\delta_x(\vec{k}_1)$? If $\delta_x(\vec{k}_3)$ is sufficiently small, the expectation value may be expanded as a Taylor Series:
+This could be interpreted as: what is the correlation between expectation value of\\ $\delta_x(\vec{k}_1)\delta_x(\vec{k}_2)$ given that $\delta_x(\vec{k}_3)$ has some value, with the ionization overdensity field $\delta_x(\vec{k}_1)$? If $\delta_x(\vec{k}_3)$ is sufficiently small, the expectation value may be expanded as a Taylor Series:
 
 \begin{equation}
 \langle \delta_x(\vec{k}_1)\delta_x(\vec{k}_2) | \delta_x(\vec{k}_3)\rangle =
@@ -209,7 +207,7 @@ B_{x,x,x} \approx P_{\delta_x,\delta_x}(\vec{k_3}) \frac{\partial P_{\delta_x,\d
 
 Using the definition of $\delta_x = (x_i - \left\langle x_i \right\rangle)/\left\langle x_i \right\rangle$, we can rewrite the derivative with respect to $\left\langle x_i \right\rangle$ and use the chain rule
 \begin{equation}
-B_{x,x,x} = P_{\delta_x,\delta_x}(\vec{k_1}) P_{\delta_x,\delta_x}(\vec{k_3}) \left\langle x_i \right\rangle \frac{{\rm d} \ln (P_{\delta_x,\delta_x}(\vec{k_1}))}{{\rm d}\left\langle x_i \right\rangle}
+B_{x,x,x} = P_{\delta_x,\delta_x}(\vec{k_1}) P_{\delta_x,\delta_x}(\vec{k_3}) \left\langle x_i \right\rangle \frac{{\rm d} \ln (P_{\delta_x,\delta_x}(\vec{k_1}))}{{\rm d}\left\langle x_i \right\rangle}.
 \end{equation}
 
 \subsubsection*{$B_{x,x,\rho}$}
@@ -290,12 +288,10 @@ P_{\delta_x,\delta_x}(\vec{k}_1)P_{\delta_{\rho},\delta_{\rho}}(\vec{k}_2) + P_{
 \end{equation}
 so the component bispectrum from this subsection can be expressed as
 
-\begin{equation}
-\begin{split}
--2 T_0 \left\langle x_i \right\rangle \left( P_{\delta_x,\delta_{\rho}}(\vec{k}_1) P_{\delta_x,\delta_x}(\vec{k}_3)\left\langle x_i \right\rangle \frac{{\rm d} \ln (P_{\delta_x,\delta_{\rho}}(\vec{k_1}))}{{\rm d}\left\langle x_i \right\rangle} +  P_{\delta_x,\delta_x}(\vec{k}_1)P_{\delta_{\rho},\delta_{\rho}}(\vec{k}_2) + P_{\delta_x,\delta_{\rho}}(\vec{k}_1)P_{\delta_x,\delta_{\rho}}(\vec{k}_2) \right) \\ 
+\begin{multline}
+-2 T_0 \left\langle x_i \right\rangle ( P_{\delta_x,\delta_{\rho}}(\vec{k}_1) P_{\delta_x,\delta_x}(\vec{k}_3)\left\langle x_i \right\rangle \frac{{\rm d} \ln (P_{\delta_x,\delta_{\rho}}(\vec{k_1}))}{{\rm d}\left\langle x_i \right\rangle} \\+  P_{\delta_x,\delta_x}(\vec{k}_1)P_{\delta_{\rho},\delta_{\rho}}(\vec{k}_2) + P_{\delta_x,\delta_{\rho}}(\vec{k}_1)P_{\delta_x,\delta_{\rho}}(\vec{k}_2) ) \\ 
 \times \delta_D(\vec{k}_1+\vec{k}_2+\vec{k}_3)
-\end{split}
-\end{equation}
+\end{multline}
 
 \subsubsection{$B_{\rho,\rho,{\rm 21cm}}$}
 \label{subsec:B_rhorho21}
@@ -431,7 +427,7 @@ The trispectrum can be written as follows (note that in terms such as $\vec{k}^2
 
 \begin{equation}
 \begin{split}
-\mathcal{T}(\delta^{2D}_{\rm 21\,cm}, \delta^{2D}_{\rm 21\,cm}, \delta_{\rm kSZ}, \delta_{\rm kSZ}; z) &=
+\mathcal{T}(\delta^{2D}_{\rm 21\,cm}, \delta^{2D}_{\rm 21\,cm}, \delta_{\rm kSZ}, \delta_{\rm kSZ}) &=
 \langle \delta^{2D}_{\rm 21\,cm}(\vec{k}^1_{\perp})  \delta^{2D}_{\rm 21\,cm}(\vec{k}^2_{\perp})  \delta_{\rm kSZ}(\vec{k}^3_{\perp})\delta_{\rm kSZ}(\vec{k}^4_{\perp}) \rangle \\
 &=
 \int \frac{{\rm d}k^1_{\parallel}}{2\pi} \frac{{\rm d}k^2_{\parallel}}{2\pi} \frac{{\rm d}k^3_{\parallel}}{2\pi} \frac{{\rm d}k^4_{\parallel}}{2\pi}
